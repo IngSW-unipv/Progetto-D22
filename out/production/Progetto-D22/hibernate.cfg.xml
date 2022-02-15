@@ -10,6 +10,7 @@
         <property name="connection.username">root</property>
         <property name="connection.password">root</property>
 
+
         <mapping class="it.unipv.trenissimo.model.persistence.entity.AgencyEntity"/>
         <mapping class="it.unipv.trenissimo.model.persistence.entity.CalendarEntity"/>
         <mapping class="it.unipv.trenissimo.model.persistence.entity.CalendarDatesEntity"/>
@@ -17,6 +18,7 @@
         <mapping class="it.unipv.trenissimo.model.persistence.entity.StopTimesEntity"/>
         <mapping class="it.unipv.trenissimo.model.persistence.entity.StopsEntity"/>
         <mapping class="it.unipv.trenissimo.model.persistence.entity.TripsEntity"/>
+
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->

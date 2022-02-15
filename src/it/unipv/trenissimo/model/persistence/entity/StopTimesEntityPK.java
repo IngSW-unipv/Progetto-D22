@@ -1,34 +1,35 @@
 package it.unipv.trenissimo.model.persistence.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class StopTimesEntityPK implements Serializable {
     @Column(name = "trip_id", nullable = false)
-    @Basic
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer tripId;
+    private int tripId;
     @Column(name = "stop_id", nullable = false)
-    @Basic
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer stopId;
+    private int stopId;
 
-    public Integer getTripId() {
+    public int getTripId() {
         return tripId;
     }
 
-    public void setTripId(Integer tripId) {
+    public void setTripId(int tripId) {
         this.tripId = tripId;
     }
 
-    public Integer getStopId() {
+    public int getStopId() {
         return stopId;
     }
 
-    public void setStopId(Integer stopId) {
+    public void setStopId(int stopId) {
         this.stopId = stopId;
     }
 
@@ -37,7 +38,7 @@ public class StopTimesEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StopTimesEntityPK that = (StopTimesEntityPK) o;
-        return Objects.equals(tripId, that.tripId) && Objects.equals(stopId, that.stopId);
+        return tripId == that.tripId && stopId == that.stopId;
     }
 
     @Override

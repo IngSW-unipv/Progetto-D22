@@ -1,23 +1,18 @@
 package it.unipv.trenissimo.model.persistence.entity;
 
-import org.hibernate.annotations.Generated;
-
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "calendar_dates", schema = "trenissimo")
 public class CalendarDatesEntity {
-    @Id
-    @GeneratedValue
-    private UUID phantomId;
     @Basic
     @Column(name = "service_id", nullable = true)
     private Long serviceId;
-    @Basic
-    @Column(name = "date", nullable = true)
-    private Integer date;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "date", nullable = false)
+    private int date;
     @Basic
     @Column(name = "exception_type", nullable = true)
     private Integer exceptionType;
@@ -33,11 +28,11 @@ public class CalendarDatesEntity {
         this.serviceId = serviceId;
     }
 
-    public Integer getDate() {
+    public int getDate() {
         return date;
     }
 
-    public void setDate(Integer date) {
+    public void setDate(int date) {
         this.date = date;
     }
 
@@ -54,7 +49,7 @@ public class CalendarDatesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CalendarDatesEntity that = (CalendarDatesEntity) o;
-        return Objects.equals(serviceId, that.serviceId) && Objects.equals(date, that.date) && Objects.equals(exceptionType, that.exceptionType);
+        return date == that.date && Objects.equals(serviceId, that.serviceId) && Objects.equals(exceptionType, that.exceptionType);
     }
 
     @Override

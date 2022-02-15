@@ -2,16 +2,15 @@ package it.unipv.trenissimo.model.persistence.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "stop_times", schema = "trenissimo")
 @IdClass(StopTimesEntityPK.class)
 public class StopTimesEntity {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Basic
     @Column(name = "trip_id", nullable = false)
-    private Integer tripId;
+    private int tripId;
     @Basic
     @Column(name = "arrival_time", nullable = true, length = 100)
     private String arrivalTime;
@@ -20,9 +19,8 @@ public class StopTimesEntity {
     private String departureTime;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Basic
     @Column(name = "stop_id", nullable = false)
-    private Integer stopId;
+    private int stopId;
     @Basic
     @Column(name = "stop_sequence", nullable = true)
     private Integer stopSequence;
@@ -39,21 +37,17 @@ public class StopTimesEntity {
     @Column(name = "shape_dist_traveled", nullable = true, length = 100)
     private String shapeDistTraveled;
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "trip_id", referencedColumnName = "trip_id", insertable = false, updatable = false), @JoinColumn(name = "trip_id", referencedColumnName = "trip_id", nullable = false)})
+    @JoinColumn(name = "trip_id", referencedColumnName = "trip_id", nullable = false, insertable = false, updatable = false)
     private TripsEntity tripsByTripId;
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "stop_id", referencedColumnName = "stop_id", insertable = false, updatable = false), @JoinColumn(name = "stop_id", referencedColumnName = "stop_id", nullable = false)})
+    @JoinColumn(name = "stop_id", referencedColumnName = "stop_id", nullable = false, insertable = false, updatable = false)
     private StopsEntity stopsByStopId;
 
-    public Integer getTripId() {
+    public int getTripId() {
         return tripId;
     }
 
     public void setTripId(int tripId) {
-        this.tripId = tripId;
-    }
-
-    public void setTripId(Integer tripId) {
         this.tripId = tripId;
     }
 
@@ -73,15 +67,11 @@ public class StopTimesEntity {
         this.departureTime = departureTime;
     }
 
-    public Integer getStopId() {
+    public int getStopId() {
         return stopId;
     }
 
     public void setStopId(int stopId) {
-        this.stopId = stopId;
-    }
-
-    public void setStopId(Integer stopId) {
         this.stopId = stopId;
     }
 
@@ -130,7 +120,7 @@ public class StopTimesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StopTimesEntity that = (StopTimesEntity) o;
-        return Objects.equals(tripId, that.tripId) && Objects.equals(arrivalTime, that.arrivalTime) && Objects.equals(departureTime, that.departureTime) && Objects.equals(stopId, that.stopId) && Objects.equals(stopSequence, that.stopSequence) && Objects.equals(stopHeadsign, that.stopHeadsign) && Objects.equals(pickupType, that.pickupType) && Objects.equals(dropOffType, that.dropOffType) && Objects.equals(shapeDistTraveled, that.shapeDistTraveled);
+        return tripId == that.tripId && stopId == that.stopId && Objects.equals(arrivalTime, that.arrivalTime) && Objects.equals(departureTime, that.departureTime) && Objects.equals(stopSequence, that.stopSequence) && Objects.equals(stopHeadsign, that.stopHeadsign) && Objects.equals(pickupType, that.pickupType) && Objects.equals(dropOffType, that.dropOffType) && Objects.equals(shapeDistTraveled, that.shapeDistTraveled);
     }
 
     @Override
