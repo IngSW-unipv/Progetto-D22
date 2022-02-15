@@ -7,5 +7,6 @@ import java.util.List;
 public interface IAgencyDao {
 
     public List<AgencyEntity> findAll();
+    //public AgencyEntity findById(String id);
 
 }

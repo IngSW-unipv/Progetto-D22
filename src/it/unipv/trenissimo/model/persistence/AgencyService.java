@@ -13,10 +13,10 @@ public class AgencyService {
         agencyDao = new AgencyDao();
     }
 
-    /*public Book findById(String id) {
-        bookDao.openCurrentSession();
-        Book book = bookDao.findById(id);
-        bookDao.closeCurrentSession();
+    /*public AgencyEntity findById(String id) {
+        agencyDao.openCurrentSession();
+        AgencyEntity book = agencyDao.findById(id);
+        agencyDao.closeCurrentSession();
         return book;
     }*/
 

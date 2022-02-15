@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+
 import java.util.List;
 
 public class AgencyDao implements IAgencyDao {
@@ -61,10 +62,10 @@ public class AgencyDao implements IAgencyDao {
         this.currentTransaction = currentTransaction;
     }
 
-    public AgencyEntity findById(String id) {
-        AgencyEntity book = (AgencyEntity) getCurrentSession().get(AgencyEntity.class, id);
-        return book;
-    }
+    /*public AgencyEntity findById(String id) {
+        AgencyEntity agency = (AgencyEntity) getCurrentSession().get(AgencyEntity.class, id);
+        return agency;
+    }*/
 
 
     @SuppressWarnings("unchecked")
