@@ -1,22 +1,21 @@
-package it.unipv.trenissimo.model.persistence;
+package it.unipv.trenissimo.model.persistence.dao;
 
-import it.unipv.trenissimo.model.persistence.entity.AgencyEntity;
+import it.unipv.trenissimo.model.persistence.util.ICalendarDao;
+import it.unipv.trenissimo.model.persistence.entity.CalendarEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-
 import java.util.List;
 
-public class AgencyDao implements IAgencyDao {
-
+public class CalendarDao implements ICalendarDao {
     private Session currentSession;
 
     private Transaction currentTransaction;
 
-    public AgencyDao() {
+    public CalendarDao() {
     }
 
     public Session openCurrentSession() {
@@ -62,18 +61,9 @@ public class AgencyDao implements IAgencyDao {
         this.currentTransaction = currentTransaction;
     }
 
-    /*public AgencyEntity findById(String id) {
-        AgencyEntity agency = (AgencyEntity) getCurrentSession().get(AgencyEntity.class, id);
-        return agency;
-    }*/
-
-
     @SuppressWarnings("unchecked")
-    public List<AgencyEntity> findAll() {
-        List<AgencyEntity> agencies = (List<AgencyEntity>) getCurrentSession().createQuery("from AgencyEntity ").list();
-        return agencies;
+    public List<CalendarEntity> findAll() {
+        List<CalendarEntity> calendarEntities = (List<CalendarEntity>) getCurrentSession().createQuery("from CalendarEntity").list();
+        return calendarEntities;
     }
-
-
 }
-

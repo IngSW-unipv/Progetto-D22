@@ -64,4 +64,13 @@ public class CalendarDatesEntity {
     public void setCalendarByServiceId(CalendarEntity calendarByServiceId) {
         this.calendarByServiceId = calendarByServiceId;
     }
+
+    @Override
+    public String toString() {
+        return "CalendarDatesEntity{" +
+                "serviceId=" + serviceId +
+                ", date=" + date +
+                ", exceptionType=" + exceptionType +
+                '}';
+    }
 }

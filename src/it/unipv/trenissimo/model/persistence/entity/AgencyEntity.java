@@ -1,12 +1,13 @@
 package it.unipv.trenissimo.model.persistence.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "agency", schema = "trenissimo")
-public class AgencyEntity {
+public class AgencyEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "agency_id", nullable = false, length = 100)
@@ -96,5 +97,17 @@ public class AgencyEntity {
 
     public void setRoutesByAgencyId(Collection<RoutesEntity> routesByAgencyId) {
         this.routesByAgencyId = routesByAgencyId;
+    }
+
+    @Override
+    public String toString() {
+        return "AgencyEntity{" +
+                "agencyId='" + agencyId + '\'' +
+                ", agencyName='" + agencyName + '\'' +
+                ", agencyUrl='" + agencyUrl + '\'' +
+                ", agencyTimezone='" + agencyTimezone + '\'' +
+                ", agencyLang='" + agencyLang + '\'' +
+                ", agencyPhone='" + agencyPhone + '\'' +
+                '}';
     }
 }

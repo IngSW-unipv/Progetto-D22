@@ -1,11 +1,13 @@
-package it.unipv.trenissimo.model.persistence;
+package it.unipv.trenissimo.model.persistence.service;
 
 
+import it.unipv.trenissimo.model.persistence.dao.AgencyDao;
 import it.unipv.trenissimo.model.persistence.entity.AgencyEntity;
+import it.unipv.trenissimo.model.persistence.util.IAgencyService;
 
 import java.util.List;
 
-public class AgencyService {
+public class AgencyService implements IAgencyService {
 
     private static AgencyDao agencyDao;
 

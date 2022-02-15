@@ -1,12 +1,13 @@
 package it.unipv.trenissimo.model.persistence.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "stops", schema = "trenissimo")
-public class StopsEntity {
+public class StopsEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "stop_id", nullable = false)

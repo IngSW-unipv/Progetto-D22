@@ -1,12 +1,13 @@
 package it.unipv.trenissimo.model.persistence.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "calendar", schema = "trenissimo")
-public class CalendarEntity {
+public class CalendarEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "service_id", nullable = false)
@@ -140,5 +141,21 @@ public class CalendarEntity {
 
     public void setCalendarDatesByServiceId(Collection<CalendarDatesEntity> calendarDatesByServiceId) {
         this.calendarDatesByServiceId = calendarDatesByServiceId;
+    }
+
+    @Override
+    public String toString() {
+        return "CalendarEntity{" +
+                "serviceId=" + serviceId +
+                ", monday=" + monday +
+                ", tuesday=" + tuesday +
+                ", wednesday=" + wednesday +
+                ", thursday=" + thursday +
+                ", friday=" + friday +
+                ", saturday=" + saturday +
+                ", sunday=" + sunday +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
     }
 }

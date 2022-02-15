@@ -1,12 +1,13 @@
 package it.unipv.trenissimo.model.persistence.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "trips", schema = "trenissimo")
-public class TripsEntity {
+public class TripsEntity implements Serializable {
     @Basic
     @Column(name = "route_id", nullable = true, length = 100)
     private String routeId;
