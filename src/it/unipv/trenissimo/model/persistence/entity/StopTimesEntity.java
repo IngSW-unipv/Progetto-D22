@@ -6,12 +6,11 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "stop_times", schema = "trenissimo")
+@IdClass(StopTimesEntityPK.class)
 public class StopTimesEntity {
     @Id
-    @GeneratedValue
-    private UUID phantomId;
     @Basic
-    @Column(name = "trip_id", nullable = true)
+    @Column(name = "trip_id", nullable = false)
     private Integer tripId;
     @Basic
     @Column(name = "arrival_time", nullable = true, length = 100)
@@ -19,8 +18,10 @@ public class StopTimesEntity {
     @Basic
     @Column(name = "departure_time", nullable = true, length = 100)
     private String departureTime;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     @Basic
-    @Column(name = "stop_id", nullable = true)
+    @Column(name = "stop_id", nullable = false)
     private Integer stopId;
     @Basic
     @Column(name = "stop_sequence", nullable = true)
@@ -38,14 +39,18 @@ public class StopTimesEntity {
     @Column(name = "shape_dist_traveled", nullable = true, length = 100)
     private String shapeDistTraveled;
     @ManyToOne
-    @JoinColumn(name = "trip_id", referencedColumnName = "trip_id", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "trip_id", referencedColumnName = "trip_id", insertable = false, updatable = false), @JoinColumn(name = "trip_id", referencedColumnName = "trip_id", nullable = false)})
     private TripsEntity tripsByTripId;
     @ManyToOne
-    @JoinColumn(name = "stop_id", referencedColumnName = "stop_id", insertable = false, updatable = false)
+    @JoinColumns({@JoinColumn(name = "stop_id", referencedColumnName = "stop_id", insertable = false, updatable = false), @JoinColumn(name = "stop_id", referencedColumnName = "stop_id", nullable = false)})
     private StopsEntity stopsByStopId;
 
     public Integer getTripId() {
         return tripId;
+    }
+
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
     }
 
     public void setTripId(Integer tripId) {
@@ -70,6 +75,10 @@ public class StopTimesEntity {
 
     public Integer getStopId() {
         return stopId;
+    }
+
+    public void setStopId(int stopId) {
+        this.stopId = stopId;
     }
 
     public void setStopId(Integer stopId) {
