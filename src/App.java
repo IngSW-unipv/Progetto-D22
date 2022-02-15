@@ -1,7 +1,5 @@
 
-import it.unipv.trenissimo.model.persistence.service.AgencyService;
-import it.unipv.trenissimo.model.persistence.service.CalendarDatesService;
-import it.unipv.trenissimo.model.persistence.service.CalendarService;
+import it.unipv.trenissimo.model.persistence.service.*;
 
 import java.util.logging.Level;
 
@@ -20,6 +18,21 @@ public class App {
 
         CalendarService calendarService = new CalendarService();
         calendarService.findAll().forEach((x) -> System.out.println(x.toString()));
+
+        RoutesService routesService = new RoutesService();
+        routesService.findAll().forEach((x) -> System.out.println(x.toString()));
+
+
+        StopsService stopsService = new StopsService();
+        stopsService.findAll().forEach((x) -> System.out.println(x.toString()));
+
+
+        StopTimesService stopTimesService = new StopTimesService();
+        stopTimesService.findAll().forEach((x) -> System.out.println(x.toString()));
+
+        TripsService tripsService = new TripsService();
+        tripsService.findAll().forEach((x) -> System.out.println(x.toString()));
+
 
     }
 

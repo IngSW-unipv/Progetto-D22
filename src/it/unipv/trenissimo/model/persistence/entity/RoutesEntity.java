@@ -131,4 +131,19 @@ public class RoutesEntity implements Serializable {
     public void setAgencyByAgencyId(AgencyEntity agencyByAgencyId) {
         this.agencyByAgencyId = agencyByAgencyId;
     }
+
+    @Override
+    public String toString() {
+        return "RoutesEntity{" +
+                "routeId='" + routeId + '\'' +
+                ", agencyId='" + agencyId + '\'' +
+                ", routeShortName='" + routeShortName + '\'' +
+                ", routeLongName='" + routeLongName + '\'' +
+                ", routeDesc='" + routeDesc + '\'' +
+                ", routeType=" + routeType +
+                ", routeUrl='" + routeUrl + '\'' +
+                ", routeColor='" + routeColor + '\'' +
+                ", routeTextColor='" + routeTextColor + '\'' +
+                '}';
+    }
 }

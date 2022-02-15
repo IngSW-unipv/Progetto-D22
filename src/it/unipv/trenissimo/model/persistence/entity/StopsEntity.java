@@ -131,4 +131,19 @@ public class StopsEntity implements Serializable {
     public void setStopTimesByStopId(Collection<StopTimesEntity> stopTimesByStopId) {
         this.stopTimesByStopId = stopTimesByStopId;
     }
+
+    @Override
+    public String toString() {
+        return "StopsEntity{" +
+                "stopId=" + stopId +
+                ", stopCode='" + stopCode + '\'' +
+                ", stopName='" + stopName + '\'' +
+                ", stopDesc='" + stopDesc + '\'' +
+                ", stopLat=" + stopLat +
+                ", stopLon=" + stopLon +
+                ", stopUrl='" + stopUrl + '\'' +
+                ", locationType=" + locationType +
+                ", parentStation='" + parentStation + '\'' +
+                '}';
+    }
 }
