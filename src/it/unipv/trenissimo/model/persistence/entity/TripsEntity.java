@@ -120,4 +120,18 @@ public class TripsEntity implements Serializable {
     public void setStopTimesByTripId(Collection<StopTimesEntity> stopTimesByTripId) {
         this.stopTimesByTripId = stopTimesByTripId;
     }
+
+    @Override
+    public String toString() {
+        return "TripsEntity{" +
+                "routeId='" + routeId + '\'' +
+                ", serviceId=" + serviceId +
+                ", tripId=" + tripId +
+                ", tripHeadsign='" + tripHeadsign + '\'' +
+                ", tripShortName=" + tripShortName +
+                ", directionId=" + directionId +
+                ", blockId='" + blockId + '\'' +
+                ", shapeId='" + shapeId + '\'' +
+                '}';
+    }
 }

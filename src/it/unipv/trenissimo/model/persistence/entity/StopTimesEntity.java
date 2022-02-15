@@ -143,4 +143,19 @@ public class StopTimesEntity {
     public void setStopsByStopId(StopsEntity stopsByStopId) {
         this.stopsByStopId = stopsByStopId;
     }
+
+    @Override
+    public String toString() {
+        return "StopTimesEntity{" +
+                "tripId=" + tripId +
+                ", arrivalTime='" + arrivalTime + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                ", stopId=" + stopId +
+                ", stopSequence=" + stopSequence +
+                ", stopHeadsign='" + stopHeadsign + '\'' +
+                ", pickupType='" + pickupType + '\'' +
+                ", dropOffType='" + dropOffType + '\'' +
+                ", shapeDistTraveled='" + shapeDistTraveled + '\'' +
+                '}';
+    }
 }
