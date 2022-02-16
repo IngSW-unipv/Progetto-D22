@@ -6,7 +6,7 @@ import java.sql.Time;
 import java.util.Objects;
 
 @Entity
-@Table(name = "viaggi_preferiti", schema = "trenissimo", catalog = "")
+@Table(name = "viaggi_preferiti", schema = "trenissimo")
 public class ViaggiPreferitiEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
