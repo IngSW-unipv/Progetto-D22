@@ -7,9 +7,9 @@
         <property name="connection.url">jdbc:mysql://localhost:3306/trenissimo</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password">root</property>
-
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.AgencyEntity"/>
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.CalendarEntity"/>
@@ -18,9 +18,11 @@
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopTimesEntity"/>
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity"/>
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.TripsEntity"/>
+        <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity"/>
+        <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity"/>
+        <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity"/>
+        <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity"/>
 
 
-        <!-- DB schema will be updated if needed -->
-        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
     </session-factory>
 </hibernate-configuration>
