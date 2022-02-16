@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/trenissimo</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+
+
+        <mapping class="it.unipv.trenissimo.model.persistence.entity.AgencyEntity"/>
+        <mapping class="it.unipv.trenissimo.model.persistence.entity.CalendarEntity"/>
+        <mapping class="it.unipv.trenissimo.model.persistence.entity.CalendarDatesEntity"/>
+        <mapping class="it.unipv.trenissimo.model.persistence.entity.RoutesEntity"/>
+        <mapping class="it.unipv.trenissimo.model.persistence.entity.StopTimesEntity"/>
+        <mapping class="it.unipv.trenissimo.model.persistence.entity.StopsEntity"/>
+        <mapping class="it.unipv.trenissimo.model.persistence.entity.TripsEntity"/>
+
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
