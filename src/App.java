@@ -1,5 +1,5 @@
 
-import it.unipv.trenissimo.model.persistence.service.*;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 
 import java.util.logging.Level;
 
