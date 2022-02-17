@@ -6,21 +6,14 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "dati_personali", schema = "trenissimo")
-@IdClass(DatiPersonaliEntityPK.class)
 public class DatiPersonaliEntity {
-    @Basic
+    @Id
     @Column(name = "account_id")
     private Integer accountId;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
     @Column(name = "nome")
     private String nome;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
     @Column(name = "cognome")
     private String cognome;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
     @Column(name = "data_nascita")
     private Date dataNascita;
     @Basic
@@ -89,5 +82,17 @@ public class DatiPersonaliEntity {
     @Override
     public int hashCode() {
         return Objects.hash(accountId, nome, cognome, dataNascita, indirizzo, mail);
+    }
+
+    @Override
+    public String toString() {
+        return "DatiPersonaliEntity{" +
+                "accountId=" + accountId +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", dataNascita=" + dataNascita +
+                ", indirizzo='" + indirizzo + '\'' +
+                ", mail='" + mail + '\'' +
+                '}';
     }
 }

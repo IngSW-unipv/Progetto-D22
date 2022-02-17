@@ -76,4 +76,15 @@ public class StoricoAcquistiEntity {
     public int hashCode() {
         return Objects.hash(storicoAcquistiId, accountId, titoloViaggioId, prezzo, dataAcquisto);
     }
+
+    @Override
+    public String toString() {
+        return "StoricoAcquistiEntity{" +
+                "storicoAcquistiId='" + storicoAcquistiId + '\'' +
+                ", accountId=" + accountId +
+                ", titoloViaggioId='" + titoloViaggioId + '\'' +
+                ", prezzo=" + prezzo +
+                ", dataAcquisto=" + dataAcquisto +
+                '}';
+    }
 }

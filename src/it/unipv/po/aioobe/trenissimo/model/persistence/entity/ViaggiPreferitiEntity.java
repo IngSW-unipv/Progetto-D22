@@ -154,4 +154,22 @@ public class ViaggiPreferitiEntity {
     public int hashCode() {
         return Objects.hash(viaggioPreferitoId, accountId, stazionePartenza, stazioneArrivo, data, ora, nAdulti, nRagazzi, nBambini, nAnimali, modalitaViaggio, nMaxCambi);
     }
+
+    @Override
+    public String toString() {
+        return "ViaggiPreferitiEntity{" +
+                "viaggioPreferitoId='" + viaggioPreferitoId + '\'' +
+                ", accountId=" + accountId +
+                ", stazionePartenza='" + stazionePartenza + '\'' +
+                ", stazioneArrivo='" + stazioneArrivo + '\'' +
+                ", data=" + data +
+                ", ora=" + ora +
+                ", nAdulti=" + nAdulti +
+                ", nRagazzi=" + nRagazzi +
+                ", nBambini=" + nBambini +
+                ", nAnimali=" + nAnimali +
+                ", modalitaViaggio='" + modalitaViaggio + '\'' +
+                ", nMaxCambi=" + nMaxCambi +
+                '}';
+    }
 }

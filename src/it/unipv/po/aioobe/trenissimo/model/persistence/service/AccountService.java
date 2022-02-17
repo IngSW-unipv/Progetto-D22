@@ -3,7 +3,6 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.AccountDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.IAccountService;
-
 import java.util.List;
 
 public class AccountService implements IAccountService {
@@ -31,6 +30,12 @@ public class AccountService implements IAccountService {
     public void persist(AccountEntity account) {
         accountDao.openCurrentSessionwithTransaction();
         accountDao.persist(account);
+        accountDao.closeCurrentSessionwithTransaction();
+    }
+
+    public void update(AccountEntity account) {
+        accountDao.openCurrentSessionwithTransaction();
+        accountDao.update(account);
         accountDao.closeCurrentSessionwithTransaction();
     }
 
