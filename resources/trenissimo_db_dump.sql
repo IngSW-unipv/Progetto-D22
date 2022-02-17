@@ -29,7 +29,7 @@ CREATE TABLE `account` (
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'zambo','zambo'),(2,'zambo','zambo'),(3,'zambo','zambo'),(4,'zambo','zambo');
+INSERT INTO `account` VALUES (1,'zambo','zambo'),(2,'zambo','zambo'),(3,'Nyquist','gatto'),(4,'zambo','zambo'),(5,'zambo','zambo');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,13 +136,13 @@ DROP TABLE IF EXISTS `dati_personali`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dati_personali` (
-  `account_id` int unsigned DEFAULT NULL,
+  `account_id` int unsigned NOT NULL,
   `nome` varchar(45) NOT NULL,
   `cognome` varchar(45) NOT NULL,
   `data_nascita` date NOT NULL,
   `indirizzo` varchar(45) DEFAULT NULL,
   `mail` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`nome`,`cognome`,`data_nascita`),
+  PRIMARY KEY (`account_id`,`nome`,`cognome`,`data_nascita`),
   KEY `account_dati_id_idx` (`account_id`),
   CONSTRAINT `account_dati_id` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -154,6 +154,7 @@ CREATE TABLE `dati_personali` (
 
 LOCK TABLES `dati_personali` WRITE;
 /*!40000 ALTER TABLE `dati_personali` DISABLE KEYS */;
+INSERT INTO `dati_personali` VALUES (3,'Fabio','Zamboni','1999-07-23','Loc. Albareto 57','fabio.zamboni01@universitadipavia.it');
 /*!40000 ALTER TABLE `dati_personali` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,13 +266,12 @@ DROP TABLE IF EXISTS `storico_acquisti`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `storico_acquisti` (
   `storico_acquisti_id` varchar(100) NOT NULL,
-  `account_id` int unsigned DEFAULT NULL,
+  `account_id` int DEFAULT NULL,
   `titolo_viaggio_id` varchar(100) DEFAULT NULL,
   `prezzo` double DEFAULT NULL,
   `data_acquisto` datetime DEFAULT NULL,
   PRIMARY KEY (`storico_acquisti_id`),
-  KEY `account_acquisti_id_idx` (`account_id`),
-  CONSTRAINT `account_acquisti_id` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`)
+  KEY `account_acquisti_id_idx` (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -325,7 +325,7 @@ DROP TABLE IF EXISTS `viaggi_preferiti`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `viaggi_preferiti` (
   `viaggio_preferito_id` varchar(100) NOT NULL,
-  `account_id` int unsigned DEFAULT NULL,
+  `account_id` int DEFAULT NULL,
   `stazione_partenza` varchar(45) DEFAULT NULL,
   `stazione_arrivo` varchar(45) DEFAULT NULL,
   `data` date DEFAULT NULL,
@@ -337,8 +337,7 @@ CREATE TABLE `viaggi_preferiti` (
   `modalita_viaggio` varchar(45) DEFAULT NULL,
   `n_max_cambi` int DEFAULT NULL,
   PRIMARY KEY (`viaggio_preferito_id`),
-  KEY `account_preferiti_id_idx` (`account_id`),
-  CONSTRAINT `account_preferiti_id` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`)
+  KEY `account_preferiti_id_idx` (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -368,4 +367,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-17  0:48:14
+-- Dump completed on 2022-02-17 23:45:37
