@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.dao;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.HibernateConnection;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IViaggiPreferitiDao;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IViaggiPreferitiDao;
 import java.util.List;
 
 public class ViaggiPreferitiDao extends HibernateConnection implements IViaggiPreferitiDao {
