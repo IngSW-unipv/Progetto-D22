@@ -15,9 +15,9 @@ public class StopTimesService implements IStopTimesService {
     }
 
     public List<StopTimesEntity> findAll() {
-        stopTimesDao.openCurrentSession();
+        stopTimesDao.getConn().openCurrentSession();
         List<StopTimesEntity> stopTimes = stopTimesDao.findAll();
-        stopTimesDao.closeCurrentSession();
+        stopTimesDao.getConn().closeCurrentSession();
         return stopTimes;
     }
 

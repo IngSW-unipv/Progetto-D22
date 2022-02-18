@@ -15,9 +15,9 @@ public class StopsService implements IStopsService {
     }
 
     public List<StopsEntity> findAll() {
-        routesDao.openCurrentSession();
+        routesDao.getConn().openCurrentSession();
         List<StopsEntity> stops = routesDao.findAll();
-        routesDao.closeCurrentSession();
+        routesDao.getConn().closeCurrentSession();
         return stops;
     }
 

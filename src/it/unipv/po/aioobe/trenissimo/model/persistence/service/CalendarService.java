@@ -15,9 +15,9 @@ public class CalendarService implements ICalendarService {
     }
 
     public List<CalendarEntity> findAll() {
-        calendarDao.openCurrentSession();
+        calendarDao.getConn().openCurrentSession();
         List<CalendarEntity> calendars = calendarDao.findAll();
-        calendarDao.closeCurrentSession();
+        calendarDao.getConn().closeCurrentSession();
         return calendars;
     }
 
