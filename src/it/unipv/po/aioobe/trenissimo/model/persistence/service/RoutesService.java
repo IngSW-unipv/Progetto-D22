@@ -15,9 +15,9 @@ public class RoutesService implements IRoutesService {
     }
 
     public List<RoutesEntity> findAll() {
-        routesDao.openCurrentSession();
+        routesDao.getConn().openCurrentSession();
         List<RoutesEntity> routes = routesDao.findAll();
-        routesDao.closeCurrentSession();
+        routesDao.getConn().closeCurrentSession();
         return routes;
     }
 

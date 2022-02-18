@@ -16,36 +16,36 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
     }
 
     public List<StoricoAcquistiEntity> findAll() {
-        storicoAcquistiDao.openCurrentSession();
+        storicoAcquistiDao.getConn().openCurrentSession();
         List<StoricoAcquistiEntity> storicoAcquisti = storicoAcquistiDao.findAll();
-        storicoAcquistiDao.closeCurrentSession();
+        storicoAcquistiDao.getConn().closeCurrentSession();
         return storicoAcquisti;
     }
 
     public StoricoAcquistiEntity findById(String id) {
-        storicoAcquistiDao.openCurrentSession();
+        storicoAcquistiDao.getConn().openCurrentSession();
         StoricoAcquistiEntity storicoAcquisti = storicoAcquistiDao.findById(id);
-        storicoAcquistiDao.closeCurrentSession();
+        storicoAcquistiDao.getConn().closeCurrentSession();
         return storicoAcquisti;
     }
 
     public void persist(StoricoAcquistiEntity storicoAcquisti) {
-        storicoAcquistiDao.openCurrentSessionwithTransaction();
+        storicoAcquistiDao.getConn().openCurrentSessionwithTransaction();
         storicoAcquistiDao.persist(storicoAcquisti);
-        storicoAcquistiDao.closeCurrentSessionwithTransaction();
+        storicoAcquistiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public void update(StoricoAcquistiEntity storicoAcquisti) {
-        storicoAcquistiDao.openCurrentSessionwithTransaction();
+        storicoAcquistiDao.getConn().openCurrentSessionwithTransaction();
         storicoAcquistiDao.update(storicoAcquisti);
-        storicoAcquistiDao.closeCurrentSessionwithTransaction();
+        storicoAcquistiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public void deleteById(String id) {
-        storicoAcquistiDao.openCurrentSessionwithTransaction();
+        storicoAcquistiDao.getConn().openCurrentSessionwithTransaction();
         StoricoAcquistiEntity storicoAcquisti = storicoAcquistiDao.findById(id);
         storicoAcquistiDao.delete(storicoAcquisti);
-        storicoAcquistiDao.closeCurrentSessionwithTransaction();
+        storicoAcquistiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public StoricoAcquistiDao storicoAcquistiDao() {

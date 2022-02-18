@@ -23,9 +23,9 @@ public class AgencyService implements IAgencyService {
     }*/
 
     public List<AgencyEntity> findAll() {
-        agencyDao.openCurrentSession();
+        agencyDao.getConn().openCurrentSession();
         List<AgencyEntity> agencies = agencyDao.findAll();
-        agencyDao.closeCurrentSession();
+        agencyDao.getConn().closeCurrentSession();
         return agencies;
     }
 

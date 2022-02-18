@@ -14,36 +14,36 @@ public class DatiPersonaliService implements IDatiPersonaliService {
     }
 
     public List<DatiPersonaliEntity> findAll() {
-        datiPersonaliDao.openCurrentSession();
+        datiPersonaliDao.getConn().openCurrentSession();
         List<DatiPersonaliEntity> datiPersonali = datiPersonaliDao.findAll();
-        datiPersonaliDao.closeCurrentSession();
+        datiPersonaliDao.getConn().closeCurrentSession();
         return datiPersonali;
     }
 
     public DatiPersonaliEntity findById(String id) {
-        datiPersonaliDao.openCurrentSession();
+        datiPersonaliDao.getConn().openCurrentSession();
         DatiPersonaliEntity datiPersonali = datiPersonaliDao.findById(id);
-        datiPersonaliDao.closeCurrentSession();
+        datiPersonaliDao.getConn().closeCurrentSession();
         return datiPersonali;
     }
 
     public void persist(DatiPersonaliEntity datiPersonali) {
-        datiPersonaliDao.openCurrentSessionwithTransaction();
+        datiPersonaliDao.getConn().openCurrentSessionwithTransaction();
         datiPersonaliDao.persist(datiPersonali);
-        datiPersonaliDao.closeCurrentSessionwithTransaction();
+        datiPersonaliDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public void update(DatiPersonaliEntity datiPersonali) {
-        datiPersonaliDao.openCurrentSessionwithTransaction();
+        datiPersonaliDao.getConn().openCurrentSessionwithTransaction();
         datiPersonaliDao.update(datiPersonali);
-        datiPersonaliDao.closeCurrentSessionwithTransaction();
+        datiPersonaliDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public void deleteById(String id) {
-        datiPersonaliDao.openCurrentSessionwithTransaction();
+        datiPersonaliDao.getConn().openCurrentSessionwithTransaction();
         DatiPersonaliEntity datiPersonali = datiPersonaliDao.findById(id);
         datiPersonaliDao.delete(datiPersonali);
-        datiPersonaliDao.closeCurrentSessionwithTransaction();
+        datiPersonaliDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public DatiPersonaliDao datiPersonaliDao() {

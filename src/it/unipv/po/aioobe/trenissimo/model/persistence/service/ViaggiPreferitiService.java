@@ -14,36 +14,36 @@ public class ViaggiPreferitiService implements IViaggiPreferitiService {
     }
 
     public List<ViaggiPreferitiEntity> findAll() {
-        viaggiPreferitiDao.openCurrentSession();
+        viaggiPreferitiDao.getConn().openCurrentSession();
         List<ViaggiPreferitiEntity> viaggiPreferiti = viaggiPreferitiDao.findAll();
-        viaggiPreferitiDao.closeCurrentSession();
+        viaggiPreferitiDao.getConn().closeCurrentSession();
         return viaggiPreferiti;
     }
 
     public ViaggiPreferitiEntity findById(String id) {
-        viaggiPreferitiDao.openCurrentSession();
+        viaggiPreferitiDao.getConn().openCurrentSession();
         ViaggiPreferitiEntity viaggiPreferiti = viaggiPreferitiDao.findById(id);
-        viaggiPreferitiDao.closeCurrentSession();
+        viaggiPreferitiDao.getConn().closeCurrentSession();
         return viaggiPreferiti;
     }
 
     public void persist(ViaggiPreferitiEntity viaggiPreferiti) {
-        viaggiPreferitiDao.openCurrentSessionwithTransaction();
+        viaggiPreferitiDao.getConn().openCurrentSessionwithTransaction();
         viaggiPreferitiDao.persist(viaggiPreferiti);
-        viaggiPreferitiDao.closeCurrentSessionwithTransaction();
+        viaggiPreferitiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public void update(ViaggiPreferitiEntity viaggiPreferiti) {
-        viaggiPreferitiDao.openCurrentSessionwithTransaction();
+        viaggiPreferitiDao.getConn().openCurrentSessionwithTransaction();
         viaggiPreferitiDao.update(viaggiPreferiti);
-        viaggiPreferitiDao.closeCurrentSessionwithTransaction();
+        viaggiPreferitiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public void deleteById(String id) {
-        viaggiPreferitiDao.openCurrentSessionwithTransaction();
+        viaggiPreferitiDao.getConn().openCurrentSessionwithTransaction();
         ViaggiPreferitiEntity viaggiPreferiti = viaggiPreferitiDao.findById(id);
         viaggiPreferitiDao.delete(viaggiPreferiti);
-        viaggiPreferitiDao.closeCurrentSessionwithTransaction();
+        viaggiPreferitiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public ViaggiPreferitiDao viaggiPreferitiDao() {

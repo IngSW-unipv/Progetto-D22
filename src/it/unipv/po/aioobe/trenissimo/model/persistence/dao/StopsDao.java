@@ -6,15 +6,24 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IStopsDao;
 
 import java.util.List;
 
-public class StopsDao extends HibernateConnection implements IStopsDao {
+public class StopsDao implements IStopsDao {
+
+    private HibernateConnection conn;
 
     public StopsDao() {
-        super();
+        this.conn = new HibernateConnection();
     }
 
+    public HibernateConnection getConn() {
+        return conn;
+    }
+
+    public void setConn(HibernateConnection conn) {
+        this.conn = conn;
+    }
     @SuppressWarnings("unchecked")
     public List<StopsEntity> findAll() {
-        List<StopsEntity> stopsEntities = (List<StopsEntity>) getCurrentSession().createQuery("from StopsEntity").list();
+        List<StopsEntity> stopsEntities = (List<StopsEntity>) conn.getCurrentSession().createQuery("from StopsEntity").list();
         return stopsEntities;
     }
 

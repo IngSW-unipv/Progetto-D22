@@ -5,31 +5,45 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IAccountDao;
 import java.util.List;
 
-public class AccountDao extends HibernateConnection implements IAccountDao {
+public class AccountDao implements IAccountDao {
+
+    private HibernateConnection conn;
+
+    public AccountDao() {
+        this.conn = new HibernateConnection();
+    }
+
+    public HibernateConnection getConn() {
+        return conn;
+    }
+
+    public void setConn(HibernateConnection conn) {
+        this.conn = conn;
+    }
 
     @SuppressWarnings("unchecked")
     public List<AccountEntity> findAll() {
-        List<AccountEntity> accountEntities = (List<AccountEntity>) getCurrentSession().createQuery("from AccountEntity ").list();
+        List<AccountEntity> accountEntities = (List<AccountEntity>) conn.getCurrentSession().createQuery("from AccountEntity ").list();
         return accountEntities;
     }
 
 
     public AccountEntity findById(String id) {
-        AccountEntity accountEntity = (AccountEntity) getCurrentSession().get(AccountEntity.class, Integer.parseInt(id));
+        AccountEntity accountEntity = (AccountEntity) conn.getCurrentSession().get(AccountEntity.class, Integer.parseInt(id));
         return accountEntity;
     }
 
 
     public void persist(AccountEntity account) {
-        getCurrentSession().save(account);
+        conn.getCurrentSession().save(account);
     }
 
 
     public void update(AccountEntity account) {
-        getCurrentSession().update(account);
+        conn.getCurrentSession().update(account);
     }
 
     public void delete(AccountEntity account) {
-        getCurrentSession().delete(account);
+        conn.getCurrentSession().delete(account);
     }
 }

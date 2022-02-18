@@ -14,36 +14,36 @@ public class AccountService implements IAccountService {
     }
 
     public List<AccountEntity> findAll() {
-        accountDao.openCurrentSession();
+        accountDao.getConn().openCurrentSession();
         List<AccountEntity> accounts = accountDao.findAll();
-        accountDao.closeCurrentSession();
+        accountDao.getConn().closeCurrentSession();
         return accounts;
     }
 
     public AccountEntity findById(String id) {
-        accountDao.openCurrentSession();
+        accountDao.getConn().openCurrentSession();
         AccountEntity account = accountDao.findById(id);
-        accountDao.closeCurrentSession();
+        accountDao.getConn().closeCurrentSession();
         return account;
     }
 
     public void persist(AccountEntity account) {
-        accountDao.openCurrentSessionwithTransaction();
+        accountDao.getConn().openCurrentSessionwithTransaction();
         accountDao.persist(account);
-        accountDao.closeCurrentSessionwithTransaction();
+        accountDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public void update(AccountEntity account) {
-        accountDao.openCurrentSessionwithTransaction();
+        accountDao.getConn().openCurrentSessionwithTransaction();
         accountDao.update(account);
-        accountDao.closeCurrentSessionwithTransaction();
+        accountDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public void deleteById(String id) {
-        accountDao.openCurrentSessionwithTransaction();
+        accountDao.getConn().openCurrentSessionwithTransaction();
         AccountEntity account = accountDao.findById(id);
         accountDao.delete(account);
-        accountDao.closeCurrentSessionwithTransaction();
+        accountDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     public AccountDao accountDao() {

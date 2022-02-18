@@ -5,28 +5,42 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEnt
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IViaggiPreferitiDao;
 import java.util.List;
 
-public class ViaggiPreferitiDao extends HibernateConnection implements IViaggiPreferitiDao {
+public class ViaggiPreferitiDao implements IViaggiPreferitiDao {
+
+    private HibernateConnection conn;
+
+    public ViaggiPreferitiDao() {
+        this.conn = new HibernateConnection();
+    }
+
+    public HibernateConnection getConn() {
+        return conn;
+    }
+
+    public void setConn(HibernateConnection conn) {
+        this.conn = conn;
+    }
 
     @SuppressWarnings("unchecked")
     public List<ViaggiPreferitiEntity> findAll() {
-        List<ViaggiPreferitiEntity> viaggiPreferitiEntities = (List<ViaggiPreferitiEntity>) getCurrentSession().createQuery("from ViaggiPreferitiEntity ").list();
+        List<ViaggiPreferitiEntity> viaggiPreferitiEntities = (List<ViaggiPreferitiEntity>) conn.getCurrentSession().createQuery("from ViaggiPreferitiEntity ").list();
         return viaggiPreferitiEntities;
     }
 
     public ViaggiPreferitiEntity findById(String id) {
-        ViaggiPreferitiEntity viaggiPreferitiEntity = (ViaggiPreferitiEntity) getCurrentSession().get(ViaggiPreferitiEntity.class, Integer.parseInt(id));
+        ViaggiPreferitiEntity viaggiPreferitiEntity = (ViaggiPreferitiEntity) conn.getCurrentSession().get(ViaggiPreferitiEntity.class, Integer.parseInt(id));
         return viaggiPreferitiEntity;
     }
 
     public void persist(ViaggiPreferitiEntity viaggiPreferiti) {
-        getCurrentSession().save(viaggiPreferiti);
+        conn.getCurrentSession().save(viaggiPreferiti);
     }
 
     public void update(ViaggiPreferitiEntity viaggiPreferiti) {
-        getCurrentSession().update(viaggiPreferiti);
+        conn.getCurrentSession().update(viaggiPreferiti);
     }
 
     public void delete(ViaggiPreferitiEntity viaggiPreferiti) {
-        getCurrentSession().delete(viaggiPreferiti);
+        conn.getCurrentSession().delete(viaggiPreferiti);
     }
 }

@@ -6,10 +6,20 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AgencyEntity;
 
 import java.util.List;
 
-public class AgencyDao extends HibernateConnection implements IAgencyDao  {
+public class AgencyDao implements IAgencyDao  {
+
+    private HibernateConnection conn;
 
     public AgencyDao() {
-        super();
+        this.conn = new HibernateConnection();
+    }
+
+    public HibernateConnection getConn() {
+        return conn;
+    }
+
+    public void setConn(HibernateConnection conn) {
+        this.conn = conn;
     }
 
     /*public AgencyEntity findById(String id) {
@@ -19,7 +29,7 @@ public class AgencyDao extends HibernateConnection implements IAgencyDao  {
 
     @SuppressWarnings("unchecked")
     public List<AgencyEntity> findAll() {
-        List<AgencyEntity> agencyEntities = (List<AgencyEntity>) getCurrentSession().createQuery("from AgencyEntity ").list();
+        List<AgencyEntity> agencyEntities = (List<AgencyEntity>) conn.getCurrentSession().createQuery("from AgencyEntity ").list();
         return agencyEntities;
     }
 

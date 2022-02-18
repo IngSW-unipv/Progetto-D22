@@ -6,15 +6,25 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IRoutesDao;
 
 import java.util.List;
 
-public class RoutesDao extends HibernateConnection implements IRoutesDao {
+public class RoutesDao implements IRoutesDao {
+
+    private HibernateConnection conn;
 
     public RoutesDao() {
-        super();
+        this.conn = new HibernateConnection();
+    }
+
+    public HibernateConnection getConn() {
+        return conn;
+    }
+
+    public void setConn(HibernateConnection conn) {
+        this.conn = conn;
     }
 
     @SuppressWarnings("unchecked")
     public List<RoutesEntity> findAll() {
-        List<RoutesEntity> routesEntities = (List<RoutesEntity>) getCurrentSession().createQuery("from RoutesEntity").list();
+        List<RoutesEntity> routesEntities = (List<RoutesEntity>) conn.getCurrentSession().createQuery("from RoutesEntity").list();
         return routesEntities;
     }
 

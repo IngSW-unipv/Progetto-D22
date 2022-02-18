@@ -14,9 +14,9 @@ public class CalendarDatesService implements ICalendarDatesService {
     }
 
     public List<CalendarDatesEntity> findAll() {
-        calendarDatesDao.openCurrentSession();
+        calendarDatesDao.getConn().openCurrentSession();
         List<CalendarDatesEntity> calendarDates = calendarDatesDao.findAll();
-        calendarDatesDao.closeCurrentSession();
+        calendarDatesDao.getConn().closeCurrentSession();
         return calendarDates;
     }
 

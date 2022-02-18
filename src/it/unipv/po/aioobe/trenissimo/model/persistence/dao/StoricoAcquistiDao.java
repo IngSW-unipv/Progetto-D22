@@ -6,33 +6,43 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IStoricoAcquisti
 
 import java.util.List;
 
-public class StoricoAcquistiDao extends HibernateConnection implements IStoricoAcquistiDao {
+public class StoricoAcquistiDao implements IStoricoAcquistiDao {
+
+    private HibernateConnection conn;
 
     public StoricoAcquistiDao() {
-        super();
+        this.conn = new HibernateConnection();
+    }
+
+    public HibernateConnection getConn() {
+        return conn;
+    }
+
+    public void setConn(HibernateConnection conn) {
+        this.conn = conn;
     }
 
     @SuppressWarnings("unchecked")
     public List<StoricoAcquistiEntity> findAll() {
-        List<StoricoAcquistiEntity> storicoAcquistiEntities = (List<StoricoAcquistiEntity>) getCurrentSession().createQuery("from StoricoAcquistiEntity ").list();
+        List<StoricoAcquistiEntity> storicoAcquistiEntities = (List<StoricoAcquistiEntity>) conn.getCurrentSession().createQuery("from StoricoAcquistiEntity ").list();
         return storicoAcquistiEntities;
     }
 
     public StoricoAcquistiEntity findById(String id) {
-        StoricoAcquistiEntity storicoAcquistiEntity = (StoricoAcquistiEntity) getCurrentSession().get(StoricoAcquistiEntity.class, Integer.parseInt(id));
+        StoricoAcquistiEntity storicoAcquistiEntity = (StoricoAcquistiEntity) conn.getCurrentSession().get(StoricoAcquistiEntity.class, Integer.parseInt(id));
         return storicoAcquistiEntity;
     }
 
     public void persist(StoricoAcquistiEntity storicoAcquisti) {
-        getCurrentSession().save(storicoAcquisti);
+        conn.getCurrentSession().save(storicoAcquisti);
     }
 
     public void update(StoricoAcquistiEntity storicoAcquisti) {
-        getCurrentSession().update(storicoAcquisti);
+        conn.getCurrentSession().update(storicoAcquisti);
     }
 
     public void delete(StoricoAcquistiEntity storicoAcquisti) {
-        getCurrentSession().delete(storicoAcquisti);
+        conn.getCurrentSession().delete(storicoAcquisti);
     }
 
 }

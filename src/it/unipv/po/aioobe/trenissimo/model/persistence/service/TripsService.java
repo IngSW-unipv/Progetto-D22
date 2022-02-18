@@ -15,9 +15,9 @@ public class TripsService implements ITripsService {
     }
 
     public List<TripsEntity> findAll() {
-        tripsDao.openCurrentSession();
+        tripsDao.getConn().openCurrentSession();
         List<TripsEntity> trips = tripsDao.findAll();
-        tripsDao.closeCurrentSession();
+        tripsDao.getConn().closeCurrentSession();
         return trips;
     }
 

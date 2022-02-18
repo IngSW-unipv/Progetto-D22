@@ -15,7 +15,10 @@ public class App {
         //Per non mostrare in console il log di cfg di hibernate non fondamentali (severe)
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 
-/*
+        AccountService accountService = new AccountService();
+        /*accountService.findAll().forEach((x)-> System.out.println(x.toString()));
+
+
         AgencyService agencyService = new AgencyService();
         agencyService.findAll().forEach((x) -> System.out.println(x.toString()));
 
@@ -38,33 +41,29 @@ public class App {
 
         TripsService tripsService = new TripsService();
         tripsService.findAll().forEach((x) -> System.out.println(x.toString()));
-
-
- */
+        */
         var nome = "Nyquist";
         var pssw = "gatto";
 
         System.out.println("Inizio\n");
+
         StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
-        AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
 
+        //registrazione
         AccountEntity zambo = new AccountEntity();
         DatiPersonaliEntity dati = new DatiPersonaliEntity();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-
-        String myDate = "1999-7-23";
-        Date date=Date.valueOf(myDate);
         //login
         zambo.setAccountId(3);
 
-        dati.setDataNascita(date);
 
+        String myDate = "1999-7-23";
+        Date date=Date.valueOf(myDate);
+
+        dati.setDataNascita(date);
         dati.setAccountId(zambo.getAccountId());
         dati.setNome("Fabio");
         dati.setCognome("Zamboni");
-        dati.setDataNascita(date);
         dati.setMail("fabio.zamboni01@universitadipavia.it");
         dati.setIndirizzo("Loc. Albareto 57");
         datiPersonaliService.update(dati);
@@ -72,7 +71,7 @@ public class App {
         storicoAcquistiService.findAll().forEach((x)-> System.out.println(x.toString()));
 
         System.out.println("Dopo azione\n");
-        //accountService.findAll().forEach((x)-> System.out.println(x.toString()));
+        accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         System.out.println(datiPersonaliService.findById(zambo.getAccountId().toString()).toString());
 
     }
