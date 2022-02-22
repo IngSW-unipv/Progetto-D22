@@ -1,6 +1,6 @@
-package src.it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
+package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 
-import src.it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 
 import java.util.UUID;
 

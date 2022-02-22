@@ -1,4 +1,4 @@
-package src.it.unipv.po.aioobe.trenissimo.model.viaggio.posizione;
+package it.unipv.po.aioobe.trenissimo.model.viaggio.posizione;
 
 public class Posizione {
     private float latitudine;

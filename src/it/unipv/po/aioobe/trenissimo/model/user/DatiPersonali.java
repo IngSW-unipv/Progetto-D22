@@ -1,6 +1,6 @@
-package src.it.unipv.po.aioobe.trenissimo.model.user;
+package it.unipv.po.aioobe.trenissimo.model.user;
 
-import src.it.unipv.po.aioobe.trenissimo.model.user.utils.Indirizzo;
+import it.unipv.po.aioobe.trenissimo.model.user.utils.Indirizzo;
 
 import java.time.LocalDate;
 

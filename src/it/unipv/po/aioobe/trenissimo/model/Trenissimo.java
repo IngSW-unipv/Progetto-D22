@@ -1,12 +1,12 @@
-package src.it.unipv.po.aioobe.trenissimo.model;
+package it.unipv.po.aioobe.trenissimo.model;
 
-import src.it.unipv.po.aioobe.trenissimo.model.acquisto.*;
-import src.it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.Voucher;
-import src.it.unipv.po.aioobe.trenissimo.model.viaggio.*;
-import src.it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.*;
-import src.it.unipv.po.aioobe.trenissimo.model.user.Account;
-import src.it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
-import src.it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.IRicerca;
+import it.unipv.po.aioobe.trenissimo.model.acquisto.*;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.Voucher;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.*;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.*;
+import it.unipv.po.aioobe.trenissimo.model.user.Account;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.IRicerca;
 
 
 import java.util.ArrayList;

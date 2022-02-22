@@ -1,6 +1,6 @@
-package src.it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca;
+package it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca;
 
-import src.it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

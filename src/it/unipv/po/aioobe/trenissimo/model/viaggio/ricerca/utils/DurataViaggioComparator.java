@@ -1,6 +1,6 @@
-package src.it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils;
+package it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils;
 
-import src.it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import java.util.Comparator;
 

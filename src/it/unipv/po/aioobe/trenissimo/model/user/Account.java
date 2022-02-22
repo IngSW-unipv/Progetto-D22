@@ -1,7 +1,7 @@
-package src.it.unipv.po.aioobe.trenissimo.model.user;
+package it.unipv.po.aioobe.trenissimo.model.user;
 
-import src.it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
-import src.it.unipv.po.aioobe.trenissimo.model.viaggio.IDataViaggioUtils;
+import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.IDataViaggioUtils;
 
 import java.util.ArrayList;
 import java.util.UUID;

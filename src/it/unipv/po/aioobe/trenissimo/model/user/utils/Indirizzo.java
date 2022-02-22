@@ -1,4 +1,4 @@
-package src.it.unipv.po.aioobe.trenissimo.model.user.utils;
+package it.unipv.po.aioobe.trenissimo.model.user.utils;
 
 public class Indirizzo {
     private String via;

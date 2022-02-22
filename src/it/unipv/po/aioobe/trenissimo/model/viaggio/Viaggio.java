@@ -1,7 +1,7 @@
-package src.it.unipv.po.aioobe.trenissimo.model.viaggio;
+package it.unipv.po.aioobe.trenissimo.model.viaggio;
 
-import src.it.unipv.po.aioobe.trenissimo.model.viaggio.posizione.Posizione;
-import src.it.unipv.po.aioobe.trenissimo.model.viaggio.utils.ModalitaViaggio;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.posizione.Posizione;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.ModalitaViaggio;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
