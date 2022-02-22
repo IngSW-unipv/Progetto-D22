@@ -11,6 +11,16 @@ public class HibernateConnection {
     private Session currentSession;
     private Transaction currentTransaction;
 
+    private static HibernateConnection instance = null;
+
+    private HibernateConnection() {}
+
+    public static HibernateConnection getInstance() {
+        if (instance == null) {
+            instance = new HibernateConnection();
+        }
+        return instance;
+    }
 
     public Session openCurrentSession() {
         currentSession = getSessionFactory().openSession();

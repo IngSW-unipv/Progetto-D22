@@ -11,7 +11,7 @@ public class TripsDao implements ITripsDao {
     private HibernateConnection conn;
 
     public TripsDao() {
-        this.conn = new HibernateConnection();
+        this.conn = HibernateConnection.getInstance();
     }
 
     public HibernateConnection getConn() {

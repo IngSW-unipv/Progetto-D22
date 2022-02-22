@@ -11,7 +11,7 @@ public class StopsDao implements IStopsDao {
     private HibernateConnection conn;
 
     public StopsDao() {
-        this.conn = new HibernateConnection();
+        this.conn = HibernateConnection.getInstance();
     }
 
     public HibernateConnection getConn() {

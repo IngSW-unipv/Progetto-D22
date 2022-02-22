@@ -10,7 +10,7 @@ public class ViaggiPreferitiDao implements IViaggiPreferitiDao {
     private HibernateConnection conn;
 
     public ViaggiPreferitiDao() {
-        this.conn = new HibernateConnection();
+        this.conn = HibernateConnection.getInstance();
     }
 
     public HibernateConnection getConn() {

@@ -10,7 +10,7 @@ public class DatiPersonaliDao implements IDatiPersonaliDao {
     private HibernateConnection conn;
 
     public DatiPersonaliDao() {
-        this.conn = new HibernateConnection();
+        this.conn = HibernateConnection.getInstance();
     }
 
     public HibernateConnection getConn() {

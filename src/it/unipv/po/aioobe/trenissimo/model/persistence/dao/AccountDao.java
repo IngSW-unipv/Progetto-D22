@@ -10,7 +10,7 @@ public class AccountDao implements IAccountDao {
     private HibernateConnection conn;
 
     public AccountDao() {
-        this.conn = new HibernateConnection();
+        this.conn = HibernateConnection.getInstance();
     }
 
     public HibernateConnection getConn() {

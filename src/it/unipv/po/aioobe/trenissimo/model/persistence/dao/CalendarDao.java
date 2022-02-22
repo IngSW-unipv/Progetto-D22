@@ -11,7 +11,7 @@ public class CalendarDao implements ICalendarDao {
     private HibernateConnection conn;
 
     public CalendarDao() {
-        this.conn = new HibernateConnection();
+        this.conn = HibernateConnection.getInstance();
     }
 
     public HibernateConnection getConn() {

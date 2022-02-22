@@ -11,7 +11,7 @@ public class RoutesDao implements IRoutesDao {
     private HibernateConnection conn;
 
     public RoutesDao() {
-        this.conn = new HibernateConnection();
+        this.conn = HibernateConnection.getInstance();
     }
 
     public HibernateConnection getConn() {

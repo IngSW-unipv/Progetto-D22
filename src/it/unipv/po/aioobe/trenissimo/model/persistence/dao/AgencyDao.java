@@ -11,7 +11,7 @@ public class AgencyDao implements IAgencyDao  {
     private HibernateConnection conn;
 
     public AgencyDao() {
-        this.conn = new HibernateConnection();
+        this.conn = HibernateConnection.getInstance();
     }
 
     public HibernateConnection getConn() {

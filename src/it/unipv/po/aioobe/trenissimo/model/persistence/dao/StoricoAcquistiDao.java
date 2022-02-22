@@ -11,7 +11,7 @@ public class StoricoAcquistiDao implements IStoricoAcquistiDao {
     private HibernateConnection conn;
 
     public StoricoAcquistiDao() {
-        this.conn = new HibernateConnection();
+        this.conn = HibernateConnection.getInstance();
     }
 
     public HibernateConnection getConn() {
