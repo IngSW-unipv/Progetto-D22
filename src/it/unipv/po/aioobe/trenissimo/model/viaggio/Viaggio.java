@@ -1,13 +1,15 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio;
 
 import it.unipv.po.aioobe.trenissimo.model.viaggio.posizione.Posizione;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.ModalitaViaggio;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.UUID;
 
-public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils{
+public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
     private String stazionePartenza;
     private String stazioneArrivo;
     private UUID idTreno;
@@ -23,6 +25,7 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils{
     private int numAnimali;
     private int numMaxCambi;
     private ModalitaViaggio modalitaViaggio;
+    private List<Connection> cambi; //TODO: non in UML
 
     public Viaggio(String stazionePartenza, String stazioneArrivo, UUID idTreno, Posizione posizionePartenza, Posizione posizioneArrivo) {
         this.stazionePartenza = stazionePartenza;
@@ -34,6 +37,9 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils{
         this.prezzo = prezzo; //da calcolare;
     }
 
+    public Viaggio() {
+    }
+
     public String getStazionePartenza() {
         return stazionePartenza;
     }
@@ -41,6 +47,7 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils{
     public void setStazionePartenza(String stazionePartenza) {
         this.stazionePartenza = stazionePartenza;
     }
+
 
     public String getStazioneArrivo() {
         return stazioneArrivo;
@@ -90,13 +97,13 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils{
         this.durata = durata;
     }
 
-    public double calcolaPrezzo(Posizione pos, double COSA){ //abbiamo messo double in uml, ma cosa intendevamo? costante?
+    public double calcolaPrezzo(Posizione pos, double COSA) { //abbiamo messo double in uml, ma cosa intendevamo? costante?
         return 9; // todo
     }
 
     @Override
     public int compareTo(Viaggio v) {
-        return (int) (this.prezzo-v.prezzo);
+        return (int) (this.prezzo - v.prezzo);
     }
 
     @Override
@@ -178,4 +185,8 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils{
     public LocalDate getData() {
         return this.data;
     }
+
+    public List<Connection> getCambi() { return cambi; } //TODO: non in IDataViaggioUtils
+
+    public void setCambi(List<Connection> cambi) { this.cambi = cambi; } //TODO: non in IDataViaggioUtils
 }
