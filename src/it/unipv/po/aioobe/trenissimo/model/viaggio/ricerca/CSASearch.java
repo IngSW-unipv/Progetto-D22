@@ -125,10 +125,10 @@ public class CSASearch {
         // Database data load
         // TODO: da mettere in cache all'avvio del programma (Splashscreen), questi dati in genere non cambiano velocemente
 
-        List<RoutesEntity> routesList = new RoutesService().findAll();
-        List<StopsEntity> stopsList = new StopsService().findAll();
-        List<StopTimesEntity> stopTimesList = new StopTimesService().findAll();
-        List<TripsEntity> tripsList = new TripsService().findAll();
+        List<RoutesEntity> routesList = CachedRoutesService.getInstance().findAll();
+        List<StopsEntity> stopsList = CachedStopsService.getInstance().findAll();
+        List<StopTimesEntity> stopTimesList = CachedStopTimesService.getInstance().findAll();
+        List<TripsEntity> tripsList = CachedTripsService.getInstance().findAll();
 
 
         var timetable = generaTimetable(routesList, stopsList, stopTimesList, tripsList);
