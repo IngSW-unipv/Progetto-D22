@@ -4,6 +4,7 @@ import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.*;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
 import java.util.*;
@@ -119,7 +120,7 @@ public class CSASearch {
         }
     }
 
-    public List<Viaggio> eseguiRicerca(int departureStopId, int arrivalStopId) {
+    public List<ViaggioAlt> eseguiRicerca(int departureStopId, int arrivalStopId) {
 
 
         // Database data load
@@ -137,7 +138,7 @@ public class CSASearch {
         // compute(...) tira fuori solo il primo viaggio possibile a partire dal departure_time, bisogna ciclare finche ritorna null
         // TODO: da rivedere, magari fatto meglio? sto while true non mi piace
 
-        List<Viaggio> viaggi = new ArrayList<Viaggio>();
+        List<ViaggioAlt> viaggi = new ArrayList<ViaggioAlt>();
 
         var lastTime = 0;
 
@@ -145,7 +146,7 @@ public class CSASearch {
             var result = compute(departureStopId, arrivalStopId, lastTime, timetable);
             if (result == null) { break; }
 
-            var viaggio = new Viaggio();
+            var viaggio = new ViaggioAlt();
             viaggio.setCambi(result);
             viaggi.add(viaggio);
 
