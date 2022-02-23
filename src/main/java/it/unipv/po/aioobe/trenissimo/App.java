@@ -1,3 +1,4 @@
+package it.unipv.po.aioobe.trenissimo;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
