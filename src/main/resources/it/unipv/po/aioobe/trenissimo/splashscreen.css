@@ -1,0 +1,10 @@
+.body  {
+    -fx-background-image: url("sfondo.jpg");
+    -fx-background-position: center center;
+    -fx-background-size: cover;
+    -fx-background-color: red;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+
+    /*-fx-effect: dropshadow(gaussian,black,8,0,0,0);*/
+}
