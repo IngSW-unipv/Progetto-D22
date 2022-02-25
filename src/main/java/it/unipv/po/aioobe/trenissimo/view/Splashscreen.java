@@ -1,11 +1,9 @@
-package it.unipv.po.aioobe.trenissimo;
+package it.unipv.po.aioobe.trenissimo.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -19,9 +17,9 @@ public class Splashscreen extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TrenissimoGUI.class.getResource("splashscreen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Splashscreen.class.getResource("splashScreen/splashscreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 640, 380);
-        stage.setTitle("Hello!");
+        stage.setTitle("Trenissimo");
         stage.centerOnScreen();
         stage.setAlwaysOnTop(true);
         stage.setResizable(false);

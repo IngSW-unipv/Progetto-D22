@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane style="-fx-background-color: transparent;" stylesheets="@splashscreen.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.SplashscreenController">
+<AnchorPane style="-fx-background-color: transparent;" stylesheets="@splashscreen.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.SplashscreenController">
    <children>
       <BorderPane fx:id="mainLayout" prefHeight="400.0" prefWidth="600.0" styleClass="body" stylesheets="@splashscreen.css" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
          <bottom>

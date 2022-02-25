@@ -55,7 +55,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>it.unipv.po.aioobe.trenissimo/it.unipv.po.aioobe.trenissimo.TrenissimoGUI</mainClass>
+                            <mainClass>it.unipv.po.aioobe.trenissimo/it.unipv.po.aioobe.trenissimo.view.TrenissimoGUI</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

@@ -1,5 +1,6 @@
-package it.unipv.po.aioobe.trenissimo;
+package it.unipv.po.aioobe.trenissimo.controller;
 
+import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopTimesService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
@@ -11,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,15 +45,16 @@ public class SplashscreenController implements Initializable{
         };
 
         task.setOnSucceeded(e -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(TrenissimoGUI.class.getResource("hello-view.fxml"));
-            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("homePage/homePage-view.fxml"));
             Scene scene = null;
             try {
-                scene = new Scene(fxmlLoader.load(), 400, 400);
+                scene = new Scene(fxmlLoader.load(), 1440, 800);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            stage.setTitle("Hello!");
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("Trenissimo");
             stage.setScene(scene);
             stage.show();
             ((Stage) mainLayout.getScene().getWindow()).close();
@@ -63,6 +64,7 @@ public class SplashscreenController implements Initializable{
             lblStatus.setText(newVal);
         });
         new Thread(task).start();
+
     }
 
     @FXML

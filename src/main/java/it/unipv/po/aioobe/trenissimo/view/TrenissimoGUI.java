@@ -1,4 +1,4 @@
-package it.unipv.po.aioobe.trenissimo;
+package it.unipv.po.aioobe.trenissimo.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,13 +7,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HomePage extends Application {
+public class TrenissimoGUI extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("homePage-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1440, 800);
-        stage.setResizable(false);
-        stage.setTitle("Trenissimo");
+        FXMLLoader fxmlLoader = new FXMLLoader(TrenissimoGUI.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 400, 400);
+        stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }

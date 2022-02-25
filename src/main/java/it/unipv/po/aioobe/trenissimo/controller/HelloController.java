@@ -1,7 +1,9 @@
-package it.unipv.po.aioobe.trenissimo;
+package it.unipv.po.aioobe.trenissimo.controller;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.RoutesEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
@@ -19,7 +21,7 @@ import java.util.ResourceBundle;
 public class HelloController implements Initializable {
 
     @FXML
-    private ListView<RoutesEntity> listView;
+    private ListView<StopsEntity> listView;
 
     @FXML
     private Button btnCache;
@@ -30,18 +32,18 @@ public class HelloController implements Initializable {
     @FXML
     private Label lblText;
 
-    private ObjectProperty<RoutesEntity> routesSelezionato = new SimpleObjectProperty<>();
+    private ObjectProperty<StopsEntity> routesSelezionato = new SimpleObjectProperty<>();
 
     @FXML
     protected void onLoadEntities(){
-        var result = CachedRoutesService.getInstance().findAll();
-        ObservableList<RoutesEntity> items = FXCollections.observableArrayList(result);
+        var result = CachedStopsService.getInstance().findAll();
+        ObservableList<StopsEntity> items = FXCollections.observableArrayList(result);
         listView.setItems(items);
     }
 
     @FXML
     protected void onLoadCache(){
-        var result = CachedRoutesService.getInstance().findAll();
+        var result = CachedStopsService.getInstance().findAll();
         btnCache.setText("Cache loaded!");
 
         scbSearch.setItems(FXCollections.observableArrayList(result));
@@ -58,18 +60,18 @@ public class HelloController implements Initializable {
 //            }
 //        });
 
-        scbSearch.setConverter(new StringConverter<RoutesEntity>() {
+        scbSearch.setConverter(new StringConverter<StopsEntity>() {
             @Override
-            public String toString(RoutesEntity user) {
+            public String toString(StopsEntity user) {
                 if (user== null){
                     return null;
                 } else {
-                    return user.getRouteId();
+                    return user.getStopName();
                 }
             }
 
             @Override
-            public RoutesEntity fromString(String id) {
+            public StopsEntity fromString(String id) {
                 return null;
             }
         });

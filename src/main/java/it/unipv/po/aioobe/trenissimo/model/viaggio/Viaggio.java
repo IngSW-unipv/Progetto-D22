@@ -34,7 +34,7 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
         this.posizionePartenza = posizionePartenza;
         this.posizioneArrivo = posizioneArrivo;
         this.durata = durata; //da calcolare;
-        this.prezzo = prezzo; //da calcolare;
+        this.prezzo = prezzo; //da calcolare: distanza in linea d'aria*prezzo al km;
     }
 
     public Viaggio() {

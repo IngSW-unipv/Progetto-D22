@@ -27,7 +27,7 @@
 <?import org.controlsfx.control.SearchableComboBox?>
 <?import org.controlsfx.control.ToggleSwitch?>
 
-<VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="32.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@homePage.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="32.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@homePage.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.HomePageController">
     <children>
         <StackPane>
             <VBox.margin>
@@ -66,7 +66,7 @@
                             <children>
                                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@logo.png" />
+                                        <Image url="@../../logo.png" />
                                     </image>
                                 </ImageView>
                             </children>
@@ -126,7 +126,7 @@
                                                             <padding>
                                                                 <Insets bottom="4.0" />
                                                             </padding></Label>
-                                                        <SearchableComboBox editable="true" prefWidth="100.0" />
+                                                        <SearchableComboBox fx:id="scbBigliettoPartenza" editable="true" prefWidth="100.0" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -138,7 +138,7 @@
                                                             <padding>
                                                                 <Insets bottom="4.0" />
                                                             </padding></Label>
-                                                        <SearchableComboBox editable="true" prefWidth="100.0" />
+                                                        <SearchableComboBox fx:id="scbBigliettoDestinazione" editable="true" prefWidth="100.0" />
                                                     </children>
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -146,14 +146,14 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_LEFT" layoutX="110.0" layoutY="10.0" HBox.hgrow="ALWAYS">
                                                     <children>
-                                                        <ToggleSwitch alignment="CENTER" contentDisplay="GRAPHIC_ONLY" style="-fx-label-padding: 4px;" text="Andata e ritorno">
+                                                        <ToggleSwitch fx:id="tgsBigliettoAR" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" style="-fx-label-padding: 4px;" text="Andata e ritorno">
                                                             <padding>
                                                                 <Insets bottom="4.0" />
                                                             </padding></ToggleSwitch>
                                                         <HBox prefHeight="0.0" prefWidth="0.0" spacing="16.0">
                                                             <children>
-                                                                <DatePicker />
-                                                                <DatePicker layoutX="10.0" layoutY="10.0" />
+                                                                <DatePicker fx:id="dtpBigliettoPartenza" />
+                                                                <DatePicker fx:id="dtpBigliettoRitorno" disable="true" layoutX="10.0" layoutY="10.0" />
                                                                 <MenuButton mnemonicParsing="false" text="Passeggeri">
                                                                     <items>
                                                                         <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
@@ -161,7 +161,7 @@
                                                                                 <VBox>
                                                                                     <children>
                                                                                         <Label text="Adulti" />
-                                                                                        <Spinner fx:id="spnAdulti">
+                                                                                        <Spinner fx:id="spnBigliettoAdulti">
                                                                                             <valueFactory>
                                                                                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="99" min="0" />
                                                                                             </valueFactory>
@@ -175,7 +175,7 @@
                                                                                 <VBox>
                                                                                     <children>
                                                                                         <Label text="Ragazzi" />
-                                                                                        <Spinner fx:id="spnRagazzi">
+                                                                                        <Spinner fx:id="spnBigliettoRagazzi">
                                                                                             <valueFactory>
                                                                                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="0" />
                                                                                             </valueFactory>
@@ -189,7 +189,7 @@
                                                                                 <VBox>
                                                                                     <children>
                                                                                         <Label text="Bambini" />
-                                                                                        <Spinner fx:id="spnBambini">
+                                                                                        <Spinner fx:id="spnBigliettoBambini">
                                                                                             <valueFactory>
                                                                                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="0" />
                                                                                             </valueFactory>
@@ -203,7 +203,7 @@
                                                                                 <VBox>
                                                                                     <children>
                                                                                         <Label text="Animali" />
-                                                                                        <Spinner fx:id="spnAnimali">
+                                                                                        <Spinner fx:id="spnBigliettoAnimali">
                                                                                             <valueFactory>
                                                                                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="0" />
                                                                                             </valueFactory>
@@ -224,7 +224,7 @@
                                             </children></HBox>
                                         <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="1376.0">
                                             <children>
-                                                <Button mnemonicParsing="false" prefWidth="127.0" text="Ricerca">
+                                                <Button mnemonicParsing="false" onAction="#onRicerca" prefWidth="127.0" text="Ricerca">
                                                     <padding>
                                                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                                     </padding>
@@ -291,7 +291,7 @@
                               </VBox>
                               <VBox prefHeight="214.0" prefWidth="267.0">
                                  <children>
-                                                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Ricerca" />
+                                                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Acquisto" />
                                  </children>
                                  <padding>
                                     <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

@@ -23,7 +23,7 @@ public class App {
         System.out.println("Partenza: " + Utils.secondsToTime(viaggi.get(0).getStazionePartenza()) + " - Durata: " + Utils.secondsToTime(viaggi.get(0).getDurata()));
         System.out.println("Cambi: " + (result.stream().map(x -> x.departure_station_trip).distinct().count() - 1));
         for (Connection x : result) {
-            var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() ==x.departure_station_trip).findFirst().get().getRouteId();
+            var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.departure_station_trip).findFirst().get().getRouteId();
             var routeTo = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.arrival_station_trip).findFirst().get().getRouteId();
             System.out.println(
                     "[" + routeFrom + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.departure_station).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.departure_timestamp)
