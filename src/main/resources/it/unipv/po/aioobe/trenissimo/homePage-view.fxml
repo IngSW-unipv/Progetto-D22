@@ -11,7 +11,6 @@
 <?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -270,17 +269,37 @@
                                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                             </padding>
                                         </VBox>
-                                        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                            <children>
+                              <VBox prefHeight="201.0" prefWidth="234.0">
+                                 <children>
+                                    <Label text="Durata">
+                                       <VBox.margin>
+                                          <Insets left="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ComboBox prefWidth="150.0">
+                                       <VBox.margin>
+                                          <Insets left="20.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets top="13.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox prefHeight="214.0" prefWidth="267.0">
+                                 <children>
                                                 <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Ricerca" />
-                                            </children>
-                                            <padding>
-                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                            </padding>
-                                            <HBox.margin>
-                                                <Insets top="29.0" />
-                                            </HBox.margin>
-                                        </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets top="29.0" />
+                                 </HBox.margin>
+                              </VBox>
                                     </children>
                                 </HBox>
                             </content></Tab>
@@ -305,16 +324,19 @@
                                             <children>
                                                 <Label text="Stazione di destinazione">
                                                     <VBox.margin>
-                                                        <Insets bottom="4.0" />
+                                                        <Insets bottom="4.0" left="15.0" />
                                                     </VBox.margin>
                                                 </Label>
-                                                <SearchableComboBox maxWidth="414.4" />
+                                                <SearchableComboBox maxWidth="414.4">
+                                       <VBox.margin>
+                                          <Insets left="15.0" />
+                                       </VBox.margin></SearchableComboBox>
                                             </children>
                                             <padding>
                                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                             </padding>
                                         </VBox>
-                                        <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                        <HBox prefHeight="214.0" prefWidth="147.0" HBox.hgrow="ALWAYS">
                                             <children>
                                                 <VBox prefHeight="198.0" prefWidth="161.0">
                                                     <children>
@@ -322,13 +344,19 @@
                                                             <padding>
                                                                 <Insets bottom="4.0" />
                                                             </padding>
+                                             <VBox.margin>
+                                                <Insets left="15.0" />
+                                             </VBox.margin>
                                                         </Label>
-                                                        <ComboBox prefWidth="150.0" />
+                                                        <ComboBox prefWidth="150.0">
+                                             <VBox.margin>
+                                                <Insets left="15.0" />
+                                             </VBox.margin></ComboBox>
                                                     </children>
                                                 </VBox>
                                                 <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Acquisto">
                                                     <HBox.margin>
-                                                        <Insets left="30.0" top="22.0" />
+                                                        <Insets left="45.0" top="21.0" />
                                                     </HBox.margin>
                                                 </Button>
                                             </children>
@@ -374,7 +402,7 @@
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                     <children>
                                                         <Label text="Valore €" />
-                                                        <TextField maxWidth="150.0" prefHeight="26.0" prefWidth="414.4" promptText="Valore in euro" />
+                                          <ComboBox prefWidth="150.0" />
                                                     </children>
                                                 </VBox>
                                             </children>
@@ -382,7 +410,11 @@
                                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                             <children>
                                                 <Label text="Quantità" />
-                                                <TextField maxWidth="150.0" promptText="Quantità" />
+                                    <Spinner>
+                                                <valueFactory>
+                                                    <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="1" />
+                                                </valueFactory>
+                                    </Spinner>
                                             </children></VBox>
                                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                             <children>
