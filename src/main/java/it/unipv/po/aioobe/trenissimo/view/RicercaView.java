@@ -5,7 +5,9 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,9 +26,11 @@ public class RicercaView extends Application {
         launch();
     }
 
-    public static void open(List<ViaggioAlt> viaggi){
+    public static void open(List<ViaggioAlt> viaggi, Window owner){
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("ricercaView/ricercaView.fxml"));
         Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(owner);
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 800, 600);

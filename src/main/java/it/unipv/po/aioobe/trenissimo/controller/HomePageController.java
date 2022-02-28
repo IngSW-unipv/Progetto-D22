@@ -2,6 +2,8 @@ package it.unipv.po.aioobe.trenissimo.controller;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopTimesService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
@@ -11,11 +13,13 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import it.unipv.po.aioobe.trenissimo.view.RicercaView;
 import javafx.collections.FXCollections;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.controlsfx.control.SearchableComboBox;
@@ -25,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
@@ -40,6 +45,12 @@ public class HomePageController implements Initializable {
 
     @FXML
     private ToggleSwitch tgsBigliettoAR;
+
+    @FXML
+    private VBox boxLoading;
+
+    @FXML
+    private VBox boxContent;
 
     @FXML
     private DatePicker dtpBigliettoRitorno;
@@ -95,35 +106,25 @@ public class HomePageController implements Initializable {
 
     @FXML
     protected void onRicerca() {
+        boxLoading.setVisible(true);
+        boxContent.setDisable(true);
+        Task<List<ViaggioAlt>> task = new Task<>() {
+            @Override
+            public List<ViaggioAlt> call() {
+                int partenzaId = ((StopsEntity) scbBigliettoPartenza.getValue()).getStopId();
+                int destinazioneId = ((StopsEntity) scbBigliettoDestinazione.getValue()).getStopId();
 
-        int partenzaId = ((StopsEntity)scbBigliettoPartenza.getValue()).getStopId();
-        int destinazioneId = ((StopsEntity)scbBigliettoDestinazione.getValue()).getStopId();
+                CSASearch search = new CSASearch();
 
-        CSASearch search = new CSASearch();
-
-        var viaggi = search.eseguiRicerca(partenzaId, destinazioneId, 12*3600);
-
-        RicercaView.open(viaggi);
-        
-        if(tgsBigliettoAR.isSelected()){
-
-            var viaggiR = search.eseguiRicerca(destinazioneId, partenzaId, 15*3600);
-
-            for(ViaggioAlt v : viaggiR) {
-                var resultR = v.getCambi();
-
-                System.out.println("Partenza: " + Utils.secondsToTime(v.getOrarioArrivo()) + " - Durata: " + Utils.secondsToTime(v.getDurata()));
-                System.out.println("Cambi: " + v.getNumeroCambi());
-                for (Connection x : resultR) {
-                    var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.departure_station_trip).findFirst().get().getRouteId();
-                    var routeTo = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.arrival_station_trip).findFirst().get().getRouteId();
-                    System.out.println(
-                            "[" + routeFrom + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.departure_station).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.departure_timestamp)
-                                    + ") -> [" + routeTo + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.arrival_station).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.arrival_timestamp) + ")");
-                }
-
-                System.out.println("\n\n");
+                return search.eseguiRicerca(partenzaId, destinazioneId, 12 * 3600);
             }
-        }
+        };
+
+        task.setOnSucceeded(e -> {
+            boxLoading.setVisible(false);
+            boxContent.setDisable(false);
+            RicercaView.open((List<ViaggioAlt>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
+        });
+        new Thread(task).start();
     }
 }
