@@ -8,14 +8,20 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
+import it.unipv.po.aioobe.trenissimo.view.HomePage;
+import it.unipv.po.aioobe.trenissimo.view.RicercaView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import org.controlsfx.control.SearchableComboBox;
 import org.controlsfx.control.ToggleSwitch;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -97,23 +103,7 @@ public class HomePageController implements Initializable {
 
         var viaggi = search.eseguiRicerca(partenzaId, destinazioneId, 12*3600);
 
-        for(ViaggioAlt v : viaggi) {
-
-            var result = v.getCambi();
-
-            System.out.println("Partenza: " + Utils.secondsToTime(v.getStazionePartenza()) + " - Durata: " + Utils.secondsToTime(v.getDurata()));
-            System.out.println("Cambi: " + v.getNumeroCambi());
-            for (Connection x : result) {
-                var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.departure_station_trip).findFirst().get().getRouteId();
-                var routeTo = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.arrival_station_trip).findFirst().get().getRouteId();
-                System.out.println(
-                        "[" + routeFrom + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.departure_station).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.departure_timestamp)
-                                + ") -> [" + routeTo + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.arrival_station).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.arrival_timestamp) + ")");
-            }
-
-            System.out.println("\n\n");
-
-        }
+        RicercaView.open(viaggi);
         
         if(tgsBigliettoAR.isSelected()){
 
@@ -122,7 +112,7 @@ public class HomePageController implements Initializable {
             for(ViaggioAlt v : viaggiR) {
                 var resultR = v.getCambi();
 
-                System.out.println("Partenza: " + Utils.secondsToTime(v.getStazionePartenza()) + " - Durata: " + Utils.secondsToTime(v.getDurata()));
+                System.out.println("Partenza: " + Utils.secondsToTime(v.getOrarioArrivo()) + " - Durata: " + Utils.secondsToTime(v.getDurata()));
                 System.out.println("Cambi: " + v.getNumeroCambi());
                 for (Connection x : resultR) {
                     var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.departure_station_trip).findFirst().get().getRouteId();

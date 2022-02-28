@@ -10,9 +10,17 @@ public class Utils {
     }
 
     public static String secondsToTime(Integer seconds){
+        return secondsToTime(seconds, true);
+    }
+
+    public static String secondsToTime(Integer seconds, boolean showSeconds){
         long HH = seconds / 3600;
         long MM = (seconds % 3600) / 60;
         long SS = seconds % 60;
-        return String.format("%02d:%02d:%02d", HH, MM, SS);
+        if (showSeconds){
+            return String.format("%02d:%02d:%02d", HH, MM, SS);
+        } else {
+            return String.format("%02d:%02d", HH, MM);
+        }
     }
 }

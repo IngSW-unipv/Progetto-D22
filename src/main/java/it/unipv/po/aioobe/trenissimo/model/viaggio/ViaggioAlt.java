@@ -1,5 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio;
 
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.posizione.Posizione;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.ModalitaViaggio;
@@ -7,6 +9,7 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.ModalitaViaggio;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 //TODO: non in UML
@@ -27,12 +30,20 @@ public class ViaggioAlt {
 
     }
 
-    public int getStazionePartenza() {
+    public StopsEntity getStazionePartenza() {
+        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(0).departure_station)).findFirst().get();
+    }
+
+    public StopsEntity getStazioneArrivo() {
+        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(cambi.size() - 1).arrival_station)).findFirst().get();
+    }
+
+    public int getOrarioPartenza(){
         return cambi.get(0).departure_timestamp;
     }
 
-    public int getStazioneArrivo() {
-        return cambi.get(cambi.size() - 1).arrival_station;
+    public int getOrarioArrivo(){
+        return cambi.get(cambi.size() - 1).arrival_timestamp;
     }
 
     public int getDurata() {
@@ -45,6 +56,7 @@ public class ViaggioAlt {
     }
 
 
-
-
+    public String getPrezzo() {
+        return ((new Random()).nextInt(0,15)) + ",00€";
+    }
 }
