@@ -28,7 +28,7 @@ public class ViaggioAlt {
     }
 
     public int getStazionePartenza() {
-        return cambi.get(0).departure_station;
+        return cambi.get(0).departure_timestamp;
     }
 
     public int getStazioneArrivo() {

@@ -120,7 +120,7 @@ public class CSASearch {
         }
     }
 
-    public List<ViaggioAlt> eseguiRicerca(int departureStopId, int arrivalStopId) {
+    public List<ViaggioAlt> eseguiRicerca(int departureStopId, int arrivalStopId, int lastTime) {
 
 
         // Database data load
@@ -139,8 +139,6 @@ public class CSASearch {
         // TODO: da rivedere, magari fatto meglio? sto while true non mi piace
 
         List<ViaggioAlt> viaggi = new ArrayList<ViaggioAlt>();
-
-        var lastTime = 0;
 
         while (true) {
             var result = compute(departureStopId, arrivalStopId, lastTime, timetable);
