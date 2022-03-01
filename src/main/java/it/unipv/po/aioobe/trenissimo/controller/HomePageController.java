@@ -1,5 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
+import com.jfoenix.controls.JFXTimePicker;
 import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
@@ -28,6 +29,7 @@ import org.controlsfx.control.ToggleSwitch;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -55,10 +57,17 @@ public class HomePageController implements Initializable {
     @FXML
     private DatePicker dtpBigliettoRitorno;
 
+    @FXML
+    private JFXTimePicker tmpBigliettoRitorno;
+
+    @FXML
+    private JFXTimePicker tmpBigliettoAndata;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         dtpBigliettoPartenza.setValue(LocalDate.now());
+        tmpBigliettoAndata.setValue(LocalTime.now());
 
         var result = CachedStopsService.getInstance().findAll().stream().sorted(Comparator.comparing(StopsEntity::getStopName)).toList();
 
@@ -100,6 +109,7 @@ public class HomePageController implements Initializable {
 
         tgsBigliettoAR.selectedProperty().addListener((obs, oldVal, newVal) -> {
             dtpBigliettoRitorno.setDisable(!newVal);
+            tmpBigliettoRitorno.setDisable(!newVal);
         });
 
     }
@@ -116,7 +126,7 @@ public class HomePageController implements Initializable {
 
                 CSASearch search = new CSASearch();
 
-                return search.eseguiRicerca(partenzaId, destinazioneId, 0 * 3600);
+                return search.eseguiRicerca(partenzaId, destinazioneId, tmpBigliettoAndata.getValue().toSecondOfDay());
             }
         };
 
