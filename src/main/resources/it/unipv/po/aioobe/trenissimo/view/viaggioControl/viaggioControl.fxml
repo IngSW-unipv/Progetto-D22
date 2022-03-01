@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
@@ -75,6 +76,12 @@
                 </VBox>
             </children>
         </HBox>
+      <Separator prefWidth="200.0">
+         <padding>
+            <Insets bottom="8.0" top="8.0" />
+         </padding>
+      </Separator>
+      <VBox fx:id="boxChanges" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" prefHeight="200.0" />
     </children>
     <padding>
         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

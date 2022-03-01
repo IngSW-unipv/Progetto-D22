@@ -1,6 +1,10 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 import it.unipv.po.aioobe.trenissimo.view.ViaggioControl;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
@@ -30,7 +34,6 @@ public class RicercaController implements Initializable {
     }
 
     public void setViaggi(List<ViaggioAlt> viaggi) {
-        System.out.println("setViaggi");
         this.viaggi.addAll(viaggi);
     }
 }

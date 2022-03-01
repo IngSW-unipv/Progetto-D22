@@ -25,6 +25,8 @@ public class ViaggioControl extends VBox {
     @FXML private Label lblChanges;
     @FXML private Label lblPrice;
 
+    @FXML private VBox boxChanges;
+
     private ViaggioAlt viaggio;
 
 
@@ -62,6 +64,23 @@ public class ViaggioControl extends VBox {
         lblChanges              .textProperty().setValue(viaggio.getNumeroCambi() + " cambi");
         lblPrice                .textProperty().setValue(viaggio.getPrezzo());
 
+        for (int i = 0; i < viaggio.getCambi().size(); i++) {
+            if (i == 0 || viaggio.getCambi().get(i-1).arrival_station_trip != viaggio.getCambi().get(i).departure_station_trip){
+                if (i != 0 && (viaggio.getCambi().get(i-1).arrival_station_trip != viaggio.getCambi().get(i).departure_station_trip)){
+                    boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), viaggio.getCambi().get(i-1) ,CambioControl.TipoCambio.END));
+                }
+                boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), null, CambioControl.TipoCambio.START));
+                continue;
+            }
+
+            if (viaggio.getCambi().get(i).departure_station_trip == viaggio.getCambi().get(i).arrival_station_trip){
+                boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i),viaggio.getCambi().get(i-1), CambioControl.TipoCambio.MIDDLE));
+                if (i == viaggio.getCambi().size()-1){
+                    boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), null ,CambioControl.TipoCambio.END_LAST));
+                }
+                continue;
+            }
+        }
     }
 
 

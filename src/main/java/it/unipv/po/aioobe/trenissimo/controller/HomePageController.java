@@ -116,7 +116,7 @@ public class HomePageController implements Initializable {
 
                 CSASearch search = new CSASearch();
 
-                return search.eseguiRicerca(partenzaId, destinazioneId, 12 * 3600);
+                return search.eseguiRicerca(partenzaId, destinazioneId, 0 * 3600);
             }
         };
 
