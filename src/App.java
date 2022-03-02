@@ -4,18 +4,19 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntit
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
         //Per non mostrare in console il log di cfg di hibernate non fondamentali (severe)
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 
         AccountService accountService = new AccountService();
-        /*
-        accountService.findAll().forEach((x)-> System.out.println(x.toString()));
+        /*accountService.findAll().forEach((x)-> System.out.println(x.toString()));
 
 
         AgencyService agencyService = new AgencyService();
