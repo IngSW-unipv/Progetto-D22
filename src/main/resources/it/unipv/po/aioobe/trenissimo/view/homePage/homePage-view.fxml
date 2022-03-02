@@ -59,14 +59,6 @@
                                       </ImageView>
                                   </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" HBox.hgrow="ALWAYS">
-                                  <children>
-                                      <Button mnemonicParsing="false" text="Opzione 1" />
-                                      <Button mnemonicParsing="false" text="Opzione 2" />
-                                      <Button mnemonicParsing="false" text="Opzione 3" />
-                                      <Button mnemonicParsing="false" text="Opzione 4" />
-                                  </children>
-                              </HBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="16.0" HBox.hgrow="ALWAYS">
                                   <children>
                                       <Button mnemonicParsing="false" onAction="#onLogin" text="Accedi" />
@@ -266,7 +258,7 @@
                                           </VBox>
                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="220.0">
                                              <children>
-                                                <Label text="Orario di ritorno" fx:id="lblBigliettoRitorno" disable="true"/>
+                                                <Label fx:id="lblBigliettoRitorno" disable="true" text="Orario di ritorno" />
                                              </children>
                                               <JFXTimePicker fx:id="tmpBigliettoRitorno" disable="true" />
                                           </VBox>
