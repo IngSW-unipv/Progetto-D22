@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
 
 <!--<?import it.unipv.po.aioobe.trenissimo.view.ViaggioControl?>-->
 
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="448.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.RicercaController">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="448.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.RicercaController">
     <content>
-        <VBox fx:id="layout" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" spacing="8.0">
+        <VBox fx:id="layout" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" spacing="8.0">
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
          </padding></VBox>
