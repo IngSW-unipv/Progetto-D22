@@ -49,6 +49,15 @@
                 <configuration>
                     <source>17</source>
                     <target>17</target>
+                    <compilerArgs>
+                        <arg>--add-exports javafx.graphics/com.sun.javafx.scene=com.jfoenix</arg>
+                        <arg>--add-exports javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix</arg>
+                        <arg>--add-exports javafx.controls/com.sun.javafx.scene.control=com.jfoenix</arg>
+                        <arg>--add-exports javafx.base/com.sun.javafx.binding=com.jfoenix</arg>
+                        <arg>--add-exports javafx.base/com.sun.javafx.event=com.jfoenix</arg>
+                        <arg>--add-exports javafx.graphics/com.sun.javafx.stage=com.jfoenix</arg>
+                        <arg>--add-opens=java.base/java.lang.reflect=com.jfoenix</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
@@ -60,7 +69,18 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>it.unipv.po.aioobe.trenissimo/it.unipv.po.aioobe.trenissimo.view.TrenissimoGUI</mainClass>
+                            <!-- INSERIRE QUI LA PATH AL JDK -->
+                            <executable>C:\Users\Tyrell Wellick\.jdks\openjdk-17.0.2\bin\java</executable>
+                            <options>
+                                <option>--add-exports javafx.graphics/com.sun.javafx.scene=com.jfoenix</option>
+                                <option>--add-exports javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix</option>
+                                <option>--add-exports javafx.controls/com.sun.javafx.scene.control=com.jfoenix</option>
+                                <option>--add-exports javafx.base/com.sun.javafx.binding=com.jfoenix</option>
+                                <option>--add-exports javafx.base/com.sun.javafx.event=com.jfoenix</option>
+                                <option>--add-exports javafx.graphics/com.sun.javafx.stage=com.jfoenix</option>
+                                <option>--add-opens=java.base/java.lang.reflect=com.jfoenix</option>
+                            </options>
+                            <mainClass>it.unipv.po.aioobe.trenissimo/it.unipv.po.aioobe.trenissimo.view.Splashscreen</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
