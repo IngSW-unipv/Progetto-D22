@@ -50,6 +50,7 @@ public class RicercaView extends Application {
         viaggio.setCambi(cambi);
         List<ViaggioAlt> viaggi = new ArrayList<>();
         viaggi.add(viaggio);
+        viaggi.add(viaggio);
 
 
 
