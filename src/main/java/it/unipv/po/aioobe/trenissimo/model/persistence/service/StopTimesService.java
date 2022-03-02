@@ -21,7 +21,7 @@ public class StopTimesService implements IStopTimesService {
         return stopTimes;
     }
 
-    public StopTimesDao stopTimesDao() {
+    public StopTimesDao getStopTimesDao() {
         return stopTimesDao;
     }
 

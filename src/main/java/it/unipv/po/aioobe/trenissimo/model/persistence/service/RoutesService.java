@@ -21,7 +21,7 @@ public class RoutesService implements IRoutesService {
         return routes;
     }
 
-    public RoutesDao calendarDatesDao() {
+    public RoutesDao routesDao() {
         return routesDao;
     }
 

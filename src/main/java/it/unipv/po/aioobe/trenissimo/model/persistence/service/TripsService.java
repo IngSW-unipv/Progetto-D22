@@ -21,7 +21,7 @@ public class TripsService implements ITripsService {
         return trips;
     }
 
-    public TripsDao tripsDao() {
+    public TripsDao getTripsDao() {
         return tripsDao;
     }
 

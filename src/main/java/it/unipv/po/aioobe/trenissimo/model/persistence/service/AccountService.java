@@ -46,7 +46,7 @@ public class AccountService implements IAccountService {
         accountDao.getConn().closeCurrentSessionwithTransaction();
     }
 
-    public AccountDao accountDao() {
+    public AccountDao getAccountDao() {
         return accountDao;
     }
 }

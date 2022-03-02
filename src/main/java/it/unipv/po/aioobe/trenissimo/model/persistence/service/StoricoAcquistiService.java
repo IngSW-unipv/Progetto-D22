@@ -48,7 +48,7 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
         storicoAcquistiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
-    public StoricoAcquistiDao storicoAcquistiDao() {
+    public StoricoAcquistiDao getStoricoAcquistiDao() {
         return storicoAcquistiDao;
     }
 

@@ -46,7 +46,7 @@ public class DatiPersonaliService implements IDatiPersonaliService {
         datiPersonaliDao.getConn().closeCurrentSessionwithTransaction();
     }
 
-    public DatiPersonaliDao datiPersonaliDao() {
+    public DatiPersonaliDao getDatiPersonaliDao() {
         return datiPersonaliDao;
     }
 }
