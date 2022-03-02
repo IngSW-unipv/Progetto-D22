@@ -1,0 +1,19 @@
+Index: src/main/resources/hibernate.cfg.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version='1.0' encoding='utf-8'?>\r\n<!DOCTYPE hibernate-configuration PUBLIC\r\n        \"-//Hibernate/Hibernate Configuration DTD//EN\"\r\n        \"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd\">\r\n<hibernate-configuration>\r\n    <session-factory>\r\n        <property name=\"connection.url\">jdbc:mysql://172.20.84.76:3306/trenissimo</property>\r\n        <property name=\"connection.driver_class\">com.mysql.cj.jdbc.Driver</property>\r\n        <property name=\"hibernate.dialect\">org.hibernate.dialect.MySQLDialect</property>\r\n        <property name=\"hibernate.hbm2ddl.auto\">update</property>\r\n        <property name=\"hibernate.connection.username\">root</property>\r\n        <property name=\"hibernate.connection.password\">root</property>\r\n\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.AgencyEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.CalendarEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.CalendarDatesEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.RoutesEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopTimesEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.TripsEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity\"/>\r\n        <mapping class=\"it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity\"/>\r\n\r\n\r\n    </session-factory>\r\n</hibernate-configuration>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/hibernate.cfg.xml b/src/main/resources/hibernate.cfg.xml
+--- a/src/main/resources/hibernate.cfg.xml	(revision a6b614325c469ef9015b7d33b9277b80fc059ee5)
++++ b/src/main/resources/hibernate.cfg.xml	(date 1645716719917)
+@@ -4,7 +4,7 @@
+         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+ <hibernate-configuration>
+     <session-factory>
+-        <property name="connection.url">jdbc:mysql://172.20.84.76:3306/trenissimo</property>
++        <property name="connection.url">jdbc:mysql://localhost:3306/trenissimo</property>
+         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+         <property name="hibernate.hbm2ddl.auto">update</property>
