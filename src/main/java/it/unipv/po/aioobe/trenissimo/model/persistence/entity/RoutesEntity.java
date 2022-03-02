@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "routes", schema = "trenissimo")
-public class RoutesEntity implements Serializable {
+public class    RoutesEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "route_id", nullable = false, length = 100)

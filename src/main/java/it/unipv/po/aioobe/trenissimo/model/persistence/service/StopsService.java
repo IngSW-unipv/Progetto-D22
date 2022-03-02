@@ -8,21 +8,21 @@ import java.util.List;
 
 public class StopsService implements IStopsService {
 
-    private static StopsDao routesDao;
+    private static StopsDao stopsDao;
 
     public StopsService() {
-        routesDao = new StopsDao();
+        stopsDao = new StopsDao();
     }
 
     public List<StopsEntity> findAll() {
-        routesDao.getConn().openCurrentSession();
-        List<StopsEntity> stops = routesDao.findAll();
-        routesDao.getConn().closeCurrentSession();
+        stopsDao.getConn().openCurrentSession();
+        List<StopsEntity> stops = stopsDao.findAll();
+        stopsDao.getConn().closeCurrentSession();
         return stops;
     }
 
-    public StopsDao calendarDatesDao() {
-        return routesDao;
+    public StopsDao getStopsDao() {
+        return stopsDao;
     }
 
 }

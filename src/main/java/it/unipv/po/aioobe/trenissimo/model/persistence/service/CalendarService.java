@@ -21,7 +21,7 @@ public class CalendarService implements ICalendarService {
         return calendars;
     }
 
-    public CalendarDao calendarDatesDao() {
+    public CalendarDao getCalendarDatesDao() {
         return calendarDao;
     }
 

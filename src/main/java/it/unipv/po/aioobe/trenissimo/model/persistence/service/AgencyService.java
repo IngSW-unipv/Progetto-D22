@@ -29,7 +29,7 @@ public class AgencyService implements IAgencyService {
         return agencies;
     }
 
-    public AgencyDao agencyDao() {
+    public AgencyDao getAgencyDao() {
         return agencyDao;
     }
 }

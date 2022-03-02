@@ -46,7 +46,7 @@ public class ViaggiPreferitiService implements IViaggiPreferitiService {
         viaggiPreferitiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
-    public ViaggiPreferitiDao viaggiPreferitiDao() {
+    public ViaggiPreferitiDao getViaggiPreferitiDao() {
         return viaggiPreferitiDao;
     }
 }

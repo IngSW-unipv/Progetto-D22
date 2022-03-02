@@ -20,7 +20,7 @@ public class CalendarDatesService implements ICalendarDatesService {
         return calendarDates;
     }
 
-    public CalendarDatesDao calendarDatesDao() {
+    public CalendarDatesDao getCalendarDatesDao() {
         return calendarDatesDao;
     }
 }
