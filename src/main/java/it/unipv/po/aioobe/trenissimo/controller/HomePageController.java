@@ -1,25 +1,18 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
 import com.jfoenix.controls.JFXTimePicker;
-import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopTimesService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
-import it.unipv.po.aioobe.trenissimo.view.HomePage;
+import it.unipv.po.aioobe.trenissimo.view.Login;
 import it.unipv.po.aioobe.trenissimo.view.RicercaView;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -62,6 +55,9 @@ public class HomePageController implements Initializable {
 
     @FXML
     private JFXTimePicker tmpBigliettoAndata;
+
+    @FXML
+    private Label lblBigliettoRitorno;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -110,6 +106,7 @@ public class HomePageController implements Initializable {
         tgsBigliettoAR.selectedProperty().addListener((obs, oldVal, newVal) -> {
             dtpBigliettoRitorno.setDisable(!newVal);
             tmpBigliettoRitorno.setDisable(!newVal);
+            lblBigliettoRitorno.setDisable(!newVal);
         });
 
     }
@@ -136,5 +133,10 @@ public class HomePageController implements Initializable {
             RicercaView.open((List<ViaggioAlt>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
         });
         new Thread(task).start();
+    }
+
+    @FXML
+    protected void onLogin() throws IOException {
+        Login.open();
     }
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.LoginController">
+   <children>
+      <Label text="Username" VBox.vgrow="ALWAYS">
+         <padding>
+            <Insets bottom="4.0" />
+         </padding>
+      </Label>
+      <TextField fx:id="txtUsername" maxWidth="300.0" prefHeight="20.0" prefWidth="200.0" VBox.vgrow="NEVER" />
+      <Label text="Password">
+         <padding>
+            <Insets bottom="4.0" top="20.0" />
+         </padding>
+      </Label>
+      <PasswordField fx:id="pwfPassword" maxWidth="300.0" />
+      <HBox alignment="CENTER">
+         <children>
+            <Label fx:id="lblLoginError" prefHeight="54.0" prefWidth="280.0" text="Username o password errati!!" textAlignment="CENTER" textFill="#ff4000" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnAccedi" mnemonicParsing="false" onAction="#onLogin" prefHeight="26.0" prefWidth="82.0" text="Accedi" />
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets top="20.0" />
+   </padding>
+</VBox>

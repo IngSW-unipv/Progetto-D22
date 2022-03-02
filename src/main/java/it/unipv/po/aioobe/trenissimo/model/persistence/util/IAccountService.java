@@ -7,10 +7,10 @@ import java.util.List;
 public interface IAccountService {
 
     public List<AccountEntity> findAll();
-    public AccountEntity findById(String id);
-    public void persist(AccountEntity account);
-    public void update(AccountEntity account);
-    public void deleteById(String id);
+    //public AccountEntity findByUserPassword(String username, String password);
+    //public void persist(AccountEntity account);
+    //public void update(AccountEntity account);
+    //public void deleteById(String id);
 
 
 }
