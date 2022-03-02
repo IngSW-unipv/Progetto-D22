@@ -1,6 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedAccountEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.AccountService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,10 +34,7 @@ public class LoginController implements Initializable {
     @FXML
     protected void onLogin() {
 
-        var account = CachedAccountEntity.getInstance().findAll();
-
-        if (account.stream().anyMatch(x -> x.getUsername().equals(txtUsername.getText()))
-            && account.stream().filter(x -> x.getUsername().equals(txtUsername.getText())).findFirst().get().getPassword().equals(pwfPassword.getText()))
+        if (new AccountService().findByUsername(txtUsername.getText()).getPassword().equals(pwfPassword.getText()))
                 btnAccedi.setBackground(Background.EMPTY);
             else
                 lblLoginError.setVisible(true);
