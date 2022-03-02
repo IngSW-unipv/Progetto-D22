@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class ViaggioControl extends VBox {
 
     @FXML private VBox boxChanges;
     @FXML private VBox boxChangesContainer;
+    @FXML private FontIcon icoChanges;
 
     private ViaggioAlt viaggio;
 
@@ -88,9 +90,11 @@ public class ViaggioControl extends VBox {
         if (boxChangesContainer.isVisible()){
             boxChangesContainer.setVisible(false);
             boxChangesContainer.setPrefHeight(0);
+            icoChanges.setIconLiteral("fas-angle-down");
         } else {
             boxChangesContainer.setVisible(true);
             boxChangesContainer.setPrefHeight(-1);
+            icoChanges.setIconLiteral("fas-angle-up");
         }
 
     }

@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -59,8 +60,25 @@ public class HomePageController implements Initializable {
     @FXML
     private Label lblBigliettoRitorno;
 
+
+    @FXML private Label lblNumAdulti;
+    @FXML private Label lblNumRagazzi;
+    @FXML private Label lblNumBambini;
+    @FXML private Label lblNumAnimali;
+
+    @FXML private Spinner spnBigliettoAdulti;
+    @FXML private Spinner spnBigliettoRagazzi;
+    @FXML private Spinner spnBigliettoBambini;
+    @FXML private Spinner spnBigliettoAnimali;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        spnBigliettoAdulti.valueProperty().addListener((obs,oldV,newV) -> {lblNumAdulti.setText(newV.toString());});
+        spnBigliettoRagazzi.valueProperty().addListener((obs,oldV,newV) -> {lblNumRagazzi.setText(newV.toString());});
+        spnBigliettoBambini.valueProperty().addListener((obs,oldV,newV) -> {lblNumBambini.setText(newV.toString());});
+        spnBigliettoAnimali.valueProperty().addListener((obs,oldV,newV) -> {lblNumAnimali.setText(newV.toString());});
 
         dtpBigliettoPartenza.setValue(LocalDate.now());
         tmpBigliettoAndata.setValue(LocalTime.now());
@@ -130,7 +148,10 @@ public class HomePageController implements Initializable {
         task.setOnSucceeded(e -> {
             boxLoading.setVisible(false);
             boxContent.setDisable(false);
-            RicercaView.open((List<ViaggioAlt>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
+            RicercaView.openScene((List<ViaggioAlt>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
+
+//            ((Stage)boxLoading.getScene().getWindow()).setScene()
+
         });
         new Thread(task).start();
     }

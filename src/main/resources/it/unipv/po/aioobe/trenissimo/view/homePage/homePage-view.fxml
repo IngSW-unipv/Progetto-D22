@@ -11,6 +11,8 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
 <StackPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.HomePageController">
    <children>
       <VBox fx:id="boxContent" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="32.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@homePage.css">
@@ -143,13 +145,16 @@
                                                                   <children>
                                                                       <DatePicker fx:id="dtpBigliettoPartenza" />
                                                                       <DatePicker fx:id="dtpBigliettoRitorno" disable="true" layoutX="10.0" layoutY="10.0" />
-                                                                      <MenuButton mnemonicParsing="false" text="Passeggeri">
+                                                                      <MenuButton contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false">
                                                                           <items>
                                                                               <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
                                                                                   <content>
                                                                                       <VBox>
                                                                                           <children>
-                                                                                              <Label text="Adulti" />
+                                                                                              <Label text="Adulti">
+                                                                                                  <graphic>
+                                                                                                      <FontIcon iconLiteral="fas-user" />
+                                                                                                  </graphic></Label>
                                                                                               <Spinner fx:id="spnBigliettoAdulti">
                                                                                                   <valueFactory>
                                                                                                       <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="99" min="0" />
@@ -163,7 +168,10 @@
                                                                                   <content>
                                                                                       <VBox>
                                                                                           <children>
-                                                                                              <Label text="Ragazzi" />
+                                                                                              <Label text="Ragazzi">
+                                                                                                  <graphic>
+                                                                                                      <FontIcon iconLiteral="fas-child" />
+                                                                                                  </graphic></Label>
                                                                                               <Spinner fx:id="spnBigliettoRagazzi">
                                                                                                   <valueFactory>
                                                                                                       <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="0" />
@@ -177,7 +185,10 @@
                                                                                   <content>
                                                                                       <VBox>
                                                                                           <children>
-                                                                                              <Label text="Bambini" />
+                                                                                              <Label text="Bambini">
+                                                                                                  <graphic>
+                                                                                                      <FontIcon iconLiteral="fas-baby" />
+                                                                                                  </graphic></Label>
                                                                                               <Spinner fx:id="spnBigliettoBambini">
                                                                                                   <valueFactory>
                                                                                                       <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="0" />
@@ -191,7 +202,10 @@
                                                                                   <content>
                                                                                       <VBox>
                                                                                           <children>
-                                                                                              <Label text="Animali" />
+                                                                                              <Label text="Animali">
+                                                                                                  <graphic>
+                                                                                                      <FontIcon iconLiteral="fas-dog" />
+                                                                                                  </graphic></Label>
                                                                                               <Spinner fx:id="spnBigliettoAnimali">
                                                                                                   <valueFactory>
                                                                                                       <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="0" />
@@ -202,6 +216,36 @@
                                                                                   </content>
                                                                               </CustomMenuItem>
                                                                           </items>
+                                                                          <graphic>
+                                                                              <VBox alignment="CENTER_LEFT">
+                                                                                  <children>
+                                                                                      <Label text="Passeggeri" />
+                                                                                      <HBox spacing="8.0">
+                                                                                          <children>
+                                                                                              <Label fx:id="lblNumAdulti" text="1">
+                                                                                                  <graphic>
+                                                                                                      <FontIcon iconLiteral="fas-user" />
+                                                                                                  </graphic>
+                                                                                              </Label>
+                                                                                              <Label fx:id="lblNumRagazzi" text="0">
+                                                                                                  <graphic>
+                                                                                                      <FontIcon iconLiteral="fas-child" />
+                                                                                                  </graphic>
+                                                                                              </Label>
+                                                                                              <Label fx:id="lblNumBambini" text="0">
+                                                                                                  <graphic>
+                                                                                                      <FontIcon iconLiteral="fas-baby" />
+                                                                                                  </graphic>
+                                                                                              </Label>
+                                                                                              <Label fx:id="lblNumAnimali" text="0">
+                                                                                                  <graphic>
+                                                                                                      <FontIcon iconLiteral="fas-dog" />
+                                                                                                  </graphic>
+                                                                                              </Label>
+                                                                                          </children>
+                                                                                      </HBox>
+                                                                                  </children></VBox>
+                                                                          </graphic>
                                                                       </MenuButton>
                                                                   </children>
                                                               </HBox>

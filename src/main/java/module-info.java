@@ -8,6 +8,8 @@ module it.unipv.po.aioobe.trenissimo {
     requires java.logging;
     requires org.controlsfx.controls;
     requires com.jfoenix;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.fontawesome5;
 
 
     opens it.unipv.po.aioobe.trenissimo.model.persistence.entity to org.hibernate.orm.core, javafx.fxml;

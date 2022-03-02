@@ -61,7 +61,7 @@
                     <children>
                         <Label fx:id="lblChanges" contentDisplay="RIGHT" graphicTextGap="8.0" onMouseClicked="#onToggleChangeVisibility" text="1 cambio">
                      <graphic>
-                        <FontIcon iconColor="#636a77" iconLiteral="fas-info-circle" iconSize="16" />
+                        <FontIcon fx:id="icoChanges" iconColor="#636a77" iconLiteral="fas-angle-down" iconSize="16" />
                      </graphic>
                      <cursor>
                         <Cursor fx:constant="HAND" />
