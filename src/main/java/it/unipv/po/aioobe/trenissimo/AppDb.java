@@ -74,6 +74,10 @@ public class AppDb {
         accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         System.out.println(datiPersonaliService.findById(zambo.getAccountId().toString()).toString());
 
+        System.out.println(accountService.findByUsername("Nyquist").toString());
+
+
+
     }
 
 }
