@@ -27,6 +27,13 @@ public class AccountService implements IAccountService {
         return account;
     }
 
+    public AccountEntity findByUsername(String username) {
+        accountDao.getConn().openCurrentSession();
+        AccountEntity account = accountDao.findByUsername(username);
+        accountDao.getConn().closeCurrentSession();
+        return account;
+    }
+
     public void persist(AccountEntity account) {
         accountDao.getConn().openCurrentSessionwithTransaction();
         accountDao.persist(account);
