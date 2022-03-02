@@ -34,11 +34,12 @@ public class LoginController implements Initializable {
     @FXML
     protected void onLogin() {
 
-        if (new AccountService().findByUsername(txtUsername.getText()).getPassword().equals(pwfPassword.getText()))
+        var account = new AccountService().findByUsername(txtUsername.getText());
+
+        if(account != null && account.getPassword().equals(pwfPassword.getText()))
                 btnAccedi.setBackground(Background.EMPTY);
             else
                 lblLoginError.setVisible(true);
-
     }
 
 }
