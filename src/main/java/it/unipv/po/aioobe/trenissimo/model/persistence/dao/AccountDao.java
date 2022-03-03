@@ -25,7 +25,7 @@ public class AccountDao implements IAccountDao {
     }
 
     @SuppressWarnings("unchecked")
-    public List<AccountEntity> findAll() {
+    public List<AccountEntity> findAll(){
         List<AccountEntity> accountEntities = (List<AccountEntity>) conn.getCurrentSession().createQuery("from AccountEntity ").list();
         return accountEntities;
     }

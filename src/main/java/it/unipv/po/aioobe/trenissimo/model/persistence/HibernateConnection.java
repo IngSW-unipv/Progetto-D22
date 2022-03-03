@@ -1,5 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence;
 
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.exception.ConnectionDBException;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -42,11 +44,18 @@ public class HibernateConnection {
         currentSession.close();
     }
 
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().configure();
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        return sessionFactory;
+    private static SessionFactory getSessionFactory() throws ConnectionDBException {
+
+        try {
+            Configuration configuration = new Configuration().configure();
+            StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().configure();
+            SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+            return sessionFactory;
+
+        } catch (HibernateException e){
+            System.out.println(e.getCause().getCause().getLocalizedMessage());
+            throw new ConnectionDBException(e.getCause().getCause().getLocalizedMessage());
+        }
     }
 
     public Session getCurrentSession() {

@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.StopsDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IStopsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStopsService;
 
 import java.util.List;
 

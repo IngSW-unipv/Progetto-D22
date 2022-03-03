@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.ViaggiPreferitiDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IViaggiPreferitiService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IViaggiPreferitiService;
 import java.util.List;
 
 public class ViaggiPreferitiService implements IViaggiPreferitiService {

@@ -2,7 +2,9 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.AccountDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IAccountService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IAccountService;
+import org.hibernate.HibernateException;
+
 import java.util.List;
 
 public class AccountService implements IAccountService {
@@ -34,16 +36,20 @@ public class AccountService implements IAccountService {
         return account;
     }
 
-    public void persist(AccountEntity account) {
-        accountDao.getConn().openCurrentSessionwithTransaction();
-        accountDao.persist(account);
-        accountDao.getConn().closeCurrentSessionwithTransaction();
+    public void persist(AccountEntity account){
+
+            accountDao.getConn().openCurrentSessionwithTransaction();
+            accountDao.persist(account);
+            accountDao.getConn().closeCurrentSessionwithTransaction();
+
     }
 
     public void update(AccountEntity account) {
-        accountDao.getConn().openCurrentSessionwithTransaction();
-        accountDao.update(account);
-        accountDao.getConn().closeCurrentSessionwithTransaction();
+
+            accountDao.getConn().openCurrentSessionwithTransaction();
+            accountDao.update(account);
+            accountDao.getConn().closeCurrentSessionwithTransaction();
+
     }
 
     public void deleteById(String id) {

@@ -16,6 +16,7 @@ public class App {
 
     public static void main(String[] args) throws ParseException {
 
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
         CSASearch search = new CSASearch();
         var viaggi = search.eseguiRicerca(332,2793);
         var result = viaggi.get(0).getCambi();

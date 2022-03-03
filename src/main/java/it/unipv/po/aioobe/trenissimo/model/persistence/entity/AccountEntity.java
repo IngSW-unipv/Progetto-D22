@@ -1,7 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -57,6 +56,7 @@ public class AccountEntity {
 
     @Override
     public String toString() {
+
         return "AccountEntity{" +
                 "accountId=" + accountId +
                 ", username='" + username + '\'' +

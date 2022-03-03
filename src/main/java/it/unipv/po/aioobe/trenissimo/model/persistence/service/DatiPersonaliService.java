@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.DatiPersonaliDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IDatiPersonaliService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IDatiPersonaliService;
 import java.util.List;
 
 public class DatiPersonaliService implements IDatiPersonaliService {

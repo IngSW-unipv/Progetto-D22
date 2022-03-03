@@ -5,12 +5,11 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntit
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 
 import java.sql.Date;
-import java.text.ParseException;
 import java.util.logging.Level;
 
 public class AppDb {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args){
 
         //Per non mostrare in console il log di cfg di hibernate non fondamentali (severe)
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
@@ -69,12 +68,12 @@ public class AppDb {
         datiPersonaliService.update(dati);
 
         storicoAcquistiService.findAll().forEach((x)-> System.out.println(x.toString()));
-
-        System.out.println("Dopo azione\n");
         accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         System.out.println(datiPersonaliService.findById(zambo.getAccountId().toString()).toString());
+        System.out.println("\n");
 
-        System.out.println(accountService.findByUsername("Nyquist").toString());
+        System.out.println(accountService.findByUsername("Nyquis") == null ? "NA" : accountService.findByUsername("Nyquis").toString());
+
 
 
 

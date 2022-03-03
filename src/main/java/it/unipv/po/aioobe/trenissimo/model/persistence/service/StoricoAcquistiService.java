@@ -2,8 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.StoricoAcquistiDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IStoricoAcquistiService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStoricoAcquistiService;
 
 import java.util.List;
 

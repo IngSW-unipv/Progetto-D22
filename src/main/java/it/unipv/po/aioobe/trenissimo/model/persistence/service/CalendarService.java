@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.CalendarDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.CalendarEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.ICalendarService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.ICalendarService;
 
 import java.util.List;
 

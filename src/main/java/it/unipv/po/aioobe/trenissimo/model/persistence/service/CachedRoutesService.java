@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.RoutesEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.ICached;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IRoutesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IRoutesService;
 
 import java.util.List;
 
