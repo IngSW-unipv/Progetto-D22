@@ -31,11 +31,11 @@ public class TicketBuilder {
 
     public static final String DEST = System.getProperty("java.io.tmpdir").concat("NuovoBiglietto.pdf");
     public static final String SRC = "src/main/java/it/unipv/po/aioobe/trenissimo/model/titolodiviaggio/utils/TemplateBigliettoWBorder.pdf";
-public static final String DW = System.getProperty("user.home").concat("/Downloads/test.pdf");
+    public static final String DW = System.getProperty("user.home").concat("/Downloads/");
 
-    public void createPdf(String src, String dest) throws Exception {
-        PdfReader originale = new PdfReader(src);
-        PdfStamper copiaModificata = new PdfStamper(originale, new FileOutputStream(dest));
+    public void createPdf() throws Exception {
+        PdfReader originale = new PdfReader(SRC);
+        PdfStamper copiaModificata = new PdfStamper(originale, new FileOutputStream(DEST));
         AcroFields placeholder = copiaModificata.getAcroFields();
 
         placeholder.setField("STAZIONEPARTENZA", this.sPart);

@@ -19,6 +19,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 import static it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder.DEST;
 import static it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder.copy;
@@ -69,6 +70,8 @@ public class AccountSettingsController implements Initializable {
 private Label labelDataAcquisto;
 @FXML
 private Label labelDownloadOK;
+@FXML
+private Button buttonScarica;
 
     private TicketBuilder titoloViaggio;
 
@@ -98,7 +101,6 @@ private Label labelDownloadOK;
         textFieldCivico.setText(dati.getIndirizzoResidenza().getCivico());
         textFieldCitta.setText(dati.getIndirizzoResidenza().getCitta());
         textFieldCAP.setText(dati.getIndirizzoResidenza().getCap());
-        labelDownloadOK.setVisible(false);
     }
 
     @FXML
@@ -232,16 +234,21 @@ private Label labelDownloadOK;
         File biglietto = new File(TicketBuilder.DEST);
         Desktop.getDesktop().open(biglietto);
 
-        Thread.sleep(1000);
+        Thread t = new Thread();
+        t.start();
+        t.sleep(1000);
         biglietto.delete();
+        t.interrupt();
 
     }
     @FXML
     protected void onScaricaBigliettoPDF() throws Exception {
+        int i=0;
         fillPDF();
 
         File biglietto = new File(TicketBuilder.DEST);
-        File destin = new File(TicketBuilder.DW);
+        File destin = new File(TicketBuilder.DW + labelNumeroBiglietto.getText()+".pdf");
+
         TicketBuilder.copy(biglietto, destin);
         labelDownloadOK.setVisible(true);
 
@@ -251,8 +258,9 @@ private Label labelDownloadOK;
                 "","",dati.getNome(),dati.getCognome(),"",dati.getDataNascita().toString(),
                 labelNumeroBiglietto.getText(), labelPrezzo.getText());
 
-        titoloViaggio.createPdf(TicketBuilder.SRC, TicketBuilder.DEST);
+        titoloViaggio.createPdf();
     }
+
     //metodi per abilitare e disabilitare le textfield
     private void abilita(TextField a){
         a.setMouseTransparent(false);

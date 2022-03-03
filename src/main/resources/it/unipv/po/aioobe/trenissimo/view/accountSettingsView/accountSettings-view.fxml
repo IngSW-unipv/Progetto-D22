@@ -448,7 +448,7 @@
                                                                   </Button>
                                                                </children>
                                                             </HBox>
-                                                            <Label fx:id="labelDownloadOK" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" />
+                                                            <Label fx:id="labelDownloadOK" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" visible="false" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -522,7 +522,7 @@
                                                                   </Button>
                                                                </children>
                                                             </HBox>
-                                                            <Label fx:id="labelDownloadOK1" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" />
+                                                            <Label fx:id="labelDownloadOK1" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" visible="false" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -596,7 +596,7 @@
                                                                   </Button>
                                                                </children>
                                                             </HBox>
-                                                            <Label fx:id="labelDownloadOK11" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" />
+                                                            <Label fx:id="labelDownloadOK11" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" visible="false" />
                                                          </children>
                                                       </VBox>
                                                    </children>
