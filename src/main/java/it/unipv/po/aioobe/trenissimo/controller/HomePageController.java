@@ -3,6 +3,10 @@ package it.unipv.po.aioobe.trenissimo.controller;
 import com.jfoenix.controls.JFXTimePicker;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbbonamento;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataInterrail;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.NumeroViaggiCarnet;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.ValoreVoucher;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.view.Login;
@@ -11,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -34,12 +39,6 @@ public class HomePageController implements Initializable {
     private DatePicker dtpBigliettoPartenza;
 
     @FXML
-    private SearchableComboBox scbBigliettoPartenza;
-
-    @FXML
-    private SearchableComboBox scbBigliettoDestinazione;
-
-    @FXML
     private ToggleSwitch tgsBigliettoAR;
 
     @FXML
@@ -60,6 +59,10 @@ public class HomePageController implements Initializable {
     @FXML
     private Label lblBigliettoRitorno;
 
+    @FXML private ComboBox cmbAbbonamentoDurata;
+    @FXML private ComboBox cmbVoucherValore;
+    @FXML private ComboBox cmbCarnetNumeroViaggi;
+    @FXML private ComboBox cmbDurataInterrail;
 
     @FXML private Label lblNumAdulti;
     @FXML private Label lblNumRagazzi;
@@ -71,6 +74,37 @@ public class HomePageController implements Initializable {
     @FXML private Spinner spnBigliettoBambini;
     @FXML private Spinner spnBigliettoAnimali;
 
+    @FXML private SearchableComboBox scbBigliettoPartenza;
+    @FXML private SearchableComboBox scbBigliettoDestinazione;
+    @FXML private SearchableComboBox scbAbbonamentoPartenza;
+    @FXML private SearchableComboBox scbAbbonamentoDestinazione;
+    @FXML private SearchableComboBox scbCarnetPartenza;
+    @FXML private SearchableComboBox scbCarnetDestinazione;
+
+    protected SearchableComboBox initScb(SearchableComboBox scb){
+
+        var result = CachedStopsService.getInstance().findAll().stream().sorted(Comparator.comparing(StopsEntity::getStopName)).toList();
+
+        scb.setItems(FXCollections.observableArrayList(result));
+        scb.setConverter(new StringConverter<StopsEntity>() {
+            @Override
+            public String toString(StopsEntity user) {
+
+                if (user == null) {
+                    return null;
+                } else {
+                    return user.getStopName();
+                }
+            }
+
+            @Override
+            public StopsEntity fromString(String id) {
+                return null;
+            }
+        });
+
+        return scb;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -83,43 +117,18 @@ public class HomePageController implements Initializable {
         dtpBigliettoPartenza.setValue(LocalDate.now());
         tmpBigliettoAndata.setValue(LocalTime.now());
 
-        var result = CachedStopsService.getInstance().findAll().stream().sorted(Comparator.comparing(StopsEntity::getStopName)).toList();
+        initScb(scbBigliettoPartenza);
+        initScb(scbBigliettoDestinazione);
+        initScb(scbAbbonamentoPartenza);
+        initScb(scbAbbonamentoDestinazione);
+        initScb(scbCarnetPartenza);
+        initScb(scbCarnetDestinazione);
 
-        scbBigliettoPartenza.setItems(FXCollections.observableArrayList(result));
-        scbBigliettoPartenza.setConverter(new StringConverter<StopsEntity>() {
-            @Override
-            public String toString(StopsEntity user) {
+        cmbAbbonamentoDurata.setItems(FXCollections.observableArrayList(DurataAbbonamento.values()));
+        cmbVoucherValore.setItems(FXCollections.observableArrayList(ValoreVoucher.values()));
+        cmbCarnetNumeroViaggi.setItems(FXCollections.observableArrayList(NumeroViaggiCarnet.values()));
+        cmbDurataInterrail.setItems(FXCollections.observableArrayList(DurataInterrail.values()));
 
-                if (user == null) {
-                    return null;
-                } else {
-                    return user.getStopName();
-                }
-            }
-
-            @Override
-            public StopsEntity fromString(String id) {
-                return null;
-            }
-        });
-
-        scbBigliettoDestinazione.setItems(FXCollections.observableArrayList(result));
-        scbBigliettoDestinazione.setConverter(new StringConverter<StopsEntity>() {
-            @Override
-            public String toString(StopsEntity user) {
-                if (user == null) {
-                    return null;
-                } else {
-                    return user.getStopName();
-                }
-            }
-
-
-            @Override
-            public StopsEntity fromString(String id) {
-                return null;
-            }
-        });
 
         tgsBigliettoAR.selectedProperty().addListener((obs, oldVal, newVal) -> {
             dtpBigliettoRitorno.setDisable(!newVal);

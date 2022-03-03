@@ -7,11 +7,11 @@ import java.util.UUID;
 public class Interrail implements ITitoloViaggio{
 
     private TipoTitoloViaggio tipo;
-    private DurataTitoloViaggio durata;
+    private DurataAbbonamento durata;
     private double prezzo;
     private UUID id;
 
-    public Interrail(DurataTitoloViaggio durata, UUID id) {
+    public Interrail(DurataAbbonamento durata, UUID id) {
         this.tipo = TipoTitoloViaggio.INTERRAIL;
         this.durata = durata;
         this.id = id; //da rivedere: id si crea da solo con unmetodo oppure glielo passiamo gia fatto?
@@ -23,7 +23,7 @@ public class Interrail implements ITitoloViaggio{
     }
 
     @Override
-    public DurataTitoloViaggio getDurata() {
+    public DurataAbbonamento getDurata() {
         return this.durata;
     }
 
@@ -38,7 +38,7 @@ public class Interrail implements ITitoloViaggio{
     }
 
     @Override
-    public void setDurata(DurataTitoloViaggio durata) {
+    public void setDurata(DurataAbbonamento durata) {
         this.durata = durata;
     }
 

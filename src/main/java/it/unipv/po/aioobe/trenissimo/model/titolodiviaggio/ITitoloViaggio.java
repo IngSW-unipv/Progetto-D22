@@ -8,12 +8,12 @@ public interface ITitoloViaggio {
 
     //getter e setter
     public TipoTitoloViaggio getTipo();
-    public DurataTitoloViaggio getDurata();
+    public DurataAbbonamento getDurata();
     public double getPrezzo();
     public UUID getId();
 
 
-    public void setDurata(DurataTitoloViaggio durata);
+    public void setDurata(DurataAbbonamento durata);
     public void setPrezzo(double prezzo);
     public void setId(UUID id);
 

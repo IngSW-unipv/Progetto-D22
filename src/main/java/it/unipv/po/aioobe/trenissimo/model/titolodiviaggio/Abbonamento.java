@@ -6,13 +6,13 @@ import java.util.UUID;
 
 public class Abbonamento implements ITitoloViaggio{
     private TipoTitoloViaggio tipo;
-    private DurataTitoloViaggio durata;
+    private DurataAbbonamento durata;
     private double prezzo;
     private UUID id;
     private String stazionePartenza;
     private String stazioneArrivo;
 
-    public Abbonamento(DurataTitoloViaggio durata, UUID id, String stazionePartenza, String stazioneArrivo) {
+    public Abbonamento(DurataAbbonamento durata, UUID id, String stazionePartenza, String stazioneArrivo) {
         this.tipo = TipoTitoloViaggio.ABBONAMENTO;
         this.durata = durata;
         this.id = id; //da vedere, come in interrail
@@ -43,7 +43,7 @@ public class Abbonamento implements ITitoloViaggio{
     }
 
     @Override
-    public DurataTitoloViaggio getDurata() {
+    public DurataAbbonamento getDurata() {
         return this.durata;
     }
 
@@ -58,7 +58,7 @@ public class Abbonamento implements ITitoloViaggio{
     }
 
     @Override
-    public void setDurata(DurataTitoloViaggio durata) {
+    public void setDurata(DurataAbbonamento durata) {
         this.durata = durata;
     }
 
