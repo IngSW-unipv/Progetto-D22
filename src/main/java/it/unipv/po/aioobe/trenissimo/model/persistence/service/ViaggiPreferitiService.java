@@ -32,7 +32,7 @@ public class ViaggiPreferitiService implements IViaggiPreferitiService {
 
     public List<ViaggiPreferitiEntity> findByAccount(String account) {
         viaggiPreferitiDao.getConn().openCurrentSession();
-        List<ViaggiPreferitiEntity> viaggi = (List) viaggiPreferitiDao.findByAccount(account);
+        List<ViaggiPreferitiEntity> viaggi = (List<ViaggiPreferitiEntity>) viaggiPreferitiDao.findByAccount(account);
         viaggiPreferitiDao.getConn().closeCurrentSession();
         return viaggi;
     }

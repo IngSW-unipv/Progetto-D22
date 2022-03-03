@@ -38,7 +38,8 @@ public class ViaggiPreferitiDao implements IViaggiPreferitiDao {
 
     public List<ViaggiPreferitiEntity> findByAccount(String account) {
         Criteria criteria = conn.getCurrentSession().createCriteria(ViaggiPreferitiEntity.class);
-        List<ViaggiPreferitiEntity> viaggi = (List) criteria.add(Restrictions.eq("account_id", account));
+        criteria.add(Restrictions.eq("accountId", Integer.parseInt(account)));
+        List<ViaggiPreferitiEntity> viaggi = (List<ViaggiPreferitiEntity>) criteria.list();
         return viaggi;
     }
 

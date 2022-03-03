@@ -40,9 +40,8 @@ public class App {
         var account = Account.getInstance(accountService.findById("3"), datiPersonaliService.findById("3"));
         System.out.println(account.getDatiPersonali());
 
-        account.addViaggioPreferito(viaggi.get(0));
+        //account.addViaggioPreferito(viaggi.get(0));
 
-        // TODO: 03/03/22 SISTEMARE STA MERDA, NON FUNZIONA IL FINDBYACCOUNT 
         viaggiPreferitiService.findByAccount(account.getId().toString()).forEach((x)-> System.out.println(x.toString()));
 
 
