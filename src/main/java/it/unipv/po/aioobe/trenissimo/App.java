@@ -4,12 +4,13 @@ import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
+import it.unipv.po.aioobe.trenissimo.model.user.Account;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.UUID;
 import java.util.logging.Level;
 
 public class App {
@@ -31,6 +32,20 @@ public class App {
                             + ") -> [" + routeTo + "] " +  CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.arrival_station).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.arrival_timestamp) + ")");
         }
         System.out.println("\n\n");
+
+        AccountService accountService = new AccountService();
+        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
+        ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
+
+        var account = Account.getInstance(accountService.findById("3"), datiPersonaliService.findById("3"));
+        System.out.println(account.getDatiPersonali());
+
+        account.addViaggioPreferito(viaggi.get(0));
+
+        // TODO: 03/03/22 SISTEMARE STA MERDA, NON FUNZIONA IL FINDBYACCOUNT 
+        viaggiPreferitiService.findByAccount(account.getId().toString()).forEach((x)-> System.out.println(x.toString()));
+
+
 
     }
 

@@ -23,9 +23,7 @@ public class ViaggioAlt {
 
     public List<Connection> cambi;
 
-    public ViaggioAlt() {
-
-    }
+    public ViaggioAlt() {}
 
     public int getStazionePartenza() {
         return cambi.get(0).departure_station;

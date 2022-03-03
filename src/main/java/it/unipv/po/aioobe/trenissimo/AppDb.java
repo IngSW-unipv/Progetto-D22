@@ -64,7 +64,10 @@ public class AppDb {
         dati.setNome("Fabio");
         dati.setCognome("Zamboni");
         dati.setMail("fabio.zamboni01@universitadipavia.it");
-        dati.setIndirizzo("Loc. Albareto 57");
+        dati.setVia("Loc. Albareto");
+        dati.setCivico(57);
+        dati.setCap(29010);
+        dati.setCitta("Ziano Piacentino");
         datiPersonaliService.update(dati);
 
         storicoAcquistiService.findAll().forEach((x)-> System.out.println(x.toString()));

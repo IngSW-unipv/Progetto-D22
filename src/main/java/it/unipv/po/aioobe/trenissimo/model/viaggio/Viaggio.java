@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
     private String stazionePartenza;
     private String stazioneArrivo;
-    private UUID idTreno;
+    private String idTreno;
     private Posizione posizionePartenza;
     private Posizione posizioneArrivo;
     private double prezzo;
@@ -27,7 +27,8 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
     private ModalitaViaggio modalitaViaggio;
     private List<Connection> cambi; //TODO: non in UML
 
-    public Viaggio(String stazionePartenza, String stazioneArrivo, UUID idTreno, Posizione posizionePartenza, Posizione posizioneArrivo) {
+    public Viaggio(String stazionePartenza, String stazioneArrivo, String idTreno,
+                   Posizione posizionePartenza, Posizione posizioneArrivo) {
         this.stazionePartenza = stazionePartenza;
         this.stazioneArrivo = stazioneArrivo;
         this.idTreno = idTreno;
@@ -37,11 +38,10 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
         this.prezzo = prezzo; //da calcolare;
     }
 
-    public Viaggio() {
-    }
+    public Viaggio() {}
 
-    public String getStazionePartenza() {
-        return stazionePartenza;
+    public int getStazionePartenza() {
+        return cambi.get(0).departure_station;
     }
 
     public void setStazionePartenza(String stazionePartenza) {
@@ -49,19 +49,19 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
     }
 
 
-    public String getStazioneArrivo() {
-        return stazioneArrivo;
+    public int getStazioneArrivo() {
+        return cambi.get(cambi.size() - 1).arrival_station;
     }
 
     public void setStazioneArrivo(String stazioneArrivo) {
         this.stazioneArrivo = stazioneArrivo;
     }
 
-    public UUID getIdTreno() {
+    public String getIdTreno() {
         return idTreno;
     }
 
-    public void setIdTreno(UUID idTreno) {
+    public void setIdTreno(String idTreno) {
         this.idTreno = idTreno;
     }
 
@@ -89,8 +89,8 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
         this.prezzo = prezzo;
     }
 
-    public double getDurata() {
-        return durata;
+    public int getDurata() {
+        return cambi.get(cambi.size() - 1).arrival_timestamp - cambi.get(0).departure_timestamp;
     }
 
     public void setDurata(double durata) {
@@ -186,7 +186,16 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
         return this.data;
     }
 
-    public List<Connection> getCambi() { return cambi; } //TODO: non in IDataViaggioUtils
+    public List<Connection> getCambi() {
+        return cambi;
+    } //TODO: non in IDataViaggioUtils
 
-    public void setCambi(List<Connection> cambi) { this.cambi = cambi; } //TODO: non in IDataViaggioUtils
+    public void setCambi(List<Connection> cambi) {
+        this.cambi = cambi;
+    } //TODO: non in IDataViaggioUtils
+
+    public int getNumeroCambi() {
+        // TODO: non conta casi in cui il treno torna sulla stessa tratta (eg. R1 -> R2 -> R1 viene contato come un cambio solo invece che due)
+        return (int) (cambi.stream().map(x -> x.departure_station_trip).distinct().count() - 1);
+    }
 }

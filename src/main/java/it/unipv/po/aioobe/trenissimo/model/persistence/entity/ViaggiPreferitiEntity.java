@@ -1,9 +1,12 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "viaggi_preferiti", schema = "trenissimo")
@@ -11,7 +14,7 @@ public class ViaggiPreferitiEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "viaggio_preferito_id")
-    private String viaggioPreferitoId;
+    private Integer viaggioPreferitoId;
     @Basic
     @Column(name = "account_id")
     private Integer accountId;
@@ -46,11 +49,11 @@ public class ViaggiPreferitiEntity {
     @Column(name = "n_max_cambi")
     private Integer nMaxCambi;
 
-    public String getViaggioPreferitoId() {
+    public Integer getViaggioPreferitoId() {
         return viaggioPreferitoId;
     }
 
-    public void setViaggioPreferitoId(String viaggioPreferitoId) {
+    public void setViaggioPreferitoId(Integer viaggioPreferitoId) {
         this.viaggioPreferitoId = viaggioPreferitoId;
     }
 
@@ -155,10 +158,24 @@ public class ViaggiPreferitiEntity {
         return Objects.hash(viaggioPreferitoId, accountId, stazionePartenza, stazioneArrivo, data, ora, nAdulti, nRagazzi, nBambini, nAnimali, modalitaViaggio, nMaxCambi);
     }
 
+    public ViaggiPreferitiEntity toViaggiPreferitiEntity(Viaggio v){
+        ViaggiPreferitiEntity viaggiPreferitiEntity = new ViaggiPreferitiEntity();
+        //viaggiPreferitiEntity.setViaggioPreferitoId(UUID.randomUUID().toString());
+        viaggiPreferitiEntity.setStazionePartenza(String.valueOf(v.getStazionePartenza()));
+        viaggiPreferitiEntity.setStazioneArrivo(String.valueOf(v.getStazioneArrivo()));
+        viaggiPreferitiEntity.setnAdulti(v.getNumAdulti());
+        viaggiPreferitiEntity.setnRagazzi(v.getNumRagazzi());
+        viaggiPreferitiEntity.setnBambini(v.getNumBambini());
+        viaggiPreferitiEntity.setnAnimali(v.getNumAnimali());
+        viaggiPreferitiEntity.setnMaxCambi(v.getNumMaxCambi());
+
+        return viaggiPreferitiEntity;
+    }
+
     @Override
     public String toString() {
         return "ViaggiPreferitiEntity{" +
-                "viaggioPreferitoId='" + viaggioPreferitoId + '\'' +
+                "viaggioPreferitoId=" + viaggioPreferitoId +
                 ", accountId=" + accountId +
                 ", stazionePartenza='" + stazionePartenza + '\'' +
                 ", stazioneArrivo='" + stazioneArrivo + '\'' +

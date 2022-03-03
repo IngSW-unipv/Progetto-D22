@@ -1,7 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.util.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
 
 import java.util.List;
 
