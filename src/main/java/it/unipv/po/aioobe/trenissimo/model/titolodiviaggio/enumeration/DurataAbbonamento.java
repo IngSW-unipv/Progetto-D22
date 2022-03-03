@@ -1,14 +1,21 @@
 package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration;
 
 public enum DurataAbbonamento {
-    SETTIMANALE,
-    MENSILE,
-    TRIMESTRALE,
-    SEMESTRALE,
-    ANNUALE;
+    SETTIMANALE("Settimanale"),
+    MENSILE("Mensile"),
+    TRIMESTRALE("Trimestrale"),
+    SEMESTRALE("Semestrale"),
+    ANNUALE("Annuale");
+
+    public final String label;
+
+    private DurataAbbonamento(String label){
+        this.label = label;
+    }
 
     @Override
     public String toString(){
-        return name().substring(0,1) + name().substring(1).toLowerCase();
+        return label;
     }
+
 }
