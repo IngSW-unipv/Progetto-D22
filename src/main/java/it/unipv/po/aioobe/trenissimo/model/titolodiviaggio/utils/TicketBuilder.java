@@ -1,12 +1,10 @@
 package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils;
 
-import com.itextpdf.text.DocumentException;
+
 import com.itextpdf.text.pdf.*;
 
 import java.io.*;
-import java.awt.Desktop;
 import java.nio.channels.FileChannel;
-
 
 public class TicketBuilder {
 
@@ -30,7 +28,7 @@ public class TicketBuilder {
     private File biglietto;
 
     public static final String DEST = System.getProperty("java.io.tmpdir").concat("NuovoBiglietto.pdf");
-    public static final String SRC = "src/main/java/it/unipv/po/aioobe/trenissimo/model/titolodiviaggio/utils/TemplateBigliettoWBorder.pdf";
+    public static final String SRC = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateBigliettoWBorder.pdf";
     public static final String DW = System.getProperty("user.home").concat("/Downloads/");
 
     public void createPdf() throws Exception {
@@ -82,7 +80,7 @@ public class TicketBuilder {
 
     public static void main(String[] args) throws Exception {
 
-        System.out.println(DEST);
+        //System.out.println(System.getProperty("java.io.tmpdir"));
         /*
         TicketBuilder ticket = new TicketBuilder("Milano", "roma", "10.05.2022", "10.05.2022", "10", "13", "2", "3", "22A", "Mario", "Rossi", "mariorossicf", "10.05.2000", "M12345", "3000");
         ticket.createPdf(SRC, DEST);

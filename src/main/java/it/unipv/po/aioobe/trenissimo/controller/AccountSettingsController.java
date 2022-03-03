@@ -1,15 +1,24 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopTimesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.DatiPersonali;
 import it.unipv.po.aioobe.trenissimo.model.user.utils.Indirizzo;
+import it.unipv.po.aioobe.trenissimo.view.HomePage;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 
 import java.awt.Desktop;
@@ -62,16 +71,17 @@ public class AccountSettingsController implements Initializable {
     private Label labelErroreEmail;
     @FXML
     private Label labelErroreDataNascita;
-@FXML
+    @FXML
     private Label labelNumeroBiglietto;
-@FXML
+    @FXML
     private Label labelPrezzo;
-@FXML
-private Label labelDataAcquisto;
-@FXML
-private Label labelDownloadOK;
-@FXML
-private Button buttonScarica;
+    @FXML
+    private Label labelDataAcquisto;
+    @FXML
+    private Label labelDownloadOK;
+    @FXML
+    private Button buttonScarica;
+
 
     private TicketBuilder titoloViaggio;
 
@@ -234,16 +244,21 @@ private Button buttonScarica;
         File biglietto = new File(TicketBuilder.DEST);
         Desktop.getDesktop().open(biglietto);
 
-        Thread t = new Thread();
-        t.start();
-        t.sleep(1000);
-        biglietto.delete();
-        t.interrupt();
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws InterruptedException {
+                Thread.sleep(3000);
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            biglietto.delete();
+        });
+        new Thread(task).start();
 
     }
     @FXML
     protected void onScaricaBigliettoPDF() throws Exception {
-        int i=0;
         fillPDF();
 
         File biglietto = new File(TicketBuilder.DEST);
@@ -251,6 +266,18 @@ private Button buttonScarica;
 
         TicketBuilder.copy(biglietto, destin);
         labelDownloadOK.setVisible(true);
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws InterruptedException {
+                Thread.sleep(4000);
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            labelDownloadOK.setVisible(false);
+        });
+        new Thread(task).start();
 
     }
     private void fillPDF() throws Exception {
