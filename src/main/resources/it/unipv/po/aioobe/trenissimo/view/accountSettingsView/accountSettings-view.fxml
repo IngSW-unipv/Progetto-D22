@@ -147,9 +147,9 @@
                                           <TextField fx:id="textFieldCitta" disable="true" mouseTransparent="true" promptText="Città" styleClass="textField" text="Pavia" GridPane.rowIndex="9" />
                                           <Button id="buttonSalva" fx:id="buttonSalva" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSalva" text="Salva" textFill="#006565" visible="false" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
                                           <Button id="buttonAnnulla" fx:id="buttonAnnulla" contentDisplay="CENTER" layoutX="635.0" layoutY="11.0" mnemonicParsing="false" onAction="#onAnnulla" text="Annulla" textFill="#b51039" visible="false" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
-                                          <TextField fx:id="textFieldEmail" disable="true" mouseTransparent="true" promptText="Email" styleClass="textField" text="pippo@gmail.com" GridPane.rowIndex="6" />
-                                          <TextField fx:id="textFieldNome" disable="true" mouseTransparent="true" promptText="Nome " styleClass="textField" text="Antonino" GridPane.rowIndex="3" />
-                                          <TextField fx:id="textFieldCognome" disable="true" mouseTransparent="true" promptText="Cognome" styleClass="textField" text="Nocera" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                          <TextField fx:id="textFieldEmail" disable="true" mouseTransparent="true" promptText="Email" styleClass="textField" text="rossi@gmail.com" GridPane.rowIndex="6" />
+                                          <TextField fx:id="textFieldNome" disable="true" mouseTransparent="true" promptText="Nome " styleClass="textField" text="Mario" GridPane.rowIndex="3" />
+                                          <TextField fx:id="textFieldCognome" disable="true" mouseTransparent="true" promptText="Cognome" styleClass="textField" text="Rossi" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                           <TextField fx:id="textFieldVia" disable="true" mouseTransparent="true" promptText="Via" styleClass="textField" text="ferrata" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                                           <TextField fx:id="textFieldCAP" disable="true" mouseTransparent="true" promptText="CAP" styleClass="textField" text="12345" GridPane.columnIndex="2" GridPane.rowIndex="9" />
                                           <TextField fx:id="textFieldCivico" disable="true" maxWidth="150.0" mouseTransparent="true" promptText="Civico" styleClass="textField" text="8" GridPane.columnIndex="4" GridPane.rowIndex="6" />
@@ -436,9 +436,19 @@
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <VBox alignment="CENTER_RIGHT">
+                                                      <VBox alignment="CENTER">
                                                          <children>
-                                                            <Button fx:id="buttonBigliettoPDF" mnemonicParsing="false" text="Biglietto PDF" />
+                                                            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Button fx:id="buttonBigliettoPDF" mnemonicParsing="false" onAction="#onVisualizzaBigliettoPDF" text="Visualizza PDF" />
+                                                                  <Button fx:id="buttonScarica" mnemonicParsing="false" onAction="#onScaricaBigliettoPDF" text="Scarica PDF">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label fx:id="labelDownloadOK" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -448,7 +458,7 @@
                                                 <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                                              </padding>
                                           </VBox>
-                                          <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
+                                          <VBox layoutX="26.0" layoutY="26.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
                                              <children>
                                                 <HBox spacing="8.0" VBox.vgrow="NEVER">
                                                    <children>
@@ -500,9 +510,19 @@
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <VBox alignment="CENTER_RIGHT">
+                                                      <VBox alignment="CENTER">
                                                          <children>
-                                                            <Button fx:id="buttonBigliettoPDF1" mnemonicParsing="false" text="Biglietto PDF" />
+                                                            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Button fx:id="buttonBigliettoPDF1" mnemonicParsing="false" onAction="#onVisualizzaBigliettoPDF" text="Visualizza PDF" />
+                                                                  <Button fx:id="buttonScarica1" mnemonicParsing="false" onAction="#onScaricaBigliettoPDF" text="Scarica PDF">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label fx:id="labelDownloadOK1" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -512,12 +532,12 @@
                                                 <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                                              </padding>
                                           </VBox>
-                                          <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
+                                          <VBox layoutX="26.0" layoutY="144.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
                                              <children>
                                                 <HBox spacing="8.0" VBox.vgrow="NEVER">
                                                    <children>
                                                       <Label text="Id acquisto:" />
-                                                      <Label fx:id="labelIDAcquisto2" text="labelIdAcquisto" />
+                                                      <Label fx:id="labelIDAcquisto11" text="labelIdAcquisto" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER_LEFT" spacing="8.0">
@@ -527,7 +547,7 @@
                                                             <VBox alignment="CENTER_LEFT">
                                                                <children>
                                                                   <Label text="Numero biglietto" />
-                                                                  <Label fx:id="labelNumeroBiglietto2" text="#ƒsdgs" textFill="#006565">
+                                                                  <Label fx:id="labelNumeroBiglietto11" text="#ƒsdgs" textFill="#006565">
                                                                      <font>
                                                                         <Font name="System Bold" size="18.0" />
                                                                      </font>
@@ -546,7 +566,7 @@
                                                             <VBox alignment="CENTER_LEFT">
                                                                <children>
                                                                   <Label text="Data acquisto" />
-                                                                  <Label fx:id="labelDataAcquisto2" text="10/05/2000" textFill="#006565">
+                                                                  <Label fx:id="labelDataAcquisto11" text="10/05/2000" textFill="#006565">
                                                                      <font>
                                                                         <Font name="System Bold" size="18.0" />
                                                                      </font>
@@ -557,16 +577,26 @@
                                                       </HBox>
                                                       <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                                                          <children>
-                                                            <Label fx:id="labelPrezzo2" text="10,30€" textAlignment="RIGHT" textFill="#bf0000">
+                                                            <Label fx:id="labelPrezzo11" text="10,30€" textAlignment="RIGHT" textFill="#bf0000">
                                                                <font>
                                                                   <Font name="System Bold" size="25.0" />
                                                                </font>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <VBox alignment="CENTER_RIGHT">
+                                                      <VBox alignment="CENTER">
                                                          <children>
-                                                            <Button fx:id="buttonBigliettoPDF2" mnemonicParsing="false" text="Biglietto PDF" />
+                                                            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Button fx:id="buttonBigliettoPDF11" mnemonicParsing="false" onAction="#onVisualizzaBigliettoPDF" text="Visualizza PDF" />
+                                                                  <Button fx:id="buttonScarica11" mnemonicParsing="false" onAction="#onScaricaBigliettoPDF" text="Scarica PDF">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label fx:id="labelDownloadOK11" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" />
                                                          </children>
                                                       </VBox>
                                                    </children>

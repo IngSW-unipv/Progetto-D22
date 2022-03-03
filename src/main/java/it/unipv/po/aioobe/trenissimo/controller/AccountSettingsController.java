@@ -1,5 +1,8 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
+import it.unipv.po.aioobe.trenissimo.model.user.DatiPersonali;
+import it.unipv.po.aioobe.trenissimo.model.user.utils.Indirizzo;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -8,10 +11,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
+
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+import static it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder.DEST;
+import static it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder.copy;
 
 public class AccountSettingsController implements Initializable {
 
@@ -51,7 +61,21 @@ public class AccountSettingsController implements Initializable {
     private Label labelErroreEmail;
     @FXML
     private Label labelErroreDataNascita;
+@FXML
+    private Label labelNumeroBiglietto;
+@FXML
+    private Label labelPrezzo;
+@FXML
+private Label labelDataAcquisto;
+@FXML
+private Label labelDownloadOK;
 
+    private TicketBuilder titoloViaggio;
+
+
+
+    private DatiPersonali dati = new DatiPersonali("Franco", "Rossi", LocalDate.parse("1999-05-10"),
+            new Indirizzo("via aldo moro", "11", "Pavia", "12345"), "ffr@gmail.com");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,15 +90,15 @@ public class AccountSettingsController implements Initializable {
 
         labelBenvenuto.setText("Ciao, "+ "@inserireUsernameDaDB");
         labelDatiPersonali.setText("Dati Personali");
-        textFieldNome.setText("nome da impostare" /* todo */);
-        textFieldCognome.setText("cognome da impostare" /* todo */);
-        datePickerDataNascita.setValue(LocalDate.now());
-        textFieldEmail.setText("email da impostare" /* todo */);
-        textFieldVia.setText("via da impostare" /* todo */);
-        textFieldCivico.setText("civico da impostare" /* todo */);
-        textFieldCitta.setText("citta da impostare" /* todo */);
-        textFieldCAP.setText("CAP da impostare" /* todo */);
-
+        textFieldNome.setText(dati.getNome());
+        textFieldCognome.setText(dati.getCognome());
+        datePickerDataNascita.setValue(dati.getDataNascita());
+        textFieldEmail.setText(dati.getMail());
+        textFieldVia.setText(dati.getIndirizzoResidenza().getVia());
+        textFieldCivico.setText(dati.getIndirizzoResidenza().getCivico());
+        textFieldCitta.setText(dati.getIndirizzoResidenza().getCitta());
+        textFieldCAP.setText(dati.getIndirizzoResidenza().getCap());
+        labelDownloadOK.setVisible(false);
     }
 
     @FXML
@@ -141,7 +165,6 @@ public class AccountSettingsController implements Initializable {
         buttonSalva.setOnMouseMoved(c -> {
         if (labelErroreCAP.isVisible() || labelErroreEmail.isVisible() || labelErroreDataNascita.isVisible())
             buttonSalva.setDisable(true);
-
     });
 
     }
@@ -149,7 +172,7 @@ public class AccountSettingsController implements Initializable {
     @FXML
     protected void onAnnulla(){
 
-        //metodo per il tasto annulla
+        //metodo per il tasto annulla, disabilita tutte le textField/button
 
         disabilita(textFieldNome);
         disabilita(textFieldCognome);
@@ -173,18 +196,27 @@ public class AccountSettingsController implements Initializable {
 
         //metodo per il click del tasto salva
 
-        String nome= textFieldNome.getText();;
+        String nome = textFieldNome.getText();;
         String cognome = textFieldCognome.getText();;
         LocalDate dataNascita = LocalDate.parse(datePickerDataNascita.getValue().toString());;
         String mail = textFieldEmail.getText();
-        String CAP = textFieldCAP.getText();
-        String indirizzo = textFieldVia.getText() + " , " + textFieldCivico.getText() + " , "
-                + textFieldCitta.getText() + " , " + CAP;
 
+        Indirizzo ind = dati.getIndirizzoResidenza();
+        ind.setVia(textFieldVia.getText());
+        ind.setCivico(textFieldCivico.getText());
+        ind.setCitta(textFieldCitta.getText());
+        ind.setCap(textFieldCAP.getText());
 
-        // qua vanno salvati nel db i nuovi dati, poi richiamato l'onStart per ricaricare i dati nelle textfield
+        dati.setNome(nome);
+        dati.setCognome(cognome);
+        dati.setDataNascita(dataNascita);
+        dati.setMail(mail);
+        dati.setIndirizzoResidenza(ind);
 
-        //onStart();
+        onStart(); //per ricaricare i dati all'interno delle textfield -- funziona anche senza mi sa
+
+        onAnnulla(); //per disabilitare tutti i bottoni/textField, necessito delle stesse cose che fa annulla
+                    // annulla a differenza di questo, non salva i cambiamenti
 
     }
 
@@ -194,10 +226,33 @@ public class AccountSettingsController implements Initializable {
     }
 
     @FXML
-    protected void onVisualizzaBigliettoPDF(){
-        // todo metodo per il tasto acquista in "tab" storico viaggi
-    }
+    protected void onVisualizzaBigliettoPDF() throws Exception {
+        fillPDF();
 
+        File biglietto = new File(TicketBuilder.DEST);
+        Desktop.getDesktop().open(biglietto);
+
+        Thread.sleep(1000);
+        biglietto.delete();
+
+    }
+    @FXML
+    protected void onScaricaBigliettoPDF() throws Exception {
+        fillPDF();
+
+        File biglietto = new File(TicketBuilder.DEST);
+        File destin = new File(TicketBuilder.DW);
+        TicketBuilder.copy(biglietto, destin);
+        labelDownloadOK.setVisible(true);
+
+    }
+    private void fillPDF() throws Exception {
+        titoloViaggio = new TicketBuilder("","",labelDataAcquisto.getText(),"","","","",
+                "","",dati.getNome(),dati.getCognome(),"",dati.getDataNascita().toString(),
+                labelNumeroBiglietto.getText(), labelPrezzo.getText());
+
+        titoloViaggio.createPdf(TicketBuilder.SRC, TicketBuilder.DEST);
+    }
     //metodi per abilitare e disabilitare le textfield
     private void abilita(TextField a){
         a.setMouseTransparent(false);
@@ -209,4 +264,5 @@ public class AccountSettingsController implements Initializable {
         a.setDisable(true);
         a.setFocusTraversable(true);
     }
+
 }
