@@ -23,6 +23,7 @@ public class CachedTripsService implements ITripsService, ICached {
 
     private List<TripsEntity> cachedFindAll = null;
 
+    @Override
     public List<TripsEntity> findAll() {
         if (cachedFindAll == null) {
             cachedFindAll = tripsService.findAll();

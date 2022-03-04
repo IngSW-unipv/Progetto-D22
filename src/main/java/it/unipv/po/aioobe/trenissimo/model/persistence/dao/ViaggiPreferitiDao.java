@@ -24,17 +24,20 @@ public class ViaggiPreferitiDao implements IViaggiPreferitiDao {
         this.conn = conn;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public List<ViaggiPreferitiEntity> findAll() {
         List<ViaggiPreferitiEntity> viaggiPreferitiEntities = (List<ViaggiPreferitiEntity>) conn.getCurrentSession().createQuery("from ViaggiPreferitiEntity ").list();
         return viaggiPreferitiEntities;
     }
 
+    @Override
     public ViaggiPreferitiEntity findById(String id) {
         ViaggiPreferitiEntity viaggiPreferitiEntity = (ViaggiPreferitiEntity) conn.getCurrentSession().get(ViaggiPreferitiEntity.class, Integer.parseInt(id));
         return viaggiPreferitiEntity;
     }
 
+    @Override
     public List<ViaggiPreferitiEntity> findByUsername(String user) {
         Criteria criteria = conn.getCurrentSession().createCriteria(ViaggiPreferitiEntity.class);
         criteria.add(Restrictions.eq("username", user));
@@ -42,14 +45,17 @@ public class ViaggiPreferitiDao implements IViaggiPreferitiDao {
         return viaggi;
     }
 
+    @Override
     public void persist(ViaggiPreferitiEntity viaggiPreferiti) {
         conn.getCurrentSession().save(viaggiPreferiti);
     }
 
+    @Override
     public void update(ViaggiPreferitiEntity viaggiPreferiti) {
         conn.getCurrentSession().update(viaggiPreferiti);
     }
 
+    @Override
     public void delete(ViaggiPreferitiEntity viaggiPreferiti) {
         conn.getCurrentSession().delete(viaggiPreferiti);
     }

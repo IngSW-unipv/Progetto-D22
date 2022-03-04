@@ -14,6 +14,7 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
         storicoAcquistiDao = new StoricoAcquistiDao();
     }
 
+    @Override
     public List<StoricoAcquistiEntity> findAll() {
         storicoAcquistiDao.getConn().openCurrentSession();
         List<StoricoAcquistiEntity> storicoAcquisti = storicoAcquistiDao.findAll();
@@ -21,6 +22,7 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
         return storicoAcquisti;
     }
 
+    @Override
     public StoricoAcquistiEntity findById(String id) {
         storicoAcquistiDao.getConn().openCurrentSession();
         StoricoAcquistiEntity storicoAcquisti = storicoAcquistiDao.findById(id);
@@ -28,6 +30,7 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
         return storicoAcquisti;
     }
 
+    @Override
     public List<StoricoAcquistiEntity> findByUsername(String username) {
         storicoAcquistiDao.getConn().openCurrentSession();
         List<StoricoAcquistiEntity> storicoAcquisti = (List<StoricoAcquistiEntity>) storicoAcquistiDao.findByUsername(username);
@@ -35,18 +38,21 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
         return storicoAcquisti;
     }
 
+    @Override
     public void persist(StoricoAcquistiEntity storicoAcquisti) {
         storicoAcquistiDao.getConn().openCurrentSessionwithTransaction();
         storicoAcquistiDao.persist(storicoAcquisti);
         storicoAcquistiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
+    @Override
     public void update(StoricoAcquistiEntity storicoAcquisti) {
         storicoAcquistiDao.getConn().openCurrentSessionwithTransaction();
         storicoAcquistiDao.update(storicoAcquisti);
         storicoAcquistiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
+    @Override
     public void deleteById(String id) {
         storicoAcquistiDao.getConn().openCurrentSessionwithTransaction();
         StoricoAcquistiEntity storicoAcquisti = storicoAcquistiDao.findById(id);

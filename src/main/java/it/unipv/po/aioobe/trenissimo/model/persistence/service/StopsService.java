@@ -14,6 +14,7 @@ public class StopsService implements IStopsService {
         stopsDao = new StopsDao();
     }
 
+    @Override
     public List<StopsEntity> findAll() {
         stopsDao.getConn().openCurrentSession();
         List<StopsEntity> stops = stopsDao.findAll();

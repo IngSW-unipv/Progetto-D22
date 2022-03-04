@@ -13,6 +13,7 @@ public class CalendarDatesService implements ICalendarDatesService {
         calendarDatesDao = new CalendarDatesDao();
     }
 
+    @Override
     public List<CalendarDatesEntity> findAll() {
         calendarDatesDao.getConn().openCurrentSession();
         List<CalendarDatesEntity> calendarDates = calendarDatesDao.findAll();

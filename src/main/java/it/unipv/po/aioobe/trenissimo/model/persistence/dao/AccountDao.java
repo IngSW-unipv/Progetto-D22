@@ -6,6 +6,9 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IAccountDao;
 
 import java.util.List;
 
+/**
+ * @
+ */
 public class AccountDao implements IAccountDao {
 
     private HibernateConnection conn;

@@ -22,29 +22,30 @@ public class DatiPersonaliDao implements IDatiPersonaliDao {
         this.conn = conn;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public List<DatiPersonaliEntity> findAll() {
         List<DatiPersonaliEntity> datiPersonaliEntities = (List<DatiPersonaliEntity>) conn.getCurrentSession().createQuery("from DatiPersonaliEntity ").list();
         return datiPersonaliEntities;
     }
 
-
+    @Override
     public DatiPersonaliEntity findByUsername(String user) {
         DatiPersonaliEntity datiPersonaliEntity = (DatiPersonaliEntity) conn.getCurrentSession().get(DatiPersonaliEntity.class, user);
         return datiPersonaliEntity;
     }
 
-
+    @Override
     public void persist(DatiPersonaliEntity datiPersonali) {
         conn.getCurrentSession().save(datiPersonali);
     }
 
-
+    @Override
     public void update(DatiPersonaliEntity datiPersonali) {
         conn.getCurrentSession().update(datiPersonali);
     }
 
-
+    @Override
     public void delete(DatiPersonaliEntity datiPersonali) {
         conn.getCurrentSession().delete(datiPersonali);
     }

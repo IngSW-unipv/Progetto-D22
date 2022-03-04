@@ -15,6 +15,7 @@ public class AccountService implements IAccountService {
         accountDao = new AccountDao();
     }
 
+    @Override
     public List<AccountEntity> findAll() {
         accountDao.getConn().openCurrentSession();
         List<AccountEntity> accounts = accountDao.findAll();
@@ -22,6 +23,7 @@ public class AccountService implements IAccountService {
         return accounts;
     }
 
+    @Override
     public AccountEntity findByUsername(String user) {
         accountDao.getConn().openCurrentSession();
         AccountEntity account = accountDao.findByUsername(user);
@@ -29,6 +31,7 @@ public class AccountService implements IAccountService {
         return account;
     }
 
+    @Override
     public void persist(AccountEntity account) throws SQLException {
 
             try {
@@ -42,7 +45,7 @@ public class AccountService implements IAccountService {
     }
 
 
-
+    @Override
     public void update(AccountEntity account) {
 
             accountDao.getConn().openCurrentSessionwithTransaction();
@@ -51,6 +54,7 @@ public class AccountService implements IAccountService {
 
     }
 
+    @Override
     public void deleteByUsername(String user) throws SQLException{
         try {
             accountDao.getConn().openCurrentSessionwithTransaction();
@@ -61,6 +65,7 @@ public class AccountService implements IAccountService {
             System.out.println(e.getLocalizedMessage());
         }
     }
+
 
     public AccountDao getAccountDao() {
         return accountDao;

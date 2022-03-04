@@ -27,6 +27,7 @@ public class AgencyDao implements IAgencyDao  {
         return agency;
     }*/
 
+    @Override
     @SuppressWarnings("unchecked")
     public List<AgencyEntity> findAll() {
         List<AgencyEntity> agencyEntities = (List<AgencyEntity>) conn.getCurrentSession().createQuery("from AgencyEntity ").list();

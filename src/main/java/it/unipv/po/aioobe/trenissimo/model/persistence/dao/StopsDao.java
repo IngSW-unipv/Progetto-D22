@@ -21,6 +21,8 @@ public class StopsDao implements IStopsDao {
     public void setConn(HibernateConnection conn) {
         this.conn = conn;
     }
+
+    @Override
     @SuppressWarnings("unchecked")
     public List<StopsEntity> findAll() {
         List<StopsEntity> stopsEntities = (List<StopsEntity>) conn.getCurrentSession().createQuery("from StopsEntity").list();

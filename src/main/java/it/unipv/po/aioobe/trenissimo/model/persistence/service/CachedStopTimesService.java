@@ -23,6 +23,7 @@ public class CachedStopTimesService implements IStopTimesService, ICached {
 
     private List<StopTimesEntity> cachedFindAll = null;
 
+    @Override
     public List<StopTimesEntity> findAll() {
         if (cachedFindAll == null) {
             cachedFindAll = stopTimesService.findAll();
