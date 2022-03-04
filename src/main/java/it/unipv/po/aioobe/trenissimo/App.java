@@ -3,20 +3,19 @@ package it.unipv.po.aioobe.trenissimo;
 import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataTitoloViaggio;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
-import org.hibernate.type.UUIDBinaryType;
 
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
+
 import java.text.ParseException;
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.logging.Level;
 
 public class App {
@@ -24,7 +23,7 @@ public class App {
     public static void main(String[] args) throws ParseException {
 
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
-        CSASearch search = new CSASearch();
+        /*CSASearch search = new CSASearch();
         var viaggi = search.eseguiRicerca(332,2793);
         var result = viaggi.get(0).getCambi();
 
@@ -37,8 +36,8 @@ public class App {
                     "[" + routeFrom + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.getDeparture_station()).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.getDeparture_timestamp())
                             + ") -> [" + routeTo + "] " +  CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.getArrival_station()).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.getArrival_timestamp()) + ")");
         }
-        System.out.println("\n\n");
-/*
+        System.out.println("\n\n");*/
+
         AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
@@ -46,35 +45,8 @@ public class App {
 
         System.out.println(accountService.findByUsername("Nyquist").toString());
 
-        AccountEntity account1 = new AccountEntity();
-        account1.setUsername("vale1");
-        account1.setPassword("vale1");
+        DatiPersonaliEntity dati = new DatiPersonaliEntity();
 
-        /*try {
-            accountService.persist(account1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
-
-        /*try {
-            accountService.deleteByUsername("vale");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
-
-       // DatiPersonaliEntity dati = new DatiPersonaliEntity();
-        /*dati.setUsername("vale1");
-        dati.setNome("Valeria");
-        dati.setCognome("Vergani");
-        dati.setCap(20091);
-        dati.setCitta("Bresso");
-        dati.setVia("Via Galliano");
-        dati.setCivico(17);
-        dati.setDataNascita(Date.valueOf("1997-04-14"));
-        dati.setMail("valeria.vergani97@gmail.com");*/
-
-        //datiPersonaliService.persist(dati);
-/*
         dati = datiPersonaliService.findByUsername("vale1");
 
         dati.setMail("valeria.vergani01@universitadipavia.it");
@@ -89,17 +61,22 @@ public class App {
 
         System.out.println(account.getDatiPersonali());
 
-        //account.addViaggioPreferito(viaggi.get(0));
-
         viaggiPreferitiService.findByUsername(account.getUsername()).forEach((x)-> System.out.println(x.toString()));
         storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
 
-        CorsaSingola biglietto = new CorsaSingola(DurataTitoloViaggio.CORSASINGOLA, viaggi.get(0));
+        /*CorsaSingola biglietto = new CorsaSingola(DurataTitoloViaggio.CORSASINGOLA, viaggi.get(0));
 
         account.addAcquistoToStorico(biglietto);
         System.out.println("DOPO");
-        storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
-*/
+        storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));*/
+
+        Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
+
+        search.setNumAdulti(3);
+
+        List<Viaggio> viaggi = search.eseguiRicerca();
+
+        viaggi.forEach((x)->System.out.println(x.getStazionePartenza().getStopName() + " ora partenza " + Utils.secondsToTime(x.getOrarioPartenza()) +" num adulti = " + x.getNumAdulti()));
 
         //TODO FILTRI
 

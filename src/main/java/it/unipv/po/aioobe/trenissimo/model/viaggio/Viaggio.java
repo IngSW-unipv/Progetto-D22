@@ -14,37 +14,40 @@ public class Viaggio {
     private int numRagazzi;
     private int numBambini;
     private int numAnimali;
+    private List<Connection> cambi;
 
-    public void setNumAdulti(int numAdulti) {
-        this.numAdulti = numAdulti;
-    }
-
-    public void setNumRagazzi(int numRagazzi) {
-        this.numRagazzi = numRagazzi;
-    }
-
-    public void setNumBambini(int numBambini) {
-        this.numBambini = numBambini;
-    }
-
-    public void setNumAnimali(int numAnimali) {
-        this.numAnimali = numAnimali;
-    }
+    public Viaggio() {}
 
     public int getNumAdulti() {
         return numAdulti;
+    }
+
+    public void setNumAdulti(int numAdulti) {
+        this.numAdulti = numAdulti;
     }
 
     public int getNumRagazzi() {
         return numRagazzi;
     }
 
+    public void setNumRagazzi(int numRagazzi) {
+        this.numRagazzi = numRagazzi;
+    }
+
     public int getNumBambini() {
         return numBambini;
     }
 
+    public void setNumBambini(int numBambini) {
+        this.numBambini = numBambini;
+    }
+
     public int getNumAnimali() {
         return numAnimali;
+    }
+
+    public void setNumAnimali(int numAnimali) {
+        this.numAnimali = numAnimali;
     }
 
     public List<Connection> getCambi() {
@@ -54,10 +57,6 @@ public class Viaggio {
     public void setCambi(List<Connection> cambi) {
         this.cambi = cambi;
     }
-
-    public List<Connection> cambi;
-
-    public Viaggio() {}
 
     public StopsEntity getStazionePartenza() {
         return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(0).getDeparture_station())).findFirst().get();
@@ -83,7 +82,6 @@ public class Viaggio {
         // TODO: non conta casi in cui il treno torna sulla stessa tratta (eg. R1 -> R2 -> R1 viene contato come un cambio solo invece che due)
         return (int) (cambi.stream().map(x -> x.getDeparture_station_trip()).distinct().count() - 1);
     }
-
 
     public String getPrezzo() {
         return ((new Random()).nextInt(0,15)) + ",00€";
