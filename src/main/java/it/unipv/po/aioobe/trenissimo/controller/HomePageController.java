@@ -104,6 +104,7 @@ public class HomePageController implements Initializable {
 
     }
 
+    /*
     @FXML
     protected void onRicerca() {
         boxLoading.setVisible(true);
@@ -116,7 +117,7 @@ public class HomePageController implements Initializable {
 
                 CSASearch search = new CSASearch();
 
-                return search.eseguiRicerca(partenzaId, destinazioneId, 12 * 3600);
+                return search.eseguiRicerca(partenzaId, destinazioneId);
             }
         };
 
@@ -126,5 +127,7 @@ public class HomePageController implements Initializable {
             RicercaView.open((List<ViaggioAlt>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
         });
         new Thread(task).start();
-    }
+
+
+    }*/
 }

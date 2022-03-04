@@ -79,20 +79,8 @@ public class TicketBuilder {
     }
 
     public static void main(String[] args) throws Exception {
-
+        //eseguire main per sapere in quale folder temporanea viene salvato il biglietto
         //System.out.println(System.getProperty("java.io.tmpdir"));
-        /*
-        TicketBuilder ticket = new TicketBuilder("Milano", "roma", "10.05.2022", "10.05.2022", "10", "13", "2", "3", "22A", "Mario", "Rossi", "mariorossicf", "10.05.2000", "M12345", "3000");
-        ticket.createPdf(SRC, DEST);
-
-        File biglietto = new File(DEST);
-        Desktop.getDesktop().open(biglietto);
-
-        File nuovo = new File(DW);
-        copy(biglietto,nuovo);
-
-        //biglietto.delete();
-        */
     }
 
     public static void copy(File source, File target) throws IOException {

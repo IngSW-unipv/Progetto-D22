@@ -89,24 +89,6 @@ public class Account {
         // todo
     }
 
-
-
-
-
-    public void salva(String nome, String cognome, LocalDate dataNascita, String mail, String via, String civico, String citta, String cap){
-        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
-        datiPersonali.setNome(nome);
-        datiPersonali.setCognome(cognome);
-        datiPersonali.setDataNascita(Date.valueOf(dataNascita));
-        datiPersonali.setMail(mail);
-        /*
-        datiPersonali.setVia(via);
-        datiPersonali.setCivico(civico);
-        datiPersonali.setCitta(citta);
-        datiPersonali.setCAP(cap);
-        */
-        datiPersonaliService.update(datiPersonali);
-    }
     public boolean checkCAP(String CAP){
         return CAP.length() == 5 && CAP.matches("^[0-9]+$");
     }
