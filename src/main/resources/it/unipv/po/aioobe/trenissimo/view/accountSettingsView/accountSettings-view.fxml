@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.AccountSettingsController">
+   <children>
+      <VBox fx:id="boxContent" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="32.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@accountSettings.css">
+          <children>
+              <StackPane>
+                  <VBox.margin>
+                      <Insets />
+                  </VBox.margin>
+                  <children>
+                      <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1440.0" StackPane.alignment="TOP_CENTER">
+                          <fill>
+                              <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                                  <stops>
+                                      <Stop>
+                                          <color>
+                                              <Color red="1.0" green="1.0" blue="1.0" />
+                                          </color>
+                                      </Stop>
+                                      <Stop offset="0.5830970105163653">
+                                          <color>
+                                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.5" />
+                                          </color>
+                                      </Stop>
+                                      <Stop offset="1.0">
+                                          <color>
+                                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                                          </color>
+                                      </Stop>
+                                  </stops>
+                              </LinearGradient>
+                          </fill>
+                      </Rectangle>
+                      <HBox alignment="CENTER" prefHeight="205.0" prefWidth="1440.0">
+                          <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                  <HBox.margin>
+                                      <Insets />
+                                  </HBox.margin>
+                                  <children>
+                                      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../../logo.png" />
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" HBox.hgrow="ALWAYS">
+                                  <children>
+                              <Label id="labelBenvenuto" fx:id="labelBenvenuto" contentDisplay="BOTTOM" text="Ciao, @username" />
+                                  </children>
+                              </HBox>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="16.0" HBox.hgrow="ALWAYS">
+                                  <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" text="Logout" />
+                                  </children>
+                              </HBox>
+                          </children>
+                          <padding>
+                              <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                          </padding>
+                      </HBox>
+                  </children>
+              </StackPane>
+            <HBox alignment="CENTER" prefHeight="476.0" prefWidth="1440.0">
+               <children>
+                  <TabPane prefHeight="172.0" prefWidth="925.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Le tue informazioni">
+                           <content>
+                              <BorderPane style="-fx-background-color: #F4F4F4;">
+                                 <center>
+                                    <GridPane alignment="TOP_CENTER" prefHeight="445.0" prefWidth="910.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label fx:id="labelDatiPersonali" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="148.0" text="Dati Personali">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label styleClass="title" text="Nome:" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label styleClass="title" text="Email:" GridPane.rowIndex="5" />
+                                          <Label styleClass="title" text="Cognome" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                          <Label styleClass="title" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                          <Label styleClass="title" text="Civico:" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                          <Label styleClass="title" text="Data di nascita" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                          <TextField editable="false" promptText="Nome" styleClass="title" visible="false" GridPane.rowIndex="3" />
+                                          <Label styleClass="title" text="Via:" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                          <Label styleClass="title" text="Città:" GridPane.rowIndex="8" />
+                                          <Label styleClass="title" text="CAP:" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                          <Button id="buttonModifica" fx:id="buttonModifica" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#onModifica" text="Modifica" textFill="#006565" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </Button>
+                                          <TextField fx:id="textFieldCitta" disable="true" mouseTransparent="true" promptText="Città" styleClass="textField" text="Pavia" GridPane.rowIndex="9" />
+                                          <Button id="buttonSalva" fx:id="buttonSalva" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSalva" text="Salva" textFill="#006565" visible="false" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="11" />
+                                          <Button id="buttonAnnulla" fx:id="buttonAnnulla" contentDisplay="CENTER" layoutX="635.0" layoutY="11.0" mnemonicParsing="false" onAction="#onAnnulla" text="Annulla" textFill="#b51039" visible="false" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
+                                          <TextField fx:id="textFieldEmail" disable="true" mouseTransparent="true" promptText="Email" styleClass="textField" text="rossi@gmail.com" GridPane.rowIndex="6" />
+                                          <TextField fx:id="textFieldNome" disable="true" mouseTransparent="true" promptText="Nome " styleClass="textField" text="Mario" GridPane.rowIndex="3" />
+                                          <TextField fx:id="textFieldCognome" disable="true" mouseTransparent="true" promptText="Cognome" styleClass="textField" text="Rossi" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                          <TextField fx:id="textFieldVia" disable="true" mouseTransparent="true" promptText="Via" styleClass="textField" text="ferrata" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                          <TextField fx:id="textFieldCAP" disable="true" mouseTransparent="true" promptText="CAP" styleClass="textField" text="12345" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                                          <TextField fx:id="textFieldCivico" disable="true" maxWidth="150.0" mouseTransparent="true" promptText="Civico" styleClass="textField" text="8" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                                          <DatePicker fx:id="datePickerDataNascita" disable="true" maxWidth="1.7976931348623157E308" mouseTransparent="true" promptText="10/05/2000" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                          <Label fx:id="labelErroreCAP" text="CAP inserito non valido!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                                          <Label fx:id="labelErroreEmail" text="Email non valida!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                          <Label fx:id="labelErroreDataNascita" text="Data di nascita non valida!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                          <Label fx:id="labelErroreNome" text="Inserire il Nome!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                          <Label fx:id="labelErroreCitta" text="Inserire la Città!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                                          <Label fx:id="labelErroreCognome" text="Inserire il Cognome!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                          <Label fx:id="labelErroreVia" text="Inserire la Via!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                          <Label fx:id="labelErroreCivico" text="Inserire il Civico!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                       </children>
+                                       <BorderPane.margin>
+                                          <Insets top="35.0" />
+                                       </BorderPane.margin>
+                                    </GridPane>
+                                 </center>
+                              </BorderPane>
+                           </content>
+                        </Tab>
+                      <Tab text="Viaggi preferiti">
+                           <content>
+                              <ScrollPane fitToWidth="true" style="-fx-background-color: #F4F4F4#F4F4F4;">
+                                 <content>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                       <children>
+                                          <VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <HBox spacing="8.0" VBox.vgrow="NEVER">
+                                                   <children>
+                                                      <Label fx:id="lblCompanyId" text="Trenord" />
+                                                      <Label fx:id="lblTrainId" text="964A / 745" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label fx:id="lblDepartureTime" text="13:27" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label fx:id="lblDepartureStation" text="Casteggio" />
+                                                               </children>
+                                                            </VBox>
+                                                            <HBox alignment="CENTER">
+                                                               <children>
+                                                                  <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Line>
+                                                                  <Label fx:id="lblTravelTime" text="56min" HBox.hgrow="ALWAYS" />
+                                                                  <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Line>
+                                                               </children>
+                                                            </HBox>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label fx:id="lblArrivalTime" text="14:23" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label fx:id="lblArrivalStation" text="Pavia" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <Label fx:id="lblChanges" text="1 cambio" />
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox alignment="CENTER_RIGHT">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" text="Acquista" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
+                                             <children>
+                                                <HBox spacing="8.0" VBox.vgrow="NEVER">
+                                                   <children>
+                                                      <Label fx:id="lblCompanyId1" text="Trenord" />
+                                                      <Label fx:id="lblTrainId1" text="964A / 745" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label fx:id="lblDepartureTime1" text="13:27" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label fx:id="lblDepartureStation1" text="Casteggio" />
+                                                               </children>
+                                                            </VBox>
+                                                            <HBox alignment="CENTER">
+                                                               <children>
+                                                                  <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Line>
+                                                                  <Label fx:id="lblTravelTime1" text="56min" HBox.hgrow="ALWAYS" />
+                                                                  <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Line>
+                                                               </children>
+                                                            </HBox>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label fx:id="lblArrivalTime1" text="14:23" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label fx:id="lblArrivalStation1" text="Pavia" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <Label fx:id="lblChanges1" text="1 cambio" />
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox alignment="CENTER_RIGHT">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" text="Acquista" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
+                                             <children>
+                                                <HBox spacing="8.0" VBox.vgrow="NEVER">
+                                                   <children>
+                                                      <Label fx:id="lblCompanyId2" text="Trenord" />
+                                                      <Label fx:id="lblTrainId2" text="964A / 745" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label fx:id="lblDepartureTime2" text="13:27" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label fx:id="lblDepartureStation2" text="Casteggio" />
+                                                               </children>
+                                                            </VBox>
+                                                            <HBox alignment="CENTER">
+                                                               <children>
+                                                                  <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Line>
+                                                                  <Label fx:id="lblTravelTime2" text="56min" HBox.hgrow="ALWAYS" />
+                                                                  <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Line>
+                                                               </children>
+                                                            </HBox>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label fx:id="lblArrivalTime2" text="14:23" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <Label fx:id="lblArrivalStation2" text="Pavia" />
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <Label fx:id="lblChanges2" text="1 cambio" />
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox alignment="CENTER_RIGHT">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" text="Acquista" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content></ScrollPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Storico acquisti">
+                           <content>
+                              <ScrollPane fitToWidth="true" style="-fx-background-color: #F4F4F4#F4F4F4;">
+                                 <content>
+                                    <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+                                       <children>
+                                          <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
+                                             <children>
+                                                <HBox spacing="8.0" VBox.vgrow="NEVER">
+                                                   <children>
+                                                      <Label text="Id acquisto:" />
+                                                      <Label fx:id="labelIDAcquisto" text="labelIdAcquisto" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label text="Numero biglietto" />
+                                                                  <Label fx:id="labelNumeroBiglietto" text="#ƒsdgs" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </VBox>
+                                                            <HBox alignment="CENTER">
+                                                               <children>
+                                                                  <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" top="24.0" />
+                                                                     </HBox.margin>
+                                                                  </Line>
+                                                               </children>
+                                                            </HBox>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label text="Data acquisto" />
+                                                                  <Label fx:id="labelDataAcquisto" text="10/05/2000" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <Label fx:id="labelPrezzo" text="10,30€" textAlignment="RIGHT" textFill="#bf0000">
+                                                               <font>
+                                                                  <Font name="System Bold" size="25.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox alignment="CENTER">
+                                                         <children>
+                                                            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Button fx:id="buttonBigliettoPDF" mnemonicParsing="false" onAction="#onVisualizzaBigliettoPDF" text="Visualizza PDF" />
+                                                                  <Button fx:id="buttonScarica" mnemonicParsing="false" onAction="#onScaricaBigliettoPDF" text="Scarica PDF">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label fx:id="labelDownloadOK" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" visible="false" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="26.0" layoutY="26.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
+                                             <children>
+                                                <HBox spacing="8.0" VBox.vgrow="NEVER">
+                                                   <children>
+                                                      <Label text="Id acquisto:" />
+                                                      <Label fx:id="labelIDAcquisto1" text="labelIdAcquisto" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label text="Numero biglietto" />
+                                                                  <Label fx:id="labelNumeroBiglietto1" text="#ƒsdgs" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </VBox>
+                                                            <HBox alignment="CENTER">
+                                                               <children>
+                                                                  <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" top="24.0" />
+                                                                     </HBox.margin>
+                                                                  </Line>
+                                                               </children>
+                                                            </HBox>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label text="Data acquisto" />
+                                                                  <Label fx:id="labelDataAcquisto1" text="10/05/2000" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <Label fx:id="labelPrezzo1" text="10,30€" textAlignment="RIGHT" textFill="#bf0000">
+                                                               <font>
+                                                                  <Font name="System Bold" size="25.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox alignment="CENTER">
+                                                         <children>
+                                                            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Button fx:id="buttonBigliettoPDF1" mnemonicParsing="false" onAction="#onVisualizzaBigliettoPDF" text="Visualizza PDF" />
+                                                                  <Button fx:id="buttonScarica1" mnemonicParsing="false" onAction="#onScaricaBigliettoPDF" text="Scarica PDF">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label fx:id="labelDownloadOK1" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" visible="false" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="26.0" layoutY="144.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
+                                             <children>
+                                                <HBox spacing="8.0" VBox.vgrow="NEVER">
+                                                   <children>
+                                                      <Label text="Id acquisto:" />
+                                                      <Label fx:id="labelIDAcquisto11" text="labelIdAcquisto" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                                   <children>
+                                                      <HBox>
+                                                         <children>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label text="Numero biglietto" />
+                                                                  <Label fx:id="labelNumeroBiglietto11" text="#ƒsdgs" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </VBox>
+                                                            <HBox alignment="CENTER">
+                                                               <children>
+                                                                  <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" right="8.0" top="24.0" />
+                                                                     </HBox.margin>
+                                                                  </Line>
+                                                               </children>
+                                                            </HBox>
+                                                            <VBox alignment="CENTER_LEFT">
+                                                               <children>
+                                                                  <Label text="Data acquisto" />
+                                                                  <Label fx:id="labelDataAcquisto11" text="10/05/2000" textFill="#006565">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="18.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <Label fx:id="labelPrezzo11" text="10,30€" textAlignment="RIGHT" textFill="#bf0000">
+                                                               <font>
+                                                                  <Font name="System Bold" size="25.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <VBox alignment="CENTER">
+                                                         <children>
+                                                            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Button fx:id="buttonBigliettoPDF11" mnemonicParsing="false" onAction="#onVisualizzaBigliettoPDF" text="Visualizza PDF" />
+                                                                  <Button fx:id="buttonScarica11" mnemonicParsing="false" onAction="#onScaricaBigliettoPDF" text="Scarica PDF">
+                                                                     <HBox.margin>
+                                                                        <Insets left="8.0" />
+                                                                     </HBox.margin>
+                                                                  </Button>
+                                                               </children>
+                                                            </HBox>
+                                                            <Label fx:id="labelDownloadOK11" alignment="CENTER" text="Biglietto scaricato con successo!" textFill="#21b200" visible="false" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </HBox>
+          </children>
+      </VBox>
+      <VBox fx:id="boxLoading" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 8;" visible="false">
+         <children>
+            <ProgressIndicator />
+            <Label text="Caricamento in corso">
+               <VBox.margin>
+                  <Insets top="16.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="64.0" radius="31.5" width="64.0">
+               <color>
+                  <Color opacity="0.4545454680919647" />
+               </color>
+            </DropShadow>
+         </effect>
+      </VBox>
+   </children>
+</StackPane>
