@@ -1,17 +1,22 @@
 package it.unipv.po.aioobe.trenissimo.model.user;
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.DatiPersonaliService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.IDataViaggioUtils;
 
+import java.nio.charset.StandardCharsets;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class Account {
     private static Account instance;
-    private DatiPersonali datiPersonali;
+    private DatiPersonaliEntity datiPersonali;
     private String username;
     private String passwordHash;
-    private UUID id;
     private ArrayList<IDataViaggioUtils> viaggiPreferiti;
     private ArrayList<IAcquisto> storicoAcquisti;
 
@@ -22,20 +27,16 @@ public class Account {
         return instance;
     }
 
-    public DatiPersonali getDatiPersonali() {
-        return datiPersonali;
+    public DatiPersonaliEntity getDatiPersonali(String username) {
+        return this.datiPersonali = new DatiPersonaliService().findByUsername(username);
     }
 
     public String getUsername() {
-        return username;
+        return "zambo";
     }
 
     public String getPasswordHash() {
         return passwordHash;
-    }
-
-    public UUID getId() {
-        return id;
     }
 
     public ArrayList<IDataViaggioUtils> getViaggiPreferiti() {
@@ -47,7 +48,7 @@ public class Account {
     }
 
     //setter
-    public void setDatiPersonali(DatiPersonali datiPersonali) {
+    public void setDatiPersonali(DatiPersonaliEntity datiPersonali) {
         this.datiPersonali = datiPersonali;
     }
 
@@ -62,4 +63,49 @@ public class Account {
     public void storicoAcquisti(IAcquisto acquisto){
         // todo
     }
+
+
+
+
+
+    public void salva(String nome, String cognome, LocalDate dataNascita, String mail, String via, String civico, String citta, String cap){
+        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
+        datiPersonali.setNome(nome);
+        datiPersonali.setCognome(cognome);
+        datiPersonali.setDataNascita(Date.valueOf(dataNascita));
+        datiPersonali.setMail(mail);
+        /*
+        datiPersonali.setVia(via);
+        datiPersonali.setCivico(civico);
+        datiPersonali.setCitta(citta);
+        datiPersonali.setCAP(cap);
+        */
+        datiPersonaliService.update(datiPersonali);
+    }
+    public boolean checkCAP(String CAP){
+        return CAP.length() == 5 && CAP.matches("^[0-9]+$");
+    }
+
+    public boolean checkEmail(String email){
+
+        return email.matches("[A-z0-9\\.\\+_-]+@[A-z0-9\\._-]+\\.[A-z]{2,6}");
+    }
+
+    public boolean checkDataNascita(LocalDate data){
+        return data.isBefore(LocalDate.now());
+    }
+
+    public boolean checkDatiGenerico(String dato){
+        return dato.length() > 0;
+    }
+
+
+
+
+
+
+
+
+
+
 }

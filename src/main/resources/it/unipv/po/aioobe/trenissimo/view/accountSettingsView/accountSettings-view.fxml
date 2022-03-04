@@ -157,6 +157,11 @@
                                           <Label fx:id="labelErroreCAP" text="CAP inserito non valido!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                                           <Label fx:id="labelErroreEmail" text="Email non valida!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                                           <Label fx:id="labelErroreDataNascita" text="Data di nascita non valida!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                          <Label fx:id="labelErroreNome" text="Inserire il Nome!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                          <Label fx:id="labelErroreCitta" text="Inserire la Città!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                                          <Label fx:id="labelErroreCognome" text="Inserire il Cognome!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                          <Label fx:id="labelErroreVia" text="Inserire la Via!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                          <Label fx:id="labelErroreCivico" text="Inserire il Civico!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                                        </children>
                                        <BorderPane.margin>
                                           <Insets top="35.0" />
