@@ -4,11 +4,11 @@ import java.util.UUID;
 
 public class Voucher {
     private UUID id;
-    private double valore;
+    private double prezzo;
 
-    public Voucher(double valore) {
+    public Voucher(double prezzo) {
         this.id = id; //da calcolare
-        this.valore = valore;
+        this.prezzo = prezzo;
     }
 
     public UUID getId() {
@@ -19,11 +19,11 @@ public class Voucher {
         this.id = id;
     }
 
-    public double getValore() {
-        return valore;
+    public double getPrezzo() {
+        return prezzo;
     }
 
-    public void setValore(double valore) {
-        this.valore = valore;
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
     }
 }

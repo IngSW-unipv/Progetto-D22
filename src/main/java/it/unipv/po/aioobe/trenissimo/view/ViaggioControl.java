@@ -1,6 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -25,7 +26,7 @@ public class ViaggioControl extends VBox {
     @FXML private Label lblChanges;
     @FXML private Label lblPrice;
 
-    private ViaggioAlt viaggio;
+    private Viaggio viaggio;
 
 
     public ViaggioControl() {
@@ -40,16 +41,16 @@ public class ViaggioControl extends VBox {
         }
     }
 
-    public ViaggioControl(ViaggioAlt viaggio){
+    public ViaggioControl(Viaggio viaggio){
         this();
         setViaggio(viaggio);
     }
 
-    public ViaggioAlt getViaggio() {
+    public Viaggio getViaggio() {
         return viaggio;
     }
 
-    public void setViaggio(ViaggioAlt viaggio) {
+    public void setViaggio(Viaggio viaggio) {
         this.viaggio = viaggio;
 
         lblCompanyId            .textProperty().setValue("Trenord");
@@ -60,7 +61,7 @@ public class ViaggioControl extends VBox {
         lblArrivalStation       .textProperty().setValue(viaggio.getStazioneArrivo().getStopName());
         lblTravelTime           .textProperty().setValue(((int) viaggio.getDurata() / 60) + " mins");
         lblChanges              .textProperty().setValue(viaggio.getNumeroCambi() + " cambi");
-        lblPrice                .textProperty().setValue(viaggio.getPrezzo());
+        lblPrice                .textProperty().setValue(String.valueOf(viaggio.getPrezzo()));
 
     }
 

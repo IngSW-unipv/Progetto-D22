@@ -108,22 +108,22 @@ public class HomePageController implements Initializable {
     protected void onRicerca() {
         boxLoading.setVisible(true);
         boxContent.setDisable(true);
-        Task<List<ViaggioAlt>> task = new Task<>() {
+        Task<List<Viaggio>> task = new Task<>() {
             @Override
-            public List<ViaggioAlt> call() {
+            public List<Viaggio> call() {
                 int partenzaId = ((StopsEntity) scbBigliettoPartenza.getValue()).getStopId();
                 int destinazioneId = ((StopsEntity) scbBigliettoDestinazione.getValue()).getStopId();
 
                 CSASearch search = new CSASearch();
 
-                return search.eseguiRicerca(partenzaId, destinazioneId, 12 * 3600);
+                return search.eseguiRicerca(partenzaId, destinazioneId);
             }
         };
 
         task.setOnSucceeded(e -> {
             boxLoading.setVisible(false);
             boxContent.setDisable(false);
-            RicercaView.open((List<ViaggioAlt>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
+            RicercaView.open((List<Viaggio>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
         });
         new Thread(task).start();
     }

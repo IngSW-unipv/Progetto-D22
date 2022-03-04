@@ -150,7 +150,7 @@ public class ViaggiPreferitiEntity {
         ViaggiPreferitiEntity viaggiPreferitiEntity = new ViaggiPreferitiEntity();
         viaggiPreferitiEntity.setStazionePartenza(String.valueOf(v.getStazionePartenza()));
         viaggiPreferitiEntity.setStazioneArrivo(String.valueOf(v.getStazioneArrivo()));
-        viaggiPreferitiEntity.setOra(Time.valueOf(Utils.secondsToTime(v.getStazionePartenza()))); // TODO: 04/03/2022 MAGHEGGIO TEMPORANEO 
+        //viaggiPreferitiEntity.setOra(Time.valueOf(Utils.secondsToTime(v.getStazionePartenza()))); // TODO: 04/03/2022 MAGHEGGIO TEMPORANEO
         viaggiPreferitiEntity.setnAdulti(v.getNumAdulti());
         viaggiPreferitiEntity.setnRagazzi(v.getNumRagazzi());
         viaggiPreferitiEntity.setnBambini(v.getNumBambini());

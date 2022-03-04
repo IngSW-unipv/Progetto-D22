@@ -1,7 +1,12 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
+import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -86,6 +91,14 @@ public class StoricoAcquistiEntity {
 
     public void setAccountByUsername(AccountEntity accountByUsername) {
         this.accountByUsername = accountByUsername;
+    }
+
+    public StoricoAcquistiEntity toStoricoAcquistiEntity (IAcquisto acquisto) {
+        StoricoAcquistiEntity storicoAcquisti = new StoricoAcquistiEntity();
+        storicoAcquisti.setTitoloViaggioId(acquisto.getId());
+        storicoAcquisti.setPrezzo(acquisto.getPrezzo());
+        storicoAcquisti.setDataAcquisto(Timestamp.valueOf(LocalDateTime.now()));
+        return storicoAcquisti;
     }
 
     @Override

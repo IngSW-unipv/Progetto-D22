@@ -1,5 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio;
 
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.posizione.Posizione;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.ModalitaViaggio;
@@ -40,18 +42,10 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
 
     public Viaggio() {}
 
-    public int getStazionePartenza() {
-        return cambi.get(0).departure_station;
-    }
-
     public void setStazionePartenza(String stazionePartenza) {
         this.stazionePartenza = stazionePartenza;
     }
 
-
-    public int getStazioneArrivo() {
-        return cambi.get(cambi.size() - 1).arrival_station;
-    }
 
     public void setStazioneArrivo(String stazioneArrivo) {
         this.stazioneArrivo = stazioneArrivo;
@@ -197,5 +191,21 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
     public int getNumeroCambi() {
         // TODO: non conta casi in cui il treno torna sulla stessa tratta (eg. R1 -> R2 -> R1 viene contato come un cambio solo invece che due)
         return (int) (cambi.stream().map(x -> x.departure_station_trip).distinct().count() - 1);
+    }
+
+    public int getOrarioPartenza(){
+        return cambi.get(0).departure_timestamp;
+    }
+
+    public int getOrarioArrivo(){
+        return cambi.get(cambi.size() - 1).arrival_timestamp;
+    }
+
+    public StopsEntity getStazionePartenza() {
+        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(0).departure_station)).findFirst().get();
+    }
+
+    public StopsEntity getStazioneArrivo() {
+        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(cambi.size() - 1).arrival_station)).findFirst().get();
     }
 }

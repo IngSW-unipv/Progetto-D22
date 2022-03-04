@@ -5,6 +5,8 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataTitoloViaggio;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
@@ -26,7 +28,7 @@ public class App {
         var viaggi = search.eseguiRicerca(332,2793);
         var result = viaggi.get(0).getCambi();
 
-        System.out.println("Partenza: " + Utils.secondsToTime(viaggi.get(0).getStazionePartenza()) + " - Durata: " + Utils.secondsToTime(viaggi.get(0).getDurata()));
+        System.out.println("Partenza: " + Utils.secondsToTime(viaggi.get(0).getStazionePartenza().getStopId()) + " - Durata: " + Utils.secondsToTime(viaggi.get(0).getDurata()));
         System.out.println("Cambi: " + (result.stream().map(x -> x.departure_station_trip).distinct().count() - 1));
         for (Connection x : result) {
             var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() ==x.departure_station_trip).findFirst().get().getRouteId();
@@ -53,13 +55,6 @@ public class App {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-
-        StoricoAcquistiEntity storico1 = new StoricoAcquistiEntity();
-        storico1.setUsername("vale1");
-        storico1.setTitoloViaggioId(UUID.randomUUID().toString());
-        storico1.setPrezzo(4.50);
-
-        storicoAcquistiService.persist(storico1);
 
         /*try {
             accountService.deleteByUsername("vale");
@@ -98,6 +93,13 @@ public class App {
 
         viaggiPreferitiService.findByUsername(account.getUsername()).forEach((x)-> System.out.println(x.toString()));
         storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
+
+        CorsaSingola biglietto = new CorsaSingola(DurataTitoloViaggio.CORSASINGOLA, viaggi.get(0));
+
+        account.addAcquistoToStorico(biglietto);
+        System.out.println("DOPO");
+        storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
+
 
         //TODO ELIMINARE INTERFACCE E CLASSI INUTILI TIPO IDATAVIAGGIOUTILS, VIAGGIOPREFERITO, VIAGGIOALT, DATIPERSONALI
         //TODO FILTRI

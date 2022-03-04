@@ -76,19 +76,23 @@ public class AccountSettingsController implements Initializable {
 
         //metodo per leggere i dati da db e caricarli nelle varie textfield
 
-        labelBenvenuto.setText("Ciao, "+ Account.getInstance().getDatiPersonali("zambo").getNome());
+        Account.getInstance().setAccount("zambo");
+        Account.getInstance().setDatiPersonali("zambo");
+
+        labelBenvenuto.setText("Ciao, " + Account.getInstance().getDatiPersonali().getNome());
         labelDatiPersonali.setText("Dati Personali");
-/*
-        textFieldNome.setText(Account.getInstance().getDatiPersonali(Account.getInstance().getUsername()).getNome());
-        textFieldCognome.setText(Account.getInstance().getDatiPersonali(Account.getInstance().getUsername()).getCognome());
-        datePickerDataNascita.setValue(Account.getInstance().getDatiPersonali(Account.getInstance().getUsername()).getDataNascita().toLocalDate());
-        textFieldEmail.setText(Account.getInstance().getDatiPersonali(Account.getInstance().getUsername()).getMail());
-        /*
-        textFieldVia.setText(Account.getInstance().getDatiPersonali(Account.getInstance().getId()).getVia());
-        textFieldCivico.setText(Account.getInstance().getDatiPersonali(Account.getInstance().getId()).getCivico());
-        textFieldCitta.setText(Account.getInstance().getDatiPersonali(Account.getInstance().getId()).getCitta());
-        textFieldCAP.setText(Account.getInstance().getDatiPersonali(Account.getInstance().getId()).getCap());
-        */
+
+
+        textFieldNome.setText(Account.getInstance().getDatiPersonali().getNome());
+        textFieldCognome.setText(Account.getInstance().getDatiPersonali().getCognome());
+        datePickerDataNascita.setValue(Account.getInstance().getDatiPersonali().getDataNascita().toLocalDate());
+        textFieldEmail.setText(Account.getInstance().getDatiPersonali().getMail());
+
+        textFieldVia.setText(Account.getInstance().getDatiPersonali().getVia());
+        textFieldCivico.setText(Account.getInstance().getDatiPersonali().getCivico().toString());
+        textFieldCitta.setText(Account.getInstance().getDatiPersonali().getCitta());
+        textFieldCAP.setText(Account.getInstance().getDatiPersonali().getCap().toString());
+
     }
 
     @FXML
@@ -255,7 +259,7 @@ public class AccountSettingsController implements Initializable {
         String citta = textFieldCitta.getText();
         String cap = textFieldCAP.getText();
 
-        Account.getInstance().salva(nome,cognome,dataNascita,mail, via, civico, citta, cap);
+        Account.getInstance().salvaModificaDati(nome,cognome,dataNascita,mail, via, civico, citta, cap);
 
         onStart(); //per ricaricare i dati all'interno delle textfield
 
@@ -313,11 +317,11 @@ public class AccountSettingsController implements Initializable {
 
     }
     private void fillPDF() throws Exception {
-        /*
+
         titoloViaggio = new TicketBuilder("","",labelDataAcquisto.getText(),"","","","",
-                "","",dati.getNome(),dati.getCognome(),"",dati.getDataNascita().toString(),
+                "","",Account.getInstance().getDatiPersonali().getNome(),Account.getInstance().getDatiPersonali().getCognome(),"",Account.getInstance().getDatiPersonali().getDataNascita().toString(),
                 labelNumeroBiglietto.getText(), labelPrezzo.getText());
-*/
+
         titoloViaggio.createPdf();
     }
 

@@ -1,7 +1,16 @@
 package it.unipv.po.aioobe.trenissimo.model.user;
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.AccountService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.DatiPersonaliService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.ViaggiPreferitiService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.IDataViaggioUtils;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -74,32 +83,14 @@ public class Account {
         viaggiPreferitiService.deleteById(viaggio.getViaggioPreferitoId().toString());
     }
 
-    public void addAcquistoToStorico () {
-
+    public void addAcquistoToStorico (IAcquisto acquisto) {
+        StoricoAcquistiEntity storicoAcquisti = new StoricoAcquistiEntity();
+        StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
+        storicoAcquisti = storicoAcquisti.toStoricoAcquistiEntity(acquisto);
+        storicoAcquisti.setUsername(account.getUsername());
+        storicoAcquistiService.persist(storicoAcquisti);
     }
 
-    public void storicoAcquisti(IAcquisto acquisto){
-        // todo
-    }
-
-
-
-
-
-    public void salva(String nome, String cognome, LocalDate dataNascita, String mail, String via, String civico, String citta, String cap){
-        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
-        datiPersonali.setNome(nome);
-        datiPersonali.setCognome(cognome);
-        datiPersonali.setDataNascita(Date.valueOf(dataNascita));
-        datiPersonali.setMail(mail);
-        /*
-        datiPersonali.setVia(via);
-        datiPersonali.setCivico(civico);
-        datiPersonali.setCitta(citta);
-        datiPersonali.setCAP(cap);
-        */
-        datiPersonaliService.update(datiPersonali);
-    }
     public boolean checkCAP(String CAP){
         return CAP.length() == 5 && CAP.matches("^[0-9]+$");
     }
