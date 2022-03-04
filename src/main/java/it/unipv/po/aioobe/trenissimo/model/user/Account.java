@@ -9,7 +9,6 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.service.AccountService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.DatiPersonaliService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.ViaggiPreferitiService;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.IDataViaggioUtils;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import java.sql.Date;

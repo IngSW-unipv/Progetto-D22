@@ -101,11 +101,7 @@ public class App {
         storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
 
 
-        //TODO ELIMINARE INTERFACCE E CLASSI INUTILI TIPO IDATAVIAGGIOUTILS, VIAGGIOPREFERITO, VIAGGIOALT, DATIPERSONALI
         //TODO FILTRI
-        //TODO SPOSTARE COMAPARATORDURATAVIAGGIO IN FILTRO
-        //TODO SISTEMARE CLASSE VIAGGIO E VEDERE COME IMPOSTARE IL PREZZO
-
 
     }
 

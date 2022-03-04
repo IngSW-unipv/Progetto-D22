@@ -3,18 +3,20 @@ package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Interrail implements ITitoloViaggio{
 
     private TipoTitoloViaggio tipo;
     private DurataTitoloViaggio durata;
     private double prezzo;
-    private UUID id;
+    private String id;
+    private static final AtomicInteger count = new AtomicInteger(0);
 
-    public Interrail(DurataTitoloViaggio durata, UUID id) {
+    public Interrail(DurataTitoloViaggio durata, String id) {
         this.tipo = TipoTitoloViaggio.INTERRAIL;
         this.durata = durata;
-        this.id = id; //da rivedere: id si crea da solo con unmetodo oppure glielo passiamo gia fatto?
+        this.id = "IR" + String.format("%03d", count.incrementAndGet());
     }
 
     @Override
@@ -33,7 +35,7 @@ public class Interrail implements ITitoloViaggio{
     }
 
     @Override
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -44,11 +46,6 @@ public class Interrail implements ITitoloViaggio{
 
     @Override
     public void setPrezzo(double prezzo) {
-        // todo
-    }
-
-    @Override
-    public void setId(UUID id) {
         // todo
     }
 }

@@ -72,9 +72,4 @@ public class Trenissimo {
         // todo
         return null; //da cambiare, chiaramente
     }
-
-    public boolean memorizzaViaggioPreferito(IDataViaggioUtils viaggio){
-        // todo
-        return true;
-    }
 }

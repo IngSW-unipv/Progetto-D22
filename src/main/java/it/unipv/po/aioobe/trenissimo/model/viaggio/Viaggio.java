@@ -11,7 +11,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.UUID;
 
-public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
+public class Viaggio implements Comparable<Viaggio> {
     private String stazionePartenza;
     private String stazioneArrivo;
     private String idTreno;
@@ -100,82 +100,66 @@ public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
         return (int) (this.prezzo - v.prezzo);
     }
 
-    @Override
     public void setNumMaxCambi(int cambi) {
         this.numMaxCambi = cambi;
     }
 
-    @Override
     public void setModalitaViaggio(ModalitaViaggio modalitaViaggio) {
         this.modalitaViaggio = modalitaViaggio;
     }
 
-    @Override
     public void setNumAnimali(int animali) {
         this.numAnimali = animali;
     }
 
-    @Override
     public void setNumBambini(int bambini) {
         this.numBambini = bambini;
     }
 
-    @Override
     public void setNumRagazzi(int ragazzi) {
         this.numRagazzi = ragazzi;
     }
 
-    @Override
     public void setNumAdulti(int adulti) {
         this.numAdulti = adulti;
     }
 
-    @Override
     public void setOra(LocalTime ora) {
         this.ora = ora;
     }
 
-    @Override
     public void setData(LocalDate data) {
         this.data = data;
     }
 
-    @Override
     public int getNumMaxCambi() {
         return this.numMaxCambi;
     }
 
-    @Override
     public ModalitaViaggio getModalitaViaggio() {
         return this.modalitaViaggio;
     }
 
-    @Override
     public int getNumAnimali() {
         return this.numAnimali;
     }
 
-    @Override
     public int getNumBambini() {
         return this.numBambini;
     }
 
-    @Override
     public int getNumRagazzi() {
         return this.numRagazzi;
     }
 
-    @Override
     public int getNumAdulti() {
         return this.numAdulti;
     }
 
-    @Override
     public LocalTime getOra() {
         return this.ora;
     }
 
-    @Override
     public LocalDate getData() {
         return this.data;
     }

@@ -16,6 +16,5 @@ public interface ITitoloViaggio extends IAcquisto {
 
     public void setDurata(DurataTitoloViaggio durata);
     public void setPrezzo(double prezzo);
-    public void setId(String id);
 
 }

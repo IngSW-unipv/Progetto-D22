@@ -3,19 +3,24 @@ package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
+import java.text.Format;
+import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.random.RandomGenerator;
 
 public class CorsaSingola implements ITitoloViaggio{
     private TipoTitoloViaggio tipo;
     private DurataTitoloViaggio durata;
     private double prezzo;
-    private UUID id;
+    private String id;
+    private static final AtomicInteger count = new AtomicInteger(0);
     private Viaggio viaggio;
 
-    public CorsaSingola(DurataTitoloViaggio durata, UUID id, Viaggio viaggio) {
+    public CorsaSingola(DurataTitoloViaggio durata, Viaggio viaggio) {
         this.tipo = TipoTitoloViaggio.BIGLIETTOCORSASINGOLA;
         this.durata = durata;
-        this.id = id;
+        this.id = "CS" + String.format("%03d", count.incrementAndGet());
         this.viaggio = viaggio;
     }
 
@@ -40,7 +45,7 @@ public class CorsaSingola implements ITitoloViaggio{
     }
 
     @Override
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -51,11 +56,6 @@ public class CorsaSingola implements ITitoloViaggio{
 
     @Override
     public void setPrezzo(double prezzo) {
-        // todo
-    }
-
-    @Override
-    public void setId(UUID id) {
         // todo
     }
 }
