@@ -1,6 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.AccountService;
+import it.unipv.po.aioobe.trenissimo.model.user.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,9 +35,7 @@ public class LoginController implements Initializable {
     @FXML
     protected void onLogin() {
 
-        var account = new AccountService().findByUsername(txtUsername.getText());
-
-        if(account != null && account.getPassword().equals(pwfPassword.getText()))
+        if(Login.checkUserPassword(txtUsername.getText(), pwfPassword.getText()))
                 btnAccedi.setBackground(Background.EMPTY);
             else
                 lblLoginError.setVisible(true);

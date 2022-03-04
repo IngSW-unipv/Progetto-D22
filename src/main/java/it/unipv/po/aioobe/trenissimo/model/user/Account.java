@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class Account {
     private static Account instance;
-    private DatiPersonali datiPersonali;
+    //private DatiPersonali datiPersonali;
     private String username;
     private String passwordHash;
     private UUID id;
@@ -22,9 +22,9 @@ public class Account {
         return instance;
     }
 
-    public DatiPersonali getDatiPersonali() {
+   /* public DatiPersonali getDatiPersonali() {
         return datiPersonali;
-    }
+    }*/
 
     public String getUsername() {
         return username;
@@ -47,9 +47,9 @@ public class Account {
     }
 
     //setter
-    public void setDatiPersonali(DatiPersonali datiPersonali) {
+    /*public void setDatiPersonali(DatiPersonali datiPersonali) {
         this.datiPersonali = datiPersonali;
-    }
+    }*/
 
     public void setPassword(String username, String password) {
         this.passwordHash = passwordHash;
