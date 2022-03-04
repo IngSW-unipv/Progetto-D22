@@ -16,6 +16,7 @@ public class Ricerca implements IRicerca{
     private int numRagazzi;
     private int numBambini;
     private int numAnimali;
+    private boolean andataRitorno;
 
     public Ricerca(int stazionePartenza, int stazioneArrivo, LocalDateTime dataAttuale) {
         this.stazionePartenza = stazionePartenza;
@@ -50,6 +51,22 @@ public class Ricerca implements IRicerca{
         return numAnimali;
     }
 
+    public int getStazionePartenza() {
+        return stazionePartenza;
+    }
+
+    public int getStazioneArrivo() {
+        return stazioneArrivo;
+    }
+
+    public LocalDateTime getDataAttuale() {
+        return dataAttuale;
+    }
+
+    public boolean isAndataRitorno() {
+        return andataRitorno;
+    }
+
     public void setNumAdulti(int numAdulti) {
         this.numAdulti = numAdulti;
     }
@@ -64,6 +81,22 @@ public class Ricerca implements IRicerca{
 
     public void setNumAnimali(int numAnimali) {
         this.numAnimali = numAnimali;
+    }
+
+    public void setAndataRitorno(boolean andataRitorno) {
+        this.andataRitorno = andataRitorno;
+    }
+
+    public void setStazionePartenza(int stazionePartenza) {
+        this.stazionePartenza = stazionePartenza;
+    }
+
+    public void setStazioneArrivo(int stazioneArrivo) {
+        this.stazioneArrivo = stazioneArrivo;
+    }
+
+    public void setDataAttuale(LocalDateTime dataAttuale) {
+        this.dataAttuale = dataAttuale;
     }
 
     @Override
