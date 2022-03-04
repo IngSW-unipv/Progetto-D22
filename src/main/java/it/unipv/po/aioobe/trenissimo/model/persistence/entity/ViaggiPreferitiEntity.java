@@ -150,12 +150,11 @@ public class ViaggiPreferitiEntity {
         ViaggiPreferitiEntity viaggiPreferitiEntity = new ViaggiPreferitiEntity();
         viaggiPreferitiEntity.setStazionePartenza(v.getStazionePartenza().getStopName());
         viaggiPreferitiEntity.setStazioneArrivo(v.getStazioneArrivo().getStopName());
-        viaggiPreferitiEntity.setOra(Time.valueOf(Utils.secondsToTime(v.getOrarioPartenza()))); // TODO: 04/03/2022 MAGHEGGIO TEMPORANEO
+        viaggiPreferitiEntity.setOra(Time.valueOf(Utils.secondsToTime(v.getOrarioPartenza())));
         viaggiPreferitiEntity.setnAdulti(v.getNumAdulti());
         viaggiPreferitiEntity.setnRagazzi(v.getNumRagazzi());
         viaggiPreferitiEntity.setnBambini(v.getNumBambini());
         viaggiPreferitiEntity.setnAnimali(v.getNumAnimali());
-
         return viaggiPreferitiEntity;
     }
 

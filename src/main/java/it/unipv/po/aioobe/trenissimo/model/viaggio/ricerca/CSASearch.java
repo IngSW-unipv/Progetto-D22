@@ -16,7 +16,6 @@ import java.util.*;
 public class CSASearch {
     public static final int MAX_STATIONS = 100000;
 
-
     private List<Connection> generaTimetable(List<RoutesEntity> routesList, List<StopsEntity> stopsList, List<StopTimesEntity> stopTimesList, List<TripsEntity> tripsList) {
         List<Connection> timetable = new ArrayList<Connection>();
 
