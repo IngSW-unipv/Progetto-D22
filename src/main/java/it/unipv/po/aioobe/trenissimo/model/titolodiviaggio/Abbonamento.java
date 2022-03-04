@@ -14,7 +14,7 @@ public class Abbonamento implements ITitoloViaggio{
     private String stazionePartenza;
     private String stazioneArrivo;
 
-    public Abbonamento(DurataTitoloViaggio durata, String id, String stazionePartenza, String stazioneArrivo) {
+    public Abbonamento(DurataTitoloViaggio durata, String stazionePartenza, String stazioneArrivo) {
         this.tipo = TipoTitoloViaggio.ABBONAMENTO;
         this.durata = durata;
         this.id = "AB" + String.format("%03d", count.incrementAndGet());

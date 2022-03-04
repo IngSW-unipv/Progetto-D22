@@ -7,6 +7,5 @@ import java.util.List;
 public interface IAgencyService {
 
     public List<AgencyEntity> findAll();
-    //public AgencyEntity findById(String id);
 
 }

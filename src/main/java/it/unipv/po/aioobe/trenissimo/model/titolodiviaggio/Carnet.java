@@ -14,7 +14,7 @@ public class Carnet implements ITitoloViaggio{
     private String stazionePartenza;
     private String stazioneArrivo;
 
-    public Carnet(DurataTitoloViaggio durata, String id, String stazionePartenza, String stazioneArrivo) {
+    public Carnet(DurataTitoloViaggio durata, String stazionePartenza, String stazioneArrivo) {
         this.tipo = TipoTitoloViaggio.CARNET;
         this.durata = durata;
         this.id = "CN" + String.format("%03d", count.incrementAndGet());

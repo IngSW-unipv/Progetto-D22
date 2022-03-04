@@ -3,12 +3,9 @@ package it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Ricerca implements IRicerca{
-    private ArrayList<Viaggio> risultatiRicerca;
     private int stazionePartenza;
     private int stazioneArrivo;
     private LocalDateTime dataAttuale;

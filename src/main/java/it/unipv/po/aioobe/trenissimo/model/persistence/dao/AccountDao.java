@@ -3,8 +3,6 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.dao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.HibernateConnection;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IAccountDao;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 

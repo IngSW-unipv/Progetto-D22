@@ -13,7 +13,7 @@ public class Interrail implements ITitoloViaggio{
     private String id;
     private static final AtomicInteger count = new AtomicInteger(0);
 
-    public Interrail(DurataTitoloViaggio durata, String id) {
+    public Interrail(DurataTitoloViaggio durata) {
         this.tipo = TipoTitoloViaggio.INTERRAIL;
         this.durata = durata;
         this.id = "IR" + String.format("%03d", count.incrementAndGet());

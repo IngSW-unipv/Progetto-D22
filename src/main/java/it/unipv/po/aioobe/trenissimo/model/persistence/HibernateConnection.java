@@ -8,8 +8,6 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-
 public class HibernateConnection {
 
     private Session currentSession;
