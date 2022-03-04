@@ -1,5 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.user;
 
+import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
@@ -8,6 +9,9 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.service.DatiPersonaliServ
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.ViaggiPreferitiService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioPreferito;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class Account {
 
@@ -51,6 +55,19 @@ public class Account {
         this.account.setPassword(password);
     }
 
+    public void salvaModificaDati(String nome, String cognome, LocalDate dataNascita, String mail, String via, String civico, String citta, String cap){
+        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
+        datiPersonali.setNome(nome);
+        datiPersonali.setCognome(cognome);
+        datiPersonali.setDataNascita(Date.valueOf(dataNascita));
+        datiPersonali.setMail(mail);
+        datiPersonali.setVia(via);
+        datiPersonali.setCivico(Integer.valueOf(civico));
+        datiPersonali.setCitta(citta);
+        datiPersonali.setCap(Integer.valueOf(cap));
+        datiPersonaliService.update(datiPersonali);
+    }
+
     public void addViaggioPreferito(Viaggio viaggio){
         ViaggiPreferitiEntity viaggioPreferito = new ViaggiPreferitiEntity();
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
@@ -59,14 +76,13 @@ public class Account {
         viaggiPreferitiService.persist(viaggioPreferito);
     }
 
-
-
-    public void deleteViaggioPreferito(ViaggioPreferito viaggio){
-
+    public void deleteViaggioPreferito(ViaggiPreferitiEntity viaggio){
+        ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
+        viaggiPreferitiService.deleteById(viaggio.getViaggioPreferitoId().toString());
     }
 
-    //TODO IMPLEMENTARE DELETEVIAGGIOPREFERITO
-    //TODO IMPLEMENTARE ADDSTORICOACQUISTO
-    //(TODO IMPLEMENTARE MODIFICADATIPERSONALI UNICO CON UPDATE ALL'INTERNO FANNO GLI ALTRI)
+    public void addAcquistoToStorico () {
+
+    }
 
 }
