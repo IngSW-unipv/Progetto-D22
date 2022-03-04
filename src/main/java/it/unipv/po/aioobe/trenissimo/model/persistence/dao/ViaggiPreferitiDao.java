@@ -1,7 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.dao;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.HibernateConnection;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IViaggiPreferitiDao;
 import org.hibernate.Criteria;
@@ -36,9 +35,9 @@ public class ViaggiPreferitiDao implements IViaggiPreferitiDao {
         return viaggiPreferitiEntity;
     }
 
-    public List<ViaggiPreferitiEntity> findByAccount(String account) {
+    public List<ViaggiPreferitiEntity> findByUsername(String user) {
         Criteria criteria = conn.getCurrentSession().createCriteria(ViaggiPreferitiEntity.class);
-        criteria.add(Restrictions.eq("accountId", Integer.parseInt(account)));
+        criteria.add(Restrictions.eq("username", user));
         List<ViaggiPreferitiEntity> viaggi = (List<ViaggiPreferitiEntity>) criteria.list();
         return viaggi;
     }

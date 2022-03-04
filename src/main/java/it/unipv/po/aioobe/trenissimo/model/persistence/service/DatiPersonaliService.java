@@ -20,9 +20,9 @@ public class DatiPersonaliService implements IDatiPersonaliService {
         return datiPersonali;
     }
 
-    public DatiPersonaliEntity findById(String id) {
+    public DatiPersonaliEntity findByUsername(String user) {
         datiPersonaliDao.getConn().openCurrentSession();
-        DatiPersonaliEntity datiPersonali = datiPersonaliDao.findById(id);
+        DatiPersonaliEntity datiPersonali = datiPersonaliDao.findByUsername(user);
         datiPersonaliDao.getConn().closeCurrentSession();
         return datiPersonali;
     }
@@ -39,9 +39,9 @@ public class DatiPersonaliService implements IDatiPersonaliService {
         datiPersonaliDao.getConn().closeCurrentSessionwithTransaction();
     }
 
-    public void deleteById(String id) {
+    public void deleteByUsername(String user) {
         datiPersonaliDao.getConn().openCurrentSessionwithTransaction();
-        DatiPersonaliEntity datiPersonali = datiPersonaliDao.findById(id);
+        DatiPersonaliEntity datiPersonali = datiPersonaliDao.findByUsername(user);
         datiPersonaliDao.delete(datiPersonali);
         datiPersonaliDao.getConn().closeCurrentSessionwithTransaction();
     }

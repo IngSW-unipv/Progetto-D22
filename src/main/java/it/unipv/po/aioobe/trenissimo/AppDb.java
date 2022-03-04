@@ -53,16 +53,16 @@ public class AppDb {
         AccountEntity zambo = new AccountEntity();
         DatiPersonaliEntity dati = new DatiPersonaliEntity();
         //login
-        zambo.setAccountId(3);
+        zambo.setUsername("zambo");
 
 
         String myDate = "1999-7-23";
         Date date=Date.valueOf(myDate);
 
         dati.setDataNascita(date);
-        dati.setAccountId(zambo.getAccountId());
+        //dati.setAccountId(zambo.getAccountId());
         dati.setNome("Fabio");
-        dati.setCognome("Zamboni");
+        dati.setCognome("Vergani");
         dati.setMail("fabio.zamboni01@universitadipavia.it");
         dati.setVia("Loc. Albareto");
         dati.setCivico(57);
@@ -72,10 +72,12 @@ public class AppDb {
 
         storicoAcquistiService.findAll().forEach((x)-> System.out.println(x.toString()));
         accountService.findAll().forEach((x)-> System.out.println(x.toString()));
-        System.out.println(datiPersonaliService.findById(zambo.getAccountId().toString()).toString());
+        //System.out.println(datiPersonaliService.findById(zambo.getAccountId().toString()).toString());
         System.out.println("\n");
 
-        System.out.println(accountService.findByUsername("Nyquis") == null ? "NA" : accountService.findByUsername("Nyquis").toString());
+        //System.out.println(accountService.findByUsername("Nyquis") == null ? "NA" : accountService.findByUsername("Nyquis").toString());
+
+        /**/
 
 
 

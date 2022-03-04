@@ -8,6 +8,8 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 public class HibernateConnection {
 
     private Session currentSession;
@@ -46,15 +48,16 @@ public class HibernateConnection {
 
     private static SessionFactory getSessionFactory() throws ConnectionDBException {
 
+        SessionFactory sessionFactory = null;
         try {
             Configuration configuration = new Configuration().configure();
             StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().configure();
-            SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+            sessionFactory = configuration.buildSessionFactory(builder.build());
             return sessionFactory;
 
-        } catch (HibernateException e){
-            System.out.println(e.getCause().getCause().getLocalizedMessage());
-            throw new ConnectionDBException(e.getCause().getCause().getLocalizedMessage());
+        } catch (HibernateException e) {
+            System.out.println(e.getLocalizedMessage());
+            throw new ConnectionDBException(e.getLocalizedMessage());
         }
     }
 

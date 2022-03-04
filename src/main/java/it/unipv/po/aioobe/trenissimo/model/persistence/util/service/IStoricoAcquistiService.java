@@ -8,6 +8,7 @@ public interface IStoricoAcquistiService {
 
     public List<StoricoAcquistiEntity> findAll();
     public StoricoAcquistiEntity findById(String id);
+    public List<StoricoAcquistiEntity> findByUsername(String username);
     public void persist(StoricoAcquistiEntity storicoAcquisti);
     public void update(StoricoAcquistiEntity storicoAcquisti);
     public void deleteById(String id);

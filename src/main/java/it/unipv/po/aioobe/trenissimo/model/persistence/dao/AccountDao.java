@@ -31,18 +31,10 @@ public class AccountDao implements IAccountDao {
     }
 
 
-    public AccountEntity findById(String id) {
-        AccountEntity accountEntity = (AccountEntity) conn.getCurrentSession().get(AccountEntity.class, Integer.parseInt(id));
+    public AccountEntity findByUsername(String user) {
+        AccountEntity accountEntity = (AccountEntity) conn.getCurrentSession().get(AccountEntity.class, user);
         return accountEntity;
     }
-
-    //Questo metodo ritorna un solo account dato che l'username è univoco
-    public AccountEntity findByUsername(String user) {
-        Criteria criteria = conn.getCurrentSession().createCriteria(AccountEntity.class);
-        AccountEntity account = (AccountEntity) criteria.add(Restrictions.eq("username", user)).uniqueResult();
-        return account;
-    }
-
 
     public void persist(AccountEntity account) {
         conn.getCurrentSession().save(account);

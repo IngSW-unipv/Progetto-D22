@@ -3,12 +3,16 @@ package it.unipv.po.aioobe.trenissimo;
 import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
+import org.hibernate.type.UUIDBinaryType;
 
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.ParseException;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -36,14 +40,69 @@ public class App {
         AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
+        StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
 
-        var account = Account.getInstance(accountService.findById("3"), datiPersonaliService.findById("3"));
+        System.out.println(accountService.findByUsername("Nyquist").toString());
+
+        AccountEntity account1 = new AccountEntity();
+        account1.setUsername("vale1");
+        account1.setPassword("vale1");
+
+        /*try {
+            accountService.persist(account1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+
+        StoricoAcquistiEntity storico1 = new StoricoAcquistiEntity();
+        storico1.setUsername("vale1");
+        storico1.setTitoloViaggioId(UUID.randomUUID().toString());
+        storico1.setPrezzo(4.50);
+
+        storicoAcquistiService.persist(storico1);
+
+        /*try {
+            accountService.deleteByUsername("vale");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+
+        DatiPersonaliEntity dati = new DatiPersonaliEntity();
+        /*dati.setUsername("vale1");
+        dati.setNome("Valeria");
+        dati.setCognome("Vergani");
+        dati.setCap(20091);
+        dati.setCitta("Bresso");
+        dati.setVia("Via Galliano");
+        dati.setCivico(17);
+        dati.setDataNascita(Date.valueOf("1997-04-14"));
+        dati.setMail("valeria.vergani97@gmail.com");*/
+
+        //datiPersonaliService.persist(dati);
+
+        dati = datiPersonaliService.findByUsername("vale1");
+
+        dati.setMail("valeria.vergani01@universitadipavia.it");
+
+        datiPersonaliService.update(dati);
+
+
+        //come se facessimo il login
+        var account = Account.getInstance();
+        account.setAccount("vale1");
+        account.setDatiPersonali("vale1");
+
         System.out.println(account.getDatiPersonali());
 
         //account.addViaggioPreferito(viaggi.get(0));
 
-        viaggiPreferitiService.findByAccount(account.getId().toString()).forEach((x)-> System.out.println(x.toString()));
+        viaggiPreferitiService.findByUsername(account.getUsername()).forEach((x)-> System.out.println(x.toString()));
+        storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
 
+        //TODO ELIMINARE INTERFACCE E CLASSI INUTILI TIPO IDATAVIAGGIOUTILS, VIAGGIOPREFERITO, VIAGGIOALT, DATIPERSONALI
+        //TODO FILTRI
+        //TODO SPOSTARE COMAPARATORDURATAVIAGGIO IN FILTRO
+        //TODO SISTEMARE CLASSE VIAGGIO E VEDERE COME IMPOSTARE IL PREZZO
 
 
     }

@@ -5,43 +5,46 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "dati_personali", schema = "trenissimo", catalog = "")
+@Table(name = "dati_personali", schema = "trenissimo")
 public class DatiPersonaliEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "account_id")
-    private Integer accountId;
+    @Column(name = "username", nullable = false, length = 45)
+    private String username;
     @Basic
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false, length = 45)
     private String nome;
     @Basic
-    @Column(name = "cognome")
+    @Column(name = "cognome", nullable = false, length = 45)
     private String cognome;
     @Basic
-    @Column(name = "data_nascita")
+    @Column(name = "data_nascita", nullable = false)
     private Date dataNascita;
     @Basic
-    @Column(name = "via")
+    @Column(name = "mail", nullable = false, length = 45)
+    private String mail;
+    @Basic
+    @Column(name = "via", nullable = true, length = 255)
     private String via;
     @Basic
-    @Column(name = "civico")
+    @Column(name = "civico", nullable = true)
     private Integer civico;
     @Basic
-    @Column(name = "citta")
+    @Column(name = "citta", nullable = true, length = 255)
     private String citta;
     @Basic
-    @Column(name = "cap")
+    @Column(name = "cap", nullable = true)
     private Integer cap;
-    @Basic
-    @Column(name = "mail")
-    private String mail;
+    @OneToOne
+    @JoinColumn(name = "username", referencedColumnName = "username", nullable = false, insertable = false, updatable = false)
+    private AccountEntity accountByUsername;
 
-    public Integer getAccountId() {
-        return accountId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNome() {
@@ -66,6 +69,14 @@ public class DatiPersonaliEntity {
 
     public void setDataNascita(Date dataNascita) {
         this.dataNascita = dataNascita;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getVia() {
@@ -100,39 +111,39 @@ public class DatiPersonaliEntity {
         this.cap = cap;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DatiPersonaliEntity that = (DatiPersonaliEntity) o;
-        return Objects.equals(accountId, that.accountId) && Objects.equals(nome, that.nome) && Objects.equals(cognome, that.cognome) && Objects.equals(dataNascita, that.dataNascita) && Objects.equals(via, that.via) && Objects.equals(civico, that.civico) && Objects.equals(citta, that.citta) && Objects.equals(cap, that.cap) && Objects.equals(mail, that.mail);
+        return Objects.equals(username, that.username) && Objects.equals(nome, that.nome) && Objects.equals(cognome, that.cognome) && Objects.equals(dataNascita, that.dataNascita) && Objects.equals(mail, that.mail) && Objects.equals(via, that.via) && Objects.equals(civico, that.civico) && Objects.equals(citta, that.citta) && Objects.equals(cap, that.cap);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, nome, cognome, dataNascita, via, civico, citta, cap, mail);
+        return Objects.hash(username, nome, cognome, dataNascita, mail, via, civico, citta, cap);
+    }
+
+    public AccountEntity getAccountByUsername() {
+        return accountByUsername;
+    }
+
+    public void setAccountByUsername(AccountEntity accountByUsername) {
+        this.accountByUsername = accountByUsername;
     }
 
     @Override
     public String toString() {
         return "DatiPersonaliEntity{" +
-                "accountId=" + accountId +
+                "username='" + username + '\'' +
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", dataNascita=" + dataNascita +
+                ", mail='" + mail + '\'' +
                 ", via='" + via + '\'' +
                 ", civico=" + civico +
                 ", citta='" + citta + '\'' +
                 ", cap=" + cap +
-                ", mail='" + mail + '\'' +
                 '}';
     }
 }

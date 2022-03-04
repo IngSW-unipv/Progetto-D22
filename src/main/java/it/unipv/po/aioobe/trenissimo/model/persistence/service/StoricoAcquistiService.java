@@ -28,6 +28,13 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
         return storicoAcquisti;
     }
 
+    public List<StoricoAcquistiEntity> findByUsername(String username) {
+        storicoAcquistiDao.getConn().openCurrentSession();
+        List<StoricoAcquistiEntity> storicoAcquisti = (List<StoricoAcquistiEntity>) storicoAcquistiDao.findByUsername(username);
+        storicoAcquistiDao.getConn().closeCurrentSession();
+        return storicoAcquisti;
+    }
+
     public void persist(StoricoAcquistiEntity storicoAcquisti) {
         storicoAcquistiDao.getConn().openCurrentSessionwithTransaction();
         storicoAcquistiDao.persist(storicoAcquisti);

@@ -7,9 +7,9 @@ import java.util.List;
 public interface IDatiPersonaliService {
 
     public List<DatiPersonaliEntity> findAll();
-    public DatiPersonaliEntity findById(String id);
+    public DatiPersonaliEntity findByUsername(String user);
     public void persist(DatiPersonaliEntity datiPersonali);
     public void update(DatiPersonaliEntity datiPersonali);
-    public void deleteById(String id);
+    public void deleteByUsername(String user);
 
 }
