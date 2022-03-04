@@ -78,6 +78,10 @@ public class App {
 
         viaggi.forEach((x)->System.out.println("Partenza:" + x.getStazionePartenza().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioPartenza()) + " Arrivo: " + x.getStazioneArrivo().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioArrivo()) + " Num. adulti = " + x.getNumAdulti() + " Num. Cambi = " + x.getNumeroCambi()));
 
+        account.addViaggioPreferito(viaggi.get(3));
+        viaggiPreferitiService.findByUsername(account.getUsername()).forEach((x)-> System.out.println(x.toString()));
+
+
         //TODO FILTRI
 
     }

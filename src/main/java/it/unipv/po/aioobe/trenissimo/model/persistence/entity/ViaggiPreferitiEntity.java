@@ -1,5 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import javax.persistence.*;
@@ -147,9 +148,9 @@ public class ViaggiPreferitiEntity {
 
     public ViaggiPreferitiEntity toViaggiPreferitiEntity(Viaggio v){
         ViaggiPreferitiEntity viaggiPreferitiEntity = new ViaggiPreferitiEntity();
-        viaggiPreferitiEntity.setStazionePartenza(String.valueOf(v.getStazionePartenza()));
-        viaggiPreferitiEntity.setStazioneArrivo(String.valueOf(v.getStazioneArrivo()));
-        //viaggiPreferitiEntity.setOra(Time.valueOf(Utils.secondsToTime(v.getStazionePartenza()))); // TODO: 04/03/2022 MAGHEGGIO TEMPORANEO
+        viaggiPreferitiEntity.setStazionePartenza(v.getStazionePartenza().getStopName());
+        viaggiPreferitiEntity.setStazioneArrivo(v.getStazioneArrivo().getStopName());
+        viaggiPreferitiEntity.setOra(Time.valueOf(Utils.secondsToTime(v.getOrarioPartenza()))); // TODO: 04/03/2022 MAGHEGGIO TEMPORANEO
         viaggiPreferitiEntity.setnAdulti(v.getNumAdulti());
         viaggiPreferitiEntity.setnRagazzi(v.getNumRagazzi());
         viaggiPreferitiEntity.setnBambini(v.getNumBambini());
