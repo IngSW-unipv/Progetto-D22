@@ -76,7 +76,7 @@ public class App {
 
         List<Viaggio> viaggi = search.eseguiRicerca();
 
-        viaggi.forEach((x)->System.out.println(x.getStazionePartenza().getStopName() + " ora partenza " + Utils.secondsToTime(x.getOrarioPartenza()) +" num adulti = " + x.getNumAdulti()));
+        viaggi.forEach((x)->System.out.println("Partenza:" + x.getStazionePartenza().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioPartenza()) + " Arrivo: " + x.getStazioneArrivo().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioArrivo()) + " Num. adulti = " + x.getNumAdulti() + " Num. Cambi = " + x.getNumeroCambi()));
 
         //TODO FILTRI
 
