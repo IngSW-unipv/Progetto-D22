@@ -1,23 +1,14 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
-import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopTimesService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
-import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import it.unipv.po.aioobe.trenissimo.view.RicercaView;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,7 +16,6 @@ import javafx.util.StringConverter;
 import org.controlsfx.control.SearchableComboBox;
 import org.controlsfx.control.ToggleSwitch;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Comparator;

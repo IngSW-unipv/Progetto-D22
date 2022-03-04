@@ -29,16 +29,16 @@ public class App {
         var result = viaggi.get(0).getCambi();
 
         System.out.println("Partenza: " + Utils.secondsToTime(viaggi.get(0).getStazionePartenza().getStopId()) + " - Durata: " + Utils.secondsToTime(viaggi.get(0).getDurata()));
-        System.out.println("Cambi: " + (result.stream().map(x -> x.departure_station_trip).distinct().count() - 1));
+        System.out.println("Cambi: " + (result.stream().map(x -> x.getDeparture_station_trip()).distinct().count() - 1));
         for (Connection x : result) {
-            var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() ==x.departure_station_trip).findFirst().get().getRouteId();
-            var routeTo = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.arrival_station_trip).findFirst().get().getRouteId();
+            var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() ==x.getDeparture_station_trip()).findFirst().get().getRouteId();
+            var routeTo = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.getArrival_station_trip()).findFirst().get().getRouteId();
             System.out.println(
-                    "[" + routeFrom + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.departure_station).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.departure_timestamp)
-                            + ") -> [" + routeTo + "] " +  CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.arrival_station).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.arrival_timestamp) + ")");
+                    "[" + routeFrom + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.getDeparture_station()).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.getDeparture_timestamp())
+                            + ") -> [" + routeTo + "] " +  CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.getArrival_station()).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.getArrival_timestamp()) + ")");
         }
         System.out.println("\n\n");
-
+/*
         AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
@@ -62,7 +62,7 @@ public class App {
             e.printStackTrace();
         }*/
 
-        DatiPersonaliEntity dati = new DatiPersonaliEntity();
+       // DatiPersonaliEntity dati = new DatiPersonaliEntity();
         /*dati.setUsername("vale1");
         dati.setNome("Valeria");
         dati.setCognome("Vergani");
@@ -74,7 +74,7 @@ public class App {
         dati.setMail("valeria.vergani97@gmail.com");*/
 
         //datiPersonaliService.persist(dati);
-
+/*
         dati = datiPersonaliService.findByUsername("vale1");
 
         dati.setMail("valeria.vergani01@universitadipavia.it");
@@ -99,7 +99,7 @@ public class App {
         account.addAcquistoToStorico(biglietto);
         System.out.println("DOPO");
         storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
-
+*/
 
         //TODO FILTRI
 

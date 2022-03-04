@@ -1,15 +1,12 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
 import it.unipv.po.aioobe.trenissimo.view.ViaggioControl;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;

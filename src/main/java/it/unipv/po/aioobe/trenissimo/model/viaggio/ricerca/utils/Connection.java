@@ -2,9 +2,33 @@ package it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils;
 
 //TODO: non in UML
 public class Connection {
-    public int departure_station, arrival_station;
-    public int departure_timestamp, arrival_timestamp;
-    public int departure_station_trip, arrival_station_trip;
+    private int departure_station, arrival_station;
+    private int departure_timestamp, arrival_timestamp;
+    private int departure_station_trip, arrival_station_trip;
+
+    public int getDeparture_station() {
+        return departure_station;
+    }
+
+    public int getArrival_station() {
+        return arrival_station;
+    }
+
+    public int getDeparture_timestamp() {
+        return departure_timestamp;
+    }
+
+    public int getArrival_timestamp() {
+        return arrival_timestamp;
+    }
+
+    public int getDeparture_station_trip() {
+        return departure_station_trip;
+    }
+
+    public int getArrival_station_trip() {
+        return arrival_station_trip;
+    }
 
     public Connection(int departure_station, int arrival_station, int departure_timestamp, int arrival_timestamp, int departure_station_trip, int arrival_station_trip) {
         this.departure_station = departure_station;

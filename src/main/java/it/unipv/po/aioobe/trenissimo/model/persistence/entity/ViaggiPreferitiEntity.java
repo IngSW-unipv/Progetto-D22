@@ -1,6 +1,5 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
-import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import javax.persistence.*;
@@ -155,7 +154,6 @@ public class ViaggiPreferitiEntity {
         viaggiPreferitiEntity.setnRagazzi(v.getNumRagazzi());
         viaggiPreferitiEntity.setnBambini(v.getNumBambini());
         viaggiPreferitiEntity.setnAnimali(v.getNumAnimali());
-        viaggiPreferitiEntity.setnMaxCambi(v.getNumMaxCambi());
 
         return viaggiPreferitiEntity;
     }

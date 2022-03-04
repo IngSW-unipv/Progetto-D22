@@ -2,7 +2,6 @@ package it.unipv.po.aioobe.trenissimo.model;
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.Voucher;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.*;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
