@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class LoginController implements Initializable {
+public class LoginController{
 
     @FXML
     private TextField txtUsername;
@@ -28,9 +28,6 @@ public class LoginController implements Initializable {
     @FXML
     private Label lblLoginError;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
 
     @FXML
     protected void onLogin() {
