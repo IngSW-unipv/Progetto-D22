@@ -1,63 +1,88 @@
 package it.unipv.po.aioobe.trenissimo.model.user;
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.AccountService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.DatiPersonaliService;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.IDataViaggioUtils;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.ViaggiPreferitiService;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioPreferito;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
-import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.UUID;
 
 public class Account {
-    private static Account instance;
-    private DatiPersonaliEntity datiPersonali;
-    private String username;
-    private String passwordHash;
-    private ArrayList<IDataViaggioUtils> viaggiPreferiti;
-    private ArrayList<IAcquisto> storicoAcquisti;
 
-    //getter
+    private static Account instance;
+    private AccountEntity account;
+    private DatiPersonaliEntity datiPersonali;
+
     public static Account getInstance() {
         if (instance == null)
             instance = new Account();
         return instance;
     }
 
-    public DatiPersonaliEntity getDatiPersonali(String username) {
-        return this.datiPersonali = new DatiPersonaliService().findByUsername(username);
+    public AccountEntity getAccount() {
+        return account;
+    }
+
+    public void setAccount(String accountId) {
+        AccountService accountService = new AccountService();
+        this.account = accountService.findByUsername(accountId);
+    }
+
+    public DatiPersonaliEntity getDatiPersonali() {
+        return this.datiPersonali;
+    }
+
+    public void setDatiPersonali(String user) {
+        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
+        this.datiPersonali = datiPersonaliService.findByUsername(user);
     }
 
     public String getUsername() {
-        return "zambo";
+        return this.account.getUsername();
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return this.account.getPassword();
     }
 
-    public ArrayList<IDataViaggioUtils> getViaggiPreferiti() {
-        return viaggiPreferiti;
+    public void setPassword(String password) {
+        this.account.setPassword(password);
     }
 
-    public ArrayList<IAcquisto> getStoricoAcquisti() {
-        return storicoAcquisti;
+    public void salvaModificaDati(String nome, String cognome, LocalDate dataNascita, String mail, String via, String civico, String citta, String cap){
+        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
+        datiPersonali.setNome(nome);
+        datiPersonali.setCognome(cognome);
+        datiPersonali.setDataNascita(Date.valueOf(dataNascita));
+        datiPersonali.setMail(mail);
+        datiPersonali.setVia(via);
+        datiPersonali.setCivico(Integer.valueOf(civico));
+        datiPersonali.setCitta(citta);
+        datiPersonali.setCap(Integer.valueOf(cap));
+        datiPersonaliService.update(datiPersonali);
     }
 
-    //setter
-    public void setDatiPersonali(DatiPersonaliEntity datiPersonali) {
-        this.datiPersonali = datiPersonali;
+    public void addViaggioPreferito(Viaggio viaggio){
+        ViaggiPreferitiEntity viaggioPreferito = new ViaggiPreferitiEntity();
+        ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
+        viaggioPreferito = viaggioPreferito.toViaggiPreferitiEntity(viaggio);
+        viaggioPreferito.setUsername(account.getUsername());
+        viaggiPreferitiService.persist(viaggioPreferito);
     }
 
-    public void setPassword(String username, String password) {
-        this.passwordHash = passwordHash;
+    public void deleteViaggioPreferito(ViaggiPreferitiEntity viaggio){
+        ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
+        viaggiPreferitiService.deleteById(viaggio.getViaggioPreferitoId().toString());
     }
 
-    public void addViaggioPreferito(IDataViaggioUtils viaggio){
-        // todo
+    public void addAcquistoToStorico () {
+
     }
 
     public void storicoAcquisti(IAcquisto acquisto){

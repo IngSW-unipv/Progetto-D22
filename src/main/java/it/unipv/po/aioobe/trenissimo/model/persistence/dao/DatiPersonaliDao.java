@@ -28,8 +28,8 @@ public class DatiPersonaliDao implements IDatiPersonaliDao {
     }
 
 
-    public DatiPersonaliEntity findById(String id) {
-        DatiPersonaliEntity datiPersonaliEntity = (DatiPersonaliEntity) conn.getCurrentSession().get(DatiPersonaliEntity.class, Integer.parseInt(id));
+    public DatiPersonaliEntity findByUsername(String user) {
+        DatiPersonaliEntity datiPersonaliEntity = (DatiPersonaliEntity) conn.getCurrentSession().get(DatiPersonaliEntity.class, user);
         return datiPersonaliEntity;
     }
 

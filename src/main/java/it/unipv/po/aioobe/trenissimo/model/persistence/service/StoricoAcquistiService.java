@@ -2,8 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.StoricoAcquistiDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IStoricoAcquistiService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStoricoAcquistiService;
 
 import java.util.List;
 
@@ -29,6 +28,13 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
         return storicoAcquisti;
     }
 
+    public List<StoricoAcquistiEntity> findByUsername(String username) {
+        storicoAcquistiDao.getConn().openCurrentSession();
+        List<StoricoAcquistiEntity> storicoAcquisti = (List<StoricoAcquistiEntity>) storicoAcquistiDao.findByUsername(username);
+        storicoAcquistiDao.getConn().closeCurrentSession();
+        return storicoAcquisti;
+    }
+
     public void persist(StoricoAcquistiEntity storicoAcquisti) {
         storicoAcquistiDao.getConn().openCurrentSessionwithTransaction();
         storicoAcquistiDao.persist(storicoAcquisti);
@@ -48,7 +54,7 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
         storicoAcquistiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
-    public StoricoAcquistiDao storicoAcquistiDao() {
+    public StoricoAcquistiDao getStoricoAcquistiDao() {
         return storicoAcquistiDao;
     }
 

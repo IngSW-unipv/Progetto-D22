@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.TripsDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TripsEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.ITripsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.ITripsService;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class TripsService implements ITripsService {
         return trips;
     }
 
-    public TripsDao tripsDao() {
+    public TripsDao getTripsDao() {
         return tripsDao;
     }
 

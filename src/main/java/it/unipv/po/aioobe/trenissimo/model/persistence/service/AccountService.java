@@ -2,7 +2,10 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.AccountDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IAccountService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IAccountService;
+
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 public class AccountService implements IAccountService {
@@ -20,33 +23,47 @@ public class AccountService implements IAccountService {
         return accounts;
     }
 
-    public AccountEntity findById(String id) {
+    public AccountEntity findByUsername(String user) {
         accountDao.getConn().openCurrentSession();
-        AccountEntity account = accountDao.findById(id);
+        AccountEntity account = accountDao.findByUsername(user);
         accountDao.getConn().closeCurrentSession();
         return account;
     }
 
-    public void persist(AccountEntity account) {
-        accountDao.getConn().openCurrentSessionwithTransaction();
-        accountDao.persist(account);
-        accountDao.getConn().closeCurrentSessionwithTransaction();
+    public void persist(AccountEntity account) throws SQLException {
+
+            try {
+                accountDao.getConn().openCurrentSessionwithTransaction();
+                accountDao.persist(account);
+                accountDao.getConn().closeCurrentSessionwithTransaction();
+            } catch (Exception e) {
+                System.out.println(e.getCause().getCause().getLocalizedMessage());
+            }
+
     }
+
+
 
     public void update(AccountEntity account) {
-        accountDao.getConn().openCurrentSessionwithTransaction();
-        accountDao.update(account);
-        accountDao.getConn().closeCurrentSessionwithTransaction();
+
+            accountDao.getConn().openCurrentSessionwithTransaction();
+            accountDao.update(account);
+            accountDao.getConn().closeCurrentSessionwithTransaction();
+
     }
 
-    public void deleteById(String id) {
-        accountDao.getConn().openCurrentSessionwithTransaction();
-        AccountEntity account = accountDao.findById(id);
-        accountDao.delete(account);
-        accountDao.getConn().closeCurrentSessionwithTransaction();
+    public void deleteByUsername(String user) throws SQLException{
+        try {
+            accountDao.getConn().openCurrentSessionwithTransaction();
+            AccountEntity account = accountDao.findByUsername(user);
+            accountDao.delete(account);
+            accountDao.getConn().closeCurrentSessionwithTransaction();
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        }
     }
 
-    public AccountDao accountDao() {
+    public AccountDao getAccountDao() {
         return accountDao;
     }
 }

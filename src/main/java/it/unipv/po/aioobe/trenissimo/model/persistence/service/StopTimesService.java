@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.StopTimesDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopTimesEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IStopTimesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStopTimesService;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class StopTimesService implements IStopTimesService {
         return stopTimes;
     }
 
-    public StopTimesDao stopTimesDao() {
+    public StopTimesDao getStopTimesDao() {
         return stopTimesDao;
     }
 

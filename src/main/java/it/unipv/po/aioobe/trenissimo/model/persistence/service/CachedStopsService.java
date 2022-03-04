@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.ICached;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IStopsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStopsService;
 
 import java.util.List;
 

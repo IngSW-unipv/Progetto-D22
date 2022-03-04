@@ -120,7 +120,7 @@ public class CSASearch {
         }
     }
 
-    public List<ViaggioAlt> eseguiRicerca(int departureStopId, int arrivalStopId, int lastTime) {
+    public List<Viaggio> eseguiRicerca(int departureStopId, int arrivalStopId) {
 
 
         // Database data load
@@ -138,13 +138,15 @@ public class CSASearch {
         // compute(...) tira fuori solo il primo viaggio possibile a partire dal departure_time, bisogna ciclare finche ritorna null
         // TODO: da rivedere, magari fatto meglio? sto while true non mi piace
 
-        List<ViaggioAlt> viaggi = new ArrayList<ViaggioAlt>();
+        List<Viaggio> viaggi = new ArrayList<Viaggio>();
+
+        var lastTime = 0;
 
         while (true) {
             var result = compute(departureStopId, arrivalStopId, lastTime, timetable);
             if (result == null) { break; }
 
-            var viaggio = new ViaggioAlt();
+            var viaggio = new Viaggio();
             viaggio.setCambi(result);
             viaggi.add(viaggio);
 

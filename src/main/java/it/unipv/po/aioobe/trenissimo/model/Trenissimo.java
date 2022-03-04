@@ -29,10 +29,13 @@ public class Trenissimo {
         return profilo;
     }
 
+    /*
     public Account creaAccount(String username, String passwordHash){
         // todo
         return new Account();
     }
+
+     */
 
     public boolean login(String username, String password){
         // todo

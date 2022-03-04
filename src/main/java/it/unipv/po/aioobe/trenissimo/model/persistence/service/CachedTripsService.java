@@ -1,11 +1,8 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
-import it.unipv.po.aioobe.trenissimo.model.persistence.dao.TripsDao;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.RoutesEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TripsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.ICached;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IRoutesService;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.ITripsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.ITripsService;
 
 import java.util.List;
 

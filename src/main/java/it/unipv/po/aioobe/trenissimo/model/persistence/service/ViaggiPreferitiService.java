@@ -2,7 +2,8 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.ViaggiPreferitiDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IViaggiPreferitiService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IViaggiPreferitiService;
+
 import java.util.List;
 
 public class ViaggiPreferitiService implements IViaggiPreferitiService {
@@ -27,6 +28,13 @@ public class ViaggiPreferitiService implements IViaggiPreferitiService {
         return viaggiPreferiti;
     }
 
+    public List<ViaggiPreferitiEntity> findByUsername(String user) {
+        viaggiPreferitiDao.getConn().openCurrentSession();
+        List<ViaggiPreferitiEntity> viaggi = (List<ViaggiPreferitiEntity>) viaggiPreferitiDao.findByUsername(user);
+        viaggiPreferitiDao.getConn().closeCurrentSession();
+        return viaggi;
+    }
+
     public void persist(ViaggiPreferitiEntity viaggiPreferiti) {
         viaggiPreferitiDao.getConn().openCurrentSessionwithTransaction();
         viaggiPreferitiDao.persist(viaggiPreferiti);
@@ -46,7 +54,7 @@ public class ViaggiPreferitiService implements IViaggiPreferitiService {
         viaggiPreferitiDao.getConn().closeCurrentSessionwithTransaction();
     }
 
-    public ViaggiPreferitiDao viaggiPreferitiDao() {
+    public ViaggiPreferitiDao getViaggiPreferitiDao() {
         return viaggiPreferitiDao;
     }
 }

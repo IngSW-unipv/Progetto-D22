@@ -3,6 +3,9 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.dao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.HibernateConnection;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IAccountDao;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+
 import java.util.List;
 
 public class AccountDao implements IAccountDao {
@@ -22,17 +25,16 @@ public class AccountDao implements IAccountDao {
     }
 
     @SuppressWarnings("unchecked")
-    public List<AccountEntity> findAll() {
+    public List<AccountEntity> findAll(){
         List<AccountEntity> accountEntities = (List<AccountEntity>) conn.getCurrentSession().createQuery("from AccountEntity ").list();
         return accountEntities;
     }
 
 
-    public AccountEntity findById(String id) {
-        AccountEntity accountEntity = (AccountEntity) conn.getCurrentSession().get(AccountEntity.class, Integer.parseInt(id));
+    public AccountEntity findByUsername(String user) {
+        AccountEntity accountEntity = (AccountEntity) conn.getCurrentSession().get(AccountEntity.class, user);
         return accountEntity;
     }
-
 
     public void persist(AccountEntity account) {
         conn.getCurrentSession().save(account);

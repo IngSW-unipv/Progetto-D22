@@ -1,7 +1,9 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
 
@@ -10,56 +12,53 @@ import java.util.Objects;
 public class ViaggiPreferitiEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "viaggio_preferito_id")
-    private String viaggioPreferitoId;
+    @Column(name = "viaggio_preferito_id", nullable = false)
+    private Integer viaggioPreferitoId;
     @Basic
-    @Column(name = "account_id")
-    private Integer accountId;
+    @Column(name = "username", nullable = false, length = 45)
+    private String username;
     @Basic
-    @Column(name = "stazione_partenza")
+    @Column(name = "stazione_partenza", nullable = true, length = 45)
     private String stazionePartenza;
     @Basic
-    @Column(name = "stazione_arrivo")
+    @Column(name = "stazione_arrivo", nullable = true, length = 45)
     private String stazioneArrivo;
     @Basic
-    @Column(name = "data")
-    private Date data;
-    @Basic
-    @Column(name = "ora")
+    @Column(name = "ora", nullable = true)
     private Time ora;
     @Basic
-    @Column(name = "n_adulti")
+    @Column(name = "n_adulti", nullable = true)
     private Integer nAdulti;
     @Basic
-    @Column(name = "n_ragazzi")
+    @Column(name = "n_ragazzi", nullable = true)
     private Integer nRagazzi;
     @Basic
-    @Column(name = "n_bambini")
+    @Column(name = "n_bambini", nullable = true)
     private Integer nBambini;
     @Basic
-    @Column(name = "n_animali")
+    @Column(name = "n_animali", nullable = true)
     private Integer nAnimali;
     @Basic
-    @Column(name = "modalita_viaggio")
-    private String modalitaViaggio;
-    @Basic
-    @Column(name = "n_max_cambi")
+    @Column(name = "n_max_cambi", nullable = true)
     private Integer nMaxCambi;
+    @ManyToOne
+    @JoinColumn(name = "username", referencedColumnName = "username", nullable = false, insertable = false, updatable = false)
+    private AccountEntity accountByUsername;
 
-    public String getViaggioPreferitoId() {
+    public Integer getViaggioPreferitoId() {
         return viaggioPreferitoId;
     }
 
-    public void setViaggioPreferitoId(String viaggioPreferitoId) {
+    public void setViaggioPreferitoId(Integer viaggioPreferitoId) {
         this.viaggioPreferitoId = viaggioPreferitoId;
     }
 
-    public Integer getAccountId() {
-        return accountId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getStazionePartenza() {
@@ -76,14 +75,6 @@ public class ViaggiPreferitiEntity {
 
     public void setStazioneArrivo(String stazioneArrivo) {
         this.stazioneArrivo = stazioneArrivo;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
     }
 
     public Time getOra() {
@@ -126,14 +117,6 @@ public class ViaggiPreferitiEntity {
         this.nAnimali = nAnimali;
     }
 
-    public String getModalitaViaggio() {
-        return modalitaViaggio;
-    }
-
-    public void setModalitaViaggio(String modalitaViaggio) {
-        this.modalitaViaggio = modalitaViaggio;
-    }
-
     public Integer getnMaxCambi() {
         return nMaxCambi;
     }
@@ -147,29 +130,50 @@ public class ViaggiPreferitiEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ViaggiPreferitiEntity that = (ViaggiPreferitiEntity) o;
-        return Objects.equals(viaggioPreferitoId, that.viaggioPreferitoId) && Objects.equals(accountId, that.accountId) && Objects.equals(stazionePartenza, that.stazionePartenza) && Objects.equals(stazioneArrivo, that.stazioneArrivo) && Objects.equals(data, that.data) && Objects.equals(ora, that.ora) && Objects.equals(nAdulti, that.nAdulti) && Objects.equals(nRagazzi, that.nRagazzi) && Objects.equals(nBambini, that.nBambini) && Objects.equals(nAnimali, that.nAnimali) && Objects.equals(modalitaViaggio, that.modalitaViaggio) && Objects.equals(nMaxCambi, that.nMaxCambi);
+        return Objects.equals(viaggioPreferitoId, that.viaggioPreferitoId) && Objects.equals(username, that.username) && Objects.equals(stazionePartenza, that.stazionePartenza) && Objects.equals(stazioneArrivo, that.stazioneArrivo) && Objects.equals(ora, that.ora) && Objects.equals(nAdulti, that.nAdulti) && Objects.equals(nRagazzi, that.nRagazzi) && Objects.equals(nBambini, that.nBambini) && Objects.equals(nAnimali, that.nAnimali) && Objects.equals(nMaxCambi, that.nMaxCambi);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(viaggioPreferitoId, accountId, stazionePartenza, stazioneArrivo, data, ora, nAdulti, nRagazzi, nBambini, nAnimali, modalitaViaggio, nMaxCambi);
+        return Objects.hash(viaggioPreferitoId, username, stazionePartenza, stazioneArrivo, ora, nAdulti, nRagazzi, nBambini, nAnimali, nMaxCambi);
+    }
+
+    public AccountEntity getAccountByUsername() {
+        return accountByUsername;
+    }
+
+    public void setAccountByUsername(AccountEntity accountByUsername) {
+        this.accountByUsername = accountByUsername;
+    }
+
+    public ViaggiPreferitiEntity toViaggiPreferitiEntity(Viaggio v){
+        ViaggiPreferitiEntity viaggiPreferitiEntity = new ViaggiPreferitiEntity();
+        viaggiPreferitiEntity.setStazionePartenza(String.valueOf(v.getStazionePartenza()));
+        viaggiPreferitiEntity.setStazioneArrivo(String.valueOf(v.getStazioneArrivo()));
+        viaggiPreferitiEntity.setOra(Time.valueOf(Utils.secondsToTime(v.getStazionePartenza()))); // TODO: 04/03/2022 MAGHEGGIO TEMPORANEO 
+        viaggiPreferitiEntity.setnAdulti(v.getNumAdulti());
+        viaggiPreferitiEntity.setnRagazzi(v.getNumRagazzi());
+        viaggiPreferitiEntity.setnBambini(v.getNumBambini());
+        viaggiPreferitiEntity.setnAnimali(v.getNumAnimali());
+        viaggiPreferitiEntity.setnMaxCambi(v.getNumMaxCambi());
+
+        return viaggiPreferitiEntity;
     }
 
     @Override
     public String toString() {
         return "ViaggiPreferitiEntity{" +
-                "viaggioPreferitoId='" + viaggioPreferitoId + '\'' +
-                ", accountId=" + accountId +
+                "viaggioPreferitoId=" + viaggioPreferitoId +
+                ", username='" + username + '\'' +
                 ", stazionePartenza='" + stazionePartenza + '\'' +
                 ", stazioneArrivo='" + stazioneArrivo + '\'' +
-                ", data=" + data +
                 ", ora=" + ora +
                 ", nAdulti=" + nAdulti +
                 ", nRagazzi=" + nRagazzi +
                 ", nBambini=" + nBambini +
                 ", nAnimali=" + nAnimali +
-                ", modalitaViaggio='" + modalitaViaggio + '\'' +
                 ", nMaxCambi=" + nMaxCambi +
                 '}';
     }
+
 }

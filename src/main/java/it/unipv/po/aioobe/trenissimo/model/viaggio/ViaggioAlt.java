@@ -26,9 +26,7 @@ public class ViaggioAlt {
 
     public List<Connection> cambi;
 
-    public ViaggioAlt() {
-
-    }
+    public ViaggioAlt() {}
 
     public StopsEntity getStazionePartenza() {
         return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(0).departure_station)).findFirst().get();
