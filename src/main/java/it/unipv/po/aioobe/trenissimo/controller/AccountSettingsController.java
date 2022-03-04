@@ -1,7 +1,5 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.DatiPersonaliService;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import javafx.concurrent.Task;
@@ -12,6 +10,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 
 import java.awt.Desktop;
@@ -20,50 +20,43 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 public class AccountSettingsController implements Initializable {
 
-    @FXML
-    private VBox boxLoading;
-    @FXML
-    private VBox boxContent;
-    @FXML private Button buttonModifica;
-    @FXML private Button buttonAnnulla;
-    @FXML private Button buttonSalva;
+    @FXML private VBox boxLoading;
+    @FXML private VBox boxContent;
 
-    @FXML private Label labelBenvenuto;
-    @FXML private Label labelDatiPersonali;
-    @FXML private TextField textFieldNome;
-    @FXML private TextField textFieldCognome;
-    @FXML private DatePicker datePickerDataNascita;
-    @FXML private TextField textFieldEmail;
-    @FXML private TextField textFieldVia;
-    @FXML private TextField textFieldCivico;
-    @FXML private TextField textFieldCitta;
-    @FXML private TextField textFieldCAP;
+    @FXML private Button btnModifica;
+    @FXML private Button btnAnnulla;
+    @FXML private Button btnSalva;
 
-    @FXML private Label labelErroreCAP;
-    @FXML private Label labelErroreEmail;
-    @FXML private Label labelErroreDataNascita;
+    @FXML private Label lblBenvenuto;
+    @FXML private Label lblDatiPersonali;
+    @FXML private TextField txtNome;
+    @FXML private TextField txtCognome;
+    @FXML private DatePicker dtpDataNascita;
+    @FXML private TextField txtEmail;
+    @FXML private TextField txtVia;
+    @FXML private TextField txtCivico;
+    @FXML private TextField txtCitta;
+    @FXML private TextField txtCAP;
 
-    @FXML private Label labelNumeroBiglietto;
-    @FXML private Label labelPrezzo;
-    @FXML private Label labelDataAcquisto;
-    @FXML private Label labelDownloadOK;
+    @FXML private Label lblErroreCAP;
+    @FXML private Label lblErroreEmail;
+    @FXML private Label lblErroreDataNascita;
 
-    @FXML private Button buttonScarica;
-    @FXML private Label labelErroreNome;
-    @FXML private Label labelErroreCognome;
-    @FXML private Label labelErroreVia;
-    @FXML private Label labelErroreCivico;
-    @FXML private Label labelErroreCitta;
+    @FXML private Label lblNumeroBiglietto;
+    @FXML private Label lblPrezzo;
+    @FXML private Label lblDataAcquisto;
+    @FXML private Label lblDownloadOK;
+
+    @FXML private Label lblErroreNome;
+    @FXML private Label lblErroreCognome;
+    @FXML private Label lblErroreVia;
+    @FXML private Label lblErroreCivico;
+    @FXML private Label lblErroreCitta;
 
     private TicketBuilder titoloViaggio;
-
-
-
-    //private DatiPersonaliEntity dati = new DatiPersonaliEntity("Franco", "Rossi", LocalDate.parse("1999-05-10"),new Indirizzo("via aldo moro", "11", "Pavia", "12345"), "ffr@gmail.com");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,22 +69,17 @@ public class AccountSettingsController implements Initializable {
 
         //metodo per leggere i dati da db e caricarli nelle varie textfield
 
-        Account.getInstance().setAccount("zambo");
-        Account.getInstance().setDatiPersonali("zambo");
-
-        labelBenvenuto.setText("Ciao, " + Account.getInstance().getDatiPersonali().getNome());
-        labelDatiPersonali.setText("Dati Personali");
-
-
-        textFieldNome.setText(Account.getInstance().getDatiPersonali().getNome());
-        textFieldCognome.setText(Account.getInstance().getDatiPersonali().getCognome());
-        datePickerDataNascita.setValue(Account.getInstance().getDatiPersonali().getDataNascita().toLocalDate());
-        textFieldEmail.setText(Account.getInstance().getDatiPersonali().getMail());
-
-        textFieldVia.setText(Account.getInstance().getDatiPersonali().getVia());
-        textFieldCivico.setText(Account.getInstance().getDatiPersonali().getCivico().toString());
-        textFieldCitta.setText(Account.getInstance().getDatiPersonali().getCitta());
-        textFieldCAP.setText(Account.getInstance().getDatiPersonali().getCap().toString());
+        Account.getInstance().setDatiPersonali("zambo"); // todo da aggiunere dati del login
+        lblBenvenuto.setText("Ciao, "+ Account.getInstance().getDatiPersonali().getNome());
+        lblDatiPersonali.setText("Dati Personali");
+        txtNome.setText(Account.getInstance().getDatiPersonali().getNome());
+        txtCognome.setText(Account.getInstance().getDatiPersonali().getCognome());
+        dtpDataNascita.setValue(Account.getInstance().getDatiPersonali().getDataNascita().toLocalDate());
+        txtEmail.setText(Account.getInstance().getDatiPersonali().getMail());
+        txtVia.setText(Account.getInstance().getDatiPersonali().getVia());
+        txtCivico.setText(Account.getInstance().getDatiPersonali().getCivico().toString());
+        txtCitta.setText(Account.getInstance().getDatiPersonali().getCitta());
+        txtCAP.setText(Account.getInstance().getDatiPersonali().getCap().toString());
 
     }
 
@@ -100,125 +88,125 @@ public class AccountSettingsController implements Initializable {
 
         //metodo per il click del tasto modifica
 
-        labelDatiPersonali.setText("Modifica i dati personali:");
+        lblDatiPersonali.setText("Modifica i dati personali:");
 
-        abilita(textFieldNome);
-        abilita(textFieldCognome);
-        datePickerDataNascita.setMouseTransparent(false);
-        datePickerDataNascita.setDisable(false);
-        datePickerDataNascita.setFocusTraversable(false);
-        abilita(textFieldEmail);
-        abilita(textFieldVia);
-        abilita(textFieldCivico);
-        abilita(textFieldCitta);
-        abilita(textFieldCAP);
+        abilita(txtNome);
+        abilita(txtCognome);
+        dtpDataNascita.setMouseTransparent(false);
+        dtpDataNascita.setDisable(false);
+        dtpDataNascita.setFocusTraversable(false);
+        abilita(txtEmail);
+        abilita(txtVia);
+        abilita(txtCivico);
+        abilita(txtCitta);
+        abilita(txtCAP);
 
-        buttonSalva.setVisible(true);
-        buttonAnnulla.setVisible(true);
-        buttonModifica.setVisible(false);
+        btnSalva.setVisible(true);
+        btnAnnulla.setVisible(true);
+        btnModifica.setVisible(false);
 
-        textFieldCAP.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkCAP(textFieldCAP.getText())) {
-                labelErroreCAP.setVisible(false);
-                buttonSalva.setDisable(false);
-                textFieldCAP.setStyle("-fx-border-color: #cccccc");
+        txtCAP.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(Account.getInstance().checkCAP(txtCAP.getText())) {
+                lblErroreCAP.setVisible(false);
+                btnSalva.setDisable(false);
+                txtCAP.setStyle("-fx-border-color: #cccccc");
             }
             else {
-                labelErroreCAP.setVisible(true);
-                textFieldCAP.setStyle("-fx-border-color: #d70000");
+                lblErroreCAP.setVisible(true);
+                txtCAP.setStyle("-fx-border-color: #d70000");
             }
         });
 
-        textFieldEmail.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkEmail(textFieldEmail.getText())) {
-                labelErroreEmail.setVisible(false);
-                buttonSalva.setDisable(false);
-                textFieldEmail.setStyle("-fx-border-color: #cccccc");
+        txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(Account.getInstance().checkEmail(txtEmail.getText())) {
+                lblErroreEmail.setVisible(false);
+                btnSalva.setDisable(false);
+                txtEmail.setStyle("-fx-border-color: #cccccc");
             }
             else {
-                labelErroreEmail.setVisible(true);
-                textFieldEmail.setStyle("-fx-border-color: #d70000");
+                lblErroreEmail.setVisible(true);
+                txtEmail.setStyle("-fx-border-color: #d70000");
 
             }
         });
 
-        datePickerDataNascita.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (Account.getInstance().checkDataNascita(datePickerDataNascita.getValue()))
+        dtpDataNascita.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (Account.getInstance().checkDataNascita(dtpDataNascita.getValue()))
             {
-                labelErroreDataNascita.setVisible(false);
-                buttonSalva.setDisable(false);
-                datePickerDataNascita.setStyle("-fx-border-color: #cccccc");
+                lblErroreDataNascita.setVisible(false);
+                btnSalva.setDisable(false);
+                dtpDataNascita.setStyle("-fx-border-color: #cccccc");
             }
             else {
-                labelErroreDataNascita.setVisible(true);
-                datePickerDataNascita.setStyle("-fx-border-color: #d70000");
+                lblErroreDataNascita.setVisible(true);
+                dtpDataNascita.setStyle("-fx-border-color: #d70000");
             }
         });
 
-        textFieldNome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(textFieldNome.getText())) {
-                labelErroreNome.setVisible(false);
-                buttonSalva.setDisable(false);
-                textFieldNome.setStyle("-fx-border-color: #cccccc");
+        txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(Account.getInstance().checkDatiGenerico(txtNome.getText())) {
+                lblErroreNome.setVisible(false);
+                btnSalva.setDisable(false);
+                txtNome.setStyle("-fx-border-color: #cccccc");
             }
             else {
-                labelErroreNome.setVisible(true);
-                textFieldNome.setStyle("-fx-border-color: #d70000");
+                lblErroreNome.setVisible(true);
+                txtNome.setStyle("-fx-border-color: #d70000");
             }
         });
 
-        textFieldCognome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(textFieldCognome.getText())) {
-                labelErroreCognome.setVisible(false);
-                buttonSalva.setDisable(false);
-                textFieldCognome.setStyle("-fx-border-color: #cccccc");
+        txtCognome.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(Account.getInstance().checkDatiGenerico(txtCognome.getText())) {
+                lblErroreCognome.setVisible(false);
+                btnSalva.setDisable(false);
+                txtCognome.setStyle("-fx-border-color: #cccccc");
             }
             else {
-                labelErroreCognome.setVisible(true);
-                textFieldCognome.setStyle("-fx-border-color: #d70000");
+                lblErroreCognome.setVisible(true);
+                txtCognome.setStyle("-fx-border-color: #d70000");
             }
         });
 
-        textFieldVia.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(textFieldVia.getText())) {
-                labelErroreVia.setVisible(false);
-                buttonSalva.setDisable(false);
-                textFieldVia.setStyle("-fx-border-color: #cccccc");
+        txtVia.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(Account.getInstance().checkDatiGenerico(txtVia.getText())) {
+                lblErroreVia.setVisible(false);
+                btnSalva.setDisable(false);
+                txtVia.setStyle("-fx-border-color: #cccccc");
             }
             else {
-                labelErroreVia.setVisible(true);
-                textFieldVia.setStyle("-fx-border-color: #d70000");
+                lblErroreVia.setVisible(true);
+                txtVia.setStyle("-fx-border-color: #d70000");
             }
         });
 
-        textFieldCivico.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(textFieldCivico.getText())) {
-                labelErroreCivico.setVisible(false);
-                buttonSalva.setDisable(false);
-                textFieldCivico.setStyle("-fx-border-color: #cccccc");
+        txtCivico.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(Account.getInstance().checkDatiGenerico(txtCivico.getText())) {
+                lblErroreCivico.setVisible(false);
+                btnSalva.setDisable(false);
+                txtCivico.setStyle("-fx-border-color: #cccccc");
             }
             else {
-                labelErroreCivico.setVisible(true);
-                textFieldCivico.setStyle("-fx-border-color: #d70000");
+                lblErroreCivico.setVisible(true);
+                txtCivico.setStyle("-fx-border-color: #d70000");
             }
         });
-        textFieldCitta.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(textFieldCitta.getText())) {
-                labelErroreCitta.setVisible(false);
-                buttonSalva.setDisable(false);
-                textFieldCognome.setStyle("-fx-border-color: #cccccc");
+        txtCitta.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(Account.getInstance().checkDatiGenerico(txtCitta.getText())) {
+                lblErroreCitta.setVisible(false);
+                btnSalva.setDisable(false);
+                txtCognome.setStyle("-fx-border-color: #cccccc");
             }
             else {
-                labelErroreCitta.setVisible(true);
-                textFieldCitta.setStyle("-fx-border-color: #d70000");
+                lblErroreCitta.setVisible(true);
+                txtCitta.setStyle("-fx-border-color: #d70000");
             }
         });
 
-        buttonSalva.setOnMouseMoved(c -> {
-        if (labelErroreCAP.isVisible() || labelErroreEmail.isVisible() || labelErroreDataNascita.isVisible()
-            ||labelErroreNome.isVisible() || labelErroreCognome.isVisible() || labelErroreVia.isVisible() ||
-            labelErroreCivico.isVisible() || labelErroreCitta.isVisible())
-            buttonSalva.setDisable(true);
+        btnSalva.setOnMouseMoved(c -> {
+        if (lblErroreCAP.isVisible() || lblErroreEmail.isVisible() || lblErroreDataNascita.isVisible()
+            || lblErroreNome.isVisible() || lblErroreCognome.isVisible() || lblErroreVia.isVisible() ||
+            lblErroreCivico.isVisible() || lblErroreCitta.isVisible())
+            btnSalva.setDisable(true);
     });
 
     }
@@ -228,20 +216,20 @@ public class AccountSettingsController implements Initializable {
 
         //metodo per il tasto annulla, disabilita tutte le textField/button
 
-        disabilita(textFieldNome);
-        disabilita(textFieldCognome);
-        datePickerDataNascita.setMouseTransparent(true);
-        datePickerDataNascita.setDisable(true);
-        datePickerDataNascita.setFocusTraversable(true);
-        disabilita(textFieldEmail);
-        disabilita(textFieldVia);
-        disabilita(textFieldCivico);
-        disabilita(textFieldCitta);
-        disabilita(textFieldCAP);
+        disabilita(txtNome);
+        disabilita(txtCognome);
+        dtpDataNascita.setMouseTransparent(true);
+        dtpDataNascita.setDisable(true);
+        dtpDataNascita.setFocusTraversable(true);
+        disabilita(txtEmail);
+        disabilita(txtVia);
+        disabilita(txtCivico);
+        disabilita(txtCitta);
+        disabilita(txtCAP);
 
-        buttonSalva.setVisible(false);
-        buttonAnnulla.setVisible(false);
-        buttonModifica.setVisible(true);
+        btnSalva.setVisible(false);
+        btnAnnulla.setVisible(false);
+        btnModifica.setVisible(true);
 
         onStart();
     }
@@ -250,14 +238,14 @@ public class AccountSettingsController implements Initializable {
 
         //metodo per il click del tasto salva
 
-        String nome = textFieldNome.getText();;
-        String cognome = textFieldCognome.getText();;
-        LocalDate dataNascita = LocalDate.parse(datePickerDataNascita.getValue().toString());
-        String mail = textFieldEmail.getText();
-        String via = textFieldVia.getText();
-        String civico = textFieldCivico.getText();
-        String citta = textFieldCitta.getText();
-        String cap = textFieldCAP.getText();
+        String nome = txtNome.getText();;
+        String cognome = txtCognome.getText();;
+        LocalDate dataNascita = LocalDate.parse(dtpDataNascita.getValue().toString());
+        String mail = txtEmail.getText();
+        String via = txtVia.getText();
+        String civico = txtCivico.getText();
+        String citta = txtCitta.getText();
+        String cap = txtCAP.getText();
 
         Account.getInstance().salvaModificaDati(nome,cognome,dataNascita,mail, via, civico, citta, cap);
 
@@ -297,11 +285,17 @@ public class AccountSettingsController implements Initializable {
     protected void onScaricaBigliettoPDF() throws Exception {
         fillPDF();
 
-        File biglietto = new File(TicketBuilder.DEST);
-        File destin = new File(TicketBuilder.DW + labelNumeroBiglietto.getText()+".pdf");
+        File biglietto = new File(TicketBuilder.DEST); //biglietto in folder temporanea
 
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.setTitle("Scegli dove salvare il titolo di viaggio");
+        fileChooser.setInitialFileName(lblNumeroBiglietto.getText());
+
+        File destin = new File(fileChooser.showSaveDialog(new Stage()).getAbsolutePath().concat(".pdf"));
         TicketBuilder.copy(biglietto, destin);
-        labelDownloadOK.setVisible(true);
+
+        lblDownloadOK.setVisible(true);
 
         Task<Void> task = new Task<Void>() {
             @Override
@@ -311,16 +305,17 @@ public class AccountSettingsController implements Initializable {
             }
         };
         task.setOnSucceeded(e -> {
-            labelDownloadOK.setVisible(false);
+            lblDownloadOK.setVisible(false);
+            biglietto.delete();
         });
         new Thread(task).start();
 
     }
     private void fillPDF() throws Exception {
 
-        titoloViaggio = new TicketBuilder("","",labelDataAcquisto.getText(),"","","","",
-                "","",Account.getInstance().getDatiPersonali().getNome(),Account.getInstance().getDatiPersonali().getCognome(),"",Account.getInstance().getDatiPersonali().getDataNascita().toString(),
-                labelNumeroBiglietto.getText(), labelPrezzo.getText());
+        titoloViaggio = new TicketBuilder("","", lblDataAcquisto.getText(),"","","","",
+                "","",Account.getInstance().getDatiPersonali().getNome(),Account.getInstance().getDatiPersonali().getCognome(),
+                "",Account.getInstance().getDatiPersonali().getDataNascita().toString(), lblNumeroBiglietto.getText(), lblPrezzo.getText());
 
         titoloViaggio.createPdf();
     }

@@ -94,6 +94,7 @@ public class HomePageController implements Initializable {
 
     }
 
+    /*
     @FXML
     protected void onRicerca() {
         boxLoading.setVisible(true);
@@ -116,5 +117,7 @@ public class HomePageController implements Initializable {
             RicercaView.open((List<Viaggio>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
         });
         new Thread(task).start();
-    }
+
+
+    }*/
 }
