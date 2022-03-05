@@ -3,6 +3,7 @@ package it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Ricerca implements IRicerca{
@@ -29,6 +30,7 @@ public class Ricerca implements IRicerca{
         lista.forEach((x)->x.setNumAnimali(this.getNumAnimali()));
         lista.forEach((x)->x.setNumRagazzi(this.getNumRagazzi()));
         lista.forEach((x)->x.setNumBambini(this.getNumBambini()));
+        //lista.removeIf(v -> LocalTime.ofSecondOfDay(v.getOrarioPartenza()).isBefore(this.dataAttuale.toLocalTime()));
         return lista;
     }
 
