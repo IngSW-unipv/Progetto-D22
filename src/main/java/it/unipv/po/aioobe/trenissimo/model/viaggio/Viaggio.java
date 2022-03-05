@@ -64,28 +64,28 @@ public class Viaggio {
     }
 
     public StopsEntity getStazionePartenza() {
-        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(0).getDeparture_station())).findFirst().get();
+        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(0).getDepartureStation())).findFirst().get();
     }
 
     public StopsEntity getStazioneArrivo() {
-        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(cambi.size() - 1).getArrival_station())).findFirst().get();
+        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(cambi.size() - 1).getArrivalStation())).findFirst().get();
     }
 
     public int getOrarioPartenza(){
-        return cambi.get(0).getDeparture_timestamp();
+        return cambi.get(0).getDepartureTimestamp();
     }
 
     public int getOrarioArrivo(){
-        return cambi.get(cambi.size() - 1).getArrival_timestamp();
+        return cambi.get(cambi.size() - 1).getArrivalTimestamp();
     }
 
     public int getDurata() {
-        return cambi.get(cambi.size() - 1).getArrival_timestamp() - cambi.get(0).getDeparture_timestamp();
+        return cambi.get(cambi.size() - 1).getArrivalTimestamp() - cambi.get(0).getDepartureTimestamp();
     }
 
     public int getNumeroCambi() {
         // TODO: non conta casi in cui il treno torna sulla stessa tratta (eg. R1 -> R2 -> R1 viene contato come un cambio solo invece che due)
-        return (int) (cambi.stream().map(x -> x.getDeparture_station_trip()).distinct().count() - 1);
+        return (int) (cambi.stream().map(x -> x.getDepartureStationTrip()).distinct().count() - 1);
     }
 
     public double getPrezzo() {

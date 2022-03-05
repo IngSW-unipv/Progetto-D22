@@ -1,5 +1,10 @@
 package it.unipv.po.aioobe.trenissimo.model;
 
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
+
 //TODO: non in UML
 public class Utils {
     public static Integer timeToSeconds(String time) {
@@ -22,5 +27,20 @@ public class Utils {
         } else {
             return String.format("%02d:%02d", HH, MM);
         }
+    }
+
+    public static void printViaggio(Viaggio v){
+        var result = v.getCambi();
+
+        System.out.println("Partenza: " + Utils.secondsToTime(v.getStazionePartenza().getStopId()) + " - Durata: " + Utils.secondsToTime(v.getDurata()));
+        System.out.println("Cambi: " + (result.stream().map(x -> x.getDepartureStationTrip()).distinct().count() - 1));
+        for (Connection x : result) {
+            var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() ==x.getDepartureStationTrip()).findFirst().get().getRouteId();
+            var routeTo = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.getArrivalStationTrip()).findFirst().get().getRouteId();
+            System.out.println(
+                    "[" + routeFrom + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.getDepartureStation()).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.getDepartureTimestamp())
+                            + ") -> [" + routeTo + "] " +  CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.getArrivalStation()).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.getArrivalTimestamp()) + ")");
+        }
+        System.out.println("\n\n");
     }
 }

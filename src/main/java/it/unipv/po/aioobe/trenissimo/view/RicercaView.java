@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import static it.unipv.po.aioobe.trenissimo.model.Utils.printViaggio;
+
 public class RicercaView extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -25,33 +28,24 @@ public class RicercaView extends Application {
         List<Connection> cambi = new ArrayList<>();
 
         // Per prototipi più veloci
-        cambi.add(new Connection(964, 2518, 22020, 22260, 14156298, 14156298));
-        cambi.add(new Connection(2518, 746, 22320, 22620, 14156298, 14156298));
-        cambi.add(new Connection(746, 588, 22800, 23100, 14158830, 14158830));
-        cambi.add(new Connection(588, 2143, 23160, 23340, 14158830, 14158830));
-        cambi.add(new Connection(2143, 736, 23400, 23580, 14158830, 14158830));
-        cambi.add(new Connection(736, 737, 23640, 23940, 14158830, 14158830));
-        cambi.add(new Connection(737, 1039, 24000, 24240, 14158830, 14158830));
-        cambi.add(new Connection(1039, 2046, 24300, 24600, 14158830, 14158830));
-        cambi.add(new Connection(2046, 1720, 24660, 26100, 14158830, 14158830));
-        cambi.add(new Connection(1720, 1718, 26820, 27180, 14157526, 14157526));
-        cambi.add(new Connection(1718, 3468, 27240, 27390, 14157526, 14157526));
-        cambi.add(new Connection(3468, 1723, 27420, 27570, 14157526, 14157526));
-        cambi.add(new Connection(1723, 1719, 27600, 27690, 14157526, 14157526));
-        cambi.add(new Connection(1719, 1714, 27720, 27840, 14157526, 14157526));
-        cambi.add(new Connection(1714, 1713, 27900, 28020, 14157526, 14157526));
-        cambi.add(new Connection(1713, 1707, 28080, 28440, 14157526, 14157526));
-        cambi.add(new Connection(1707, 5048, 28470, 29190, 14155665, 14155665));
-        cambi.add(new Connection(5048, 5314, 29610, 30420, 14158093, 14158093));
-        cambi.add(new Connection(5314, 5318, 30510, 31140, 14158093, 14158093));
-        cambi.add(new Connection(5318, 5319, 31200, 31500, 14158093, 14158093));
+
+        cambi.add(new Connection(367, 3053,25500, 25980, 14158963, 14158963));
+        cambi.add(new Connection(3053, 2036,26040, 26340, 14158963, 14158963));
+        cambi.add(new Connection(2036, 1858,26400, 26820, 14158963, 14158963));
+        cambi.add(new Connection(1858, 406, 26880, 27120, 14156467, 14156467));
+
+
+
 
 
         Viaggio viaggio = new Viaggio();
         viaggio.setCambi(cambi);
+        printViaggio(viaggio);
         List<Viaggio> viaggi = new ArrayList<>();
         viaggi.add(viaggio);
         viaggi.add(viaggio);
+
+
 
 
 

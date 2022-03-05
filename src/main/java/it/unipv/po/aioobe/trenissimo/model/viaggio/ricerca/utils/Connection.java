@@ -6,27 +6,27 @@ public class Connection {
     private int departure_timestamp, arrival_timestamp;
     private int departure_station_trip, arrival_station_trip;
 
-    public int getDeparture_station() {
+    public int getDepartureStation() {
         return departure_station;
     }
 
-    public int getArrival_station() {
+    public int getArrivalStation() {
         return arrival_station;
     }
 
-    public int getDeparture_timestamp() {
+    public int getDepartureTimestamp() {
         return departure_timestamp;
     }
 
-    public int getArrival_timestamp() {
+    public int getArrivalTimestamp() {
         return arrival_timestamp;
     }
 
-    public int getDeparture_station_trip() {
+    public int getDepartureStationTrip() {
         return departure_station_trip;
     }
 
-    public int getArrival_station_trip() {
+    public int getArrivalStationTrip() {
         return arrival_station_trip;
     }
 

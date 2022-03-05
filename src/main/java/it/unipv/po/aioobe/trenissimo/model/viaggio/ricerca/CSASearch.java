@@ -86,18 +86,18 @@ public class CSASearch {
         if (departure_station <= MAX_STATIONS && arrival_station <= MAX_STATIONS) {
             // CSA Main loop
             int earliest = Integer.MAX_VALUE;
-            timetable = timetable.stream().sorted(Comparator.comparingInt(x -> x.getArrival_timestamp())).toList();
+            timetable = timetable.stream().sorted(Comparator.comparingInt(x -> x.getArrivalTimestamp())).toList();
 
             for (Connection connection : timetable) {
-                if (connection.getDeparture_timestamp() >= earliest_arrival[connection.getDeparture_station()] &&
-                        connection.getArrival_timestamp() < earliest_arrival[connection.getArrival_station()]) {
-                    earliest_arrival[connection.getArrival_station()] = connection.getArrival_timestamp();
-                    in_connection[connection.getArrival_station()] = connection;
+                if (connection.getDepartureTimestamp() >= earliest_arrival[connection.getDepartureStation()] &&
+                        connection.getArrivalTimestamp() < earliest_arrival[connection.getArrivalStation()]) {
+                    earliest_arrival[connection.getArrivalStation()] = connection.getArrivalTimestamp();
+                    in_connection[connection.getArrivalStation()] = connection;
 
-                    if (connection.getArrival_station() == arrival_station) {
-                        earliest = Math.min(earliest, connection.getArrival_timestamp());
+                    if (connection.getArrivalStation() == arrival_station) {
+                        earliest = Math.min(earliest, connection.getArrivalTimestamp());
                     }
-                } else if (connection.getArrival_timestamp() > earliest) {
+                } else if (connection.getArrivalTimestamp() > earliest) {
                     continue;
                 }
             }
@@ -111,7 +111,7 @@ public class CSASearch {
             Connection last_connection = in_connection[arrival_station];
             while (last_connection != null) {
                 route.add(last_connection);
-                last_connection = in_connection[last_connection.getDeparture_station()];
+                last_connection = in_connection[last_connection.getDepartureStation()];
             }
             Collections.reverse(route);
             return route;
@@ -150,7 +150,7 @@ public class CSASearch {
 
 
 
-            lastTime = result.get(0).getDeparture_timestamp() + 1;
+            lastTime = result.get(0).getDepartureTimestamp() + 1;
         }
 
 

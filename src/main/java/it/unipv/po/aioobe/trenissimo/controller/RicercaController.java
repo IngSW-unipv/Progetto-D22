@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.*;
+import java.util.logging.Logger;
 
 public class RicercaController implements Initializable {
     @FXML
@@ -29,8 +30,12 @@ public class RicercaController implements Initializable {
     }
 
     public void setViaggi(List<Viaggio> viaggi) {
-        System.out.println("setViaggi");
         this.viaggi.addAll(viaggi);
+
+//        viaggi.forEach(x -> {
+//            x.getCambi().forEach(y -> System.out.println(y));
+//            System.out.println("---------");
+//        });
     }
 
     @FXML

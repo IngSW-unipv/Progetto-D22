@@ -9,8 +9,6 @@ import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class ViaggioControl extends VBox {
     @FXML private Label lblCompanyId;
@@ -64,19 +62,24 @@ public class ViaggioControl extends VBox {
         lblChanges              .textProperty().setValue(viaggio.getNumeroCambi() + " cambi");
         lblPrice                .textProperty().setValue(String.valueOf(viaggio.getPrezzo()));
 
-        for (int i = 0; i < viaggio.getCambi().size(); i++) {
-            if (i == 0 || viaggio.getCambi().get(i-1).getArrival_station_trip() != viaggio.getCambi().get(i).getDeparture_station_trip()){
-                if (i != 0 && (viaggio.getCambi().get(i-1).getArrival_station_trip() != viaggio.getCambi().get(i).getDeparture_station_trip())){
-                    boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), viaggio.getCambi().get(i-1) ,CambioControl.TipoCambio.END));
+        var cambi = viaggio.getCambi();
+
+        for (int i = 0; i < cambi.size(); i++) {
+            if (i == 0 || cambi.get(i-1).getArrivalStationTrip() != cambi.get(i).getDepartureStationTrip()){
+                if (i != 0 && (cambi.get(i-1).getArrivalStationTrip() != cambi.get(i).getDepartureStationTrip())){
+                    boxChanges.getChildren().add(new CambioControl(cambi.get(i), cambi.get(i-1) ,CambioControl.TipoCambio.END));
                 }
-                boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), null, CambioControl.TipoCambio.START));
+                boxChanges.getChildren().add(new CambioControl(cambi.get(i), null, CambioControl.TipoCambio.START));
+                if (i == cambi.size()-1){
+                    boxChanges.getChildren().add(new CambioControl(cambi.get(i), null ,CambioControl.TipoCambio.END_LAST));
+                }
                 continue;
             }
 
-            if (viaggio.getCambi().get(i).getDeparture_station_trip() == viaggio.getCambi().get(i).getArrival_station_trip()){
-                boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i),viaggio.getCambi().get(i-1), CambioControl.TipoCambio.MIDDLE));
-                if (i == viaggio.getCambi().size()-1){
-                    boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), null ,CambioControl.TipoCambio.END_LAST));
+            if (cambi.get(i).getDepartureStationTrip() == cambi.get(i).getArrivalStationTrip()){
+                boxChanges.getChildren().add(new CambioControl(cambi.get(i),cambi.get(i-1), CambioControl.TipoCambio.MIDDLE));
+                if (i == cambi.size()-1){
+                    boxChanges.getChildren().add(new CambioControl(cambi.get(i), null ,CambioControl.TipoCambio.END_LAST));
                 }
                 continue;
             }
