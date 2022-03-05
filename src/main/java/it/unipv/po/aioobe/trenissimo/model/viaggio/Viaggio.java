@@ -1,11 +1,13 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicInteger;
 
 //TODO: non in UML
 public class Viaggio {
@@ -15,6 +17,9 @@ public class Viaggio {
     private int numBambini;
     private int numAnimali;
     private List<Connection> cambi;
+
+    private static final AtomicInteger count = new AtomicInteger(0);
+
 
     public Viaggio() {}
 
@@ -115,5 +120,20 @@ public class Viaggio {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return raggio * c;
+    }
+
+    @Override
+    public String toString() {
+        return "Soluzione Viaggio " + count.incrementAndGet() + "\n" +
+                "Partenza=" + getStazionePartenza().getStopName() +
+                ", h. " + Utils.secondsToTime(getOrarioPartenza()) +
+                " -> Arrivo=" + getStazioneArrivo().getStopName() +
+                ", h. " + Utils.secondsToTime(getOrarioArrivo()) +
+                "\nnumAdulti=" + numAdulti +
+                ", numRagazzi=" + numRagazzi +
+                ", numBambini=" + numBambini +
+                ", numAnimali=" + numAnimali +
+                "\nprezzo=" + getPrezzo() + "€" +
+                "\n";
     }
 }

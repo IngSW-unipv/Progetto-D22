@@ -48,7 +48,7 @@ public class App {
 
         dati = datiPersonaliService.findByUsername("vale1");
 
-        dati.setMail("valeria.vergani01@universitadipavia.it");
+        //dati.setMail("valeria.vergani01@universitadipavia.it");
 
         datiPersonaliService.update(dati);
 
@@ -71,14 +71,14 @@ public class App {
 
         Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
 
-        //search.setNumAdulti(2);
-        search.setNumBambini(1);
-        //search.setNumAnimali(1);
-        search.setNumRagazzi(2);
+        search.setNumAdulti(1);
+        search.setNumBambini(0);
+        search.setNumAnimali(1);
+        search.setNumRagazzi(3);
 
         List<Viaggio> viaggi = search.eseguiRicerca();
 
-        viaggi.forEach((x)->System.out.println("Partenza:" + x.getStazionePartenza().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioPartenza()) + " Arrivo: " + x.getStazioneArrivo().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioArrivo()) + " Num. adulti = " + x.getNumAdulti() + " Num. Cambi = " + x.getNumeroCambi() + " Prezzo = " + x.getPrezzo() + "€"));
+        viaggi.forEach((x)->System.out.println(x.toString()));
 
 
         //TODO FILTRI
