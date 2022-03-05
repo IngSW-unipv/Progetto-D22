@@ -5,6 +5,7 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -90,29 +91,48 @@ public class Viaggio {
 
     public double getPrezzo() {
 
-        double prezzoPerPersona = getDistanza()*0.10; //10 centesimi a km
+        double prezzoPerPersona=0;
+
+        for (int i=0; i<this.getCambi().size(); i++) {
+            prezzoPerPersona = prezzoPerPersona + getDistanza(getCoppiaStazioni(i))*0.15;
+        }
+
 
         //Composizione del prezzo: Adulto prezzo intero, ragazzo 2/3 del prezzo, bambino 1/3 del prezzo, aggiunta di 5 euro per animale
 
-        double prezzo = prezzoPerPersona*this.getNumAdulti()+prezzoPerPersona*((double)2/3)*this.getNumRagazzi()+prezzoPerPersona*((double)1/3)*this.getNumBambini()+5*this.getNumAnimali();
+        double prezzoTotPasseggeri = prezzoPerPersona*this.getNumAdulti()+prezzoPerPersona*((double)2/3)*this.getNumRagazzi()+prezzoPerPersona*((double)1/3)*this.getNumBambini()+5*this.getNumAnimali();
 
         String s = (Utils.secondsToTime(this.getOrarioPartenza()).substring(0,1));
 
         //Il prezzo per fascia oraria viene calcolato in base alla prima cifra dell'ora e quindi se il viaggio viene fatto prima delle 10:00 o dopo le 19:59, verrà tolto un 25%
 
-        double prezzoFinaleFasciaOraria = prezzo - prezzo * 0.25 * Math.abs(Integer.valueOf(s)-1);
+        double prezzoFinaleFasciaOraria = prezzoTotPasseggeri - prezzoTotPasseggeri * 0.25 * Math.abs(Integer.valueOf(s)-1);
 
         return Double.valueOf(String.format(Locale.US,"%.2f", prezzoFinaleFasciaOraria));
     }
 
-    public double getDistanza() {
+    public List<StopsEntity> getCoppiaStazioni (int i) {
+        List<StopsEntity> stops = CachedStopsService.getInstance().findAll();
+        List<StopsEntity> coppiaStazioni = new ArrayList<>();
+
+        for (StopsEntity s : stops) {
+            if (s.getStopId() == this.getCambi().get(i).getDepartureStation() || s.getStopId()==this.getCambi().get(i).getArrivalStation()) {
+                coppiaStazioni.add(s);
+            }
+        }
+
+        return coppiaStazioni;
+
+    }
+
+    public double getDistanza(List<StopsEntity> coppiaStazioni) {
 
         int raggio = 6371; //raggio Terra approssimato in km
 
-        double lat1 = this.getStazionePartenza().getStopLat();
-        double lat2 = this.getStazioneArrivo().getStopLat();
-        double lon1 = this.getStazionePartenza().getStopLon();
-        double lon2 = this.getStazioneArrivo().getStopLon();
+        double lat1 = coppiaStazioni.get(0).getStopLat();
+        double lat2 = coppiaStazioni.get(1).getStopLat();
+        double lon1 = coppiaStazioni.get(0).getStopLon();
+        double lon2 = coppiaStazioni.get(1).getStopLon();
 
         //Haversine formula to calculate distance from lat e lon
 
@@ -128,6 +148,14 @@ public class Viaggio {
         return raggio * c;
     }
 
+    public double getDistanzaTotale () {
+        double distanza = 0;
+        for (int i=0; i<this.getCambi().size(); i++) {
+            distanza = distanza + getDistanza(getCoppiaStazioni(i));
+        }
+        return Double.valueOf(String.format(Locale.US,"%.2f", distanza));
+    }
+
     @Override
     public String toString() {
         return "Soluzione Viaggio " + count.incrementAndGet() + "\n" +
@@ -139,6 +167,8 @@ public class Viaggio {
                 ", numRagazzi=" + numRagazzi +
                 ", numBambini=" + numBambini +
                 ", numAnimali=" + numAnimali +
+                "\nn. cambi=" + getNumeroCambi() +
+                "\ndistanza=" + getDistanzaTotale() + "km" +
                 "\nprezzo=" + getPrezzo() + "€" +
                 "\n";
     }

@@ -37,6 +37,7 @@ public class App {
         }
         System.out.println("\n\n");*/
 
+        /*
         AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
@@ -59,9 +60,9 @@ public class App {
         account.setDatiPersonali("vale1");
 
         System.out.println(account.getDatiPersonali());
-
-        viaggiPreferitiService.findByUsername(account.getUsername()).forEach((x)-> System.out.println(x.toString()));
-        storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
+        */
+        //viaggiPreferitiService.findByUsername(account.getUsername()).forEach((x)-> System.out.println(x.toString()));
+        //storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
 
         /*CorsaSingola biglietto = new CorsaSingola(DurataTitoloViaggio.CORSASINGOLA, viaggi.get(0));
 
@@ -69,12 +70,12 @@ public class App {
         System.out.println("DOPO");
         storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));*/
 
-        Ricerca search = new Ricerca(2046, 1707, LocalDateTime.now());
+        Ricerca search = new Ricerca(1707, 2046, LocalDateTime.now());
 
         search.setNumAdulti(1);
         search.setNumBambini(0);
-        search.setNumAnimali(1);
-        search.setNumRagazzi(3);
+        search.setNumAnimali(0);
+        search.setNumRagazzi(0);
 
         List<Viaggio> viaggi = search.eseguiRicerca();
 

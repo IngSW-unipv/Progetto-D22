@@ -17,9 +17,9 @@ public class AgencyService implements IAgencyService {
 
     /*public AgencyEntity findById(String id) {
         agencyDao.openCurrentSession();
-        AgencyEntity book = agencyDao.findById(id);
+        AgencyEntity agency = agencyDao.findById(id);
         agencyDao.closeCurrentSession();
-        return book;
+        return agency;
     }*/
 
     @Override
