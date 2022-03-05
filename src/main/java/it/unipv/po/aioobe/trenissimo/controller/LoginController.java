@@ -1,17 +1,15 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.AccountService;
 import it.unipv.po.aioobe.trenissimo.model.user.Login;
+import it.unipv.po.aioobe.trenissimo.view.AccountSettings;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
 
 public class LoginController{
@@ -30,12 +28,15 @@ public class LoginController{
 
 
     @FXML
-    protected void onLogin() {
+    protected void onLogin() throws IOException {
 
-        if(Login.checkUserPassword(txtUsername.getText(), pwfPassword.getText()))
-                btnAccedi.setBackground(Background.EMPTY);
-            else
-                lblLoginError.setVisible(true);
+        if(Login.getInstance().checkUserPassword(txtUsername.getText(), pwfPassword.getText())) {
+            btnAccedi.setBackground(Background.EMPTY);
+            Login.getInstance().login(txtUsername.getText());
+            AccountSettings.open();
+        }
+        else
+            lblLoginError.setVisible(true);
     }
 
 }

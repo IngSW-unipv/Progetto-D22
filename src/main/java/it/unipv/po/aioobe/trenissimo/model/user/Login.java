@@ -12,7 +12,7 @@ public class Login {
         return instance;
     }
 
-    public static boolean checkUserPassword(String user, String password){
+    public boolean checkUserPassword(String user, String password){
         var accountUser = new AccountService().findByUsername(user);
         return accountUser != null && accountUser.getPassword().equals(password);
     }
