@@ -6,8 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ViaggioControl extends VBox {
     @FXML private Label lblCompanyId;
@@ -19,6 +22,10 @@ public class ViaggioControl extends VBox {
     @FXML private Label lblTravelTime;
     @FXML private Label lblChanges;
     @FXML private Label lblPrice;
+
+    @FXML private VBox boxChanges;
+    @FXML private VBox boxChangesContainer;
+    @FXML private FontIcon icoChanges;
 
     private Viaggio viaggio;
 
@@ -57,6 +64,23 @@ public class ViaggioControl extends VBox {
         lblChanges              .textProperty().setValue(viaggio.getNumeroCambi() + " cambi");
         lblPrice                .textProperty().setValue(String.valueOf(viaggio.getPrezzo()));
 
+        for (int i = 0; i < viaggio.getCambi().size(); i++) {
+            if (i == 0 || viaggio.getCambi().get(i-1).arrival_station_trip != viaggio.getCambi().get(i).departure_station_trip){
+                if (i != 0 && (viaggio.getCambi().get(i-1).arrival_station_trip != viaggio.getCambi().get(i).departure_station_trip)){
+                    boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), viaggio.getCambi().get(i-1) ,CambioControl.TipoCambio.END));
+                }
+                boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), null, CambioControl.TipoCambio.START));
+                continue;
+            }
+
+            if (viaggio.getCambi().get(i).departure_station_trip == viaggio.getCambi().get(i).arrival_station_trip){
+                boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i),viaggio.getCambi().get(i-1), CambioControl.TipoCambio.MIDDLE));
+                if (i == viaggio.getCambi().size()-1){
+                    boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), null ,CambioControl.TipoCambio.END_LAST));
+                }
+                continue;
+            }
+        }
     }
 
 
@@ -64,8 +88,17 @@ public class ViaggioControl extends VBox {
 
 
     @FXML
-    protected void doSomething() {
-        System.out.println("The button was clicked!");
+    protected void onToggleChangeVisibility() {
+        if (boxChangesContainer.isVisible()){
+            boxChangesContainer.setVisible(false);
+            boxChangesContainer.setPrefHeight(0);
+            icoChanges.setIconLiteral("fas-angle-down");
+        } else {
+            boxChangesContainer.setVisible(true);
+            boxChangesContainer.setPrefHeight(-1);
+            icoChanges.setIconLiteral("fas-angle-up");
+        }
+
     }
 
 }

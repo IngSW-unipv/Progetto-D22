@@ -31,4 +31,9 @@ public class RicercaController implements Initializable {
         System.out.println("setViaggi");
         this.viaggi.addAll(viaggi);
     }
+
+    @FXML
+    protected void onGoToHomepage(){
+        HomePage.openScene(layout.getScene().getWindow());
+    }
 }

@@ -9,12 +9,15 @@ module it.unipv.po.aioobe.trenissimo {
     requires org.controlsfx.controls;
     requires java.desktop;
     requires itextpdf;
+    requires com.jfoenix;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.fontawesome5;
 
 
     opens it.unipv.po.aioobe.trenissimo.model.persistence.entity to org.hibernate.orm.core, javafx.fxml;
     opens it.unipv.po.aioobe.trenissimo to javafx.fxml;
 
-    //exports it.unipv.po.aioobe.trenissimo;
+    exports it.unipv.po.aioobe.trenissimo;
     exports it.unipv.po.aioobe.trenissimo.controller;
     opens it.unipv.po.aioobe.trenissimo.controller to javafx.fxml;
     exports it.unipv.po.aioobe.trenissimo.view;

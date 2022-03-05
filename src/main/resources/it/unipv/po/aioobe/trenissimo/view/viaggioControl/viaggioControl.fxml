@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<fx:root style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" type="javafx.scene.layout.VBox" VBox.vgrow="NEVER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" type="javafx.scene.layout.VBox" VBox.vgrow="NEVER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox spacing="8.0" VBox.vgrow="NEVER">
             <children>
@@ -56,7 +59,13 @@
                 </HBox>
                 <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                     <children>
-                        <Label fx:id="lblChanges" text="1 cambio" />
+                        <Label fx:id="lblChanges" contentDisplay="RIGHT" graphicTextGap="8.0" onMouseClicked="#onToggleChangeVisibility" text="1 cambio">
+                     <graphic>
+                        <FontIcon fx:id="icoChanges" iconColor="#636a77" iconLiteral="fas-angle-down" iconSize="16" />
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Label>
                     </children>
                 </HBox>
                 <VBox alignment="CENTER_RIGHT">
@@ -75,6 +84,16 @@
                 </VBox>
             </children>
         </HBox>
+      <VBox fx:id="boxChangesContainer" maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" visible="false">
+         <children>
+            <Separator prefWidth="200.0">
+               <padding>
+                  <Insets bottom="8.0" top="8.0" />
+               </padding>
+            </Separator>
+            <VBox fx:id="boxChanges" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" />
+         </children>
+      </VBox>
     </children>
     <padding>
         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
