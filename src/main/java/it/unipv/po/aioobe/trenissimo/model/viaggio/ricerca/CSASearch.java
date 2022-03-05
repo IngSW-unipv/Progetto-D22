@@ -1,12 +1,22 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.*;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.RoutesEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopTimesEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TripsEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopTimesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 //TODO: non in UML
 
@@ -75,8 +85,8 @@ public class CSASearch {
     }
 
     private List<Connection> compute(int departure_station, int arrival_station, int departure_time, List<Connection> timetable) {
-        Connection in_connection[] = new Connection[MAX_STATIONS];
-        int earliest_arrival[] = new int[MAX_STATIONS];
+        Connection[] in_connection = new Connection[MAX_STATIONS];
+        int[] earliest_arrival = new int[MAX_STATIONS];
         for (int i = 0; i < MAX_STATIONS; ++i) {
             in_connection[i] = null;
             earliest_arrival[i] = Integer.MAX_VALUE;
@@ -122,8 +132,6 @@ public class CSASearch {
 
 
         // Database data load
-        // TODO: da mettere in cache all'avvio del programma (Splashscreen), questi dati in genere non cambiano velocemente
-
         List<RoutesEntity> routesList = CachedRoutesService.getInstance().findAll();
         List<StopsEntity> stopsList = CachedStopsService.getInstance().findAll();
         List<StopTimesEntity> stopTimesList = CachedStopTimesService.getInstance().findAll();
@@ -142,20 +150,25 @@ public class CSASearch {
 
         while (true) {
             var result = compute(departureStopId, arrivalStopId, lastTime, timetable);
-            if (result == null) { break; }
+            if (result == null) {
+                break;
+            }
 
             var viaggio = new Viaggio();
             viaggio.setCambi(result);
             viaggi.add(viaggio);
 
-
-
             lastTime = result.get(0).getDepartureTimestamp() + 1;
         }
 
-
-        return viaggi;
+        return viaggi
+                .stream()
+                .collect(Collectors.groupingBy(Viaggio::getOrarioArrivo)) //Raggruppo per orario di arrivo
+                .values()
+                .stream()
+                .map(x -> x.stream().min(Comparator.comparing(Viaggio::getDurata)).get()) //Scelgo, per un dato orario di arrivo, il viaggio più breve
+                .sorted(Comparator.comparingInt(Viaggio::getOrarioPartenza)) //Riordino per orario partenza
+                .toList();
     }
-
 
 }
