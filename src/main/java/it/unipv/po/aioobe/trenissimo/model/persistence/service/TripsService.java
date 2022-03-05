@@ -14,6 +14,7 @@ public class TripsService implements ITripsService {
         tripsDao = new TripsDao();
     }
 
+    @Override
     public List<TripsEntity> findAll() {
         tripsDao.getConn().openCurrentSession();
         List<TripsEntity> trips = tripsDao.findAll();

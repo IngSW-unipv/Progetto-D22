@@ -14,6 +14,7 @@ public class StopTimesService implements IStopTimesService {
         stopTimesDao = new StopTimesDao();
     }
 
+    @Override
     public List<StopTimesEntity> findAll() {
         stopTimesDao.getConn().openCurrentSession();
         List<StopTimesEntity> stopTimes = stopTimesDao.findAll();

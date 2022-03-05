@@ -14,6 +14,7 @@ public class CalendarService implements ICalendarService {
         calendarDao = new CalendarDao();
     }
 
+    @Override
     public List<CalendarEntity> findAll() {
         calendarDao.getConn().openCurrentSession();
         List<CalendarEntity> calendars = calendarDao.findAll();

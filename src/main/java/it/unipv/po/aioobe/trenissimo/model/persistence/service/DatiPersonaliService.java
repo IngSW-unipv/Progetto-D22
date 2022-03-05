@@ -13,6 +13,7 @@ public class DatiPersonaliService implements IDatiPersonaliService {
         datiPersonaliDao = new DatiPersonaliDao();
     }
 
+    @Override
     public List<DatiPersonaliEntity> findAll() {
         datiPersonaliDao.getConn().openCurrentSession();
         List<DatiPersonaliEntity> datiPersonali = datiPersonaliDao.findAll();
@@ -20,6 +21,7 @@ public class DatiPersonaliService implements IDatiPersonaliService {
         return datiPersonali;
     }
 
+    @Override
     public DatiPersonaliEntity findByUsername(String user) {
         datiPersonaliDao.getConn().openCurrentSession();
         DatiPersonaliEntity datiPersonali = datiPersonaliDao.findByUsername(user);
@@ -27,18 +29,21 @@ public class DatiPersonaliService implements IDatiPersonaliService {
         return datiPersonali;
     }
 
+    @Override
     public void persist(DatiPersonaliEntity datiPersonali) {
         datiPersonaliDao.getConn().openCurrentSessionwithTransaction();
         datiPersonaliDao.persist(datiPersonali);
         datiPersonaliDao.getConn().closeCurrentSessionwithTransaction();
     }
 
+    @Override
     public void update(DatiPersonaliEntity datiPersonali) {
         datiPersonaliDao.getConn().openCurrentSessionwithTransaction();
         datiPersonaliDao.update(datiPersonali);
         datiPersonaliDao.getConn().closeCurrentSessionwithTransaction();
     }
 
+    @Override
     public void deleteByUsername(String user) {
         datiPersonaliDao.getConn().openCurrentSessionwithTransaction();
         DatiPersonaliEntity datiPersonali = datiPersonaliDao.findByUsername(user);

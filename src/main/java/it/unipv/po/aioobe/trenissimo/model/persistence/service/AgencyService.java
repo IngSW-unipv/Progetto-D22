@@ -22,6 +22,7 @@ public class AgencyService implements IAgencyService {
         return book;
     }*/
 
+    @Override
     public List<AgencyEntity> findAll() {
         agencyDao.getConn().openCurrentSession();
         List<AgencyEntity> agencies = agencyDao.findAll();
