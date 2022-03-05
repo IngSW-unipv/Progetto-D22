@@ -72,11 +72,14 @@ public class App {
 
         Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
 
-        search.setNumAdulti(3);
+        //search.setNumAdulti(2);
+        search.setNumBambini(1);
+        //search.setNumAnimali(1);
+        search.setNumRagazzi(2);
 
         List<Viaggio> viaggi = search.eseguiRicerca();
 
-        viaggi.forEach((x)->System.out.println("Partenza:" + x.getStazionePartenza().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioPartenza()) + " Arrivo: " + x.getStazioneArrivo().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioArrivo()) + " Num. adulti = " + x.getNumAdulti() + " Num. Cambi = " + x.getNumeroCambi()));
+        viaggi.forEach((x)->System.out.println("Partenza:" + x.getStazionePartenza().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioPartenza()) + " Arrivo: " + x.getStazioneArrivo().getStopName() + " h. " + Utils.secondsToTime(x.getOrarioArrivo()) + " Num. adulti = " + x.getNumAdulti() + " Num. Cambi = " + x.getNumeroCambi() + " Prezzo = " + x.getPrezzo() + "€"));
 
 
         //TODO FILTRI

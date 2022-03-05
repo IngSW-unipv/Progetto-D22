@@ -4,7 +4,9 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 //TODO: non in UML
@@ -83,7 +85,37 @@ public class Viaggio {
         return (int) (cambi.stream().map(x -> x.getDeparture_station_trip()).distinct().count() - 1);
     }
 
-    public String getPrezzo() {
-        return ((new Random()).nextInt(0,15)) + ",00€";
+    public double getPrezzo() {
+
+        double prezzoPerPersona = getDistanza()*0.10; //10 centesimi a km
+
+        //Composizione del prezzo: Adulto prezzo intero, ragazzo 2/3 del prezzo, bambino 1/3 del prezzo, aggiunta di 5 euro per animale
+
+        double prezzo = prezzoPerPersona*this.getNumAdulti()+prezzoPerPersona*((double)2/3)*this.getNumRagazzi()+prezzoPerPersona*((double)1/3)*this.getNumBambini()+5*this.getNumAnimali();
+
+        return Double.valueOf(String.format(Locale.US,"%.2f", prezzo));
+    }
+
+    public double getDistanza() {
+
+        int raggio = 6371; //raggio Terra approssimato in km
+
+        double lat1 = this.getStazionePartenza().getStopLat();
+        double lat2 = this.getStazioneArrivo().getStopLat();
+        double lon1 = this.getStazionePartenza().getStopLon();
+        double lon2 = this.getStazioneArrivo().getStopLon();
+
+        //Haversine formula to calculate distance from lat e lon
+
+        double latDistance = Math.toRadians(lat1-lat2);
+        double lngDistance = Math.toRadians(lon1-lon2);
+
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+      + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+      * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
+
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return raggio * c;
     }
 }
