@@ -47,7 +47,7 @@ public class App {
         }
         System.out.println("\n\n");*/
 
-
+        /*
         AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
@@ -72,15 +72,16 @@ public class App {
         Account.getInstance().addAcquistoToStorico(biglietto);
         Account.getInstance().addAcquistoToStorico(biglietto2);
 
-        /*FiltroOrario fo = new FiltroOrario(Utils.timeToSeconds("12:22:00"), Utils.timeToSeconds("21:00:00"));
+        FiltroOrario fo = new FiltroOrario(Utils.timeToSeconds("12:22:00"), Utils.timeToSeconds("21:00:00"));
 
         System.out.println("DOPO\n");
 
-        fo.esegui(viaggi).forEach((x)->System.out.println(x.toString()));*/
+        fo.esegui(viaggi).forEach((x)->System.out.println(x.toString()));
+        */
 
         //TODO FILTRI
-       // System.out.println(Utils.floor(14,-1));
-       // System.out.println(Utils.ceil(14,-1));
+        //System.out.println(Utils.floor(14,-1));
+        //System.out.println(Utils.ceil(14,-1));
 
         //Registrazione registrazione = Registrazione.getInstance();
         //registrazione.signUp("vale", "vale", "Valeria", "Vergani", "1997-04-14", "valeria.vergani97@gmail.com", "Via Galliano", "17", "Bresso", "20091");
