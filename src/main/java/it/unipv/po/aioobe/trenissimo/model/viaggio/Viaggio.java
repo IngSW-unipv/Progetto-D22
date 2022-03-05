@@ -4,10 +4,8 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 //TODO: non in UML
 public class Viaggio {

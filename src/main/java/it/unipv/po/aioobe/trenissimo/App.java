@@ -8,7 +8,6 @@ import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataTitoloViaggio;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
