@@ -9,6 +9,7 @@ import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.NumeroVia
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.ValoreVoucher;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.view.Login;
 import it.unipv.po.aioobe.trenissimo.view.RicercaView;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ import org.controlsfx.control.ToggleSwitch;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
@@ -132,10 +134,18 @@ public class HomePageController implements Initializable {
             public List<Viaggio> call() {
                 int partenzaId = ((StopsEntity) scbBigliettoPartenza.getValue()).getStopId();
                 int destinazioneId = ((StopsEntity) scbBigliettoDestinazione.getValue()).getStopId();
+                LocalDateTime data = LocalDateTime.of(dtpBigliettoPartenza.getValue(), tmpBigliettoAndata.getValue());
 
-                CSASearch search = new CSASearch();
+                Ricerca search = new Ricerca(partenzaId, destinazioneId, data);
 
-                return search.eseguiRicerca(partenzaId, destinazioneId);
+                search.setNumAdulti((int)spnBigliettoAdulti.getValue());
+                search.setNumRagazzi((int)spnBigliettoRagazzi.getValue());
+                search.setNumBambini((int)spnBigliettoBambini.getValue());
+                search.setNumBambini((int)spnBigliettoAnimali.getValue());
+
+                System.out.println(search);
+
+                return search.eseguiRicerca();
             }
         };
 
@@ -143,9 +153,6 @@ public class HomePageController implements Initializable {
             boxLoading.setVisible(false);
             boxContent.setDisable(false);
             RicercaView.openScene((List<Viaggio>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
-
-//            ((Stage)boxLoading.getScene().getWindow()).setScene()
-
         });
         new Thread(task).start();
     }
