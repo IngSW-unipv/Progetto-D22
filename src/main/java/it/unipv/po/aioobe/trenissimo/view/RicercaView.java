@@ -38,12 +38,15 @@ public class RicercaView extends Application {
 
 
 
-        Viaggio viaggio = new Viaggio();
-        viaggio.setCambi(cambi);
-        printViaggio(viaggio);
+        Viaggio viaggio1 = new Viaggio();
+        viaggio1.setCambi(cambi);
+
+        Viaggio viaggio2 = new Viaggio();
+        viaggio2.setCambi(cambi);
+
         List<Viaggio> viaggi = new ArrayList<>();
-        viaggi.add(viaggio);
-        viaggi.add(viaggio);
+        viaggi.add(viaggio1);
+        viaggi.add(viaggio2);
 
 
 

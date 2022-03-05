@@ -43,4 +43,18 @@ public class Utils {
         }
         System.out.println("\n\n");
     }
+
+    public static double ceil(double value, int places) {
+        double factor =  Math.pow(10, places);
+        value = value * factor;
+        long tmp = (long)Math.ceil(value);
+        return (double) tmp / factor;
+    }
+
+    public static double floor(double value, int places) {
+        double factor =  Math.pow(10, places);
+        value = value * factor;
+        long tmp = (long)Math.floor(value);
+        return (double) tmp / factor;
+    }
 }

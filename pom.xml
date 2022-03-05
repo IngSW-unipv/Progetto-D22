@@ -86,6 +86,10 @@
                                 <option>--add-exports javafx.base/com.sun.javafx.event=com.jfoenix</option>
                                 <option>--add-exports javafx.graphics/com.sun.javafx.stage=com.jfoenix</option>
                                 <option>--add-opens=java.base/java.lang.reflect=com.jfoenix</option>
+                                <option>--add-exports javafx.base/com.sun.javafx.runtime=org.controlsfx.controls</option>
+                                <option>--add-exports javafx.controls/com.sun.javafx.scene.control.behavior=org.controlsfx.controls</option>
+                                <option>--add-exports javafx.controls/com.sun.javafx.scene.control.inputmap=org.controlsfx.controls</option>
+                                <option>--add-exports javafx.graphics/com.sun.javafx.scene.traversal=org.controlsfx.controls</option>
                             </options>
                             <mainClass>it.unipv.po.aioobe.trenissimo/it.unipv.po.aioobe.trenissimo.view.Splashscreen</mainClass>
                             <launcher>app</launcher>

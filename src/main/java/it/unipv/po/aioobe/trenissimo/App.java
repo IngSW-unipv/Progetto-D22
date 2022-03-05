@@ -70,20 +70,21 @@ public class App {
         System.out.println("DOPO");
         storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));*/
 
-        Ricerca search = new Ricerca(1707, 2046, LocalDateTime.now());
-
-        search.setNumAdulti(1);
-        search.setNumBambini(0);
-        search.setNumAnimali(0);
-        search.setNumRagazzi(0);
-
-        List<Viaggio> viaggi = search.eseguiRicerca();
-
-        viaggi.forEach((x)->System.out.println(x.toString()));
+//        Ricerca search = new Ricerca(1707, 2046, LocalDateTime.now());
+//
+//        search.setNumAdulti(1);
+//        search.setNumBambini(0);
+//        search.setNumAnimali(0);
+//        search.setNumRagazzi(0);
+//
+//        List<Viaggio> viaggi = search.eseguiRicerca();
+//
+//        viaggi.forEach((x)->System.out.println(x.toString()));
 
 
         //TODO FILTRI
-
+        System.out.println(Utils.floor(14,-1));
+        System.out.println(Utils.ceil(14,-1));
     }
 
 }
