@@ -44,7 +44,6 @@ public class Carnet implements ITitoloViaggio{
         return this.tipo;
     }
 
-    @Override
     public DurataAbbonamento  getDurata() {
         return this.durata;
     }
@@ -59,7 +58,6 @@ public class Carnet implements ITitoloViaggio{
         return this.id;
     }
 
-    @Override
     public void setDurata(DurataAbbonamento  durata) {
         this.durata = durata;
     }

@@ -9,7 +9,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 
 public class LoginController{
@@ -28,7 +33,7 @@ public class LoginController{
 
 
     @FXML
-    protected void onLogin() throws IOException {
+    protected void onLogin() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
 
         if(Login.getInstance().checkUserPassword(txtUsername.getText(), pwfPassword.getText())) {
             btnAccedi.setBackground(Background.EMPTY);

@@ -1,6 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
+import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;

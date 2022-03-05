@@ -6,13 +6,22 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntit
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbbonamento;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.TipoTitoloViaggio;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
+import it.unipv.po.aioobe.trenissimo.model.user.Login;
+import it.unipv.po.aioobe.trenissimo.model.user.Registrazione;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroOrario;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,7 +29,7 @@ import java.util.logging.Level;
 
 public class App {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
 
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
         /*CSASearch search = new CSASearch();
@@ -38,38 +47,11 @@ public class App {
         }
         System.out.println("\n\n");*/
 
-        /*
+
         AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
         StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
-
-        System.out.println(accountService.findByUsername("Nyquist").toString());
-
-        DatiPersonaliEntity dati = new DatiPersonaliEntity();
-
-        dati = datiPersonaliService.findByUsername("vale1");
-
-        //dati.setMail("valeria.vergani01@universitadipavia.it");
-
-        datiPersonaliService.update(dati);
-
-
-        //come se facessimo il login
-        var account = Account.getInstance();
-        account.setAccount("vale1");
-        account.setDatiPersonali("vale1");
-
-        System.out.println(account.getDatiPersonali());
-        */
-        //viaggiPreferitiService.findByUsername(account.getUsername()).forEach((x)-> System.out.println(x.toString()));
-        //storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));
-
-        /*CorsaSingola biglietto = new CorsaSingola(DurataTitoloViaggio.CORSASINGOLA, viaggi.get(0));
-
-        account.addAcquistoToStorico(biglietto);
-        System.out.println("DOPO");
-        storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));*/
 
         Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
 
@@ -82,15 +64,31 @@ public class App {
 
         viaggi.forEach((x)->System.out.println(x.toString()));
 
-        FiltroOrario fo = new FiltroOrario(Utils.timeToSeconds("12:22:00"), Utils.timeToSeconds("21:00:00"));
+        Login.getInstance().login("vale");
+
+        CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
+        CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+
+        Account.getInstance().addAcquistoToStorico(biglietto);
+        Account.getInstance().addAcquistoToStorico(biglietto2);
+
+        /*FiltroOrario fo = new FiltroOrario(Utils.timeToSeconds("12:22:00"), Utils.timeToSeconds("21:00:00"));
 
         System.out.println("DOPO\n");
 
-        fo.esegui(viaggi).forEach((x)->System.out.println(x.toString()));
+        fo.esegui(viaggi).forEach((x)->System.out.println(x.toString()));*/
 
         //TODO FILTRI
        // System.out.println(Utils.floor(14,-1));
        // System.out.println(Utils.ceil(14,-1));
+
+        //Registrazione registrazione = Registrazione.getInstance();
+        //registrazione.signUp("vale", "vale", "Valeria", "Vergani", "1997-04-14", "valeria.vergani97@gmail.com", "Via Galliano", "17", "Bresso", "20091");
+        //registrazione.signUp("zambo", "zambo", "Fabio", "Zamboni", "1999-07-23", "fabio.zamboni01@universitadipavia.it", "Non lo so", "1", "Vicino Piacenza", "12345");
+
+
+
+
     }
 
 }

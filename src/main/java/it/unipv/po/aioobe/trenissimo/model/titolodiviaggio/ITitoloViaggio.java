@@ -7,12 +7,7 @@ public interface ITitoloViaggio extends IAcquisto {
 
     //getter e setter
     public TipoTitoloViaggio getTipo();
-    public DurataAbbonamento getDurata();
     public double getPrezzo();
     public String getId();
-
-
-    public void setDurata(DurataAbbonamento durata);
-    public void setPrezzo(double prezzo);
 
 }

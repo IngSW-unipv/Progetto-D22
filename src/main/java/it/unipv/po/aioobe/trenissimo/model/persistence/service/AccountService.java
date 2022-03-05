@@ -32,15 +32,16 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public void persist(AccountEntity account) throws SQLException {
+    //public void persist(AccountEntity account) throws SQLException {
+    public void persist(AccountEntity account) {
 
-            try {
+            //try {
                 accountDao.getConn().openCurrentSessionwithTransaction();
                 accountDao.persist(account);
                 accountDao.getConn().closeCurrentSessionwithTransaction();
-            } catch (Exception e) {
+             /*catch (Exception e) {
                 System.out.println(e.getCause().getCause().getLocalizedMessage());
-            }
+            }*/
 
     }
 

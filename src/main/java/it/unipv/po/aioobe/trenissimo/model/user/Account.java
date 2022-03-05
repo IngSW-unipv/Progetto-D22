@@ -52,6 +52,10 @@ public class Account {
         return this.account.getPassword();
     }
 
+    public void setUsername(String username) {
+        this.account.setUsername(username);
+    }
+
     public void setPassword(String password) {
         this.account.setPassword(password);
     }
