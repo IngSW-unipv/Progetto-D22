@@ -8,6 +8,7 @@ import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbbonamento;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroOrario;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
@@ -70,21 +71,26 @@ public class App {
         System.out.println("DOPO");
         storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));*/
 
-//        Ricerca search = new Ricerca(1707, 2046, LocalDateTime.now());
-//
-//        search.setNumAdulti(1);
-//        search.setNumBambini(0);
-//        search.setNumAnimali(0);
-//        search.setNumRagazzi(0);
-//
-//        List<Viaggio> viaggi = search.eseguiRicerca();
-//
-//        viaggi.forEach((x)->System.out.println(x.toString()));
+        Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
 
+        search.setNumAdulti(1);
+        search.setNumBambini(0);
+        search.setNumAnimali(0);
+        search.setNumRagazzi(0);
+
+        List<Viaggio> viaggi = search.eseguiRicerca();
+
+        viaggi.forEach((x)->System.out.println(x.toString()));
+
+        FiltroOrario fo = new FiltroOrario(Utils.timeToSeconds("12:22:00"), Utils.timeToSeconds("21:00:00"));
+
+        System.out.println("DOPO\n");
+
+        fo.esegui(viaggi).forEach((x)->System.out.println(x.toString()));
 
         //TODO FILTRI
-        System.out.println(Utils.floor(14,-1));
-        System.out.println(Utils.ceil(14,-1));
+       // System.out.println(Utils.floor(14,-1));
+       // System.out.println(Utils.ceil(14,-1));
     }
 
 }
