@@ -3,19 +3,21 @@ package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Abbonamento implements ITitoloViaggio{
     private TipoTitoloViaggio tipo;
-    private DurataTitoloViaggio durata;
+    private DurataAbbonamento  durata;
     private double prezzo;
-    private UUID id;
+    private String id;
+    private static final AtomicInteger count = new AtomicInteger(0);
     private String stazionePartenza;
     private String stazioneArrivo;
 
-    public Abbonamento(DurataTitoloViaggio durata, UUID id, String stazionePartenza, String stazioneArrivo) {
+    public Abbonamento(DurataAbbonamento  durata, String stazionePartenza, String stazioneArrivo) {
         this.tipo = TipoTitoloViaggio.ABBONAMENTO;
         this.durata = durata;
-        this.id = id; //da vedere, come in interrail
+        this.id = "AB" + String.format("%03d", count.incrementAndGet());
         this.stazionePartenza = stazionePartenza;
         this.stazioneArrivo = stazioneArrivo;
     }
@@ -43,7 +45,7 @@ public class Abbonamento implements ITitoloViaggio{
     }
 
     @Override
-    public DurataTitoloViaggio getDurata() {
+    public DurataAbbonamento  getDurata() {
         return this.durata;
     }
 
@@ -53,22 +55,17 @@ public class Abbonamento implements ITitoloViaggio{
     }
 
     @Override
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
     @Override
-    public void setDurata(DurataTitoloViaggio durata) {
+    public void setDurata(DurataAbbonamento  durata) {
         this.durata = durata;
     }
 
     @Override
     public void setPrezzo(double prezzo) {
-        // todo
-    }
-
-    @Override
-    public void setId(UUID id) {
         // todo
     }
 }

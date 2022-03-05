@@ -7,28 +7,44 @@ import java.util.Objects;
 @Entity
 @Table(name = "dati_personali", schema = "trenissimo")
 public class DatiPersonaliEntity {
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "account_id")
-    private Integer accountId;
-    @Column(name = "nome")
+    @Column(name = "username", nullable = false, length = 45)
+    private String username;
+    @Basic
+    @Column(name = "nome", nullable = false, length = 45)
     private String nome;
-    @Column(name = "cognome")
+    @Basic
+    @Column(name = "cognome", nullable = false, length = 45)
     private String cognome;
-    @Column(name = "data_nascita")
+    @Basic
+    @Column(name = "data_nascita", nullable = false)
     private Date dataNascita;
     @Basic
-    @Column(name = "indirizzo")
-    private String indirizzo;
-    @Basic
-    @Column(name = "mail")
+    @Column(name = "mail", nullable = false, length = 45)
     private String mail;
+    @Basic
+    @Column(name = "via", nullable = true, length = 255)
+    private String via;
+    @Basic
+    @Column(name = "civico", nullable = true)
+    private Integer civico;
+    @Basic
+    @Column(name = "citta", nullable = true, length = 255)
+    private String citta;
+    @Basic
+    @Column(name = "cap", nullable = true)
+    private Integer cap;
+    @OneToOne
+    @JoinColumn(name = "username", referencedColumnName = "username", nullable = false, insertable = false, updatable = false)
+    private AccountEntity accountByUsername;
 
-    public Integer getAccountId() {
-        return accountId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNome() {
@@ -55,14 +71,6 @@ public class DatiPersonaliEntity {
         this.dataNascita = dataNascita;
     }
 
-    public String getIndirizzo() {
-        return indirizzo;
-    }
-
-    public void setIndirizzo(String indirizzo) {
-        this.indirizzo = indirizzo;
-    }
-
     public String getMail() {
         return mail;
     }
@@ -71,28 +79,71 @@ public class DatiPersonaliEntity {
         this.mail = mail;
     }
 
+    public String getVia() {
+        return via;
+    }
+
+    public void setVia(String via) {
+        this.via = via;
+    }
+
+    public Integer getCivico() {
+        return civico;
+    }
+
+    public void setCivico(Integer civico) {
+        this.civico = civico;
+    }
+
+    public String getCitta() {
+        return citta;
+    }
+
+    public void setCitta(String citta) {
+        this.citta = citta;
+    }
+
+    public Integer getCap() {
+        return cap;
+    }
+
+    public void setCap(Integer cap) {
+        this.cap = cap;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DatiPersonaliEntity that = (DatiPersonaliEntity) o;
-        return Objects.equals(accountId, that.accountId) && Objects.equals(nome, that.nome) && Objects.equals(cognome, that.cognome) && Objects.equals(dataNascita, that.dataNascita) && Objects.equals(indirizzo, that.indirizzo) && Objects.equals(mail, that.mail);
+        return Objects.equals(username, that.username) && Objects.equals(nome, that.nome) && Objects.equals(cognome, that.cognome) && Objects.equals(dataNascita, that.dataNascita) && Objects.equals(mail, that.mail) && Objects.equals(via, that.via) && Objects.equals(civico, that.civico) && Objects.equals(citta, that.citta) && Objects.equals(cap, that.cap);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, nome, cognome, dataNascita, indirizzo, mail);
+        return Objects.hash(username, nome, cognome, dataNascita, mail, via, civico, citta, cap);
+    }
+
+    public AccountEntity getAccountByUsername() {
+        return accountByUsername;
+    }
+
+    public void setAccountByUsername(AccountEntity accountByUsername) {
+        this.accountByUsername = accountByUsername;
     }
 
     @Override
     public String toString() {
         return "DatiPersonaliEntity{" +
-                "accountId=" + accountId +
+                "username='" + username + '\'' +
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", dataNascita=" + dataNascita +
-                ", indirizzo='" + indirizzo + '\'' +
                 ", mail='" + mail + '\'' +
+                ", via='" + via + '\'' +
+                ", civico=" + civico +
+                ", citta='" + citta + '\'' +
+                ", cap=" + cap +
                 '}';
     }
 }

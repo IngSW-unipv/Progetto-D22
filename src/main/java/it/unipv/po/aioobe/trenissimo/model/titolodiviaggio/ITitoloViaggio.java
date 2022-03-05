@@ -1,20 +1,18 @@
 package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 
+import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 
-import java.util.UUID;
-
-public interface ITitoloViaggio {
+public interface ITitoloViaggio extends IAcquisto {
 
     //getter e setter
     public TipoTitoloViaggio getTipo();
-    public DurataTitoloViaggio getDurata();
+    public DurataAbbonamento getDurata();
     public double getPrezzo();
-    public UUID getId();
+    public String getId();
 
 
-    public void setDurata(DurataTitoloViaggio durata);
+    public void setDurata(DurataAbbonamento durata);
     public void setPrezzo(double prezzo);
-    public void setId(UUID id);
 
 }

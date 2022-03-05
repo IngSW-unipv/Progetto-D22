@@ -1,0 +1,13 @@
+.body
+{
+    -fx-background-image: url("sfondoHomePage.jpg");
+}
+
+.tab-header-background
+{
+    -fx-opacity: 0;
+}
+
+.tab{
+    -fx-background-color: white;
+}

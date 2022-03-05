@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.StopsDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IStopsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStopsService;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ public class StopsService implements IStopsService {
         stopsDao = new StopsDao();
     }
 
+    @Override
     public List<StopsEntity> findAll() {
         stopsDao.getConn().openCurrentSession();
         List<StopsEntity> stops = stopsDao.findAll();

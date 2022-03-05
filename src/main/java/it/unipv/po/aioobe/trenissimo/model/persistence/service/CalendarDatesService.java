@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.CalendarDatesDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.CalendarDatesEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.ICalendarDatesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.ICalendarDatesService;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ public class CalendarDatesService implements ICalendarDatesService {
         calendarDatesDao = new CalendarDatesDao();
     }
 
+    @Override
     public List<CalendarDatesEntity> findAll() {
         calendarDatesDao.getConn().openCurrentSession();
         List<CalendarDatesEntity> calendarDates = calendarDatesDao.findAll();

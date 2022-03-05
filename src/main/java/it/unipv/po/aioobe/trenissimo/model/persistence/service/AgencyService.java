@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.AgencyDao;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IAgencyService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IAgencyService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AgencyEntity;
 
 import java.util.List;
@@ -22,6 +22,7 @@ public class AgencyService implements IAgencyService {
         return book;
     }*/
 
+    @Override
     public List<AgencyEntity> findAll() {
         agencyDao.getConn().openCurrentSession();
         List<AgencyEntity> agencies = agencyDao.findAll();

@@ -4,7 +4,6 @@ import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.*;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
 import java.util.*;
@@ -16,7 +15,6 @@ import java.util.*;
  */
 public class CSASearch {
     public static final int MAX_STATIONS = 100000;
-
 
     private List<Connection> generaTimetable(List<RoutesEntity> routesList, List<StopsEntity> stopsList, List<StopTimesEntity> stopTimesList, List<TripsEntity> tripsList) {
         List<Connection> timetable = new ArrayList<Connection>();
@@ -88,18 +86,18 @@ public class CSASearch {
         if (departure_station <= MAX_STATIONS && arrival_station <= MAX_STATIONS) {
             // CSA Main loop
             int earliest = Integer.MAX_VALUE;
-            timetable = timetable.stream().sorted(Comparator.comparingInt(x -> x.arrival_timestamp)).toList();
+            timetable = timetable.stream().sorted(Comparator.comparingInt(x -> x.getArrival_timestamp())).toList();
 
             for (Connection connection : timetable) {
-                if (connection.departure_timestamp >= earliest_arrival[connection.departure_station] &&
-                        connection.arrival_timestamp < earliest_arrival[connection.arrival_station]) {
-                    earliest_arrival[connection.arrival_station] = connection.arrival_timestamp;
-                    in_connection[connection.arrival_station] = connection;
+                if (connection.getDeparture_timestamp() >= earliest_arrival[connection.getDeparture_station()] &&
+                        connection.getArrival_timestamp() < earliest_arrival[connection.getArrival_station()]) {
+                    earliest_arrival[connection.getArrival_station()] = connection.getArrival_timestamp();
+                    in_connection[connection.getArrival_station()] = connection;
 
-                    if (connection.arrival_station == arrival_station) {
-                        earliest = Math.min(earliest, connection.arrival_timestamp);
+                    if (connection.getArrival_station() == arrival_station) {
+                        earliest = Math.min(earliest, connection.getArrival_timestamp());
                     }
-                } else if (connection.arrival_timestamp > earliest) {
+                } else if (connection.getArrival_timestamp() > earliest) {
                     continue;
                 }
             }
@@ -113,14 +111,14 @@ public class CSASearch {
             Connection last_connection = in_connection[arrival_station];
             while (last_connection != null) {
                 route.add(last_connection);
-                last_connection = in_connection[last_connection.departure_station];
+                last_connection = in_connection[last_connection.getDeparture_station()];
             }
             Collections.reverse(route);
             return route;
         }
     }
 
-    public List<ViaggioAlt> eseguiRicerca(int departureStopId, int arrivalStopId) {
+    public List<Viaggio> eseguiRicerca(int departureStopId, int arrivalStopId) {
 
 
         // Database data load
@@ -138,7 +136,7 @@ public class CSASearch {
         // compute(...) tira fuori solo il primo viaggio possibile a partire dal departure_time, bisogna ciclare finche ritorna null
         // TODO: da rivedere, magari fatto meglio? sto while true non mi piace
 
-        List<ViaggioAlt> viaggi = new ArrayList<ViaggioAlt>();
+        List<Viaggio> viaggi = new ArrayList<Viaggio>();
 
         var lastTime = 0;
 
@@ -146,13 +144,13 @@ public class CSASearch {
             var result = compute(departureStopId, arrivalStopId, lastTime, timetable);
             if (result == null) { break; }
 
-            var viaggio = new ViaggioAlt();
+            var viaggio = new Viaggio();
             viaggio.setCambi(result);
             viaggi.add(viaggio);
 
 
 
-            lastTime = result.get(0).departure_timestamp + 1;
+            lastTime = result.get(0).getDeparture_timestamp() + 1;
         }
 
 

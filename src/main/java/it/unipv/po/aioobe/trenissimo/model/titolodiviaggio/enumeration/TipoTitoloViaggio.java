@@ -4,5 +4,6 @@ public enum TipoTitoloViaggio {
     BIGLIETTOCORSASINGOLA,
     ABBONAMENTO,
     CARNET,
-    INTERRAIL;
+    INTERRAIL,
+    VOUCHER;
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane style="-fx-background-color: transparent;" stylesheets="@splashscreen.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.SplashscreenController">
+   <children>
+      <BorderPane fx:id="mainLayout" prefHeight="400.0" prefWidth="600.0" styleClass="body" stylesheets="@splashscreen.css" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
+         <bottom>
+            <VBox>
+                <children>
+                  <StackPane>
+                     <children>
+                          <ProgressBar maxWidth="1.7976931348623157E308" prefHeight="24.0" progress="-1" />
+                          <Label fx:id="lblStatus" text="Label" />
+                     </children>
+                  </StackPane>
+                </children>
+               <BorderPane.margin>
+                  <Insets bottom="36.0" left="36.0" right="36.0" top="36.0" />
+               </BorderPane.margin>
+            </VBox>
+         </bottom>
+         <effect>
+            <DropShadow height="32.0" radius="15.5" width="32.0">
+               <color>
+                  <Color opacity="0.29004329442977905" />
+               </color>
+            </DropShadow>
+         </effect>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,35 @@
+.body
+{
+    -fx-background-image: url("./sfondoHomePage.jpg");
+}
+.tab-header-background
+{
+    -fx-opacity: 0;
+}
+.tab{
+    -fx-background-color: white;
+}
+.title{
+    -fx-font-weight: bold;
+}
+.data{
+    -fx-text-fill: grey;
+}
+.button{
+    -fx-background-color: #f2f3f7;
+    -fx-background-radius: 8;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8;
+}
+.textField{
+    -fx-background-color: #f2f3f7;
+    -fx-background-radius: 8;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8;
+}
+.button:hover{
+    -fx-background-color: rgba(187, 187, 187, 0.50);
+    -fx-background-radius: 8;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8;
+}

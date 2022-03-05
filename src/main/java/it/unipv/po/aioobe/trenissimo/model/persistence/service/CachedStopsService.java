@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.ICached;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IStopsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStopsService;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ public class CachedStopsService implements IStopsService, ICached {
 
     private List<StopsEntity> cachedFindAll = null;
 
+    @Override
     public List<StopsEntity> findAll() {
         if (cachedFindAll == null) {
             cachedFindAll = stopsService.findAll();

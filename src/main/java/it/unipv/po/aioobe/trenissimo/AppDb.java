@@ -5,12 +5,11 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntit
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 
 import java.sql.Date;
-import java.text.ParseException;
 import java.util.logging.Level;
 
 public class AppDb {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args){
 
         //Per non mostrare in console il log di cfg di hibernate non fondamentali (severe)
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
@@ -54,27 +53,32 @@ public class AppDb {
         AccountEntity zambo = new AccountEntity();
         DatiPersonaliEntity dati = new DatiPersonaliEntity();
         //login
-        zambo.setAccountId(3);
+        zambo.setUsername("zambo");
 
 
         String myDate = "1999-7-23";
         Date date=Date.valueOf(myDate);
 
         dati.setDataNascita(date);
-        dati.setAccountId(zambo.getAccountId());
+        //dati.setAccountId(zambo.getAccountId());
         dati.setNome("Fabio");
-        dati.setCognome("Zamboni");
+        dati.setCognome("Vergani");
         dati.setMail("fabio.zamboni01@universitadipavia.it");
-        dati.setIndirizzo("Loc. Albareto 57");
+        dati.setVia("Loc. Albareto");
+        dati.setCivico(57);
+        dati.setCap(29010);
+        dati.setCitta("Ziano Piacentino");
         datiPersonaliService.update(dati);
 
         storicoAcquistiService.findAll().forEach((x)-> System.out.println(x.toString()));
-
-        System.out.println("Dopo azione\n");
         accountService.findAll().forEach((x)-> System.out.println(x.toString()));
-        System.out.println(datiPersonaliService.findById(zambo.getAccountId().toString()).toString());
+        //System.out.println(datiPersonaliService.findById(zambo.getAccountId().toString()).toString());
+        System.out.println("\n");
 
-        System.out.println(accountService.findByUsername("Nyquist").toString());
+        //System.out.println(accountService.findByUsername("Nyquis") == null ? "NA" : accountService.findByUsername("Nyquis").toString());
+
+        /**/
+
 
 
 

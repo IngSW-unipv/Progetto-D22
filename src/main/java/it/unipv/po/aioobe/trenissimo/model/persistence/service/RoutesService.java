@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.dao.RoutesDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.RoutesEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IRoutesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IRoutesService;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ public class RoutesService implements IRoutesService {
         routesDao = new RoutesDao();
     }
 
+    @Override
     public List<RoutesEntity> findAll() {
         routesDao.getConn().openCurrentSession();
         List<RoutesEntity> routes = routesDao.findAll();

@@ -1,11 +1,8 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.service;
 
-import it.unipv.po.aioobe.trenissimo.model.persistence.dao.StopTimesDao;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.RoutesEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopTimesEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.ICached;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IRoutesService;
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.IStopTimesService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStopTimesService;
 
 import java.util.List;
 
@@ -26,6 +23,7 @@ public class CachedStopTimesService implements IStopTimesService, ICached {
 
     private List<StopTimesEntity> cachedFindAll = null;
 
+    @Override
     public List<StopTimesEntity> findAll() {
         if (cachedFindAll == null) {
             cachedFindAll = stopTimesService.findAll();

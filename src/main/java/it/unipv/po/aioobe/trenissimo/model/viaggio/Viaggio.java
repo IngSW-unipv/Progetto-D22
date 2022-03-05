@@ -1,192 +1,139 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio;
 
-import it.unipv.po.aioobe.trenissimo.model.viaggio.posizione.Posizione;
+import it.unipv.po.aioobe.trenissimo.model.Utils;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.ModalitaViaggio;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.UUID;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class Viaggio implements Comparable<Viaggio>, IDataViaggioUtils {
-    private String stazionePartenza;
-    private String stazioneArrivo;
-    private UUID idTreno;
-    private Posizione posizionePartenza;
-    private Posizione posizioneArrivo;
-    private double prezzo;
-    private double durata; //non esiste la classe Time;
-    private LocalDate data;
-    private LocalTime ora;
+//TODO: non in UML
+public class Viaggio {
+
     private int numAdulti;
     private int numRagazzi;
     private int numBambini;
     private int numAnimali;
-    private int numMaxCambi;
-    private ModalitaViaggio modalitaViaggio;
-    private List<Connection> cambi; //TODO: non in UML
+    private List<Connection> cambi;
 
-    public Viaggio(String stazionePartenza, String stazioneArrivo, UUID idTreno, Posizione posizionePartenza, Posizione posizioneArrivo) {
-        this.stazionePartenza = stazionePartenza;
-        this.stazioneArrivo = stazioneArrivo;
-        this.idTreno = idTreno;
-        this.posizionePartenza = posizionePartenza;
-        this.posizioneArrivo = posizioneArrivo;
-        this.durata = durata; //da calcolare;
-        this.prezzo = prezzo; //da calcolare;
+    private static final AtomicInteger count = new AtomicInteger(0);
+
+
+    public Viaggio() {}
+
+    public int getNumAdulti() {
+        return numAdulti;
     }
 
-    public Viaggio() {
+    public void setNumAdulti(int numAdulti) {
+        this.numAdulti = numAdulti;
     }
 
-    public String getStazionePartenza() {
-        return stazionePartenza;
+    public int getNumRagazzi() {
+        return numRagazzi;
     }
 
-    public void setStazionePartenza(String stazionePartenza) {
-        this.stazionePartenza = stazionePartenza;
+    public void setNumRagazzi(int numRagazzi) {
+        this.numRagazzi = numRagazzi;
     }
 
-
-    public String getStazioneArrivo() {
-        return stazioneArrivo;
+    public int getNumBambini() {
+        return numBambini;
     }
 
-    public void setStazioneArrivo(String stazioneArrivo) {
-        this.stazioneArrivo = stazioneArrivo;
+    public void setNumBambini(int numBambini) {
+        this.numBambini = numBambini;
     }
 
-    public UUID getIdTreno() {
-        return idTreno;
+    public int getNumAnimali() {
+        return numAnimali;
     }
 
-    public void setIdTreno(UUID idTreno) {
-        this.idTreno = idTreno;
+    public void setNumAnimali(int numAnimali) {
+        this.numAnimali = numAnimali;
     }
 
-    public Posizione getPosizionePartenza() {
-        return posizionePartenza;
+    public List<Connection> getCambi() {
+        return cambi;
     }
 
-    public void setPosizionePartenza(Posizione posizionePartenza) {
-        this.posizionePartenza = posizionePartenza;
+    public void setCambi(List<Connection> cambi) {
+        this.cambi = cambi;
     }
 
-    public Posizione getPosizioneArrivo() {
-        return posizioneArrivo;
+    public StopsEntity getStazionePartenza() {
+        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(0).getDeparture_station())).findFirst().get();
     }
 
-    public void setPosizioneArrivo(Posizione posizioneArrivo) {
-        this.posizioneArrivo = posizioneArrivo;
+    public StopsEntity getStazioneArrivo() {
+        return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(cambi.size() - 1).getArrival_station())).findFirst().get();
+    }
+
+    public int getOrarioPartenza(){
+        return cambi.get(0).getDeparture_timestamp();
+    }
+
+    public int getOrarioArrivo(){
+        return cambi.get(cambi.size() - 1).getArrival_timestamp();
+    }
+
+    public int getDurata() {
+        return cambi.get(cambi.size() - 1).getArrival_timestamp() - cambi.get(0).getDeparture_timestamp();
+    }
+
+    public int getNumeroCambi() {
+        // TODO: non conta casi in cui il treno torna sulla stessa tratta (eg. R1 -> R2 -> R1 viene contato come un cambio solo invece che due)
+        return (int) (cambi.stream().map(x -> x.getDeparture_station_trip()).distinct().count() - 1);
     }
 
     public double getPrezzo() {
-        return prezzo;
+
+        double prezzoPerPersona = getDistanza()*0.10; //10 centesimi a km
+
+        //Composizione del prezzo: Adulto prezzo intero, ragazzo 2/3 del prezzo, bambino 1/3 del prezzo, aggiunta di 5 euro per animale
+
+        double prezzo = prezzoPerPersona*this.getNumAdulti()+prezzoPerPersona*((double)2/3)*this.getNumRagazzi()+prezzoPerPersona*((double)1/3)*this.getNumBambini()+5*this.getNumAnimali();
+
+        return Double.valueOf(String.format(Locale.US,"%.2f", prezzo));
     }
 
-    public void setPrezzo(double prezzo) {
-        this.prezzo = prezzo;
-    }
+    public double getDistanza() {
 
-    public double getDurata() {
-        return durata;
-    }
+        int raggio = 6371; //raggio Terra approssimato in km
 
-    public void setDurata(double durata) {
-        this.durata = durata;
-    }
+        double lat1 = this.getStazionePartenza().getStopLat();
+        double lat2 = this.getStazioneArrivo().getStopLat();
+        double lon1 = this.getStazionePartenza().getStopLon();
+        double lon2 = this.getStazioneArrivo().getStopLon();
 
-    public double calcolaPrezzo(Posizione pos, double COSA) { //abbiamo messo double in uml, ma cosa intendevamo? costante?
-        return 9; // todo
-    }
+        //Haversine formula to calculate distance from lat e lon
 
-    @Override
-    public int compareTo(Viaggio v) {
-        return (int) (this.prezzo - v.prezzo);
-    }
+        double latDistance = Math.toRadians(lat1-lat2);
+        double lngDistance = Math.toRadians(lon1-lon2);
 
-    @Override
-    public void setNumMaxCambi(int cambi) {
-        this.numMaxCambi = cambi;
-    }
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+      + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+      * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
 
-    @Override
-    public void setModalitaViaggio(ModalitaViaggio modalitaViaggio) {
-        this.modalitaViaggio = modalitaViaggio;
-    }
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    @Override
-    public void setNumAnimali(int animali) {
-        this.numAnimali = animali;
+        return raggio * c;
     }
 
     @Override
-    public void setNumBambini(int bambini) {
-        this.numBambini = bambini;
+    public String toString() {
+        return "Soluzione Viaggio " + count.incrementAndGet() + "\n" +
+                "Partenza=" + getStazionePartenza().getStopName() +
+                ", h. " + Utils.secondsToTime(getOrarioPartenza()) +
+                " -> Arrivo=" + getStazioneArrivo().getStopName() +
+                ", h. " + Utils.secondsToTime(getOrarioArrivo()) +
+                "\nnumAdulti=" + numAdulti +
+                ", numRagazzi=" + numRagazzi +
+                ", numBambini=" + numBambini +
+                ", numAnimali=" + numAnimali +
+                "\nprezzo=" + getPrezzo() + "€" +
+                "\n";
     }
-
-    @Override
-    public void setNumRagazzi(int ragazzi) {
-        this.numRagazzi = ragazzi;
-    }
-
-    @Override
-    public void setNumAdulti(int adulti) {
-        this.numAdulti = adulti;
-    }
-
-    @Override
-    public void setOra(LocalTime ora) {
-        this.ora = ora;
-    }
-
-    @Override
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    @Override
-    public int getNumMaxCambi() {
-        return this.numMaxCambi;
-    }
-
-    @Override
-    public ModalitaViaggio getModalitaViaggio() {
-        return this.modalitaViaggio;
-    }
-
-    @Override
-    public int getNumAnimali() {
-        return this.numAnimali;
-    }
-
-    @Override
-    public int getNumBambini() {
-        return this.numBambini;
-    }
-
-    @Override
-    public int getNumRagazzi() {
-        return this.numRagazzi;
-    }
-
-    @Override
-    public int getNumAdulti() {
-        return this.numAdulti;
-    }
-
-    @Override
-    public LocalTime getOra() {
-        return this.ora;
-    }
-
-    @Override
-    public LocalDate getData() {
-        return this.data;
-    }
-
-    public List<Connection> getCambi() { return cambi; } //TODO: non in IDataViaggioUtils
-
-    public void setCambi(List<Connection> cambi) { this.cambi = cambi; } //TODO: non in IDataViaggioUtils
 }

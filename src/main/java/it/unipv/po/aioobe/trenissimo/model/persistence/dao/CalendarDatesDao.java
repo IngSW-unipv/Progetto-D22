@@ -22,6 +22,7 @@ public class CalendarDatesDao implements ICalendarDatesDao {
         this.conn = conn;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public List<CalendarDatesEntity> findAll() {
         List<CalendarDatesEntity> calendarDatesEntities = (List<CalendarDatesEntity>) conn.getCurrentSession().createQuery("from CalendarDatesEntity").list();

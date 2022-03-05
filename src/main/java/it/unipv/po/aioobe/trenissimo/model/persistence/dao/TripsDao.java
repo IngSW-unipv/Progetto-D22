@@ -21,6 +21,8 @@ public class TripsDao implements ITripsDao {
     public void setConn(HibernateConnection conn) {
         this.conn = conn;
     }
+
+    @Override
     @SuppressWarnings("unchecked")
     public List<TripsEntity> findAll() {
         List<TripsEntity> tripsEntities = (List<TripsEntity>) conn.getCurrentSession().createQuery("from TripsEntity ").list();

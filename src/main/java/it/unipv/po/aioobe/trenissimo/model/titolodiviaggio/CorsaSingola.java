@@ -3,19 +3,20 @@ package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
-import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CorsaSingola implements ITitoloViaggio{
     private TipoTitoloViaggio tipo;
-    private DurataTitoloViaggio durata;
+    private DurataAbbonamento  durata;
     private double prezzo;
-    private UUID id;
+    private String id;
+    private static final AtomicInteger count = new AtomicInteger(0);
     private Viaggio viaggio;
 
-    public CorsaSingola(DurataTitoloViaggio durata, UUID id, Viaggio viaggio) {
+    public CorsaSingola(DurataAbbonamento  durata, Viaggio viaggio) {
         this.tipo = TipoTitoloViaggio.BIGLIETTOCORSASINGOLA;
         this.durata = durata;
-        this.id = id;
+        this.id = "CS" + String.format("%03d", count.incrementAndGet());
         this.viaggio = viaggio;
     }
 
@@ -30,7 +31,7 @@ public class CorsaSingola implements ITitoloViaggio{
     }
 
     @Override
-    public DurataTitoloViaggio getDurata() {
+    public DurataAbbonamento  getDurata() {
         return this.durata;
     }
 
@@ -40,22 +41,17 @@ public class CorsaSingola implements ITitoloViaggio{
     }
 
     @Override
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
     @Override
-    public void setDurata(DurataTitoloViaggio durata) {
+    public void setDurata(DurataAbbonamento  durata) {
         this.durata = durata;
     }
 
     @Override
     public void setPrezzo(double prezzo) {
-        // todo
-    }
-
-    @Override
-    public void setId(UUID id) {
         // todo
     }
 }

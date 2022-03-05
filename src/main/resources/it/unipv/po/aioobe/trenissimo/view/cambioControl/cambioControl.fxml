@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <GridPane fx:id="boxStart" minHeight="0.0" VBox.vgrow="NEVER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints fillWidth="false" halignment="CENTER" minWidth="25.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label fx:id="lblStartTime" text="14:26" textAlignment="RIGHT" GridPane.halignment="RIGHT">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lblStartStation" text="Casteggio" GridPane.columnIndex="2">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <StackPane GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+                    <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="15.0" style="-fx-background-color: #007519; -fx-background-radius: 8 8 0 0;" StackPane.alignment="BOTTOM_CENTER" />
+                        <Circle fill="WHITE" radius="4.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                    </children>
+                </StackPane>
+            </children>
+        </GridPane>
+        <GridPane fx:id="boxSpacer" minHeight="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints fillWidth="false" halignment="CENTER" minWidth="25.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <StackPane GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+                    <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="15.0" style="-fx-background-color: #007519;" StackPane.alignment="BOTTOM_CENTER" />
+                    </children>
+                </StackPane>
+            </children>
+        </GridPane>
+        <GridPane fx:id="boxEnd" minHeight="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints fillWidth="false" halignment="CENTER" minWidth="25.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="15.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label fx:id="lblEndTime" text="14:26" textAlignment="RIGHT" GridPane.halignment="RIGHT">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lblEndStation" text="Casteggio" GridPane.columnIndex="2">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <StackPane GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+                    <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="15.0" style="-fx-background-color: #007519; -fx-background-radius: 0 0 8 8;" StackPane.alignment="TOP_CENTER" />
+                        <Circle fill="WHITE" radius="4.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                    </children>
+                </StackPane>
+            </children>
+        </GridPane>
+        <GridPane fx:id="boxMiddle" minHeight="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints fillWidth="false" halignment="CENTER" minWidth="25.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="15.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label fx:id="lblMiddleTime" text="14:26" textAlignment="RIGHT" GridPane.halignment="RIGHT">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lblMiddleStation" text="Casteggio" GridPane.columnIndex="2">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <StackPane GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.valignment="BOTTOM" GridPane.vgrow="NEVER">
+                    <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="15.0" style="-fx-background-color: #007519;" StackPane.alignment="TOP_CENTER" />
+                        <Circle fill="#ffffff00" radius="4.5" stroke="WHITE" strokeType="INSIDE" />
+                    </children>
+                </StackPane>
+            </children>
+        </GridPane>
+    </children>
+</fx:root>

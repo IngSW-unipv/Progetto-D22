@@ -2,7 +2,6 @@ package it.unipv.po.aioobe.trenissimo.model;
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.Voucher;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.*;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
@@ -29,10 +28,13 @@ public class Trenissimo {
         return profilo;
     }
 
+    /*
     public Account creaAccount(String username, String passwordHash){
         // todo
         return new Account();
     }
+
+     */
 
     public boolean login(String username, String password){
         // todo
@@ -68,10 +70,5 @@ public class Trenissimo {
     public ITitoloViaggio recuperoTitoloViaggio(String idBiglietto){
         // todo
         return null; //da cambiare, chiaramente
-    }
-
-    public boolean memorizzaViaggioPreferito(IDataViaggioUtils viaggio){
-        // todo
-        return true;
     }
 }
