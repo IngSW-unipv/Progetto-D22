@@ -47,9 +47,9 @@ public class RicercaView extends Application {
         cambi.add(new Connection(5318, 5319, 31200, 31500, 14158093, 14158093));
 
 
-        ViaggioAlt viaggio = new ViaggioAlt();
+        Viaggio viaggio = new Viaggio();
         viaggio.setCambi(cambi);
-        List<ViaggioAlt> viaggi = new ArrayList<>();
+        List<Viaggio> viaggi = new ArrayList<>();
         viaggi.add(viaggio);
         viaggi.add(viaggio);
 
@@ -65,8 +65,7 @@ public class RicercaView extends Application {
         launch();
     }
 
-    public static void open(List<Viaggio> viaggi, Window owner){
-    public static void openWindow(List<ViaggioAlt> viaggi, Window owner){
+    public static void openWindow(List<Viaggio> viaggi, Window owner){
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("ricercaView/ricercaView.fxml"));
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
@@ -83,7 +82,7 @@ public class RicercaView extends Application {
         stage.show();
     }
 
-    public static void openScene(List<ViaggioAlt> viaggi, Window owner){
+    public static void openScene(List<Viaggio> viaggi, Window owner){
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("ricercaView/ricercaView.fxml"));
 
         Parent scene = null;

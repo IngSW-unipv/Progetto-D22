@@ -1,7 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
 import it.unipv.po.aioobe.trenissimo.controller.RicercaController;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -2,7 +2,7 @@ package it.unipv.po.aioobe.trenissimo.view;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,8 +63,8 @@ public class CambioControl extends VBox {
             case START:
                 boxStart.setVisible(true);
                 boxStart.setPrefHeight(-1);
-                lblStartTime.setText(Utils.secondsToTime(cambio.departure_timestamp, false));
-                lblStartStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.departure_station).findFirst().get().getStopName());
+                lblStartTime.setText(Utils.secondsToTime(cambio.getDeparture_timestamp(), false));
+                lblStartStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.getDeparture_station()).findFirst().get().getStopName());
                 break;
             case SPACER:
                 boxSpacer.setVisible(true);
@@ -73,20 +73,20 @@ public class CambioControl extends VBox {
             case END:
                 boxEnd.setVisible(true);
                 boxEnd.setPrefHeight(-1);
-                lblEndTime.setText(Utils.secondsToTime(cambioPrev.arrival_timestamp, false));
-                lblEndStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.departure_station).findFirst().get().getStopName());
+                lblEndTime.setText(Utils.secondsToTime(cambioPrev.getArrival_timestamp(), false));
+                lblEndStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.getDeparture_station()).findFirst().get().getStopName());
                 break;
             case MIDDLE:
                 boxMiddle.setVisible(true);
                 boxMiddle.setPrefHeight(-1);
-                lblMiddleTime.setText(Utils.secondsToTime(cambioPrev.arrival_timestamp, false) + "\n" + Utils.secondsToTime(cambio.departure_timestamp, false));
-                lblMiddleStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.departure_station).findFirst().get().getStopName());
+                lblMiddleTime.setText(Utils.secondsToTime(cambioPrev.getArrival_timestamp(), false) + "\n" + Utils.secondsToTime(cambio.getDeparture_timestamp(), false));
+                lblMiddleStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.getDeparture_station()).findFirst().get().getStopName());
                 break;
             case END_LAST:
                 boxEnd.setVisible(true);
                 boxEnd.setPrefHeight(-1);
-                lblEndTime.setText(Utils.secondsToTime(cambio.arrival_timestamp, false));
-                lblEndStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.arrival_station).findFirst().get().getStopName());
+                lblEndTime.setText(Utils.secondsToTime(cambio.getArrival_timestamp(), false));
+                lblEndStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.getArrival_station()).findFirst().get().getStopName());
                 break;
         }
     }

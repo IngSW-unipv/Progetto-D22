@@ -5,7 +5,7 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataTitoloViaggio;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbbonamento;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;

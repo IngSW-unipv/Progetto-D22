@@ -7,7 +7,7 @@ import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbb
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataInterrail;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.NumeroViaggiCarnet;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.ValoreVoucher;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ViaggioAlt;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.view.Login;
 import it.unipv.po.aioobe.trenissimo.view.RicercaView;
@@ -142,22 +142,22 @@ public class HomePageController implements Initializable {
     protected void onRicerca() {
         boxLoading.setVisible(true);
         boxContent.setDisable(true);
-        Task<List<ViaggioAlt>> task = new Task<>() {
+        Task<List<Viaggio>> task = new Task<>() {
             @Override
-            public List<ViaggioAlt> call() {
+            public List<Viaggio> call() {
                 int partenzaId = ((StopsEntity) scbBigliettoPartenza.getValue()).getStopId();
                 int destinazioneId = ((StopsEntity) scbBigliettoDestinazione.getValue()).getStopId();
 
                 CSASearch search = new CSASearch();
 
-                return search.eseguiRicerca(partenzaId, destinazioneId, tmpBigliettoAndata.getValue().toSecondOfDay());
+                return search.eseguiRicerca(partenzaId, destinazioneId);
             }
         };
 
         task.setOnSucceeded(e -> {
             boxLoading.setVisible(false);
             boxContent.setDisable(false);
-            RicercaView.openScene((List<ViaggioAlt>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
+            RicercaView.openScene((List<Viaggio>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
 
 //            ((Stage)boxLoading.getScene().getWindow()).setScene()
 

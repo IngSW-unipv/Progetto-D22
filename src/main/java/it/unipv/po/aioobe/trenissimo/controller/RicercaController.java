@@ -1,6 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import it.unipv.po.aioobe.trenissimo.view.ViaggioControl;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;

@@ -7,14 +7,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Abbonamento implements ITitoloViaggio{
     private TipoTitoloViaggio tipo;
-    private DurataTitoloViaggio durata;
+    private DurataAbbonamento  durata;
     private double prezzo;
     private String id;
     private static final AtomicInteger count = new AtomicInteger(0);
     private String stazionePartenza;
     private String stazioneArrivo;
 
-    public Abbonamento(DurataTitoloViaggio durata, String stazionePartenza, String stazioneArrivo) {
+    public Abbonamento(DurataAbbonamento  durata, String stazionePartenza, String stazioneArrivo) {
         this.tipo = TipoTitoloViaggio.ABBONAMENTO;
         this.durata = durata;
         this.id = "AB" + String.format("%03d", count.incrementAndGet());
@@ -45,7 +45,7 @@ public class Abbonamento implements ITitoloViaggio{
     }
 
     @Override
-    public DurataTitoloViaggio getDurata() {
+    public DurataAbbonamento  getDurata() {
         return this.durata;
     }
 
@@ -60,7 +60,7 @@ public class Abbonamento implements ITitoloViaggio{
     }
 
     @Override
-    public void setDurata(DurataTitoloViaggio durata) {
+    public void setDurata(DurataAbbonamento  durata) {
         this.durata = durata;
     }
 

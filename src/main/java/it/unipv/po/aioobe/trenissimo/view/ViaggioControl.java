@@ -65,15 +65,15 @@ public class ViaggioControl extends VBox {
         lblPrice                .textProperty().setValue(String.valueOf(viaggio.getPrezzo()));
 
         for (int i = 0; i < viaggio.getCambi().size(); i++) {
-            if (i == 0 || viaggio.getCambi().get(i-1).arrival_station_trip != viaggio.getCambi().get(i).departure_station_trip){
-                if (i != 0 && (viaggio.getCambi().get(i-1).arrival_station_trip != viaggio.getCambi().get(i).departure_station_trip)){
+            if (i == 0 || viaggio.getCambi().get(i-1).getArrival_station_trip() != viaggio.getCambi().get(i).getDeparture_station_trip()){
+                if (i != 0 && (viaggio.getCambi().get(i-1).getArrival_station_trip() != viaggio.getCambi().get(i).getDeparture_station_trip())){
                     boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), viaggio.getCambi().get(i-1) ,CambioControl.TipoCambio.END));
                 }
                 boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), null, CambioControl.TipoCambio.START));
                 continue;
             }
 
-            if (viaggio.getCambi().get(i).departure_station_trip == viaggio.getCambi().get(i).arrival_station_trip){
+            if (viaggio.getCambi().get(i).getDeparture_station_trip() == viaggio.getCambi().get(i).getArrival_station_trip()){
                 boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i),viaggio.getCambi().get(i-1), CambioControl.TipoCambio.MIDDLE));
                 if (i == viaggio.getCambi().size()-1){
                     boxChanges.getChildren().add(new CambioControl(viaggio.getCambi().get(i), null ,CambioControl.TipoCambio.END_LAST));

@@ -8,12 +8,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Interrail implements ITitoloViaggio{
 
     private TipoTitoloViaggio tipo;
-    private DurataTitoloViaggio durata;
+    private DurataAbbonamento  durata;
     private double prezzo;
     private String id;
     private static final AtomicInteger count = new AtomicInteger(0);
 
-    public Interrail(DurataTitoloViaggio durata) {
+    public Interrail(DurataAbbonamento  durata) {
         this.tipo = TipoTitoloViaggio.INTERRAIL;
         this.durata = durata;
         this.id = "IR" + String.format("%03d", count.incrementAndGet());
@@ -25,7 +25,7 @@ public class Interrail implements ITitoloViaggio{
     }
 
     @Override
-    public DurataTitoloViaggio getDurata() {
+    public DurataAbbonamento  getDurata() {
         return this.durata;
     }
 
@@ -40,7 +40,7 @@ public class Interrail implements ITitoloViaggio{
     }
 
     @Override
-    public void setDurata(DurataTitoloViaggio durata) {
+    public void setDurata(DurataAbbonamento  durata) {
         this.durata = durata;
     }
 

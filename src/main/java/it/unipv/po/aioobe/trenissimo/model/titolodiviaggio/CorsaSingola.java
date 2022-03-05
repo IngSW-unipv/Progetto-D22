@@ -7,13 +7,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CorsaSingola implements ITitoloViaggio{
     private TipoTitoloViaggio tipo;
-    private DurataTitoloViaggio durata;
+    private DurataAbbonamento  durata;
     private double prezzo;
     private String id;
     private static final AtomicInteger count = new AtomicInteger(0);
     private Viaggio viaggio;
 
-    public CorsaSingola(DurataTitoloViaggio durata, Viaggio viaggio) {
+    public CorsaSingola(DurataAbbonamento  durata, Viaggio viaggio) {
         this.tipo = TipoTitoloViaggio.BIGLIETTOCORSASINGOLA;
         this.durata = durata;
         this.id = "CS" + String.format("%03d", count.incrementAndGet());
@@ -31,7 +31,7 @@ public class CorsaSingola implements ITitoloViaggio{
     }
 
     @Override
-    public DurataTitoloViaggio getDurata() {
+    public DurataAbbonamento  getDurata() {
         return this.durata;
     }
 
@@ -46,7 +46,7 @@ public class CorsaSingola implements ITitoloViaggio{
     }
 
     @Override
-    public void setDurata(DurataTitoloViaggio durata) {
+    public void setDurata(DurataAbbonamento  durata) {
         this.durata = durata;
     }
 
