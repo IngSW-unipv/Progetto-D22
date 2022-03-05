@@ -26,6 +26,10 @@ public class Account {
         return instance;
     }
 
+    public void clear() {
+        instance = null;
+    }
+
     public AccountEntity getAccount() {
         return account;
     }
