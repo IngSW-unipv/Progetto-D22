@@ -62,10 +62,9 @@ public class CSASearch {
             for (StopTimesEntity nodeA : trainStopTimes) {
                 for (StopTimesEntity nodeB : trainStopTimes) {
                     // Collego tutte le fermate trovate con fermate successive
-                    if (
-                            !nodeA.equals(nodeB) // non collego fermate uguali
-                                    && Utils.timeToSeconds(nodeA.getArrivalTime()) < Utils.timeToSeconds(nodeB.getArrivalTime()) // non collego fermate con tempo di percorrenza negativo
-                                    && (Utils.timeToSeconds(nodeB.getArrivalTime()) - Utils.timeToSeconds(nodeA.getArrivalTime())) < 3600 // non collego fermate con tempo di percorrenza superiore a un'ora
+                    if (nodeA.getStopId() != nodeB.getStopId() // non collego fermate uguali
+                            && Utils.timeToSeconds(nodeA.getArrivalTime()) < Utils.timeToSeconds(nodeB.getArrivalTime()) // non collego fermate con tempo di percorrenza negativo
+                            && (Utils.timeToSeconds(nodeB.getArrivalTime()) - Utils.timeToSeconds(nodeA.getArrivalTime())) < 3600 // non collego fermate con tempo di percorrenza superiore a un'ora
                     ) {
                         timetable.add(
                                 new Connection(
