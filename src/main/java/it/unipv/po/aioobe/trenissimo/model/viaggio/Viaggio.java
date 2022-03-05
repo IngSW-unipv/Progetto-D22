@@ -96,7 +96,13 @@ public class Viaggio {
 
         double prezzo = prezzoPerPersona*this.getNumAdulti()+prezzoPerPersona*((double)2/3)*this.getNumRagazzi()+prezzoPerPersona*((double)1/3)*this.getNumBambini()+5*this.getNumAnimali();
 
-        return Double.valueOf(String.format(Locale.US,"%.2f", prezzo));
+        String s = (Utils.secondsToTime(this.getOrarioPartenza()).substring(0,1));
+
+        //Il prezzo per fascia oraria viene calcolato in base alla prima cifra dell'ora e quindi se il viaggio viene fatto prima delle 10:00 o dopo le 19:59, verrà tolto un 25%
+
+        double prezzoFinaleFasciaOraria = prezzo - prezzo * 0.25 * Math.abs(Integer.valueOf(s)-1);
+
+        return Double.valueOf(String.format(Locale.US,"%.2f", prezzoFinaleFasciaOraria));
     }
 
     public double getDistanza() {

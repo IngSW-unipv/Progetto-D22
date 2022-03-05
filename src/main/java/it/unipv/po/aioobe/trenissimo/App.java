@@ -69,7 +69,7 @@ public class App {
         System.out.println("DOPO");
         storicoAcquistiService.findByUsername(account.getUsername()).forEach((x)->System.out.println(x.toString()));*/
 
-        Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
+        Ricerca search = new Ricerca(2046, 1707, LocalDateTime.now());
 
         search.setNumAdulti(1);
         search.setNumBambini(0);
