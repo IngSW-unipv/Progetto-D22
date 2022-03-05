@@ -97,12 +97,14 @@ public class Viaggio {
             prezzoPerPersona = prezzoPerPersona + getDistanza(getCoppiaStazioni(i))*0.15;
         }
 
+        double prezzoTotCambi = prezzoPerPersona + getNumeroCambi()*0.5; //Per ogni cambio si aggiungono 50 centesimi
 
-        //Composizione del prezzo: Adulto prezzo intero, ragazzo 2/3 del prezzo, bambino 1/3 del prezzo, aggiunta di 5 euro per animale
+        //Composizione del prezzo: Adulto prezzo intero, ragazzo 2/3 del prezzo, bambino 1/3 del prezzo, aggiunta di 3 euro per animale
 
-        double prezzoTotPasseggeri = prezzoPerPersona*this.getNumAdulti()+prezzoPerPersona*((double)2/3)*this.getNumRagazzi()+prezzoPerPersona*((double)1/3)*this.getNumBambini()+5*this.getNumAnimali();
+        double prezzoTotPasseggeri = prezzoTotCambi*this.getNumAdulti()+prezzoTotCambi*((double)2/3)*this.getNumRagazzi()+prezzoTotCambi*((double)1/3)*this.getNumBambini()+3*this.getNumAnimali();
 
         String s = (Utils.secondsToTime(this.getOrarioPartenza()).substring(0,1));
+
 
         //Il prezzo per fascia oraria viene calcolato in base alla prima cifra dell'ora e quindi se il viaggio viene fatto prima delle 10:00 o dopo le 19:59, verrà tolto un 25%
 
