@@ -1,5 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.user;
 
+import it.unipv.po.aioobe.trenissimo.model.CryptographyUtils;
 import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
@@ -139,7 +140,7 @@ public class Account {
         Account.getInstance().clear();
     }
 
-    public void signUp(String username, String password, String nome, String cognome, String dataDiNascita, String mail, String via, String civico, String citta, String cap) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
+    public static void signUp(String username, String password, String nome, String cognome, String dataDiNascita, String mail, String via, String civico, String citta, String cap) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
         AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         AccountEntity account = new AccountEntity();

@@ -44,7 +44,6 @@ public class HomePageController implements Initializable {
     @FXML private DatePicker dtpBigliettoRitorno;
     @FXML private JFXTimePicker tmpBigliettoRitorno;
     @FXML private JFXTimePicker tmpBigliettoAndata;
-    @FXML private Label lblBigliettoRitorno;
 
     @FXML private ComboBox cmbAbbonamentoDurata;
     @FXML private ComboBox cmbVoucherValore;
@@ -120,7 +119,6 @@ public class HomePageController implements Initializable {
         tgsBigliettoAR.selectedProperty().addListener((obs, oldVal, newVal) -> {
             dtpBigliettoRitorno.setDisable(!newVal);
             tmpBigliettoRitorno.setDisable(!newVal);
-            lblBigliettoRitorno.setDisable(!newVal);
         });
 
     }

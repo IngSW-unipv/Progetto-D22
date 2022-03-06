@@ -77,25 +77,17 @@
                   </columnConstraints>
                   <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="165.0" minHeight="10.0" prefHeight="84.19998779296873" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="241.60001220703123" minHeight="10.0" prefHeight="241.60001220703123" vgrow="SOMETIMES" />
                   </rowConstraints>
                   <VBox.margin>
                       <Insets />
                   </VBox.margin>
                   <children>
-                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-                          <children>
-                              <Pane nodeOrientation="LEFT_TO_RIGHT" HBox.hgrow="ALWAYS" />
-                          </children>
-                      </HBox>
-                      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="4">
+                      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
                           <tabs>
                               <Tab text="Biglietto">
                                   <content>
-                                      <VBox style="-fx-background-color: white;">
+                                      <VBox>
                                           <children>
                                               <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                                                   <children>
@@ -125,17 +117,27 @@
                                                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                                           </padding>
                                                       </VBox>
-                                                      <VBox alignment="CENTER_LEFT" layoutX="110.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                                                      <VBox alignment="CENTER_LEFT" layoutX="110.0" layoutY="10.0" maxWidth="-Infinity" HBox.hgrow="ALWAYS">
                                                           <children>
                                                               <ToggleSwitch fx:id="tgsBigliettoAR" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" style="-fx-label-padding: 4px;" text="Andata e ritorno">
                                                                   <padding>
                                                                       <Insets bottom="4.0" />
                                                                   </padding>
                                                 </ToggleSwitch>
-                                                              <HBox prefHeight="0.0" prefWidth="0.0" spacing="16.0">
+                                                              <HBox maxWidth="-Infinity" spacing="16.0">
                                                                   <children>
-                                                                      <DatePicker fx:id="dtpBigliettoPartenza" />
-                                                                      <DatePicker fx:id="dtpBigliettoRitorno" disable="true" layoutX="10.0" layoutY="10.0" />
+                                                      <VBox>
+                                                         <children>
+                                                                            <DatePicker fx:id="dtpBigliettoPartenza" maxWidth="1.7976931348623157E308" />
+                                                             <JFXTimePicker fx:id="tmpBigliettoAndata" maxWidth="1.7976931348623157E308" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox>
+                                                         <children>
+                                                                            <DatePicker fx:id="dtpBigliettoRitorno" disable="true" maxWidth="1.7976931348623157E308" />
+                                                             <JFXTimePicker fx:id="tmpBigliettoRitorno" disable="true" maxWidth="1.7976931348623157E308" />
+                                                         </children>
+                                                      </VBox>
                                                                       <MenuButton contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false">
                                                                           <items>
                                                                               <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
@@ -247,20 +249,8 @@
                                                       </VBox>
                                                   </children>
                                     </HBox>
-                                              <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="1376.0">
+                                              <HBox alignment="CENTER_RIGHT">
                                                   <children>
-                                          <VBox alignment="CENTER" prefHeight="66.0" prefWidth="220.0">
-                                             <children>
-                                                <Label text="Orario di andata" />
-                                             </children>
-                                              <JFXTimePicker fx:id="tmpBigliettoAndata" />
-                                          </VBox>
-                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="220.0">
-                                             <children>
-                                                <Label fx:id="lblBigliettoRitorno" disable="true" text="Orario di ritorno" />
-                                             </children>
-                                              <JFXTimePicker fx:id="tmpBigliettoRitorno" disable="true" />
-                                          </VBox>
                                                       <Button mnemonicParsing="false" onAction="#onRicerca" prefWidth="127.0" text="Ricerca">
                                                           <padding>
                                                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -278,7 +268,7 @@
       
                               <Tab closable="false" text="Abbonamento">
                                   <content>
-                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
+                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                           <children>
                                               <VBox alignment="BASELINE_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                   <children>
@@ -343,7 +333,7 @@
                         </Tab>
                               <Tab text="Carnet">
                                   <content>
-                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
+                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                           <children>
                                               <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                   <children>
@@ -387,7 +377,7 @@
                                                       <Insets left="15.0" />
                                                    </VBox.margin>
                                                               </Label>
-                                                              <ComboBox prefWidth="150.0" fx:id="cmbCarnetNumeroViaggi">
+                                                              <ComboBox fx:id="cmbCarnetNumeroViaggi" prefWidth="150.0">
                                                    <VBox.margin>
                                                       <Insets left="15.0" />
                                                    </VBox.margin>
@@ -413,12 +403,12 @@
                               </Tab>
                               <Tab text="Interrail">
                                   <content>
-                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
+                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                           <children>
                                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                   <children>
                                                       <Label text="Numero di giorni" />
-                                                      <ComboBox prefWidth="150.0" fx:id="cmbDurataInterrail"/>
+                                                      <ComboBox fx:id="cmbDurataInterrail" prefWidth="150.0" />
                                                   </children>
                                               </VBox>
                                               <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
@@ -436,14 +426,14 @@
                               </Tab>
                               <Tab text="Voucher">
                                   <content>
-                                      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;">
+                                      <HBox prefHeight="100.0" prefWidth="200.0">
                                           <children>
                                               <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                                   <children>
                                                       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                           <children>
                                                               <Label text="Valore €" />
-                                                <ComboBox prefWidth="150.0" fx:id="cmbVoucherValore" />
+                                                <ComboBox fx:id="cmbVoucherValore" prefWidth="150.0" />
                                                           </children>
                                                       </VBox>
                                                   </children>
@@ -472,11 +462,21 @@
                                   </content>
                               </Tab>
                           </tabs>
+                     <effect>
+                        <DropShadow height="48.0" radius="23.5" width="48.0">
+                           <color>
+                              <Color opacity="0.5" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                     </padding>
                       </TabPane>
       
                   </children>
                   <padding>
-                      <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                   </padding>
               </GridPane>
           </children>

@@ -1,4 +1,4 @@
-package it.unipv.po.aioobe.trenissimo.model.user;
+package it.unipv.po.aioobe.trenissimo.model;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -6,6 +6,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -26,7 +27,7 @@ public class CryptographyUtils {
     public static SecretKeySpec computeKey(final String myKey) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         byte[] key;
         MessageDigest sha = null;
-        key = myKey.getBytes("UTF-8");
+        key = myKey.getBytes(StandardCharsets.UTF_8);
         sha = MessageDigest.getInstance("SHA-1");
         key = sha.digest(key);
         key = Arrays.copyOf(key, 16);
@@ -50,7 +51,7 @@ public class CryptographyUtils {
         var secretKey = CryptographyUtils.computeKey(secret);
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        return Base64.getEncoder().encodeToString(cipher.doFinal(password.getBytes("UTF-8")));
+        return Base64.getEncoder().encodeToString(cipher.doFinal(password.getBytes(StandardCharsets.UTF_8)));
     }
 
 
