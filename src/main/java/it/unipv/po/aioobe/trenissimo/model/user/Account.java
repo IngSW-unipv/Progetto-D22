@@ -129,7 +129,7 @@ public class Account {
     }
 
     public boolean checkDatiGenerico(String dato){
-        return dato.length() > 0;
+        return dato.length() > 0 ;
     }
 
 
@@ -151,7 +151,7 @@ public class Account {
         setLoggedIn(false);
     }
 
-    public static void signUp(String username, String password, String nome, String cognome, String dataDiNascita, String mail, String via, String civico, String citta, String cap) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
+    public static void signUp(String username, String password, String nome, String cognome, LocalDate dataDiNascita, String mail, String via, String civico, String citta, String cap) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
         AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         AccountEntity account = new AccountEntity();
@@ -161,7 +161,7 @@ public class Account {
         dati.setUsername(username);
         dati.setNome(nome);
         dati.setCognome(cognome);
-        dati.setDataNascita(java.sql.Date.valueOf(dataDiNascita));
+        dati.setDataNascita(Date.valueOf(dataDiNascita));
         dati.setMail(mail);
         dati.setVia(via);
         dati.setCivico(Integer.valueOf(civico));

@@ -12,6 +12,7 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.view.AccountSettings;
 import it.unipv.po.aioobe.trenissimo.view.Login;
+import it.unipv.po.aioobe.trenissimo.view.Registrazione;
 import it.unipv.po.aioobe.trenissimo.view.RicercaView;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -140,7 +141,7 @@ public class HomePageController implements Initializable {
     }
 
 
-    @FXML protected void onSignup()                                 { return; }
+    @FXML protected void onSignup() throws IOException              { Registrazione.open((boxContent).getScene().getWindow()); }
     @FXML protected void onLogout()                                 { Account.getInstance().logout(); }
     @FXML protected void onAccountSettings()                        { AccountSettings.openScene(boxContent.getScene().getWindow()); }
 

@@ -60,6 +60,7 @@ public class AccountSettingsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         onStart();
+
         //todo aggiungere thread per caricamento dati personali in label
     }
 
@@ -316,6 +317,7 @@ public class AccountSettingsController implements Initializable {
         new Thread(task).start();
 
     }
+
     private void fillPDF() throws Exception {
 
         titoloViaggio = new TicketBuilder("","", lblDataAcquisto.getText(),"","","","",
