@@ -1,6 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
-import it.unipv.po.aioobe.trenissimo.model.user.Login;
+import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.view.AccountSettings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,9 +35,9 @@ public class LoginController{
     @FXML
     protected void onLogin() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
 
-        if(Login.getInstance().checkUserPassword(txtUsername.getText(), pwfPassword.getText())) {
+        if(Account.checkUserPassword(txtUsername.getText(), pwfPassword.getText())) {
             btnAccedi.setBackground(Background.EMPTY);
-            Login.getInstance().login(txtUsername.getText());
+            Account.login(txtUsername.getText());
             AccountSettings.open();
         }
         else

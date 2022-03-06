@@ -11,8 +11,15 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiSe
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.ViaggiPreferitiService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.time.LocalDate;
+
 
 public class Account {
 
@@ -116,7 +123,41 @@ public class Account {
     }
 
 
+    public static boolean checkUserPassword(String user, String password) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
+        var accountUser = new AccountService().findByUsername(user);
+        return accountUser != null && CryptographyUtils.encryptPassword(password).equals(accountUser.getPassword());
+    }
 
+    public static Account login (String user) {
+        Account account = Account.getInstance();
+        account.setAccount(user);
+        account.setDatiPersonali(user);
+        return account;
+    }
+
+    public void logout () {
+        Account.getInstance().clear();
+    }
+
+    public void signUp(String username, String password, String nome, String cognome, String dataDiNascita, String mail, String via, String civico, String citta, String cap) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
+        AccountService accountService = new AccountService();
+        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
+        AccountEntity account = new AccountEntity();
+        DatiPersonaliEntity dati = new DatiPersonaliEntity();
+        account.setUsername(username);
+        account.setPassword(CryptographyUtils.encryptPassword(password));
+        dati.setUsername(username);
+        dati.setNome(nome);
+        dati.setCognome(cognome);
+        dati.setDataNascita(java.sql.Date.valueOf(dataDiNascita));
+        dati.setMail(mail);
+        dati.setVia(via);
+        dati.setCivico(Integer.valueOf(civico));
+        dati.setCitta(citta);
+        dati.setCap(Integer.valueOf(cap));
+        accountService.persist(account);
+        datiPersonaliService.persist(dati);
+    }
 
 
 
