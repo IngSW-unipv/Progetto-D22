@@ -6,10 +6,19 @@ import java.util.List;
 
 public class FiltroDurata implements IFiltro{
 
-    private int maxDurata;
+    private int minDurata, maxDurata;
 
-    public FiltroDurata(int maxDurata){
+    public FiltroDurata(int minDurata, int maxDurata){
+        this.minDurata = minDurata;
         this.maxDurata = maxDurata;
+    }
+
+    public int getMinDurata() {
+        return minDurata;
+    }
+
+    public void setMinDurata(int minDurata) {
+        this.minDurata = minDurata;
     }
 
     public int getMaxDurata() {
@@ -20,9 +29,8 @@ public class FiltroDurata implements IFiltro{
         this.maxDurata = maxDurata;
     }
 
-
     @Override
     public List<Viaggio> esegui(List<Viaggio> input) {
-        return input.stream().filter( (x) -> x.getDurata() <= this.maxDurata).toList();
+        return input.stream().filter( (x) -> x.getDurata() >= this.minDurata && x.getDurata() <= this.maxDurata).toList();
     }
 }
