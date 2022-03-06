@@ -44,8 +44,8 @@ public class RicercaController implements Initializable {
         tmpPartenza     .set24HourView(true);
         tmpArrivo       .set24HourView(true);
 
-        tmpPartenza .setValue(LocalTime.MIN);
-        tmpArrivo   .setValue(LocalTime.MAX);
+        tmpPartenza     .setValue(LocalTime.MIN);
+        tmpArrivo       .setValue(LocalTime.MAX);
 
         viaggi.addListener((ListChangeListener<Viaggio>) c -> updateList());
         filtri.addListener((ListChangeListener<IFiltro>) c -> updateList());
@@ -56,6 +56,7 @@ public class RicercaController implements Initializable {
         rngPrezzo.setMin(Utils.floor    (viaggi.stream().min(Comparator.comparing(Viaggio::getPrezzo)).get().getPrezzo(),-1));
         rngPrezzo.setLowValue(rngPrezzo.getMin());
         rngPrezzo.setHighValue(rngPrezzo.getMax());
+        updateFiltri();
         this.viaggi.addAll(viaggi);
     }
 

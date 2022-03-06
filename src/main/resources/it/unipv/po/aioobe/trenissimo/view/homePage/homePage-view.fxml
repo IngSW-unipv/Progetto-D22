@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -60,10 +61,18 @@
                                 </HBox>
                                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="16.0" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#onLogin" text="Accedi" />
-                                        <Button fx:id="btnSignup" mnemonicParsing="false" onAction="#onSignup" text="Registrati" />
-                                        <Button fx:id="btnLogout" disable="true" mnemonicParsing="false" onAction="#onLogout" text="Logout" />
-                                        <Button fx:id="btnAccountSettings" disable="true" mnemonicParsing="false" onAction="#onAccountSettings" text="Account" />
+                              <Group fx:id="grpLoggedOut">
+                                 <children>
+                                              <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#onLogin" text="Accedi" />
+                                              <Button fx:id="btnSignup" layoutX="70.0" mnemonicParsing="false" onAction="#onSignup" text="Registrati" />
+                                 </children>
+                              </Group>
+                              <Group fx:id="grpLoggedIn">
+                                 <children>
+                                              <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#onLogout" text="Logout" />
+                                              <Button fx:id="btnAccountSettings" layoutX="72.0" mnemonicParsing="false" onAction="#onAccountSettings" text="Account" />
+                                 </children>
+                              </Group>
                                     </children>
                                 </HBox>
                             </children>

@@ -1,5 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
+import it.unipv.po.aioobe.trenissimo.controller.RicercaController;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AccountSettings extends Application {
     @Override
@@ -24,14 +27,31 @@ public class AccountSettings extends Application {
         launch();
     }
 
-    public static void open() throws IOException {
+    public static void open() {
         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("accountSettingsView/accountSettings-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1440, 800);
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 1440, 800);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Stage stage = new Stage();
         stage.setResizable(false);
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void openScene(Window owner){
+        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("accountSettingsView/accountSettings-view.fxml"));
+
+        Parent scene = null;
+        try {
+            scene = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        owner.getScene().setRoot(scene);
     }
 
 }

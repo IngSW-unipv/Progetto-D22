@@ -9,15 +9,17 @@ import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.NumeroVia
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.ValoreVoucher;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.view.AccountSettings;
 import it.unipv.po.aioobe.trenissimo.view.Login;
 import it.unipv.po.aioobe.trenissimo.view.RicercaView;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -33,6 +35,7 @@ import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class HomePageController implements Initializable {
 
@@ -44,10 +47,10 @@ public class HomePageController implements Initializable {
     @FXML private JFXTimePicker tmpBigliettoRitorno;
     @FXML private JFXTimePicker tmpBigliettoAndata;
 
-    @FXML private ComboBox cmbAbbonamentoDurata;
-    @FXML private ComboBox cmbVoucherValore;
-    @FXML private ComboBox cmbCarnetNumeroViaggi;
-    @FXML private ComboBox cmbDurataInterrail;
+    @FXML private ComboBox<DurataAbbonamento> cmbAbbonamentoDurata;
+    @FXML private ComboBox<ValoreVoucher> cmbVoucherValore;
+    @FXML private ComboBox<NumeroViaggiCarnet> cmbCarnetNumeroViaggi;
+    @FXML private ComboBox<DurataInterrail> cmbDurataInterrail;
 
     @FXML private Label lblNumAdulti;
     @FXML private Label lblNumRagazzi;
@@ -59,13 +62,11 @@ public class HomePageController implements Initializable {
     @FXML private Spinner spnBigliettoBambini;
     @FXML private Spinner spnBigliettoAnimali;
 
-    @FXML private Button btnLogin;
-    @FXML private Button btnSignup;
-    @FXML private Button btnLogout;
-    @FXML private Button btnAccountSettings;
+    @FXML private Group grpLoggedIn;
+    @FXML private Group grpLoggedOut;
 
-    @FXML private SearchableComboBox scbBigliettoPartenza;
-    @FXML private SearchableComboBox scbBigliettoDestinazione;
+    @FXML private SearchableComboBox<StopsEntity> scbBigliettoPartenza;
+    @FXML private SearchableComboBox<StopsEntity> scbBigliettoDestinazione;
     @FXML private SearchableComboBox scbAbbonamentoPartenza;
     @FXML private SearchableComboBox scbAbbonamentoDestinazione;
     @FXML private SearchableComboBox scbCarnetPartenza;
@@ -99,10 +100,10 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        spnBigliettoAdulti.valueProperty().addListener((obs,oldV,newV) -> {lblNumAdulti.setText(newV.toString());});
-        spnBigliettoRagazzi.valueProperty().addListener((obs,oldV,newV) -> {lblNumRagazzi.setText(newV.toString());});
-        spnBigliettoBambini.valueProperty().addListener((obs,oldV,newV) -> {lblNumBambini.setText(newV.toString());});
-        spnBigliettoAnimali.valueProperty().addListener((obs,oldV,newV) -> {lblNumAnimali.setText(newV.toString());});
+        spnBigliettoAdulti      .valueProperty().addListener((obs,oldV,newV) -> { lblNumAdulti.setText(newV.toString());  });
+        spnBigliettoRagazzi     .valueProperty().addListener((obs,oldV,newV) -> { lblNumRagazzi.setText(newV.toString()); });
+        spnBigliettoBambini     .valueProperty().addListener((obs,oldV,newV) -> { lblNumBambini.setText(newV.toString()); });
+        spnBigliettoAnimali     .valueProperty().addListener((obs,oldV,newV) -> { lblNumAnimali.setText(newV.toString()); });
 
         dtpBigliettoPartenza.setValue(LocalDate.now());
         tmpBigliettoAndata.setValue(LocalTime.now());
@@ -126,21 +127,22 @@ public class HomePageController implements Initializable {
         });
 
         Account.loggedInProperty.addListener((obs,old,newV) -> onAccountChange());
+        onAccountChange();
 
     }
 
-    private void onAccountChange() {
-        System.out.println("onAccountChange!");
-        btnLogin            .setDisable(Account.getLoggedIn());
-        btnSignup           .setDisable(Account.getLoggedIn());
-        btnLogout           .setDisable(!Account.getLoggedIn());
-        btnAccountSettings  .setDisable(!Account.getLoggedIn());
+    private void onAccountChange() {;
+        grpLoggedIn            .setManaged(Account.getLoggedIn());
+        grpLoggedIn            .setVisible(Account.getLoggedIn());
+
+        grpLoggedOut           .setManaged(!Account.getLoggedIn());
+        grpLoggedOut           .setVisible(!Account.getLoggedIn());
     }
 
 
     @FXML protected void onSignup()                                 { return; }
     @FXML protected void onLogout()                                 { Account.getInstance().logout(); }
-    @FXML protected void onAccountSettings() throws IOException     { AccountSettings.open(); }
+    @FXML protected void onAccountSettings()                        { AccountSettings.openScene(boxContent.getScene().getWindow()); }
 
     @FXML
     protected void onRicerca() {
@@ -149,8 +151,8 @@ public class HomePageController implements Initializable {
         Task<List<Viaggio>> task = new Task<>() {
             @Override
             public List<Viaggio> call() {
-                int partenzaId = ((StopsEntity) scbBigliettoPartenza.getValue()).getStopId();
-                int destinazioneId = ((StopsEntity) scbBigliettoDestinazione.getValue()).getStopId();
+                int partenzaId = (scbBigliettoPartenza.getValue()).getStopId();
+                int destinazioneId = (scbBigliettoDestinazione.getValue()).getStopId();
                 LocalDateTime data = LocalDateTime.of(dtpBigliettoPartenza.getValue(), tmpBigliettoAndata.getValue());
 
                 Ricerca search = new Ricerca(partenzaId, destinazioneId, data);

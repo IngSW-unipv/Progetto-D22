@@ -2,6 +2,7 @@ package it.unipv.po.aioobe.trenissimo.controller;
 
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
+import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,8 +24,6 @@ import java.util.ResourceBundle;
 
 public class AccountSettingsController implements Initializable {
 
-    @FXML private VBox boxLoading;
-    @FXML private VBox boxContent;
 
     @FXML private Button btnModifica;
     @FXML private Button btnAnnulla;
@@ -82,6 +81,11 @@ public class AccountSettingsController implements Initializable {
         txtCitta.setText(Account.getInstance().getDatiPersonali().getCitta());
         txtCAP.setText(Account.getInstance().getDatiPersonali().getCap().toString());
 
+    }
+
+    @FXML
+    protected void onGoToHomepage(){
+        HomePage.openScene(lblBenvenuto.getScene().getWindow());
     }
 
     @FXML
