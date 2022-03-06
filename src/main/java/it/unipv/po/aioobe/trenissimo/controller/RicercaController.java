@@ -21,47 +21,42 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class RicercaController implements Initializable {
-    @FXML
-    private VBox layout;
+    @FXML private VBox layout;
 
     @FXML private RangeSlider rngPrezzo;
     @FXML private JFXTimePicker tmpPartenza;
     @FXML private JFXTimePicker tmpArrivo;
 
     private ObservableList<Viaggio> viaggi;
-
     private ObservableList<IFiltro> filtri;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        rngPrezzo.highValueChangingProperty()   .addListener((obs, old, newV) -> { if (!newV) { updateFiltri(); }});
+        rngPrezzo.lowValueChangingProperty()    .addListener((obs, old, newV) -> { if (!newV) { updateFiltri(); }});
+
+        tmpPartenza     .valueProperty().addListener((obs, old, newV) -> updateFiltri());
+        tmpArrivo       .valueProperty().addListener((obs, old, newV) -> updateFiltri());
+
+        tmpPartenza     .set24HourView(true);
+        tmpArrivo       .set24HourView(true);
+
+        tmpPartenza .setValue(LocalTime.MIN);
+        tmpArrivo   .setValue(LocalTime.MAX);
 
         viaggi = FXCollections.observableArrayList();
         filtri = FXCollections.observableArrayList();
 
         viaggi.addListener((ListChangeListener<Viaggio>) c -> updateList());
         filtri.addListener((ListChangeListener<IFiltro>) c -> updateList());
-
-
-
-
-
-        rngPrezzo.highValueChangingProperty()   .addListener((obs, old, newV) -> { if (!newV) { updateFiltri(); }});
-        rngPrezzo.lowValueChangingProperty()    .addListener((obs, old, newV) -> { if (!newV) { updateFiltri(); }});
-        tmpPartenza     .set24HourView(true);
-        tmpArrivo       .set24HourView(true);
-        tmpPartenza     .valueProperty().addListener((obs, old, newV) -> updateFiltri());
-        tmpArrivo       .valueProperty().addListener((obs, old, newV) -> updateFiltri());
-        tmpPartenza .setValue(LocalTime.MIN);
-        tmpArrivo   .setValue(LocalTime.MAX);
     }
 
     public void setViaggi(List<Viaggio> viaggi) {
-        this.viaggi.addAll(viaggi);
         rngPrezzo.setMax(Utils.ceil     (viaggi.stream().max(Comparator.comparing(Viaggio::getPrezzo)).get().getPrezzo(),-1));
         rngPrezzo.setMin(Utils.floor    (viaggi.stream().min(Comparator.comparing(Viaggio::getPrezzo)).get().getPrezzo(),-1));
         rngPrezzo.setLowValue(rngPrezzo.getMin());
         rngPrezzo.setHighValue(rngPrezzo.getMax());
-
+        this.viaggi.addAll(viaggi);
     }
 
     private List<Viaggio> filtra(List<Viaggio> viaggi){
@@ -81,7 +76,6 @@ public class RicercaController implements Initializable {
         newFiltri.add(new FiltroPrezzo(rngPrezzo.getLowValue(),rngPrezzo.getHighValue()));
         if (tmpPartenza.getValue() != null && tmpArrivo.getValue() != null) newFiltri.add(new FiltroOrario(tmpPartenza.getValue().toSecondOfDay(),tmpArrivo.getValue().toSecondOfDay()));
         filtri.setAll(newFiltri);
-
     }
 
     @FXML

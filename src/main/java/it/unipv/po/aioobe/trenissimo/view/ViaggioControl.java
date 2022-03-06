@@ -40,7 +40,7 @@ public class ViaggioControl extends VBox {
         }
     }
 
-    public ViaggioControl(Viaggio viaggio){
+    public ViaggioControl(Viaggio viaggio) {
         this();
         setViaggio(viaggio);
     }
@@ -62,41 +62,41 @@ public class ViaggioControl extends VBox {
         lblChanges              .textProperty().setValue(viaggio.getNumeroCambi() + " cambi");
         lblPrice                .textProperty().setValue(String.valueOf(viaggio.getPrezzo()));
 
+
+    private void renderChanges() {
         var cambi = viaggio.getCambi();
 
         for (int i = 0; i < cambi.size(); i++) {
-            if (i == 0 || cambi.get(i-1).getArrivalStationTrip() != cambi.get(i).getDepartureStationTrip()){
-                if (i != 0 && (cambi.get(i-1).getArrivalStationTrip() != cambi.get(i).getDepartureStationTrip())){
-                    boxChanges.getChildren().add(new CambioControl(cambi.get(i), cambi.get(i-1) ,CambioControl.TipoCambio.END));
+            if (i == 0 || cambi.get(i - 1).getArrivalStationTrip() != cambi.get(i).getDepartureStationTrip()) {
+                if (i != 0 && (cambi.get(i - 1).getArrivalStationTrip() != cambi.get(i).getDepartureStationTrip())) {
+                    boxChanges.getChildren().add(new CambioControl(cambi.get(i), cambi.get(i - 1), CambioControl.TipoCambio.END));
                 }
                 boxChanges.getChildren().add(new CambioControl(cambi.get(i), null, CambioControl.TipoCambio.START));
-                if (i == cambi.size()-1){
-                    boxChanges.getChildren().add(new CambioControl(cambi.get(i), null ,CambioControl.TipoCambio.END_LAST));
+                if (i == cambi.size() - 1) {
+                    boxChanges.getChildren().add(new CambioControl(cambi.get(i), null, CambioControl.TipoCambio.END_LAST));
                 }
                 continue;
             }
 
-            if (cambi.get(i).getDepartureStationTrip() == cambi.get(i).getArrivalStationTrip()){
-                boxChanges.getChildren().add(new CambioControl(cambi.get(i),cambi.get(i-1), CambioControl.TipoCambio.MIDDLE));
-                if (i == cambi.size()-1){
-                    boxChanges.getChildren().add(new CambioControl(cambi.get(i), null ,CambioControl.TipoCambio.END_LAST));
+            if (cambi.get(i).getDepartureStationTrip() == cambi.get(i).getArrivalStationTrip()) {
+                boxChanges.getChildren().add(new CambioControl(cambi.get(i), cambi.get(i - 1), CambioControl.TipoCambio.MIDDLE));
+                if (i == cambi.size() - 1) {
+                    boxChanges.getChildren().add(new CambioControl(cambi.get(i), null, CambioControl.TipoCambio.END_LAST));
                 }
                 continue;
             }
         }
     }
 
-
-
-
-
     @FXML
     protected void onToggleChangeVisibility() {
-        if (boxChangesContainer.isVisible()){
+        if (boxChangesContainer.isVisible()) {
+            boxChanges.getChildren().clear();
             boxChangesContainer.setVisible(false);
             boxChangesContainer.setPrefHeight(0);
             icoChanges.setIconLiteral("fas-angle-down");
         } else {
+            renderChanges();
             boxChangesContainer.setVisible(true);
             boxChangesContainer.setPrefHeight(-1);
             icoChanges.setIconLiteral("fas-angle-up");

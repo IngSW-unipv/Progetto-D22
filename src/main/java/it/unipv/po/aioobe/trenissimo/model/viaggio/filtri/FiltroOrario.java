@@ -33,6 +33,6 @@ public class FiltroOrario implements IFiltro {
 
     @Override
     public List<Viaggio> esegui(List<Viaggio> input) {
-        return input.stream().filter(x -> x.getOrarioPartenza() > minOrario && x.getOrarioArrivo() < maxOrario).toList();
+        return input.stream().filter(x -> x.getOrarioPartenza() >= minOrario && x.getOrarioArrivo() <= maxOrario).toList();
     }
 }

@@ -40,17 +40,15 @@ public class RicercaView extends Application {
 
         Viaggio viaggio1 = new Viaggio();
         viaggio1.setCambi(cambi);
+        viaggio1.setNumAdulti(1);
 
         Viaggio viaggio2 = new Viaggio();
         viaggio2.setCambi(cambi);
+        viaggio2.setNumAdulti(2);
 
         List<Viaggio> viaggi = new ArrayList<>();
         viaggi.add(viaggio1);
         viaggi.add(viaggio2);
-
-
-
-
 
         ((RicercaController) fxmlLoader.getController()).setViaggi(viaggi);
         stage.setTitle("RicercaView");
