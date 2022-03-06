@@ -11,10 +11,12 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
 
 public class HomePage extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("homePage/homePage-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1440, 800);
         stage.setResizable(false);

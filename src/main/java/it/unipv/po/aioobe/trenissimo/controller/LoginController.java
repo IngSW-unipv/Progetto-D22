@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
+import javafx.stage.Stage;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -38,7 +39,7 @@ public class LoginController{
         if(Account.checkUserPassword(txtUsername.getText(), pwfPassword.getText())) {
             btnAccedi.setBackground(Background.EMPTY);
             Account.login(txtUsername.getText());
-            AccountSettings.open();
+            ((Stage) btnAccedi.getScene().getWindow()).close();
         }
         else
             lblLoginError.setVisible(true);

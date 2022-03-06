@@ -11,6 +11,8 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.service.DatiPersonaliServ
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.ViaggiPreferitiService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -28,14 +30,21 @@ public class Account {
     private AccountEntity account;
     private DatiPersonaliEntity datiPersonali;
 
+
+    public static SimpleBooleanProperty loggedInProperty = new SimpleBooleanProperty(false);
+
+    public static boolean getLoggedIn() {
+        return loggedInProperty.get();
+    }
+
+    public static void setLoggedIn(boolean loggedIn) {
+        loggedInProperty.setValue(loggedIn);
+    }
+
     public static Account getInstance() {
         if (instance == null)
             instance = new Account();
         return instance;
-    }
-
-    public void clear() {
-        instance = null;
     }
 
     public AccountEntity getAccount() {
@@ -133,11 +142,13 @@ public class Account {
         Account account = Account.getInstance();
         account.setAccount(user);
         account.setDatiPersonali(user);
+        setLoggedIn(true);
         return account;
     }
 
     public void logout () {
-        Account.getInstance().clear();
+        instance = null;
+        setLoggedIn(false);
     }
 
     public static void signUp(String username, String password, String nome, String cognome, String dataDiNascita, String mail, String via, String civico, String citta, String cap) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {

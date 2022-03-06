@@ -61,7 +61,7 @@ public class ViaggioControl extends VBox {
         lblTravelTime           .textProperty().setValue(((int) viaggio.getDurata() / 60) + " mins");
         lblChanges              .textProperty().setValue(viaggio.getNumeroCambi() + " cambi");
         lblPrice                .textProperty().setValue(String.valueOf(viaggio.getPrezzo()));
-
+    }
 
     private void renderChanges() {
         var cambi = viaggio.getCambi();

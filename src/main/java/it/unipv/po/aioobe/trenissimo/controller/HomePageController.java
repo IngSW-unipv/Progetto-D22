@@ -7,19 +7,18 @@ import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbb
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataInterrail;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.NumeroViaggiCarnet;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.ValoreVoucher;
+import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
+import it.unipv.po.aioobe.trenissimo.view.AccountSettings;
 import it.unipv.po.aioobe.trenissimo.view.Login;
 import it.unipv.po.aioobe.trenissimo.view.RicercaView;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -59,6 +58,11 @@ public class HomePageController implements Initializable {
     @FXML private Spinner spnBigliettoRagazzi;
     @FXML private Spinner spnBigliettoBambini;
     @FXML private Spinner spnBigliettoAnimali;
+
+    @FXML private Button btnLogin;
+    @FXML private Button btnSignup;
+    @FXML private Button btnLogout;
+    @FXML private Button btnAccountSettings;
 
     @FXML private SearchableComboBox scbBigliettoPartenza;
     @FXML private SearchableComboBox scbBigliettoDestinazione;
@@ -121,7 +125,22 @@ public class HomePageController implements Initializable {
             tmpBigliettoRitorno.setDisable(!newVal);
         });
 
+        Account.loggedInProperty.addListener((obs,old,newV) -> onAccountChange());
+
     }
+
+    private void onAccountChange() {
+        System.out.println("onAccountChange!");
+        btnLogin            .setDisable(Account.getLoggedIn());
+        btnSignup           .setDisable(Account.getLoggedIn());
+        btnLogout           .setDisable(!Account.getLoggedIn());
+        btnAccountSettings  .setDisable(!Account.getLoggedIn());
+    }
+
+
+    @FXML protected void onSignup()                                 { return; }
+    @FXML protected void onLogout()                                 { Account.getInstance().logout(); }
+    @FXML protected void onAccountSettings() throws IOException     { AccountSettings.open(); }
 
     @FXML
     protected void onRicerca() {
@@ -157,6 +176,6 @@ public class HomePageController implements Initializable {
 
     @FXML
     protected void onLogin() throws IOException {
-        Login.open();
+        Login.open((boxContent).getScene().getWindow());
     }
 }

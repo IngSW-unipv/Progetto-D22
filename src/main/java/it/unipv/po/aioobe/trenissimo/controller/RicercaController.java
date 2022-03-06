@@ -32,6 +32,9 @@ public class RicercaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        viaggi = FXCollections.observableArrayList();
+        filtri = FXCollections.observableArrayList();
+
         rngPrezzo.highValueChangingProperty()   .addListener((obs, old, newV) -> { if (!newV) { updateFiltri(); }});
         rngPrezzo.lowValueChangingProperty()    .addListener((obs, old, newV) -> { if (!newV) { updateFiltri(); }});
 
@@ -43,9 +46,6 @@ public class RicercaController implements Initializable {
 
         tmpPartenza .setValue(LocalTime.MIN);
         tmpArrivo   .setValue(LocalTime.MAX);
-
-        viaggi = FXCollections.observableArrayList();
-        filtri = FXCollections.observableArrayList();
 
         viaggi.addListener((ListChangeListener<Viaggio>) c -> updateList());
         filtri.addListener((ListChangeListener<IFiltro>) c -> updateList());
