@@ -37,7 +37,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('Nyquist','gatto'),('vale1','vale1'),('zambo','zambo');
+INSERT INTO `account` VALUES ('vale','s3Uc+9Bwq7XOBYxjFLUogw=='),('zambo','F6CGhwJZ585oYLGSWSXCdA==');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +155,7 @@ CREATE TABLE `dati_personali` (
 
 LOCK TABLES `dati_personali` WRITE;
 /*!40000 ALTER TABLE `dati_personali` DISABLE KEYS */;
-INSERT INTO `dati_personali` VALUES ('zambo','Fabio','Zamboni','1999-07-23','fabio.zamboni01@universitadipavia.it',NULL,NULL,NULL,NULL);
+INSERT INTO `dati_personali` VALUES ('vale','Valeria','Vergani','1997-04-14','valeria.vergani97@gmail.com','Via Galliano',17,'Bresso',20091),('zambo','Fabio','Zamboni','1999-07-23','fabio.zamboni01@universitadipavia.it','Non lo so',1,'Vicino Piacenza',12345);
 /*!40000 ALTER TABLE `dati_personali` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -274,7 +274,7 @@ CREATE TABLE `storico_acquisti` (
   PRIMARY KEY (`storico_acquisti_id`),
   KEY `username_idx` (`username`),
   CONSTRAINT `username_storico` FOREIGN KEY (`username`) REFERENCES `account` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,7 +283,7 @@ CREATE TABLE `storico_acquisti` (
 
 LOCK TABLES `storico_acquisti` WRITE;
 /*!40000 ALTER TABLE `storico_acquisti` DISABLE KEYS */;
-INSERT INTO `storico_acquisti` VALUES (3,'vale1',NULL,12.3,NULL),(5,'vale1',NULL,5.5,NULL),(6,'vale1',NULL,10.9,NULL),(7,'vale1',NULL,10.9,NULL),(8,'vale1',NULL,10.9,NULL),(9,'vale1','d0dbe4a1-ffb1-43a0-aa50-01f8733d7700',10.9,NULL),(10,'vale1','4cc7b4bf-7f34-4c6f-9e63-a20d153e10ce',10.9,NULL),(11,'vale1','065c6106-e1be-437b-b7fb-9a66fcf48bf1',10.9,NULL);
+INSERT INTO `storico_acquisti` VALUES (39,'vale','CS001',17.98,'2022-03-05 23:09:35'),(40,'vale','CS002',26.09,'2022-03-05 23:09:36');
 /*!40000 ALTER TABLE `storico_acquisti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,7 +340,7 @@ CREATE TABLE `viaggi_preferiti` (
   PRIMARY KEY (`viaggio_preferito_id`),
   KEY `username_viaggi_idx` (`username`),
   CONSTRAINT `username_viaggi` FOREIGN KEY (`username`) REFERENCES `account` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -349,6 +349,7 @@ CREATE TABLE `viaggi_preferiti` (
 
 LOCK TABLES `viaggi_preferiti` WRITE;
 /*!40000 ALTER TABLE `viaggi_preferiti` DISABLE KEYS */;
+INSERT INTO `viaggi_preferiti` VALUES (4,'vale','TORTONA','STRESA','07:00:00',1,0,0,0,NULL),(5,'vale','TORTONA','STRESA','19:29:00',1,0,0,0,NULL);
 /*!40000 ALTER TABLE `viaggi_preferiti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,4 +370,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-04 13:42:22
+-- Dump completed on 2022-03-06 11:17:00
