@@ -8,8 +8,6 @@ import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbbonamento;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.TipoTitoloViaggio;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
-import it.unipv.po.aioobe.trenissimo.model.user.Login;
-import it.unipv.po.aioobe.trenissimo.model.user.Registrazione;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroOrario;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
@@ -23,8 +21,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.util.List;
+
 import java.util.logging.Level;
 
 public class App {
