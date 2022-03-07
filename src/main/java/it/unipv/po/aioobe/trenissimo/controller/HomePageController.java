@@ -12,7 +12,6 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.view.AccountSettings;
 import it.unipv.po.aioobe.trenissimo.view.Login;
-import it.unipv.po.aioobe.trenissimo.view.Registrazione;
 import it.unipv.po.aioobe.trenissimo.view.RicercaView;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -141,17 +140,28 @@ public class HomePageController implements Initializable {
     }
 
 
-    @FXML protected void onSignup() throws IOException              { Registrazione.open((boxContent).getScene().getWindow()); }
+    @FXML protected void onSignup()                                 { return; }
     @FXML protected void onLogout()                                 { Account.getInstance().logout(); }
     @FXML protected void onAccountSettings()                        { AccountSettings.openScene(boxContent.getScene().getWindow()); }
 
     @FXML
     protected void onRicerca() {
+
+        if (scbBigliettoPartenza.getValue() == null || scbBigliettoDestinazione.getValue() == null || scbBigliettoDestinazione.getValue() == scbBigliettoPartenza.getValue()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Trenissimo");
+            alert.setHeaderText(null);
+            alert.setContentText("Selezionare stazione di partenza e/o destinazione validi!");
+
+            alert.showAndWait();
+            return;
+        }
+
         boxLoading.setVisible(true);
         boxContent.setDisable(true);
-        Task<List<Viaggio>> task = new Task<>() {
+        Task<Ricerca> task = new Task<>() {
             @Override
-            public List<Viaggio> call() {
+            public Ricerca call() {
                 int partenzaId = (scbBigliettoPartenza.getValue()).getStopId();
                 int destinazioneId = (scbBigliettoDestinazione.getValue()).getStopId();
                 LocalDateTime data = LocalDateTime.of(dtpBigliettoPartenza.getValue(), tmpBigliettoAndata.getValue());
@@ -163,16 +173,15 @@ public class HomePageController implements Initializable {
                 search.setNumBambini((int)spnBigliettoBambini.getValue());
                 search.setNumBambini((int)spnBigliettoAnimali.getValue());
 
-                System.out.println(search);
-
-                return search.eseguiRicerca();
+                search.eseguiRicerca();
+                return search;
             }
         };
 
         task.setOnSucceeded(e -> {
             boxLoading.setVisible(false);
             boxContent.setDisable(false);
-            RicercaView.openScene((List<Viaggio>) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
+            RicercaView.openScene((Ricerca) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
         });
         new Thread(task).start();
     }

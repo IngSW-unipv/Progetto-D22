@@ -6,6 +6,7 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroOrario;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroPrezzo;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.IFiltro;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import it.unipv.po.aioobe.trenissimo.view.ViaggioControl;
 import javafx.collections.FXCollections;
@@ -27,12 +28,13 @@ public class RicercaController implements Initializable {
     @FXML private JFXTimePicker tmpPartenza;
     @FXML private JFXTimePicker tmpArrivo;
 
-    private ObservableList<Viaggio> viaggi;
+    private ObservableList<Viaggio> _viaggi;
     private ObservableList<IFiltro> filtri;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        viaggi = FXCollections.observableArrayList();
+        _viaggi = FXCollections.observableArrayList();
         filtri = FXCollections.observableArrayList();
 
         rngPrezzo.highValueChangingProperty()   .addListener((obs, old, newV) -> { if (!newV) { updateFiltri(); }});
@@ -47,18 +49,20 @@ public class RicercaController implements Initializable {
         tmpPartenza     .setValue(LocalTime.MIN);
         tmpArrivo       .setValue(LocalTime.MAX);
 
-        viaggi.addListener((ListChangeListener<Viaggio>) c -> updateList());
+        _viaggi.addListener((ListChangeListener<Viaggio>) c -> updateList());
         filtri.addListener((ListChangeListener<IFiltro>) c -> updateList());
     }
 
-    public void setViaggi(List<Viaggio> viaggi) {
-        rngPrezzo.setMax(Utils.ceil     (viaggi.stream().max(Comparator.comparing(Viaggio::getPrezzoTot)).get().getPrezzoTot(),-1));
-        rngPrezzo.setMin(Utils.floor    (viaggi.stream().min(Comparator.comparing(Viaggio::getPrezzoTot)).get().getPrezzoTot(),-1));
+    public void setRicerca(Ricerca ricerca) {
+        rngPrezzo.setMax(Utils.ceil     (ricerca.getRisultati().stream().max(Comparator.comparing(Viaggio::getPrezzoTot)).get().getPrezzoTot(),-1));
+        rngPrezzo.setMin(Utils.floor    (ricerca.getRisultati().stream().min(Comparator.comparing(Viaggio::getPrezzoTot)).get().getPrezzoTot(),-1));
         rngPrezzo.setLowValue(rngPrezzo.getMin());
         rngPrezzo.setHighValue(rngPrezzo.getMax());
+        tmpPartenza.setValue(ricerca.getDataPartenza().toLocalTime());
         updateFiltri();
-        this.viaggi.addAll(viaggi);
+        this._viaggi.addAll(ricerca.getRisultati());
     }
+
 
     private List<Viaggio> filtra(List<Viaggio> viaggi){
         List<Viaggio> viaggiFiltrati = viaggi;
@@ -69,7 +73,7 @@ public class RicercaController implements Initializable {
     }
 
     private void updateList(){
-        layout.getChildren().setAll(filtra(viaggi).stream().map(ViaggioControl::new).toList());
+        layout.getChildren().setAll(filtra(_viaggi).stream().map(ViaggioControl::new).toList());
     }
 
     private void updateFiltri(){

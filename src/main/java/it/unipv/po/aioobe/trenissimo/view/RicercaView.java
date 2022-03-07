@@ -1,6 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
 import it.unipv.po.aioobe.trenissimo.controller.RicercaController;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import javafx.application.Application;
@@ -12,11 +13,9 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import static it.unipv.po.aioobe.trenissimo.model.Utils.printViaggio;
 
 public class RicercaView extends Application {
     @Override
@@ -50,7 +49,10 @@ public class RicercaView extends Application {
         viaggi.add(viaggio1);
         viaggi.add(viaggio2);
 
-        ((RicercaController) fxmlLoader.getController()).setViaggi(viaggi);
+        Ricerca ricerca = new Ricerca(0,0, LocalDateTime.now());
+        ricerca.setRisultati(viaggi);
+
+        ((RicercaController) fxmlLoader.getController()).setRicerca(ricerca);
         stage.setTitle("RicercaView");
         stage.setScene(scene);
         stage.show();
@@ -60,7 +62,7 @@ public class RicercaView extends Application {
         launch();
     }
 
-    public static void openWindow(List<Viaggio> viaggi, Window owner){
+    public static void openWindow(Ricerca ricerca, Window owner){
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("ricercaView/ricercaView.fxml"));
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
@@ -71,13 +73,13 @@ public class RicercaView extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ((RicercaController) fxmlLoader.getController()).setViaggi(viaggi);
+        ((RicercaController) fxmlLoader.getController()).setRicerca(ricerca);
         stage.setTitle("RicercaView");
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void openScene(List<Viaggio> viaggi, Window owner){
+    public static void openScene(Ricerca ricerca, Window owner){
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("ricercaView/ricercaView.fxml"));
 
         Parent scene = null;
@@ -87,7 +89,7 @@ public class RicercaView extends Application {
             e.printStackTrace();
         }
 
-        ((RicercaController) fxmlLoader.getController()).setViaggi(viaggi);
+        ((RicercaController) fxmlLoader.getController()).setRicerca(ricerca);
         owner.getScene().setRoot(scene);
     }
 }

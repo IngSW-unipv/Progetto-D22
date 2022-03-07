@@ -70,7 +70,8 @@ public class App {
         search.setNumAnimali(0);
         search.setNumRagazzi(0);
 
-        List<Viaggio> viaggi = search.eseguiRicerca();
+        search.eseguiRicerca();
+        List<Viaggio> viaggi = search.getRisultati();
 
         viaggi.forEach((x)->System.out.println(x.toString()));
 

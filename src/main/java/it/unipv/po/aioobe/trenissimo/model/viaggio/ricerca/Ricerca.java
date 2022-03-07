@@ -9,30 +9,32 @@ import java.util.List;
 public class Ricerca implements IRicerca{
     private int stazionePartenza;
     private int stazioneArrivo;
-    private LocalDateTime dataAttuale;
+    private LocalDateTime dataPartenza;
+    private LocalDateTime dataArrivo;
     private int numAdulti;
     private int numRagazzi;
     private int numBambini;
     private int numAnimali;
     private boolean andataRitorno;
 
+    private List<Viaggio> risultati;
+
     public Ricerca(int stazionePartenza, int stazioneArrivo, LocalDateTime dataAttuale) {
         this.stazionePartenza = stazionePartenza;
         this.stazioneArrivo = stazioneArrivo;
-        this.dataAttuale = dataAttuale;
+        this.dataPartenza = dataAttuale;
     }
 
     @Override
-    public List<Viaggio> eseguiRicerca() {
+    public void eseguiRicerca() {
         CSASearch search = new CSASearch();
         List<Viaggio> lista = search.eseguiRicerca(stazionePartenza, stazioneArrivo);
         lista.forEach((x)->x.setNumAdulti(this.getNumAdulti()));
         lista.forEach((x)->x.setNumAnimali(this.getNumAnimali()));
         lista.forEach((x)->x.setNumRagazzi(this.getNumRagazzi()));
         lista.forEach((x)->x.setNumBambini(this.getNumBambini()));
-        lista.forEach((x)->x.setDataPartenza(this.getDataAttuale().toLocalDate()));
-        //lista.removeIf(v -> LocalTime.ofSecondOfDay(v.getOrarioPartenza()).isBefore(this.dataAttuale.toLocalTime()));
-        return lista;
+        lista.forEach((x)->x.setDataPartenza(this.getDataPartenza().toLocalDate()));
+        setRisultati(lista);
     }
 
     public int getNumAdulti() {
@@ -59,8 +61,8 @@ public class Ricerca implements IRicerca{
         return stazioneArrivo;
     }
 
-    public LocalDateTime getDataAttuale() {
-        return dataAttuale;
+    public LocalDateTime getDataPartenza() {
+        return dataPartenza;
     }
 
     public boolean isAndataRitorno() {
@@ -95,9 +97,13 @@ public class Ricerca implements IRicerca{
         this.stazioneArrivo = stazioneArrivo;
     }
 
-    public void setDataAttuale(LocalDateTime dataAttuale) {
-        this.dataAttuale = dataAttuale;
+    public void setDataPartenza(LocalDateTime dataPartenza) {
+        this.dataPartenza = dataPartenza;
     }
+
+    public List<Viaggio> getRisultati() { return risultati; }
+
+    public void setRisultati(List<Viaggio> risultati) { this.risultati = risultati; }
 
     @Override
     public int compareTo(Viaggio viaggio) {
