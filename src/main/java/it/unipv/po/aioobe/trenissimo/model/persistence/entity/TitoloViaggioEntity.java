@@ -1,5 +1,8 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
@@ -109,6 +112,18 @@ public class TitoloViaggioEntity {
 
     public void setStoricoAcquistisByTitoloViaggioId(Collection<StoricoAcquistiEntity> storicoAcquistisByTitoloViaggioId) {
         this.storicoAcquistisByTitoloViaggioId = storicoAcquistisByTitoloViaggioId;
+    }
+
+    public TitoloViaggioEntity toTitoloViaggioEntity(CorsaSingola biglietto) {
+        TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
+        titoloViaggioEntity.setTitoloViaggioId(biglietto.getTitoloViaggioId());
+        titoloViaggioEntity.setStazionePartenza(biglietto.getViaggio().getStazionePartenza().getStopName());
+        titoloViaggioEntity.setStazioneArrivo(biglietto.getViaggio().getStazioneArrivo().getStopName());
+        titoloViaggioEntity.setDataPartenza(Date.valueOf(biglietto.getViaggio().getDataPartenza()));
+        titoloViaggioEntity.setDataArrivo(Date.valueOf(biglietto.getViaggio().getDataPartenza()));
+        titoloViaggioEntity.setOraPartenza(Time.valueOf(Utils.secondsToTime(biglietto.getViaggio().getOrarioPartenza())));
+        titoloViaggioEntity.setOraArrivo(Time.valueOf(Utils.secondsToTime(biglietto.getViaggio().getOrarioArrivo())));
+        return titoloViaggioEntity;
     }
 
     @Override

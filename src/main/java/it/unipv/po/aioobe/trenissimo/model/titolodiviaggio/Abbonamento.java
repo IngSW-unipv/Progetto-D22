@@ -2,22 +2,18 @@ package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 
-import java.util.UUID;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Abbonamento implements ITitoloViaggio{
     private TipoTitoloViaggio tipo;
     private DurataAbbonamento  durata;
     private double prezzo;
     private String id;
-    private static final AtomicInteger count = new AtomicInteger(0);
     private String stazionePartenza;
     private String stazioneArrivo;
 
     public Abbonamento(DurataAbbonamento  durata, String stazionePartenza, String stazioneArrivo) {
         this.tipo = TipoTitoloViaggio.ABBONAMENTO;
         this.durata = durata;
-        this.id = "AB" + String.format("%03d", count.incrementAndGet());
+        this.id = "AB" + System.currentTimeMillis();
         this.stazionePartenza = stazionePartenza;
         this.stazioneArrivo = stazioneArrivo;
     }

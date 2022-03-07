@@ -63,7 +63,7 @@ public class App {
         accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         //viaggiPreferitiService.findAll().forEach((x)-> System.out.println(x.toString()));
 
-        Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
+        Ricerca search = new Ricerca(1707, 2793, LocalDateTime.now());
 
         search.setNumAdulti(1);
         search.setNumBambini(0);
@@ -75,9 +75,11 @@ public class App {
         viaggi.forEach((x)->System.out.println(x.toString()));
 
         //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
-        CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+        //orsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+        //CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
+        CorsaSingola biglietto4 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
 
-        titoloViaggioService.persist(biglietto2.toTitoloViaggioEntity());
+        titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(biglietto4));
 
         titoloViaggioService.findAll().forEach((x)->System.out.println(x.toString()));
 

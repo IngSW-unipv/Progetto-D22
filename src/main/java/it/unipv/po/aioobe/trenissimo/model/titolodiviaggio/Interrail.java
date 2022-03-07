@@ -2,21 +2,17 @@ package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 
-import java.util.UUID;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Interrail implements ITitoloViaggio{
 
     private TipoTitoloViaggio tipo;
     private DurataAbbonamento  durata;
     private double prezzo;
     private String id;
-    private static final AtomicInteger count = new AtomicInteger(0);
 
     public Interrail(DurataAbbonamento  durata) {
         this.tipo = TipoTitoloViaggio.INTERRAIL;
         this.durata = durata;
-        this.id = "IR" + String.format("%03d", count.incrementAndGet());
+        this.id = "IR" + System.currentTimeMillis();
     }
 
     @Override
