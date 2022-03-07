@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://172.17.88.112:3306/trenissimo</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/trenissimo</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
@@ -22,6 +22,7 @@
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity"/>
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity"/>
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity"/>
+        <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity"/>
 
 
     </session-factory>
