@@ -1,11 +1,12 @@
 package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CorsaSingola implements ITitoloViaggio{
+public class CorsaSingola extends TitoloViaggioEntity implements ITitoloViaggio {
     private TipoTitoloViaggio tipo;
     private double prezzo;
     private String id;
@@ -17,6 +18,7 @@ public class CorsaSingola implements ITitoloViaggio{
         this.tipo = tipo;
         this.id = "CS" + String.format("%03d", count.incrementAndGet());
         this.viaggio = viaggio;
+        this.prezzo = viaggio.getPrezzo();
     }
 
     //getter
@@ -31,17 +33,12 @@ public class CorsaSingola implements ITitoloViaggio{
 
     @Override
     public double getPrezzo() {
-        return this.getViaggio().getPrezzo();
-    }
-
-    @Override
-    public String getId() {
-        return this.id;
+        return this.prezzo;
     }
 
     @Override
     public void setPrezzo(double prezzo) {
-        // todo
+        this.prezzo = prezzo;
     }
 }
 

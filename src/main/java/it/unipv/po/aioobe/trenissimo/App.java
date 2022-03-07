@@ -1,18 +1,15 @@
 package it.unipv.po.aioobe.trenissimo;
 
+
 import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbbonamento;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.TipoTitoloViaggio;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroOrario;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
-
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -20,8 +17,13 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.ParseException;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.logging.Level;
 
 public class App {
@@ -44,11 +46,22 @@ public class App {
         }
         System.out.println("\n\n");*/
 
-        /*
+
         AccountService accountService = new AccountService();
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
         StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
+        TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
+
+        Account.login("nyquist");
+        TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
+
+
+
+        //Account.signUp("nyquist", "gatto", "Nyquist", "Zambo", "2021-04-30", "nyquist.ilgatto@gmail.com", " A Casa", "6c", "Gattopoli", "77777");
+
+        accountService.findAll().forEach((x)-> System.out.println(x.toString()));
+        //viaggiPreferitiService.findAll().forEach((x)-> System.out.println(x.toString()));
 
         Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
 
@@ -60,12 +73,23 @@ public class App {
         List<Viaggio> viaggi = search.eseguiRicerca();
 
         viaggi.forEach((x)->System.out.println(x.toString()));
-
-        Login.getInstance().login("vale");
-
+        /*
         CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
         CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+*/
+        titoloViaggioEntity.setTitoloViaggioId("CS101");
+        titoloViaggioEntity.setStazionePartenza(viaggi.get(0).getStazionePartenza().getStopName());
+        titoloViaggioEntity.setStazioneArrivo(viaggi.get(0).getStazioneArrivo().getStopName());
+        titoloViaggioEntity.setDataPartenza(Date.valueOf(search.getDataAttuale().toLocalDate()));
+        titoloViaggioEntity.setDataArrivo(Date.valueOf(search.getDataAttuale().toLocalDate()));
+        titoloViaggioEntity.setOraPartenza(Time.valueOf(Utils.secondsToTime(viaggi.get(0).getOrarioPartenza())));
+        titoloViaggioEntity.setOraArrivo(Time.valueOf(Utils.secondsToTime(viaggi.get(0).getOrarioArrivo())));
 
+        //titoloViaggioService.persist(titoloViaggioEntity);
+
+        titoloViaggioService.findAll().forEach((x)->System.out.println(x.toString()));
+
+/*
         Account.getInstance().addAcquistoToStorico(biglietto);
         Account.getInstance().addAcquistoToStorico(biglietto2);
 

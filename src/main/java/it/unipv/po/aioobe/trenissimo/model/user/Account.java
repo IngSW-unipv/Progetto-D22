@@ -12,7 +12,6 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiSe
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.ViaggiPreferitiService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -88,7 +87,7 @@ public class Account {
         datiPersonali.setDataNascita(Date.valueOf(dataNascita));
         datiPersonali.setMail(mail);
         datiPersonali.setVia(via);
-        datiPersonali.setCivico(Integer.valueOf(civico));
+        datiPersonali.setCivico(civico);
         datiPersonali.setCitta(citta);
         datiPersonali.setCap(Integer.valueOf(cap));
         datiPersonaliService.update(datiPersonali);
@@ -158,13 +157,14 @@ public class Account {
         DatiPersonaliEntity dati = new DatiPersonaliEntity();
         account.setUsername(username);
         account.setPassword(CryptographyUtils.encryptPassword(password));
+        account.setPuntiFedelta(0);
         dati.setUsername(username);
         dati.setNome(nome);
         dati.setCognome(cognome);
         dati.setDataNascita(java.sql.Date.valueOf(dataDiNascita));
         dati.setMail(mail);
         dati.setVia(via);
-        dati.setCivico(Integer.valueOf(civico));
+        dati.setCivico(civico);
         dati.setCitta(citta);
         dati.setCap(Integer.valueOf(cap));
         accountService.persist(account);

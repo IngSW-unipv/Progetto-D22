@@ -54,7 +54,7 @@ public class Carnet implements ITitoloViaggio{
     }
 
     @Override
-    public String getId() {
+    public String getTitoloViaggioId() {
         return this.id;
     }
 

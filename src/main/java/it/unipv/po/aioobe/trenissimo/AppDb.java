@@ -65,7 +65,7 @@ public class AppDb {
         dati.setCognome("Vergani");
         dati.setMail("fabio.zamboni01@universitadipavia.it");
         dati.setVia("Loc. Albareto");
-        dati.setCivico(57);
+        dati.setCivico("57");
         dati.setCap(29010);
         dati.setCitta("Ziano Piacentino");
         datiPersonaliService.update(dati);

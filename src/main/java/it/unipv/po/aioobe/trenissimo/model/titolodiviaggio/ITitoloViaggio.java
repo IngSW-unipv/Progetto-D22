@@ -8,6 +8,6 @@ public interface ITitoloViaggio extends IAcquisto {
     //getter e setter
     public TipoTitoloViaggio getTipo();
     public double getPrezzo();
-    public String getId();
+    public String getTitoloViaggioId();
 
 }
