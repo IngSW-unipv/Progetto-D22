@@ -6,6 +6,7 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -18,6 +19,7 @@ public class Viaggio {
     private int numRagazzi;
     private int numBambini;
     private int numAnimali;
+    private LocalDate dataPartenza;
     private List<Connection> cambi;
 
     private static final AtomicInteger count = new AtomicInteger(0);
@@ -55,6 +57,14 @@ public class Viaggio {
 
     public void setNumAnimali(int numAnimali) {
         this.numAnimali = numAnimali;
+    }
+
+    public LocalDate getDataPartenza() {
+        return dataPartenza;
+    }
+
+    public void setDataPartenza(LocalDate dataPartenza) {
+        this.dataPartenza = dataPartenza;
     }
 
     public List<Connection> getCambi() {

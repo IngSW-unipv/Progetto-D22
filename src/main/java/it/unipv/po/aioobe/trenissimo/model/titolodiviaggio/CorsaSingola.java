@@ -1,12 +1,15 @@
 package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CorsaSingola extends TitoloViaggioEntity implements ITitoloViaggio {
+public class CorsaSingola implements ITitoloViaggio {
     private TipoTitoloViaggio tipo;
     private double prezzo;
     private String id;
@@ -37,8 +40,27 @@ public class CorsaSingola extends TitoloViaggioEntity implements ITitoloViaggio 
     }
 
     @Override
+    public String getTitoloViaggioId() {
+        return id;
+    }
+
+    @Override
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
     }
+
+    public TitoloViaggioEntity toTitoloViaggioEntity() {
+        TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
+        titoloViaggioEntity.setTitoloViaggioId(this.getTitoloViaggioId());
+        titoloViaggioEntity.setStazionePartenza(this.getViaggio().getStazionePartenza().getStopName());
+        titoloViaggioEntity.setStazioneArrivo(this.getViaggio().getStazioneArrivo().getStopName());
+        titoloViaggioEntity.setDataPartenza(Date.valueOf(this.getViaggio().getDataPartenza()));
+        titoloViaggioEntity.setDataArrivo(Date.valueOf(this.getViaggio().getDataPartenza()));
+        titoloViaggioEntity.setOraPartenza(Time.valueOf(Utils.secondsToTime(this.getViaggio().getOrarioPartenza())));
+        titoloViaggioEntity.setOraArrivo(Time.valueOf(Utils.secondsToTime(this.getViaggio().getOrarioArrivo())));
+        return titoloViaggioEntity;
+    }
+
+
 }
 

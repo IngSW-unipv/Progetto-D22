@@ -30,6 +30,7 @@ public class Ricerca implements IRicerca{
         lista.forEach((x)->x.setNumAnimali(this.getNumAnimali()));
         lista.forEach((x)->x.setNumRagazzi(this.getNumRagazzi()));
         lista.forEach((x)->x.setNumBambini(this.getNumBambini()));
+        lista.forEach((x)->x.setDataPartenza(this.getDataAttuale().toLocalDate()));
         //lista.removeIf(v -> LocalTime.ofSecondOfDay(v.getOrarioPartenza()).isBefore(this.dataAttuale.toLocalTime()));
         return lista;
     }

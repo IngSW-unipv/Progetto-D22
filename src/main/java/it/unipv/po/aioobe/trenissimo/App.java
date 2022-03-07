@@ -73,19 +73,11 @@ public class App {
         List<Viaggio> viaggi = search.eseguiRicerca();
 
         viaggi.forEach((x)->System.out.println(x.toString()));
-        /*
-        CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
-        CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
-*/
-        titoloViaggioEntity.setTitoloViaggioId("CS101");
-        titoloViaggioEntity.setStazionePartenza(viaggi.get(0).getStazionePartenza().getStopName());
-        titoloViaggioEntity.setStazioneArrivo(viaggi.get(0).getStazioneArrivo().getStopName());
-        titoloViaggioEntity.setDataPartenza(Date.valueOf(search.getDataAttuale().toLocalDate()));
-        titoloViaggioEntity.setDataArrivo(Date.valueOf(search.getDataAttuale().toLocalDate()));
-        titoloViaggioEntity.setOraPartenza(Time.valueOf(Utils.secondsToTime(viaggi.get(0).getOrarioPartenza())));
-        titoloViaggioEntity.setOraArrivo(Time.valueOf(Utils.secondsToTime(viaggi.get(0).getOrarioArrivo())));
 
-        //titoloViaggioService.persist(titoloViaggioEntity);
+        //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
+        CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+
+        titoloViaggioService.persist(biglietto2.toTitoloViaggioEntity());
 
         titoloViaggioService.findAll().forEach((x)->System.out.println(x.toString()));
 
