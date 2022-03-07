@@ -52,8 +52,8 @@ public class RicercaController implements Initializable {
     }
 
     public void setViaggi(List<Viaggio> viaggi) {
-        rngPrezzo.setMax(Utils.ceil     (viaggi.stream().max(Comparator.comparing(Viaggio::getPrezzo)).get().getPrezzo(),-1));
-        rngPrezzo.setMin(Utils.floor    (viaggi.stream().min(Comparator.comparing(Viaggio::getPrezzo)).get().getPrezzo(),-1));
+        rngPrezzo.setMax(Utils.ceil     (viaggi.stream().max(Comparator.comparing(Viaggio::getPrezzoTot)).get().getPrezzoTot(),-1));
+        rngPrezzo.setMin(Utils.floor    (viaggi.stream().min(Comparator.comparing(Viaggio::getPrezzoTot)).get().getPrezzoTot(),-1));
         rngPrezzo.setLowValue(rngPrezzo.getMin());
         rngPrezzo.setHighValue(rngPrezzo.getMax());
         updateFiltri();

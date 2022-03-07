@@ -14,7 +14,7 @@ public class CorsaSingola implements ITitoloViaggio {
         this.tipo = tipo;
         this.id = "CS" + System.currentTimeMillis();
         this.viaggio = viaggio;
-        this.prezzo = viaggio.getPrezzo();
+        this.prezzo = viaggio.getPrezzoTot();
     }
 
     //getter

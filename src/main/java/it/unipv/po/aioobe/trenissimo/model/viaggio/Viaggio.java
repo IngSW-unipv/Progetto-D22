@@ -1,7 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
-import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
@@ -100,7 +99,7 @@ public class Viaggio {
         return (int) (cambi.stream().map(x -> x.getDepartureStationTrip()).distinct().count() - 1);
     }
 
-    public double getPrezzo() {
+    public double getPrezzoTot() {
 
         double prezzoPerPersona=0;
 
@@ -182,7 +181,7 @@ public class Viaggio {
                 ", numAnimali=" + numAnimali +
                 "\nn. cambi=" + getNumeroCambi() +
                 "\ndistanza=" + getDistanzaTotale() + "km" +
-                "\nprezzo=" + getPrezzo() + "€" +
+                "\nprezzo=" + getPrezzoTot() + "€" +
                 "\n";
     }
 }

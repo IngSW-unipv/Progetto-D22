@@ -32,6 +32,6 @@ public class FiltroPrezzo implements IFiltro {
 
     @Override
     public List<Viaggio> esegui(List<Viaggio> input) {
-        return input.stream().filter(x -> x.getPrezzo() <= maxPrezzo && x.getPrezzo() >= minPrezzo).toList();
+        return input.stream().filter(x -> x.getPrezzoTot() <= maxPrezzo && x.getPrezzoTot() >= minPrezzo).toList();
     }
 }
