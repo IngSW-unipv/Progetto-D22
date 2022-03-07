@@ -99,28 +99,39 @@ public class Viaggio {
         return (int) (cambi.stream().map(x -> x.getDepartureStationTrip()).distinct().count() - 1);
     }
 
-    public double getPrezzoTot() {
+    public double getPrezzoPerDistanza() {
+        double prezzo=0;
 
-        double prezzoPerPersona=0;
-
+        //operazione in strategy
         for (int i=0; i<this.getCambi().size(); i++) {
-            prezzoPerPersona = prezzoPerPersona + getDistanza(getCoppiaStazioni(i))*0.15;
+            prezzo = prezzo + getDistanza(getCoppiaStazioni(i))*0.15;
         }
 
-        double prezzoTotCambi = prezzoPerPersona + getNumeroCambi()*0.5; //Per ogni cambio si aggiungono 50 centesimi
+        return prezzo;
 
-        //Composizione del prezzo: Adulto prezzo intero, ragazzo 2/3 del prezzo, bambino 1/3 del prezzo, aggiunta di 3 euro per animale
+    }
 
-        double prezzoTotPasseggeri = prezzoTotCambi*this.getNumAdulti()+prezzoTotCambi*((double)2/3)*this.getNumRagazzi()+prezzoTotCambi*((double)1/3)*this.getNumBambini()+3*this.getNumAnimali();
+    public double getPrezzoTotCambi() {
+        double prezzo=0;
 
-        String s = (Utils.secondsToTime(this.getOrarioPartenza()).substring(0,1));
+        //operazione in strategy
+        prezzo = prezzo + getNumeroCambi()*0.5; //Per ogni cambio si aggiungono 50 centesimi
 
+        return prezzo;
+    }
 
-        //Il prezzo per fascia oraria viene calcolato in base alla prima cifra dell'ora e quindi se il viaggio viene fatto prima delle 10:00 o dopo le 19:59, verrà tolto un 25%
+    public double getPrezzoPerPersona() {
+        return this.getPrezzoPerDistanza()+this.getPrezzoTotCambi();
+    }
 
-        double prezzoFinaleFasciaOraria = prezzoTotPasseggeri - prezzoTotPasseggeri * 0.25 * Math.abs(Integer.valueOf(s)-1);
+    public double getPrezzoTot() {
+            double prezzo=0;
 
-        return Double.valueOf(String.format(Locale.US,"%.2f", prezzoFinaleFasciaOraria));
+            //operazione in strategy
+            prezzo = this.getPrezzoPerPersona()*this.getNumAdulti()+this.getPrezzoPerPersona()*((double)2/3)*this.getNumRagazzi()+this.getPrezzoPerPersona()*((double)1/3)*this.getNumBambini()+3*this.getNumAnimali();
+            //Composizione del prezzo: Adulto prezzo intero, ragazzo 2/3 del prezzo, bambino 1/3 del prezzo, aggiunta di 3 euro per animale
+
+            return Double.valueOf(String.format(Locale.US,"%.2f", prezzo));
     }
 
     public List<StopsEntity> getCoppiaStazioni (int i) {
