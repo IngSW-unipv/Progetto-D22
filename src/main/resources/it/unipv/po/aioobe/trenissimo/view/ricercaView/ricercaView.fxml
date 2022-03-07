@@ -59,7 +59,7 @@
                <content>
                   <VBox>
                      <children>
-                         <JFXTimePicker fx:id="tmpPartenza" maxWidth="1.7976931348623157E308" />
+                         <JFXTimePicker fx:id="tmpPartenza" maxHeight="29.0" maxWidth="278.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" />
                      </children>
                   </VBox>
                </content>
@@ -68,7 +68,7 @@
                <content>
                   <VBox>
                      <children>
-                         <JFXTimePicker fx:id="tmpArrivo" maxWidth="1.7976931348623157E308" />
+                         <JFXTimePicker fx:id="tmpArrivo" maxHeight="29.0" maxWidth="278.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" />
                      </children>
                   </VBox>
                </content>

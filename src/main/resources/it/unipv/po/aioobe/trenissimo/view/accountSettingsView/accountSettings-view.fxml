@@ -72,10 +72,26 @@
                                       </ImageView>
                                   </children>
                               </HBox>
-                              <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0" HBox.hgrow="ALWAYS">
-                                  <children>
-                              <Label id="labelBenvenuto" fx:id="lblBenvenuto" contentDisplay="BOTTOM" text="Ciao, @username" />
-                                  </children>
+                              <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="16.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="485.5">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label id="labelBenvenuto" fx:id="lblBenvenuto" alignment="CENTER" contentDisplay="BOTTOM" text="Ciao, @username" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
+                                    <Label fx:id="lblPunti" text="Punti fedeltà: 0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                                 </children>
+                              </GridPane>
+                           </children>
                               </HBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="16.0" HBox.hgrow="ALWAYS">
                                   <children>
@@ -165,7 +181,7 @@
                                              <GridPane.margin>
                                                 <Insets left="16.0" />
                                              </GridPane.margin></Label>
-                                          <Button fx:id="btnModificaPassword" onAction="#onModificaPassword" disable="true" maxWidth="123.0" mnemonicParsing="false" text="Modifica password" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                                          <Button fx:id="btnModificaPassword" disable="true" maxWidth="123.0" mnemonicParsing="false" onAction="#onModificaPassword" text="Modifica password" GridPane.columnIndex="4" GridPane.rowIndex="9" />
                                        </children>
                                        <BorderPane.margin>
                                           <Insets top="35.0" />

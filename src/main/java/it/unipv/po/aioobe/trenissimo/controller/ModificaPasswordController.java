@@ -38,11 +38,12 @@ public class ModificaPasswordController implements Initializable {
 
     @FXML private Label lblSalvataggioOK;
 
-    private int flag=0;
+    private boolean isPswCheckOk;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            isPswCheckOk = true;
             onCheck();
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,11 +93,17 @@ public class ModificaPasswordController implements Initializable {
                 lblErroreNuovaEmpty.setVisible(false);
                 btnSalva.setDisable(false);
                 txtNuovaPsw.setStyle("-fx-border-color: #cccccc");
+                txtConfermaPsw.setStyle("-fx-border-color: #cccccc");
             }
             else {
                 lblErroreCorrispondenza.setVisible(false);
                 lblErroreNuovaEmpty.setVisible(true);
                 txtNuovaPsw.setStyle("-fx-border-color: #d70000");
+            }
+
+            if (!(txtNuovaPsw.getText().equals(txtConfermaPsw.getText()))){
+                txtConfermaPsw.setStyle("-fx-border-color: #d70000");
+                lblErroreCorrispondenza.setVisible(true);
             }
 
         });
@@ -125,10 +132,10 @@ public class ModificaPasswordController implements Initializable {
             || lblErroreCorrispondenza.isVisible() || lblErrorePasswordVecchia.isVisible())
         {
             btnSalva.setDisable(true);
-            flag = 1;
+            isPswCheckOk = false;
         }
         else
-            flag=0;
+            isPswCheckOk = true;
 
     });
 
@@ -138,17 +145,17 @@ public class ModificaPasswordController implements Initializable {
         if (txtVecchiaPsw.getText().isEmpty()) {
             lblErroreVecchiaEmpty.setVisible(true);
             txtVecchiaPsw.setStyle("-fx-border-color: #d70000");
-            flag=1;
+            isPswCheckOk = false;
         }
         if (txtNuovaPsw.getText().isEmpty()) {
             lblErroreNuovaEmpty.setVisible(true);
             txtNuovaPsw.setStyle("-fx-border-color: #d70000");
-            flag=1;
+            isPswCheckOk = false;
         }
         if (txtConfermaPsw.getText().isEmpty()) {
             lblErroreConfermaEmpty.setVisible(true);
             txtConfermaPsw.setStyle("-fx-border-color: #d70000");
-            flag=1;
+            isPswCheckOk = false;
         }
     }
 
@@ -160,20 +167,10 @@ public class ModificaPasswordController implements Initializable {
     @FXML
     protected void onSalvaPassword() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         onCheckEmpty();
-/*
-        if (!(Account.checkUserPassword(Account.getInstance().getUsername(), txtVecchiaPsw.getText()))) {
-            lblErrorePasswordVecchia.setVisible(true);
-            txtVecchiaPsw.setStyle("-fx-border-color: #d70000");
-        }
-        if (!(txtNuovaPsw.getText().equals(txtConfermaPsw.getText()))){
-            txtConfermaPsw.setStyle("-fx-border-color: #d70000");
-            lblErroreCorrispondenza.setVisible(true);
-        }
 
+        // todo, manca metodo per salvare psw in db
 
-        Account.getInstance().signUp(username,psw,nome,cognome,dataNascita,mail, via, civico, citta, cap);
-*/
-        if (flag==0){
+        if (isPswCheckOk){
             lblSalvataggioOK.setVisible(true);
 
             Task<Void> task = new Task<Void>() {

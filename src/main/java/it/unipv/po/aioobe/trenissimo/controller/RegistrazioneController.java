@@ -64,8 +64,6 @@ public class RegistrazioneController implements Initializable {
         //todo aggiungere thread per caricamento dati personali in label
     }
 
-
-
     @FXML
     protected void onCheck() throws IOException {
         txtUsername.textProperty().addListener((observable, oldValue, newValue) -> {

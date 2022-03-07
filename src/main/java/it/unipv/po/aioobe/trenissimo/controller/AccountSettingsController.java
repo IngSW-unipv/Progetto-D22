@@ -31,6 +31,7 @@ public class AccountSettingsController implements Initializable {
     @FXML private Button btnModificaPassword;
 
     @FXML private Label lblBenvenuto;
+    @FXML private Label lblPunti;
     @FXML private Label lblDatiPersonali;
     @FXML private TextField txtNome;
     @FXML private TextField txtCognome;
@@ -72,6 +73,8 @@ public class AccountSettingsController implements Initializable {
         //Account.getInstance().setDatiPersonali("zambo"); // todo da aggiunere dati del login
 
         lblBenvenuto.setText("Ciao, "+ Account.getInstance().getDatiPersonali().getNome());
+        // todo: aggiungere punti fedeltà
+        //lblPunti.setText("Punti fedeltà: "+ );
         lblDatiPersonali.setText("Dati Personali");
         txtNome.setText(Account.getInstance().getDatiPersonali().getNome());
         txtCognome.setText(Account.getInstance().getDatiPersonali().getCognome());
