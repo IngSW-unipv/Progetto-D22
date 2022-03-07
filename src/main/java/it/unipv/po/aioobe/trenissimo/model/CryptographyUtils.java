@@ -19,12 +19,11 @@ public class CryptographyUtils {
     /**
      * @param myKey
      * @return
-     * @throws UnsupportedEncodingException
      * @throws NoSuchAlgorithmException
      * @implNote code ref "https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"
      * @author ArrayIndexOutOfBoundsException
      */
-    public static SecretKeySpec computeKey(final String myKey) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    public static SecretKeySpec computeKey(final String myKey) throws NoSuchAlgorithmException {
         byte[] key;
         MessageDigest sha = null;
         key = myKey.getBytes(StandardCharsets.UTF_8);
