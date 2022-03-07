@@ -6,6 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public interface IRicerca extends Comparable<Viaggio> {
-    public List<Viaggio> eseguiRicerca();
+    public void eseguiRicerca();
     public int compareTo(Viaggio viaggio);
 }
