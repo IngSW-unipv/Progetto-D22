@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.AccountSettingsController">
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.AccountSettingsController">
    <children>
       <VBox fx:id="boxContent" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="32.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@accountSettings.css">
           <children>
@@ -135,8 +152,8 @@
                                           <TextField fx:id="txtCognome" disable="true" mouseTransparent="true" promptText="Cognome" styleClass="textField" text="Rossi" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                           <TextField fx:id="txtVia" disable="true" mouseTransparent="true" promptText="Via" styleClass="textField" text="ferrata" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                                           <TextField fx:id="txtCAP" disable="true" mouseTransparent="true" promptText="CAP" styleClass="textField" text="12345" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-                                          <TextField fx:id="txtCivico" disable="true" maxWidth="150.0" mouseTransparent="true" promptText="Civico" styleClass="textField" text="8" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-                                          <DatePicker fx:id="dtpDataNascita" editable="false" disable="true" maxWidth="1.7976931348623157E308" mouseTransparent="true" promptText="10/05/2000" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                          <TextField fx:id="txtCivico" disable="true" maxWidth="123.0" mouseTransparent="true" promptText="Civico" styleClass="textField" text="8" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                                          <DatePicker fx:id="dtpDataNascita" disable="true" editable="false" maxWidth="1.7976931348623157E308" mouseTransparent="true" promptText="10/05/2000" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                                           <Label fx:id="lblErroreCAP" text="CAP inserito non valido!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                                           <Label fx:id="lblErroreEmail" text="Email non valida!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                                           <Label fx:id="lblErroreDataNascita" text="Data di nascita non valida!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
@@ -144,7 +161,11 @@
                                           <Label fx:id="lblErroreCitta" text="Inserire la Città!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                                           <Label fx:id="lblErroreCognome" text="Inserire il Cognome!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                                           <Label fx:id="lblErroreVia" text="Inserire la Via!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                                          <Label fx:id="lblErroreCivico" text="Inserire il Civico!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                          <Label fx:id="lblErroreCivico" text="Inserire il Civico!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="7">
+                                             <GridPane.margin>
+                                                <Insets left="16.0" />
+                                             </GridPane.margin></Label>
+                                          <Button fx:id="btnModificaPassword" onAction="#onModificaPassword" disable="true" maxWidth="123.0" mnemonicParsing="false" text="Modifica password" GridPane.columnIndex="4" GridPane.rowIndex="9" />
                                        </children>
                                        <BorderPane.margin>
                                           <Insets top="35.0" />

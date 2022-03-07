@@ -1,8 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
-import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,14 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.security.InvalidKeyException;
@@ -282,7 +277,7 @@ public class RegistrazioneController implements Initializable {
         String citta = txtCitta.getText();
         String cap = txtCAP.getText();
 
-        Account.getInstance().signUp(username,psw,nome,cognome,dataNascita,mail, via, civico, citta, cap);
+        Account.signUp(username,psw,nome,cognome,dataNascita,mail, via, civico, citta, cap);
 
         lblRegistrazioneOK.setVisible(true);
 

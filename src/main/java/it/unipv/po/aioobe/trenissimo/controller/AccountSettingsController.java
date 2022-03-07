@@ -3,6 +3,7 @@ package it.unipv.po.aioobe.trenissimo.controller;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.view.HomePage;
+import it.unipv.po.aioobe.trenissimo.view.ModificaPassword;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -28,6 +28,7 @@ public class AccountSettingsController implements Initializable {
     @FXML private Button btnModifica;
     @FXML private Button btnAnnulla;
     @FXML private Button btnSalva;
+    @FXML private Button btnModificaPassword;
 
     @FXML private Label lblBenvenuto;
     @FXML private Label lblDatiPersonali;
@@ -60,7 +61,6 @@ public class AccountSettingsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         onStart();
-
         //todo aggiungere thread per caricamento dati personali in label
     }
 
@@ -107,9 +107,11 @@ public class AccountSettingsController implements Initializable {
         abilita(txtCitta);
         abilita(txtCAP);
 
+
         btnSalva.setVisible(true);
         btnAnnulla.setVisible(true);
         btnModifica.setVisible(false);
+        btnModificaPassword.setDisable(false);
 
         txtCAP.textProperty().addListener((observable, oldValue, newValue) -> {
             if(Account.getInstance().checkCAP(txtCAP.getText())) {
@@ -218,6 +220,24 @@ public class AccountSettingsController implements Initializable {
     }
 
     @FXML
+    protected void onModificaPassword() throws IOException {
+        ModificaPassword.open(lblBenvenuto.getScene().getWindow());
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws InterruptedException {
+                Thread.sleep(1500);
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            onAnnulla();
+        });
+        new Thread(task).start();
+    }
+
+
+    @FXML
     protected void onAnnulla(){
 
         //metodo per il tasto annulla, disabilita tutte le textField/button
@@ -236,6 +256,7 @@ public class AccountSettingsController implements Initializable {
         btnSalva.setVisible(false);
         btnAnnulla.setVisible(false);
         btnModifica.setVisible(true);
+        btnModificaPassword.setDisable(true);
 
         onStart();
     }
