@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
   `username` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
+  `punti_fedelta` int unsigned DEFAULT '0',
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +38,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('vale','s3Uc+9Bwq7XOBYxjFLUogw=='),('zambo','F6CGhwJZ585oYLGSWSXCdA==');
+INSERT INTO `account` VALUES ('nyquist','RHuouxFN3SydfMJjE6GQzQ==',0),('vale','s3Uc+9Bwq7XOBYxjFLUogw==',0),('zambo','F6CGhwJZ585oYLGSWSXCdA==',0);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +142,7 @@ CREATE TABLE `dati_personali` (
   `data_nascita` date NOT NULL,
   `mail` varchar(45) NOT NULL,
   `via` varchar(255) DEFAULT NULL,
-  `civico` int DEFAULT NULL,
+  `civico` varchar(45) DEFAULT NULL,
   `citta` varchar(255) DEFAULT NULL,
   `cap` int DEFAULT NULL,
   PRIMARY KEY (`username`),
@@ -155,7 +156,7 @@ CREATE TABLE `dati_personali` (
 
 LOCK TABLES `dati_personali` WRITE;
 /*!40000 ALTER TABLE `dati_personali` DISABLE KEYS */;
-INSERT INTO `dati_personali` VALUES ('vale','Valeria','Vergani','1997-04-14','valeria.vergani97@gmail.com','Via Galliano',17,'Bresso',20091),('zambo','Fabio','Zamboni','1999-07-23','fabio.zamboni01@universitadipavia.it','Non lo so',1,'Vicino Piacenza',12345);
+INSERT INTO `dati_personali` VALUES ('nyquist','Nyquist','Zambo','2021-04-30','nyquist.ilgatto@gmail.com',' A Casa','6c','Gattopoli',77777),('vale','Valeria','Vergani','1997-04-14','valeria.vergani97@gmail.com','Via Galliano','17','Bresso',20091),('zambo','Fabio','Zamboni','1999-07-23','fabio.zamboni01@universitadipavia.it','Non lo so','1','Vicino Piacenza',12345);
 /*!40000 ALTER TABLE `dati_personali` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,12 +268,14 @@ DROP TABLE IF EXISTS `storico_acquisti`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `storico_acquisti` (
   `storico_acquisti_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
+  `username` varchar(45) DEFAULT NULL,
   `titolo_viaggio_id` varchar(100) DEFAULT NULL,
   `prezzo` double DEFAULT NULL,
   `data_acquisto` datetime DEFAULT NULL,
   PRIMARY KEY (`storico_acquisti_id`),
   KEY `username_idx` (`username`),
+  KEY `id_titolo_storico_idx` (`titolo_viaggio_id`),
+  CONSTRAINT `id_titolo_storico` FOREIGN KEY (`titolo_viaggio_id`) REFERENCES `titolo_viaggio` (`titolo_viaggio_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `username_storico` FOREIGN KEY (`username`) REFERENCES `account` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -283,8 +286,36 @@ CREATE TABLE `storico_acquisti` (
 
 LOCK TABLES `storico_acquisti` WRITE;
 /*!40000 ALTER TABLE `storico_acquisti` DISABLE KEYS */;
-INSERT INTO `storico_acquisti` VALUES (39,'vale','CS001',17.98,'2022-03-05 23:09:35'),(40,'vale','CS002',26.09,'2022-03-05 23:09:36');
 /*!40000 ALTER TABLE `storico_acquisti` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `titolo_viaggio`
+--
+
+DROP TABLE IF EXISTS `titolo_viaggio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `titolo_viaggio` (
+  `titolo_viaggio_id` varchar(100) NOT NULL,
+  `stazione_partenza` varchar(45) DEFAULT NULL,
+  `stazione_arrivo` varchar(45) DEFAULT NULL,
+  `data_partenza` date DEFAULT NULL,
+  `data_arrivo` date DEFAULT NULL,
+  `ora_partenza` time DEFAULT NULL,
+  `ora_arrivo` time DEFAULT NULL,
+  PRIMARY KEY (`titolo_viaggio_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `titolo_viaggio`
+--
+
+LOCK TABLES `titolo_viaggio` WRITE;
+/*!40000 ALTER TABLE `titolo_viaggio` DISABLE KEYS */;
+INSERT INTO `titolo_viaggio` VALUES ('CS101','TORTONA','STRESA','2022-03-07','2022-03-07','07:00:00','09:32:00');
+/*!40000 ALTER TABLE `titolo_viaggio` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -336,7 +367,7 @@ CREATE TABLE `viaggi_preferiti` (
   `n_ragazzi` int DEFAULT NULL,
   `n_bambini` int DEFAULT NULL,
   `n_animali` int DEFAULT NULL,
-  `n_max_cambi` int DEFAULT NULL,
+  `n_cambi` int DEFAULT NULL,
   PRIMARY KEY (`viaggio_preferito_id`),
   KEY `username_viaggi_idx` (`username`),
   CONSTRAINT `username_viaggi` FOREIGN KEY (`username`) REFERENCES `account` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -370,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-06 11:17:00
+-- Dump completed on 2022-03-07  1:09:02
