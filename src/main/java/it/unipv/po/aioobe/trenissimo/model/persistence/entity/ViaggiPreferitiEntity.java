@@ -155,6 +155,7 @@ public class ViaggiPreferitiEntity {
         viaggiPreferitiEntity.setnRagazzi(v.getNumRagazzi());
         viaggiPreferitiEntity.setnBambini(v.getNumBambini());
         viaggiPreferitiEntity.setnAnimali(v.getNumAnimali());
+        viaggiPreferitiEntity.setnCambi(v.getNumeroCambi());
         return viaggiPreferitiEntity;
     }
 

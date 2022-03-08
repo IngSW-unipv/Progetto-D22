@@ -192,6 +192,7 @@ public class Viaggio {
         return "Soluzione Viaggio " + count.incrementAndGet() + "\n" +
                 "Partenza=" + getStazionePartenza().getStopName() +
                 ", h. " + Utils.secondsToTime(getOrarioPartenza()) +
+                "data=" + getDataPartenza().toString() +
                 " -> Arrivo=" + getStazioneArrivo().getStopName() +
                 ", h. " + Utils.secondsToTime(getOrarioArrivo()) +
                 "\nnumAdulti=" + numAdulti +

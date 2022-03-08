@@ -6,7 +6,9 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.Rimborso;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.TipoTitoloViaggio;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.Voucher;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
@@ -23,6 +25,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -53,7 +56,7 @@ public class App {
         StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
         TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
 
-        Account.login("nyquist");
+        Account.login("vale");
         TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
 
 
@@ -63,7 +66,9 @@ public class App {
         //accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         //viaggiPreferitiService.findAll().forEach((x)-> System.out.println(x.toString()));
 
-        Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        Ricerca search = new Ricerca(858, 1386, LocalDateTime.parse("2022-03-09 12:00:00", formatter));
 
         search.setNumAdulti(1);
         search.setNumBambini(2);
@@ -73,14 +78,19 @@ public class App {
         search.eseguiRicerca();
         List<Viaggio> viaggi = search.getRisultati();
 
-        System.out.println(viaggi.get(0).getPrezzoPerDistanza());
-        System.out.println(viaggi.get(0).getPrezzoTotCambi());
-        System.out.println(viaggi.get(0).getPrezzoTot());
+        //Account.getInstance().addViaggioPreferito(viaggi.get(3));
+        //System.out.println(viaggi.get(3).getNumeroCambi());
+
+
 
 
         //viaggi.forEach((x)->System.out.println(x.toString()));
 
-        //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
+        CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+
+        Rimborso r = new Rimborso(biglietto);
+        System.out.println(viaggi.get(5));
+        System.out.println(r.getRimborso().toString());
         //orsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
         //CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
         //CorsaSingola biglietto4 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));

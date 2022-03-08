@@ -24,4 +24,12 @@ public class Voucher {
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
     }
+
+    @Override
+    public String toString() {
+        return "Voucher{" +
+                "id='" + id + '\'' +
+                ", prezzo=" + prezzo +
+                '}';
+    }
 }
