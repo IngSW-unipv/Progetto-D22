@@ -60,10 +60,10 @@ public class ViaggioPreferitoControl extends VBox {
         lblPartenza.textProperty().setValue(viaggio.getStazionePartenza());
         lblArrivo.textProperty().setValue(viaggio.getStazioneArrivo());
         lblCambi.textProperty().setValue(viaggio.getnCambi() + " cambi");
-        lblAdulti.textProperty().setValue(viaggio.getnAdulti().toString() + " adulti");
-        lblRagazzi.textProperty().setValue(viaggio.getnRagazzi().toString() + " ragazzi");
-        lblBambini.textProperty().setValue(viaggio.getnBambini().toString() + " bambini");
-        lblAnimali.textProperty().setValue(viaggio.getnAnimali().toString() + " animali");
+        lblAdulti.textProperty().setValue(viaggio.getnAdulti().toString() );
+        lblRagazzi.textProperty().setValue(viaggio.getnRagazzi().toString() );
+        lblBambini.textProperty().setValue(viaggio.getnBambini().toString() );
+        lblAnimali.textProperty().setValue(viaggio.getnAnimali().toString() );
 
     }
 

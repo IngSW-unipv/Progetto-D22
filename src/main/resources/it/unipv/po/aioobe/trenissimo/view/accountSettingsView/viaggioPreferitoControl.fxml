@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <fx:root maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" type="javafx.scene.layout.VBox" VBox.vgrow="NEVER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
 
@@ -22,6 +23,7 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
+                        <Label fx:id="lblOrario" text="00:00" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER">
@@ -32,6 +34,12 @@
                            </HBox.margin>
                         </Line>
                      </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="12.0" />
+                     </padding>
                   </HBox>
                   <VBox alignment="CENTER_LEFT">
                      <children>
@@ -40,40 +48,12 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
+                        <Label />
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" HBox.hgrow="ALWAYS" />
-            <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label fx:id="lblCambi" text="1 cambi" />
-                  <Line endX="20.0" rotate="90.0" />
-                  <Label fx:id="lblAdulti" text="1 adulto">
-                     <padding>
-                        <Insets right="16.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="lblRagazzi" text="1 ragazzi">
-                     <padding>
-                        <Insets right="16.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="lblBambini" text="1 bambini">
-                     <padding>
-                        <Insets right="16.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="lblAnimali" text="1 animali">
-                     <padding>
-                        <Insets right="16.0" />
-                     </padding>
-                  </Label>
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </HBox>
             <VBox alignment="CENTER_RIGHT">
                <children>
                   <Button fx:id="btnAcquista" mnemonicParsing="false" text="Acquista" />
@@ -81,11 +61,40 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="27.0" layoutY="27.0" spacing="8.0">
+      <HBox alignment="CENTER">
          <children>
-            <Label fx:id="lblOrario" text="00:00" HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblCambi" text="1 cambi" />
+            <Line endX="20.0" rotate="90.0" />
+            <HBox spacing="8.0">
+               <children>
+                  <Label fx:id="lblAdulti" text="1">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-user" />
+                     </graphic>
+                  </Label>
+                  <Label fx:id="lblRagazzi" text="0">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-child" />
+                     </graphic>
+                  </Label>
+                  <Label fx:id="lblBambini" text="0">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-baby" />
+                     </graphic>
+                  </Label>
+                  <Label fx:id="lblAnimali" text="0">
+                     <graphic>
+                        <FontIcon iconLiteral="fas-dog" />
+                     </graphic>
+                  </Label>
+               </children>
+            </HBox>
          </children>
+         <padding>
+            <Insets right="64.0" />
+         </padding>
       </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="27.0" layoutY="27.0" />
    </children>
    <padding>
       <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
