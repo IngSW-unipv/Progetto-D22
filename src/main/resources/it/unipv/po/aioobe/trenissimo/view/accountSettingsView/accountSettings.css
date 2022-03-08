@@ -2,18 +2,56 @@
 
 .body
 {
-    -fx-background-image: url("./sfondoHomePage.jpg");
-}
-.tab-header-background
-{
-    -fx-opacity: 0;
-}
-.tab{
-    -fx-background-color: white;
+    -fx-background-image: url("../sfondoHomePage.jpg");
 }
 .title{
     -fx-font-weight: bold;
 }
 .data{
     -fx-text-fill: grey;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: #e6e6e6;
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: white;
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #000000;
+}
+
+.tab-header-area {
+    -fx-padding: 0 0 0 10;
+}
+
+.tab-content-area{
+    -fx-background-color: white;
+    -fx-background-radius: 8;
 }

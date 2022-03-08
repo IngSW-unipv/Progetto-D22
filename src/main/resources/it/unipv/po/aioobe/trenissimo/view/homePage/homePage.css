@@ -2,7 +2,7 @@
 
 .body
 {
-    -fx-background-image: url("sfondoHomePage.jpg");
+    -fx-background-image: url("../sfondoHomePage.jpg");
 }
 
 .tab-pane .tab-header-area .tab-header-background {
