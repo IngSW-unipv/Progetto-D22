@@ -75,7 +75,7 @@ public class HomePageController implements Initializable {
 
     protected SearchableComboBox initScb(SearchableComboBox scb){
 
-        var result = CachedStopsService.getInstance().findAll().stream().sorted(Comparator.comparing(StopsEntity::getStopName)).toList();
+        var result = CachedStopsService.getInstance().findAll().stream().sorted(Comparator.comparing(stopsEntity -> stopsEntity.getStopName())).toList();
 
         scb.setItems(FXCollections.observableArrayList(result));
         scb.setConverter(new StringConverter<StopsEntity>() {
