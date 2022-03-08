@@ -1,9 +1,18 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.ViaggiPreferitiService;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import it.unipv.po.aioobe.trenissimo.view.ModificaPassword;
+import it.unipv.po.aioobe.trenissimo.view.StoricoAcquistoControl;
+import it.unipv.po.aioobe.trenissimo.view.ViaggioPreferitoControl;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,11 +20,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -57,11 +66,26 @@ public class AccountSettingsController implements Initializable {
     @FXML private Label lblErroreCivico;
     @FXML private Label lblErroreCitta;
 
+    @FXML private VBox layout;
+    @FXML private VBox layoutStorico;
+
+    private ObservableList<ViaggiPreferitiEntity> viaggiPreferiti;
+    private ObservableList<StoricoAcquistiEntity> acquisti;
+
+
     private TicketBuilder titoloViaggio;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         onStart();
+
+        viaggiPreferiti = FXCollections.observableArrayList();
+        viaggiPreferiti.addListener((ListChangeListener<ViaggiPreferitiEntity>) c -> updateListViaggiPreferiti());
+
+        acquisti = FXCollections.observableArrayList();
+        acquisti.addListener((ListChangeListener<StoricoAcquistiEntity>) c -> updateListStoricoAcquisti());
+
         //todo aggiungere thread per caricamento dati personali in label
     }
 
@@ -288,6 +312,27 @@ public class AccountSettingsController implements Initializable {
         // todo metodo per il tasto acquista in "tab" viaggi preferiti
     }
 
+    public void setViaggiPreferiti() {
+        ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
+        this.viaggiPreferiti.addAll(viaggiPreferitiService.findByUsername(Account.getInstance().getUsername()));
+
+    }
+
+    private void updateListViaggiPreferiti(){
+        layout.getChildren().setAll(viaggiPreferiti.stream().map(ViaggioPreferitoControl::new).toList());
+    }
+
+    public void setStoricoAcquisti() {
+        StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
+        this.acquisti.addAll(storicoAcquistiService.findByUsername(Account.getInstance().getUsername()));
+    }
+
+    private void updateListStoricoAcquisti(){
+        layoutStorico.getChildren().setAll(acquisti.stream().map(StoricoAcquistoControl::new).toList());
+    }
+
+
+
     @FXML
     protected void onVisualizzaBigliettoPDF() throws Exception {
         fillPDF();
@@ -342,11 +387,12 @@ public class AccountSettingsController implements Initializable {
     private void fillPDF() throws Exception {
 
         titoloViaggio = new TicketBuilder("","", lblDataAcquisto.getText(),"","","","",
-                "","",Account.getInstance().getDatiPersonali().getNome(),Account.getInstance().getDatiPersonali().getCognome(),
+                "","", Account.getInstance().getDatiPersonali().getNome(),Account.getInstance().getDatiPersonali().getCognome(),
                 "",Account.getInstance().getDatiPersonali().getDataNascita().toString(), lblNumeroBiglietto.getText(), lblPrezzo.getText());
 
         titoloViaggio.createPdf();
     }
+
 
     //metodi per abilitare e disabilitare le textfield
     private void abilita(TextField a){

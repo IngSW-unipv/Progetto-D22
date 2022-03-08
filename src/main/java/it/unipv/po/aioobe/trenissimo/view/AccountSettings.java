@@ -1,7 +1,10 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
+import it.unipv.po.aioobe.trenissimo.controller.AccountSettingsController;
 import it.unipv.po.aioobe.trenissimo.controller.RicercaController;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +13,8 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountSettings extends Application {
@@ -51,6 +56,9 @@ public class AccountSettings extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ((AccountSettingsController) fxmlLoader.getController()).setViaggiPreferiti();
+        ((AccountSettingsController) fxmlLoader.getController()).setStoricoAcquisti();
+
         owner.getScene().setRoot(scene);
     }
 
