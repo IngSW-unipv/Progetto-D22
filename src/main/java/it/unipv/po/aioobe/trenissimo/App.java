@@ -66,14 +66,19 @@ public class App {
         Ricerca search = new Ricerca(332, 2793, LocalDateTime.now());
 
         search.setNumAdulti(1);
-        search.setNumBambini(0);
-        search.setNumAnimali(0);
-        search.setNumRagazzi(0);
+        search.setNumBambini(2);
+        search.setNumAnimali(1);
+        search.setNumRagazzi(1);
 
         search.eseguiRicerca();
         List<Viaggio> viaggi = search.getRisultati();
 
-        viaggi.forEach((x)->System.out.println(x.toString()));
+        System.out.println(viaggi.get(0).getPrezzoPerDistanza());
+        System.out.println(viaggi.get(0).getPrezzoTotCambi());
+        System.out.println(viaggi.get(0).getPrezzoTot());
+
+
+        //viaggi.forEach((x)->System.out.println(x.toString()));
 
         //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
         //orsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));

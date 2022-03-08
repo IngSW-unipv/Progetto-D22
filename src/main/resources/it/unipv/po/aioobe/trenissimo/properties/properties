@@ -1,0 +1,5 @@
+prezzoPerDistanza.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoPerDistanza.PrezzoPerDistanzaStrategy
+
+prezzoTotCambi.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTotCambi.PrezzoTotCambiStrategy
+
+prezzoTot.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTot.PrezzoTotStrategy

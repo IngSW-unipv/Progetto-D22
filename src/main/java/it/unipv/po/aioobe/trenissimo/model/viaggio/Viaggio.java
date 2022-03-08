@@ -4,6 +4,12 @@ import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoPerDistanza.IPrezzoPerDistanzaStrategy;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoPerDistanza.PrezzoPerDistanzaFactory;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTot.IPrezzoTotStrategy;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTot.PrezzoTotFactory;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTotCambi.IPrezzoTotCambiStrategy;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTotCambi.PrezzoTotCambiFactory;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,11 +26,26 @@ public class Viaggio {
     private int numAnimali;
     private LocalDate dataPartenza;
     private List<Connection> cambi;
+    private IPrezzoPerDistanzaStrategy prezzoPerDistanzaStrategy;
+    private IPrezzoTotCambiStrategy prezzoTotCambiStrategy;
+    private IPrezzoTotStrategy prezzoTotStrategy;
 
     private static final AtomicInteger count = new AtomicInteger(0);
 
 
-    public Viaggio() {}
+    public Viaggio() {
+
+        PrezzoPerDistanzaFactory f=new PrezzoPerDistanzaFactory();
+        prezzoPerDistanzaStrategy=f.getPrezzoPerDistanzaStrategy();
+
+        PrezzoTotCambiFactory f1=new PrezzoTotCambiFactory();
+        prezzoTotCambiStrategy=f1.getPrezzoTotCambiStrategy();
+
+        PrezzoTotFactory f2=new PrezzoTotFactory();
+        prezzoTotStrategy=f2.getPrezzoTot();
+
+
+    }
 
     public int getNumAdulti() {
         return numAdulti;
@@ -100,24 +121,15 @@ public class Viaggio {
     }
 
     public double getPrezzoPerDistanza() {
-        double prezzo=0;
 
-        //operazione in strategy
-        for (int i=0; i<this.getCambi().size(); i++) {
-            prezzo = prezzo + getDistanza(getCoppiaStazioni(i))*0.15;
-        }
-
-        return prezzo;
+        return prezzoPerDistanzaStrategy.getPrezzoPerDistanza(this);
 
     }
 
     public double getPrezzoTotCambi() {
-        double prezzo=0;
 
-        //operazione in strategy
-        prezzo = prezzo + getNumeroCambi()*0.5; //Per ogni cambio si aggiungono 50 centesimi
+        return prezzoTotCambiStrategy.getPrezzoTotCambi(this);
 
-        return prezzo;
     }
 
     public double getPrezzoPerPersona() {
@@ -125,13 +137,9 @@ public class Viaggio {
     }
 
     public double getPrezzoTot() {
-            double prezzo=0;
 
-            //operazione in strategy
-            prezzo = this.getPrezzoPerPersona()*this.getNumAdulti()+this.getPrezzoPerPersona()*((double)2/3)*this.getNumRagazzi()+this.getPrezzoPerPersona()*((double)1/3)*this.getNumBambini()+3*this.getNumAnimali();
-            //Composizione del prezzo: Adulto prezzo intero, ragazzo 2/3 del prezzo, bambino 1/3 del prezzo, aggiunta di 3 euro per animale
+        return prezzoTotStrategy.getPrezzoTot(this);
 
-            return Double.valueOf(String.format(Locale.US,"%.2f", prezzo));
     }
 
     public List<StopsEntity> getCoppiaStazioni (int i) {
