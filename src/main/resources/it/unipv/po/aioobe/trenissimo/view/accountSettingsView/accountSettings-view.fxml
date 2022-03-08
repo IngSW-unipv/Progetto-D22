@@ -89,7 +89,8 @@
                                     <HBox style="-fx-background-color: #ffffffcc; -fx-background-radius: 8;" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                                        <children>
                                           <Label id="labelBenvenuto" fx:id="lblBenvenuto" alignment="CENTER" contentDisplay="BOTTOM" text="Ciao, @username" />
-                                          <Label fx:id="lblPunti" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Punti fedeltà: 0" HBox.hgrow="ALWAYS" />
+                                          <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Punti fedeltà: " HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="lblPunti" text="0" />
                                        </children>
                                        <padding>
                                           <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

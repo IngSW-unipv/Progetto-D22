@@ -70,11 +70,8 @@ public class AccountSettingsController implements Initializable {
 
         //metodo per leggere i dati da db e caricarli nelle varie textfield
 
-        //Account.getInstance().setDatiPersonali("zambo"); // todo da aggiunere dati del login
-
         lblBenvenuto.setText("Ciao, "+ Account.getInstance().getDatiPersonali().getNome());
-        // todo: aggiungere punti fedeltà
-        //lblPunti.setText("Punti fedeltà: "+ );
+        lblPunti.setText(Account.getInstance().getPuntiFedelta());
         lblDatiPersonali.setText("Dati Personali");
         txtNome.setText(Account.getInstance().getDatiPersonali().getNome());
         txtCognome.setText(Account.getInstance().getDatiPersonali().getCognome());

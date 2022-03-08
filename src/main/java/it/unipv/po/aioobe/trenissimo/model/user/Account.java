@@ -80,6 +80,10 @@ public class Account {
         this.account.setPassword(password);
     }
 
+    public String getPuntiFedelta(){
+        return this.account.getPuntiFedelta().toString();
+    }
+
     public void salvaModificaDati(String nome, String cognome, LocalDate dataNascita, String mail, String via, String civico, String citta, String cap){
         DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
         datiPersonali.setNome(nome);
