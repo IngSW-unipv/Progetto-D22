@@ -13,12 +13,12 @@ import java.util.logging.Level;
 public class Splashscreen extends Application {
 
     public static void main(String[] args) {
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
         FXMLLoader fxmlLoader = new FXMLLoader(Splashscreen.class.getResource("splashScreen/splashscreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 640, 380);
         stage.setTitle("Trenissimo");
