@@ -2,12 +2,11 @@ package it.unipv.po.aioobe.trenissimo.view;
 
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -17,7 +16,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +37,7 @@ public class StoricoAcquistoControl extends VBox {
     @FXML private FontIcon icoChanges;
 
     private StoricoAcquistiEntity acquisto;
+    //private TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
 
     private TicketBuilder titoloViaggio;
 
@@ -131,12 +130,15 @@ public class StoricoAcquistoControl extends VBox {
     }
 
     private void fillPDF() throws Exception {
+       if(lblNumeroBiglietto.getText().substring(0,2).equals("CS"))
+            titoloViaggio = new TicketBuilder("MILANO","PAVIA", lblDataAcquisto.getText(),"20-02-2022",
+                    "13.00.00","14.00.00", Account.getInstance().getDatiPersonali().getNome(),
+                    Account.getInstance().getDatiPersonali().getCognome(),Account.getInstance().getDatiPersonali().getDataNascita().toString(),
+                    lblNumeroBiglietto.getText(), lblPrezzo.getText());
+       else
+           titoloViaggio = new TicketBuilder(lblNumeroBiglietto.getText(), lblPrezzo.getText());
 
-        titoloViaggio = new TicketBuilder("","", lblDataAcquisto.getText(),"","","","",
-                "","", Account.getInstance().getDatiPersonali().getNome(),Account.getInstance().getDatiPersonali().getCognome(),
-                "",Account.getInstance().getDatiPersonali().getDataNascita().toString(), lblNumeroBiglietto.getText(), lblPrezzo.getText());
-
-        titoloViaggio.createPdf();
+        titoloViaggio.createPdf(lblNumeroBiglietto.getText());
     }
 
 }

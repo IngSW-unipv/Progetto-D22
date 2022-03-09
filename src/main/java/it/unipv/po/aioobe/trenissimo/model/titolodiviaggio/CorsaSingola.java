@@ -33,7 +33,7 @@ public class CorsaSingola implements ITitoloViaggio {
     }
 
     @Override
-    public String getTitoloViaggioId() {
+    public String getId() {
         return id;
     }
 

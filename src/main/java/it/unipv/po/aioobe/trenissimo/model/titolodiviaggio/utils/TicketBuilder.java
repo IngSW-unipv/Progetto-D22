@@ -14,24 +14,28 @@ public class TicketBuilder {
     private String dataArr;
     private String oraPart;
     private String oraArr;
-    private String classe;
-    private String carrozza;
-    private String posto;
 
     private String nome;
     private String cognome;
-    private String cf;
     private String dataNascita;
-    private String numBiglietto;
-    private String costo;
+    private String id;
+    private String importo;
 
     private File biglietto;
 
     public static final String DEST = System.getProperty("java.io.tmpdir").concat("NuovoBiglietto.pdf");
     public static final String SRC = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateBigliettoWBorder.pdf";
-    public static final String DW = System.getProperty("user.home").concat("/Downloads/");
+    public static final String SRCVO = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/nomeTemplateVoucher.pdf"; // todo: da aggiungere path VoucherTemplate
 
-    public void createPdf() throws Exception {
+
+    public void createPdf(String id) throws Exception {
+        if (id.substring(0,2).equals("CS"))
+            createCS();
+        else
+            createVO();
+    }
+
+    public void createCS() throws Exception {
         PdfReader originale = new PdfReader(SRC);
         PdfStamper copiaModificata = new PdfStamper(originale, new FileOutputStream(DEST));
         AcroFields placeholder = copiaModificata.getAcroFields();
@@ -42,15 +46,23 @@ public class TicketBuilder {
         placeholder.setField("DATAARRIVO", this.dataArr);
         placeholder.setField("ORARIOPARTENZA", this.oraPart);
         placeholder.setField("ORARIOARRIVO", this.oraArr);
-        placeholder.setField("CLASSE", this.classe);
-        placeholder.setField("CARROZZA", this.carrozza);
-        placeholder.setField("POSTO", this.posto);
         placeholder.setField("NOME", this.nome);
         placeholder.setField("COGNOME", this.cognome);
-        placeholder.setField("CF", this.cf);
         placeholder.setField("DATANASCITA", this.dataNascita);
-        placeholder.setField("BIGLIETTO", this.numBiglietto);
-        placeholder.setField("EURO", this.costo);
+        placeholder.setField("BIGLIETTO", this.id);
+        placeholder.setField("EURO", this.importo);
+
+        copiaModificata.setFormFlattening(true);
+        copiaModificata.close();
+        originale.close();
+    }
+    public void createVO() throws Exception {
+        PdfReader originale = new PdfReader(SRCVO);
+        PdfStamper copiaModificata = new PdfStamper(originale, new FileOutputStream(DEST));
+        AcroFields placeholder = copiaModificata.getAcroFields();
+
+        placeholder.setField("ID", this.id);
+        placeholder.setField("VALORE", this.importo);
 
         copiaModificata.setFormFlattening(true);
         copiaModificata.close();
@@ -58,8 +70,7 @@ public class TicketBuilder {
     }
 
     public TicketBuilder(String sPart, String sDest, String dataPart, String dataArr, String oraPart, String oraArr,
-                         String classe, String carrozza, String posto, String nome, String cognome, String cf, String dataNascita,
-                         String numBiglietto, String costo) {
+                         String nome, String cognome, String dataNascita, String id, String importo) {
 
         this.sPart = sPart;
         this.sDest = sDest;
@@ -67,20 +78,16 @@ public class TicketBuilder {
         this.dataArr = dataArr;
         this.oraPart = oraPart;
         this.oraArr = oraArr;
-        this.classe = classe;
-        this.carrozza = carrozza;
-        this.posto = posto;
         this.nome = nome;
         this.cognome = cognome;
-        this.cf = cf;
         this.dataNascita = dataNascita;
-        this.numBiglietto = numBiglietto;
-        this.costo = costo;
+        this.id = id;
+        this.importo = importo;
     }
 
-    public static void main(String[] args) throws Exception {
-        //eseguire main per sapere in quale folder temporanea viene salvato il biglietto
-        //System.out.println(System.getProperty("java.io.tmpdir"));
+    public TicketBuilder(String id, String importo) {
+        this.importo = importo;
+        this.id = id;
     }
 
     public static void copy(File source, File target) throws IOException {

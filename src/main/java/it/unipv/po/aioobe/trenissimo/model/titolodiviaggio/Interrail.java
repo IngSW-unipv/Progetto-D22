@@ -30,7 +30,7 @@ public class Interrail implements ITitoloViaggio{
     }
 
     @Override
-    public String getTitoloViaggioId() {
+    public String getId() {
         return this.id;
     }
 

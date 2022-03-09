@@ -59,7 +59,31 @@
                                         </ImageView>
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="16.0" HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="480.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffffcc; -fx-background-radius: 8;">
+                                            <children>
+                                                <Button fx:id="btnRicerca" mnemonicParsing="false" onAction="#onRicercaSelected" text="Ricerca">
+                                                    <HBox.margin>
+                                                        <Insets right="32.0" />
+                                                    </HBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnRimborso" mnemonicParsing="false" onAction="#onRimborsoSelected" text="Rimborso" HBox.hgrow="ALWAYS">
+                                                    <HBox.margin>
+                                                        <Insets />
+                                                    </HBox.margin>
+                                                </Button>
+                                            </children>
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                            <padding>
+                                                <Insets left="16.0" right="16.0" />
+                                            </padding>
+                                        </HBox>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_RIGHT" maxWidth="480.0" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
                                     <children>
                               <Group fx:id="grpLoggedOut">
                                  <children>
@@ -94,7 +118,7 @@
                         <Insets />
                     </VBox.margin>
                     <children>
-                        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
+                        <TabPane fx:id="tabPaneRicerca" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" visible="false" GridPane.rowIndex="1">
                             <tabs>
                                 <Tab text="Biglietto">
                                     <content>
@@ -489,7 +513,50 @@
                                 <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                             </padding>
                         </TabPane>
-
+                        <TabPane fx:id="tabPaneRimborso" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
+                            <tabs>
+                                <Tab text="Rimborso">
+                                    <content>
+                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label text="Numero del biglietto:" />
+                                                                <TextField fx:id="txtRimborsoTitoloID" maxHeight="26.0" maxWidth="200.0" promptText="Numero del biglietto" styleClass="textField" />
+                                                                <Label text="Numero inserito non valido!" fx:id="lblErroreRimborso" visible="false"/>
+                                                                <Label text="Inserire un numero!" fx:id="lblErroreRimborsoEmpty" visible="false"/>
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Button mnemonicParsing="false" onAction="#onRimborso" prefHeight="26.0" prefWidth="150.0" text="Richiedi rimborso">
+                                                            <Label text="Rimborso effettuato con successo!" fx:id="lblRimborsoOK" visible="false"/>
+                                                            <VBox.margin>
+                                                                <Insets top="18.0" />
+                                                            </VBox.margin>
+                                                        </Button>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                            <effect>
+                                <DropShadow height="48.0" radius="23.5" width="48.0">
+                                    <color>
+                                        <Color opacity="0.5" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                            <padding>
+                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                            </padding>
+                        </TabPane>
                     </children>
                     <padding>
                         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

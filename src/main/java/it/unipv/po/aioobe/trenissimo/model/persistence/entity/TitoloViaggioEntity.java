@@ -116,7 +116,7 @@ public class TitoloViaggioEntity {
 
     public TitoloViaggioEntity toTitoloViaggioEntity(CorsaSingola biglietto) {
         TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
-        titoloViaggioEntity.setTitoloViaggioId(biglietto.getTitoloViaggioId());
+        titoloViaggioEntity.setTitoloViaggioId(biglietto.getId());
         titoloViaggioEntity.setStazionePartenza(biglietto.getViaggio().getStazionePartenza().getStopName());
         titoloViaggioEntity.setStazioneArrivo(biglietto.getViaggio().getStazioneArrivo().getStopName());
         titoloViaggioEntity.setDataPartenza(Date.valueOf(biglietto.getViaggio().getDataPartenza()));

@@ -104,7 +104,7 @@ public class StoricoAcquistiEntity {
 
     public StoricoAcquistiEntity toStoricoAcquistiEntity (IAcquisto acquisto) {
         StoricoAcquistiEntity storicoAcquisti = new StoricoAcquistiEntity();
-        storicoAcquisti.setTitoloViaggioId(acquisto.getTitoloViaggioId());
+        storicoAcquisti.setTitoloViaggioId(acquisto.getId());
         storicoAcquisti.setPrezzo(acquisto.getPrezzo());
         storicoAcquisti.setDataAcquisto(Timestamp.valueOf(LocalDateTime.now()));
         return storicoAcquisti;

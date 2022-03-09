@@ -3,19 +3,15 @@ package it.unipv.po.aioobe.trenissimo.controller;
 import com.jfoenix.controls.JFXTimePicker;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.VoucherService;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.Rimborso;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbbonamento;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataInterrail;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.NumeroViaggiCarnet;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.ValoreVoucher;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
-import it.unipv.po.aioobe.trenissimo.view.AccountSettings;
-import it.unipv.po.aioobe.trenissimo.view.Login;
-import it.unipv.po.aioobe.trenissimo.view.Registrazione;
-import it.unipv.po.aioobe.trenissimo.view.RicercaView;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
+import it.unipv.po.aioobe.trenissimo.view.*;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -34,9 +30,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Comparator;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 public class HomePageController implements Initializable {
 
@@ -72,6 +66,14 @@ public class HomePageController implements Initializable {
     @FXML private SearchableComboBox scbAbbonamentoDestinazione;
     @FXML private SearchableComboBox scbCarnetPartenza;
     @FXML private SearchableComboBox scbCarnetDestinazione;
+
+    @FXML private TabPane tabPaneRicerca;
+    @FXML private TabPane tabPaneRimborso;
+    @FXML private TextField txtRimborsoTitoloID;
+    @FXML private Label lblErroreRimborso;
+    @FXML private Label lblErroreRimborsoEmpty;
+    @FXML private Label lblRimborsoOK;
+// todo continuare gestione errori
 
     protected SearchableComboBox initScb(SearchableComboBox scb){
 
@@ -129,6 +131,9 @@ public class HomePageController implements Initializable {
 
         Account.loggedInProperty.addListener((obs,old,newV) -> onAccountChange());
         onAccountChange();
+
+        tabPaneRicerca.setVisible(true);
+        tabPaneRimborso.setVisible(false);
 
     }
 
@@ -191,4 +196,31 @@ public class HomePageController implements Initializable {
     protected void onLogin() throws IOException {
         Login.open((boxContent).getScene().getWindow());
     }
+
+    @FXML
+    protected void onRicercaSelected(){
+        tabPaneRicerca.setVisible(true);
+        tabPaneRimborso.setVisible(false);
+    }
+   @FXML
+    protected void onRimborsoSelected(){
+       tabPaneRicerca.setVisible(false);
+       tabPaneRimborso.setVisible(true);
+    }
+
+    @FXML
+    protected void onRimborso(){
+        // todo aggiungere controlli dopo parte grafica
+        /*
+        if (txtRimborsoTitoloID.getText().isEmpty())
+        {
+            //lblErroreRimborso.setVisible(true);
+            txtRimborsoTitoloID.setStyle("-fx-border-color: #d70000");
+        }*/
+
+        Rimborso r = new Rimborso(txtRimborsoTitoloID.getText());
+        VoucherService voucherService = new VoucherService();
+        voucherService.persist(r.getRimborso());
+    }
+
 }
