@@ -95,8 +95,6 @@ public class App {
 
         //Account.getInstance().addAcquistoToStorico(biglietto2);
 
-
-        //TODO FILTRI
         //System.out.println(Utils.floor(14,-1));
         //System.out.println(Utils.ceil(14,-1));
 

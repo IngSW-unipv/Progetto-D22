@@ -68,16 +68,18 @@ public class Account {
         return this.account.getUsername();
     }
 
-    public String getPassword() {
+    /*public String getPassword() {
         return this.account.getPassword();
-    }
+    }*/
 
     public void setUsername(String username) {
         this.account.setUsername(username);
     }
 
-    public void setPassword(String password) {
-        this.account.setPassword(password);
+    public void setPassword(String password) throws NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+        this.account.setPassword(CryptographyUtils.encryptPassword(password));
+        AccountService accountService = new AccountService();
+        accountService.update(this.account);
     }
 
     public String getPuntiFedelta(){
