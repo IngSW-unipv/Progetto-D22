@@ -61,7 +61,7 @@ public class RegistrazioneController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //todo aggiungere thread per caricamento dati personali in label
+
     }
 
     @FXML

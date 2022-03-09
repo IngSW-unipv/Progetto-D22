@@ -2,14 +2,21 @@ package it.unipv.po.aioobe.trenissimo.view;
 
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
+import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
+import it.unipv.po.aioobe.trenissimo.model.user.Account;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import javax.swing.text.html.ImageView;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class ViaggioPreferitoControl extends VBox {
@@ -28,6 +35,7 @@ public class ViaggioPreferitoControl extends VBox {
     @FXML private VBox boxChanges;
     @FXML private VBox boxChangesContainer;
     @FXML private FontIcon icoChanges;
+
 
     private ViaggiPreferitiEntity viaggio;
 
@@ -66,5 +74,11 @@ public class ViaggioPreferitoControl extends VBox {
         lblAnimali.textProperty().setValue(viaggio.getnAnimali().toString() );
 
     }
+
+    @FXML
+    protected void onAcquista(){
+        // todo metodo per il tasto acquista in "tab" viaggi preferiti
+    }
+
 
 }

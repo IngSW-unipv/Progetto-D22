@@ -65,8 +65,8 @@
                <children>
                   <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="btnBigliettoPDF" mnemonicParsing="false" text="Visualizza PDF" />
-                        <Button fx:id="btnScarica" mnemonicParsing="false" text="Scarica PDF">
+                        <Button fx:id="btnBigliettoPDF" mnemonicParsing="false" onAction="#onVisualizzaBigliettoPDF" text="Visualizza PDF" />
+                        <Button fx:id="btnScarica" mnemonicParsing="false" onAction="#onScaricaBigliettoPDF" text="Scarica PDF">
                            <HBox.margin>
                               <Insets left="8.0" />
                            </HBox.margin>

@@ -48,7 +48,7 @@ public class ModificaPasswordController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //todo aggiungere thread per caricamento dati personali in label
+
     }
 
 

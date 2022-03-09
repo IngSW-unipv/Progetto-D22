@@ -4,7 +4,6 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEnt
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.ViaggiPreferitiService;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import it.unipv.po.aioobe.trenissimo.view.ModificaPassword;
@@ -21,11 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -55,11 +50,6 @@ public class AccountSettingsController implements Initializable {
     @FXML private Label lblErroreEmail;
     @FXML private Label lblErroreDataNascita;
 
-    @FXML private Label lblNumeroBiglietto;
-    @FXML private Label lblPrezzo;
-    @FXML private Label lblDataAcquisto;
-    @FXML private Label lblDownloadOK;
-
     @FXML private Label lblErroreNome;
     @FXML private Label lblErroreCognome;
     @FXML private Label lblErroreVia;
@@ -72,10 +62,6 @@ public class AccountSettingsController implements Initializable {
     private ObservableList<ViaggiPreferitiEntity> viaggiPreferiti;
     private ObservableList<StoricoAcquistiEntity> acquisti;
 
-
-    private TicketBuilder titoloViaggio;
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         onStart();
@@ -86,7 +72,6 @@ public class AccountSettingsController implements Initializable {
         acquisti = FXCollections.observableArrayList();
         acquisti.addListener((ListChangeListener<StoricoAcquistiEntity>) c -> updateListStoricoAcquisti());
 
-        //todo aggiungere thread per caricamento dati personali in label
     }
 
     @FXML
@@ -102,7 +87,7 @@ public class AccountSettingsController implements Initializable {
         dtpDataNascita.setValue(Account.getInstance().getDatiPersonali().getDataNascita().toLocalDate());
         txtEmail.setText(Account.getInstance().getDatiPersonali().getMail());
         txtVia.setText(Account.getInstance().getDatiPersonali().getVia());
-        txtCivico.setText(Account.getInstance().getDatiPersonali().getCivico().toString());
+        txtCivico.setText(Account.getInstance().getDatiPersonali().getCivico());
         txtCitta.setText(Account.getInstance().getDatiPersonali().getCitta());
         txtCAP.setText(Account.getInstance().getDatiPersonali().getCap().toString());
 
@@ -307,11 +292,6 @@ public class AccountSettingsController implements Initializable {
 
     }
 
-    @FXML
-    protected void onAcquista(){
-        // todo metodo per il tasto acquista in "tab" viaggi preferiti
-    }
-
     public void setViaggiPreferiti() {
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
         this.viaggiPreferiti.addAll(viaggiPreferitiService.findByUsername(Account.getInstance().getUsername()));
@@ -329,68 +309,6 @@ public class AccountSettingsController implements Initializable {
 
     private void updateListStoricoAcquisti(){
         layoutStorico.getChildren().setAll(acquisti.stream().map(StoricoAcquistoControl::new).toList());
-    }
-
-
-
-    @FXML
-    protected void onVisualizzaBigliettoPDF() throws Exception {
-        fillPDF();
-
-        File biglietto = new File(TicketBuilder.DEST);
-        Desktop.getDesktop().open(biglietto);
-
-        Task<Void> task = new Task<Void>() {
-            @Override
-            public Void call() throws InterruptedException {
-                Thread.sleep(3000);
-                return null;
-            }
-        };
-        task.setOnSucceeded(e -> {
-            biglietto.delete();
-        });
-        new Thread(task).start();
-
-    }
-    @FXML
-    protected void onScaricaBigliettoPDF() throws Exception {
-        fillPDF();
-
-        File biglietto = new File(TicketBuilder.DEST); //biglietto in folder temporanea
-
-        FileChooser fileChooser = new FileChooser();
-
-        fileChooser.setTitle("Scegli dove salvare il titolo di viaggio");
-        fileChooser.setInitialFileName(lblNumeroBiglietto.getText());
-
-        File destin = new File(fileChooser.showSaveDialog(new Stage()).getAbsolutePath().concat(".pdf"));
-        TicketBuilder.copy(biglietto, destin);
-
-        lblDownloadOK.setVisible(true);
-
-        Task<Void> task = new Task<Void>() {
-            @Override
-            public Void call() throws InterruptedException {
-                Thread.sleep(4000);
-                return null;
-            }
-        };
-        task.setOnSucceeded(e -> {
-            lblDownloadOK.setVisible(false);
-            biglietto.delete();
-        });
-        new Thread(task).start();
-
-    }
-
-    private void fillPDF() throws Exception {
-
-        titoloViaggio = new TicketBuilder("","", lblDataAcquisto.getText(),"","","","",
-                "","", Account.getInstance().getDatiPersonali().getNome(),Account.getInstance().getDatiPersonali().getCognome(),
-                "",Account.getInstance().getDatiPersonali().getDataNascita().toString(), lblNumeroBiglietto.getText(), lblPrezzo.getText());
-
-        titoloViaggio.createPdf();
     }
 
 

@@ -17,11 +17,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatterBuilder;
 
 public class StoricoAcquistoControl extends VBox {
 
@@ -41,6 +40,7 @@ public class StoricoAcquistoControl extends VBox {
 
     private StoricoAcquistiEntity acquisto;
 
+    private TicketBuilder titoloViaggio;
 
 
     public StoricoAcquistoControl() {
@@ -75,5 +75,68 @@ public class StoricoAcquistoControl extends VBox {
 
     }
 
+
+    @FXML
+    protected void onVisualizzaBigliettoPDF() throws Exception {
+        fillPDF();
+
+        File biglietto = new File(TicketBuilder.DEST);
+        Desktop.getDesktop().open(biglietto);
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws InterruptedException {
+                Thread.sleep(3000);
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            biglietto.delete();
+        });
+        new Thread(task).start();
+
+    }
+
+    @FXML
+    protected void onScaricaBigliettoPDF() throws Exception {
+        fillPDF();
+
+        File biglietto = new File(TicketBuilder.DEST); //biglietto in folder temporanea
+
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.setTitle("Scegli dove salvare il titolo di viaggio");
+        fileChooser.setInitialFileName(lblNumeroBiglietto.getText());
+
+        File destin = new File(fileChooser.showSaveDialog(new Stage()).getAbsolutePath().concat(".pdf"));
+        TicketBuilder.copy(biglietto, destin);
+
+        // todo aggiungere controllo su getAbsPath
+
+        lblDownloadOK.setVisible(true);
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws InterruptedException {
+                Thread.sleep(4000);
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            lblDownloadOK.setVisible(false);
+            biglietto.delete();
+        });
+        new Thread(task).start();
+
+    }
+
+    private void fillPDF() throws Exception {
+
+        titoloViaggio = new TicketBuilder("","", lblDataAcquisto.getText(),"","","","",
+                "","", Account.getInstance().getDatiPersonali().getNome(),Account.getInstance().getDatiPersonali().getCognome(),
+                "",Account.getInstance().getDatiPersonali().getDataNascita().toString(), lblNumeroBiglietto.getText(), lblPrezzo.getText());
+
+        titoloViaggio.createPdf();
+    }
 
 }
