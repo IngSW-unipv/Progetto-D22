@@ -47,6 +47,14 @@ public class StoricoAcquistiDao implements IStoricoAcquistiDao {
     }
 
     @Override
+    public StoricoAcquistiEntity findByTitoloViaggioId(String id) {
+        Criteria criteria = conn.getCurrentSession().createCriteria(StoricoAcquistiEntity.class);
+        criteria.add(Restrictions.eq("titoloViaggioId", id));
+        StoricoAcquistiEntity storicoAcquisti = (StoricoAcquistiEntity) criteria.uniqueResult();
+        return storicoAcquisti;
+    }
+
+    @Override
     public void persist(StoricoAcquistiEntity storicoAcquisti) {
         conn.getCurrentSession().save(storicoAcquisti);
     }

@@ -12,12 +12,12 @@ public class RimborsoStrategy implements IRimborsoStrategy {
 
     @Override
     public Voucher getPrezzoTot(Rimborso r) {
-        if((r.getBiglietto().getViaggio().getDataPartenza().toEpochDay() - r.getDataRichiesta().toEpochDay()) >= 3 ) {
-            Voucher v = new Voucher(Double.valueOf(String.format(Locale.US,"%.2f", r.getBiglietto().getPrezzo()*RIMBORSOPIU3GIORNI)));
+        if((r.getTitoloViaggioEntity().getDataPartenza().toLocalDate().toEpochDay() - r.getDataRichiesta().toEpochDay()) >= 3 ) {
+            Voucher v = new Voucher(Double.valueOf(String.format(Locale.US,"%.2f", r.getStoricoAcquisti().getPrezzo()*RIMBORSOPIU3GIORNI)));
             return v;
         }
-        else if((r.getBiglietto().getViaggio().getDataPartenza().toEpochDay() - r.getDataRichiesta().toEpochDay()) == 1) {
-            Voucher v = new Voucher(Double.valueOf(String.format(Locale.US,"%.2f", r.getBiglietto().getPrezzo()*RIMBORSO1GIORNO)));
+        else if((r.getTitoloViaggioEntity().getDataPartenza().toLocalDate().toEpochDay() - r.getDataRichiesta().toEpochDay()) == 1) {
+            Voucher v = new Voucher(Double.valueOf(String.format(Locale.US,"%.2f", r.getStoricoAcquisti().getPrezzo()*RIMBORSO1GIORNO)));
             return v;
         }
         else

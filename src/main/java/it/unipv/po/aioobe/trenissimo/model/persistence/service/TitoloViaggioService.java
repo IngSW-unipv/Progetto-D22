@@ -55,7 +55,7 @@ public class TitoloViaggioService implements ITitoloVIaggioService {
     }
 
     @Override
-    public void deleteByUsername(String id){
+    public void deleteById(String id){
 
         titoloViaggioDao.getConn().openCurrentSessionwithTransaction();
         TitoloViaggioEntity titoloViaggio = titoloViaggioDao.findById(id);

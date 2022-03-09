@@ -65,10 +65,10 @@ public class App {
 
         //accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         //viaggiPreferitiService.findAll().forEach((x)-> System.out.println(x.toString()));
-
+    /*
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        Ricerca search = new Ricerca(858, 1386, LocalDateTime.parse("2022-03-09 12:00:00", formatter));
+        Ricerca search = new Ricerca(858, 1386, LocalDateTime.parse("2022-03-24 12:00:00", formatter));
 
         search.setNumAdulti(1);
         search.setNumBambini(2);
@@ -77,7 +77,7 @@ public class App {
 
         search.eseguiRicerca();
         List<Viaggio> viaggi = search.getRisultati();
-
+    */
         //Account.getInstance().addViaggioPreferito(viaggi.get(3));
         //System.out.println(viaggi.get(3).getNumeroCambi());
 
@@ -86,29 +86,20 @@ public class App {
 
         //viaggi.forEach((x)->System.out.println(x.toString()));
 
-        CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
-
-        Rimborso r = new Rimborso(biglietto);
-        System.out.println(viaggi.get(5));
-        System.out.println(r.getRimborso().toString());
+        //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
         //orsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
         //CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
         //CorsaSingola biglietto4 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
 
-        //titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(biglietto3));
+        //titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(biglietto));
 
         //titoloViaggioService.findAll().forEach((x)->System.out.println(x.toString()));
 
-/*
-        Account.getInstance().addAcquistoToStorico(biglietto);
-        Account.getInstance().addAcquistoToStorico(biglietto2);
 
-        FiltroOrario fo = new FiltroOrario(Utils.timeToSeconds("12:22:00"), Utils.timeToSeconds("21:00:00"));
+        //Account.getInstance().addAcquistoToStorico(biglietto);
 
-        System.out.println("DOPO\n");
+        //Account.getInstance().addAcquistoToStorico(biglietto2);
 
-        fo.esegui(viaggi).forEach((x)->System.out.println(x.toString()));
-        */
 
         //TODO FILTRI
         //System.out.println(Utils.floor(14,-1));
@@ -117,6 +108,11 @@ public class App {
         //Registrazione registrazione = Registrazione.getInstance();
         //registrazione.signUp("vale", "vale", "Valeria", "Vergani", "1997-04-14", "valeria.vergani97@gmail.com", "Via Galliano", "17", "Bresso", "20091");
         //registrazione.signUp("zambo", "zambo", "Fabio", "Zamboni", "1999-07-23", "fabio.zamboni01@universitadipavia.it", "Non lo so", "1", "Vicino Piacenza", "12345");
+
+
+        Rimborso r = new Rimborso("CS1646830029004");
+        System.out.println(r.getRimborso().toString());
+        System.out.println(storicoAcquistiService.findAll());
 
 
 

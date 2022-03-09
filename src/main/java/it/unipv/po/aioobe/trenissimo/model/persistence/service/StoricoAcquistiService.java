@@ -39,6 +39,14 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
     }
 
     @Override
+    public StoricoAcquistiEntity findByTitoloViaggioId(String id) {
+        storicoAcquistiDao.getConn().openCurrentSession();
+        StoricoAcquistiEntity storicoAcquisti = (StoricoAcquistiEntity) storicoAcquistiDao.findByTitoloViaggioId(id);
+        storicoAcquistiDao.getConn().closeCurrentSession();
+        return storicoAcquisti;
+    }
+
+    @Override
     public void persist(StoricoAcquistiEntity storicoAcquisti) {
         storicoAcquistiDao.getConn().openCurrentSessionwithTransaction();
         storicoAcquistiDao.persist(storicoAcquisti);

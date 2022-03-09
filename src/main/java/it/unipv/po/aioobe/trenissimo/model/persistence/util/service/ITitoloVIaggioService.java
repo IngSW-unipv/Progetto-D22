@@ -11,5 +11,5 @@ public interface ITitoloVIaggioService {
     public TitoloViaggioEntity findById(String id);
     public void persist(TitoloViaggioEntity titoloViaggio);
     public void update(TitoloViaggioEntity titoloViaggio);
-    public void deleteByUsername(String id);
+    public void deleteById(String id);
 }
