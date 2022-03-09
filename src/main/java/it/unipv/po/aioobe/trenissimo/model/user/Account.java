@@ -164,6 +164,7 @@ public class Account {
         account.setUsername(username);
         account.setPassword(CryptographyUtils.encryptPassword(password));
         account.setPuntiFedelta(0);
+        accountService.persist(account);
         dati.setUsername(username);
         dati.setNome(nome);
         dati.setCognome(cognome);
@@ -173,7 +174,6 @@ public class Account {
         dati.setCivico(civico);
         dati.setCitta(citta);
         dati.setCap(Integer.valueOf(cap));
-        accountService.persist(account);
         datiPersonaliService.persist(dati);
     }
 
