@@ -4,4 +4,7 @@ prezzoTotCambi.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.viaggio.u
 
 prezzoTot.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTot.PrezzoTotStrategy
 
+prezzoIva.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoIva.PrezzoIvaStrategy
+
 rimborso.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.RimborsoStrategy
+

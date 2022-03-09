@@ -65,7 +65,7 @@ public class App {
 
         //accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         //viaggiPreferitiService.findAll().forEach((x)-> System.out.println(x.toString()));
-    /*
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         Ricerca search = new Ricerca(858, 1386, LocalDateTime.parse("2022-03-24 12:00:00", formatter));
@@ -77,14 +77,14 @@ public class App {
 
         search.eseguiRicerca();
         List<Viaggio> viaggi = search.getRisultati();
-    */
+
         //Account.getInstance().addViaggioPreferito(viaggi.get(3));
         //System.out.println(viaggi.get(3).getNumeroCambi());
 
 
 
 
-        //viaggi.forEach((x)->System.out.println(x.toString()));
+        viaggi.forEach((x)->System.out.println(x.toString()));
 
         //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
         //orsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
@@ -110,9 +110,9 @@ public class App {
         //registrazione.signUp("zambo", "zambo", "Fabio", "Zamboni", "1999-07-23", "fabio.zamboni01@universitadipavia.it", "Non lo so", "1", "Vicino Piacenza", "12345");
 
 
-        Rimborso r = new Rimborso("CS1646830029004");
-        System.out.println(r.getRimborso().toString());
-        System.out.println(storicoAcquistiService.findAll());
+        //Rimborso r = new Rimborso("CS1646830029004");
+        //System.out.println(r.getRimborso().toString());
+        //System.out.println(storicoAcquistiService.findAll());
 
 
 

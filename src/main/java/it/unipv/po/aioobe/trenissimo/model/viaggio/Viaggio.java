@@ -4,6 +4,8 @@ import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoIva.IPrezzoIvaStrategy;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoIva.PrezzoIvaFactory;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoPerDistanza.IPrezzoPerDistanzaStrategy;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoPerDistanza.PrezzoPerDistanzaFactory;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTot.IPrezzoTotStrategy;
@@ -29,6 +31,7 @@ public class Viaggio {
     private IPrezzoPerDistanzaStrategy prezzoPerDistanzaStrategy;
     private IPrezzoTotCambiStrategy prezzoTotCambiStrategy;
     private IPrezzoTotStrategy prezzoTotStrategy;
+    private IPrezzoIvaStrategy prezzoIvaStrategy;
 
     private static final AtomicInteger count = new AtomicInteger(0);
 
@@ -43,6 +46,9 @@ public class Viaggio {
 
         PrezzoTotFactory f2=new PrezzoTotFactory();
         prezzoTotStrategy=f2.getPrezzoTot();
+
+        PrezzoIvaFactory f3=new PrezzoIvaFactory();
+        prezzoIvaStrategy = f3.getPrezzoIvaStrategy();
 
 
     }
@@ -142,6 +148,13 @@ public class Viaggio {
 
     }
 
+    public double getPrezzoIva() {
+
+        return prezzoIvaStrategy.getPrezzoIva(this);
+    }
+
+
+
     public List<StopsEntity> getCoppiaStazioni (int i) {
         List<StopsEntity> stops = CachedStopsService.getInstance().findAll();
         List<StopsEntity> coppiaStazioni = new ArrayList<>();
@@ -201,7 +214,8 @@ public class Viaggio {
                 ", numAnimali=" + numAnimali +
                 "\nn. cambi=" + getNumeroCambi() +
                 "\ndistanza=" + getDistanzaTotale() + "km" +
-                "\nprezzo=" + getPrezzoTot() + "€" +
+                "\nprezzo senza IVA=" + getPrezzoTot() + "€" +
+                "\nprezzo con IVA=" + Double.valueOf(String.format(Locale.US,"%.2f", getPrezzoTot()+getPrezzoIva())) + "€" +
                 "\n";
     }
 }
