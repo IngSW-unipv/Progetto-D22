@@ -1,7 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model;
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.*;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.Voucher;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.*;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
@@ -53,18 +52,6 @@ public class Trenissimo {
     public ITitoloViaggio acquistareTitoloViaggio(IPagamento pagamento, Viaggio viaggio){
         // todo
         return null; //da cambiare, chiaramente
-    }
-
-    public Voucher acquistareVoucher(IPagamento pagamento){
-        double valore = 0.0;
-        // todo
-        return new Voucher(valore);
-    }
-
-    public Voucher rimborso(IAcquisto acquisto){
-        double valore = 0.0;
-        // todo
-        return new Voucher(valore);
     }
 
     public ITitoloViaggio recuperoTitoloViaggio(String idBiglietto){

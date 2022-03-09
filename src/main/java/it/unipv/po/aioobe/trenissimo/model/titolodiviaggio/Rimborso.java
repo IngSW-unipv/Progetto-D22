@@ -2,9 +2,9 @@ package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.TitoloViaggioService;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.Voucher;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.IRimborsoStrategy;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.RimborsoFactory;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.RimborsoStrategy;
@@ -47,7 +47,7 @@ public class Rimborso {
         this.dataRichiesta = dataRichiesta;
     }
 
-    public Voucher getRimborso() {
+    public VoucherEntity getRimborso() {
         TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
         titoloViaggioService.deleteById(id);
         return rimborsoStrategy.getPrezzoTot(this);

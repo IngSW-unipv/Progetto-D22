@@ -1,14 +1,12 @@
 package it.unipv.po.aioobe.trenissimo;
 
 
-import it.unipv.po.aioobe.trenissimo.model.Utils;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.Rimborso;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.TipoTitoloViaggio;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.Voucher;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
@@ -19,9 +17,6 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.ParseException;
 
 import java.time.LocalDateTime;
@@ -65,28 +60,28 @@ public class App {
 
         //accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         //viaggiPreferitiService.findAll().forEach((x)-> System.out.println(x.toString()));
-
+/*
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        Ricerca search = new Ricerca(858, 1386, LocalDateTime.parse("2022-03-24 12:00:00", formatter));
+        Ricerca search = new Ricerca(1707, 1386, LocalDateTime.parse("2022-03-24 12:00:00", formatter));
 
         search.setNumAdulti(1);
-        search.setNumBambini(2);
-        search.setNumAnimali(1);
-        search.setNumRagazzi(1);
+        search.setNumBambini(0);
+        search.setNumAnimali(0);
+        search.setNumRagazzi(0);
 
         search.eseguiRicerca();
         List<Viaggio> viaggi = search.getRisultati();
-
+*/
         //Account.getInstance().addViaggioPreferito(viaggi.get(3));
         //System.out.println(viaggi.get(3).getNumeroCambi());
 
 
 
 
-        viaggi.forEach((x)->System.out.println(x.toString()));
+        //viaggi.forEach((x)->System.out.println(x.toString()));
 
-        //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+        //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
         //orsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
         //CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
         //CorsaSingola biglietto4 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
@@ -110,9 +105,16 @@ public class App {
         //registrazione.signUp("zambo", "zambo", "Fabio", "Zamboni", "1999-07-23", "fabio.zamboni01@universitadipavia.it", "Non lo so", "1", "Vicino Piacenza", "12345");
 
 
-        //Rimborso r = new Rimborso("CS1646830029004");
-        //System.out.println(r.getRimborso().toString());
-        //System.out.println(storicoAcquistiService.findAll());
+        //Rimborso r = new Rimborso("CS1646864674680");
+        VoucherService voucherService = new VoucherService();
+        //voucherService.persist(r.getRimborso());
+
+        voucherService.findAll().forEach((x)->System.out.println(x.toString()));
+
+        System.out.println(voucherService.findById("VO1646864734159").toString());
+
+
+
 
 
 
