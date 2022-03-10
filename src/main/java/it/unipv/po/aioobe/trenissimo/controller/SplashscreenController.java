@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -58,6 +59,8 @@ public class SplashscreenController implements Initializable{
             stage.setResizable(false);
             stage.setTitle("Trenissimo");
             stage.setScene(scene);
+            Image img = new Image(HomePage.class.getResourceAsStream("homePage/LogoIcona.png"));
+            stage.getIcons().add(img);
             stage.show();
             ((Stage) mainLayout.getScene().getWindow()).close();
         });
@@ -71,8 +74,6 @@ public class SplashscreenController implements Initializable{
 
     @FXML
     private BorderPane mainLayout;
-
-
 
     @FXML
     private Label lblCounter;

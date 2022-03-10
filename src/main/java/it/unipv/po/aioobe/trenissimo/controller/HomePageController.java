@@ -280,14 +280,14 @@ public class HomePageController implements Initializable {
 
     @FXML
     protected void onScaricaBigliettoPDF(VoucherEntity voucherEntity) throws Exception {
-        fillPDF(voucherEntity);
+        //fillPDF(voucherEntity);
 
         File biglietto = new File(TicketBuilder.DEST); //biglietto in folder temporanea
 
         FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Scegli dove salvare il titolo di viaggio");
-        fileChooser.setInitialFileName(voucherEntity.getVoucherId());
+        //fileChooser.setInitialFileName(voucherEntity.getVoucherId());
 
         File destin = new File(fileChooser.showSaveDialog(new Stage()).getAbsolutePath().concat(".pdf"));
         TicketBuilder.copy(biglietto, destin);
@@ -312,11 +312,11 @@ public class HomePageController implements Initializable {
 
     }
 
-    private void fillPDF(VoucherEntity voucherEntity) throws Exception {
+    /*private void fillPDF(VoucherEntity voucherEntity) throws Exception {
             titoloViaggio = new TicketBuilder(voucherEntity.getVoucherId(), String.valueOf(voucherEntity.getValore()));
 
         titoloViaggio.createPdf(voucherEntity.getVoucherId());
-    }
+    }*/
 
 
 

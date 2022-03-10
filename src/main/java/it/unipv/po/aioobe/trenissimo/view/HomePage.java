@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -21,6 +22,8 @@ public class HomePage extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1440, 800);
         stage.setResizable(false);
         stage.setTitle("Trenissimo");
+        Image img = new Image(HomePage.class.getResourceAsStream("homePage/LogoIcona.png"));
+        stage.getIcons().add(img);
         stage.setScene(scene);
         stage.show();
     }
