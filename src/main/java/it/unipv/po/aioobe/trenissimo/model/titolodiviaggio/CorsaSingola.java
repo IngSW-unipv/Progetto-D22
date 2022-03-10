@@ -1,7 +1,16 @@
 package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
+import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.TitoloViaggioService;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
+import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+
+import java.util.List;
 
 public class CorsaSingola implements ITitoloViaggio {
     private TipoTitoloViaggio tipo;
@@ -12,7 +21,7 @@ public class CorsaSingola implements ITitoloViaggio {
     public CorsaSingola(TipoTitoloViaggio tipo, Viaggio viaggio) {
         this.tipo = TipoTitoloViaggio.BIGLIETTOCORSASINGOLA;
         this.tipo = tipo;
-        this.id = "CS" + System.currentTimeMillis();
+        this.id = "CS" + System.nanoTime();
         this.viaggio = viaggio;
         this.prezzo = viaggio.getPrezzoTot();
     }
@@ -22,7 +31,6 @@ public class CorsaSingola implements ITitoloViaggio {
         return viaggio;
     }
 
-    @Override
     public TipoTitoloViaggio getTipo() {
         return this.tipo;
     }
@@ -40,6 +48,21 @@ public class CorsaSingola implements ITitoloViaggio {
     @Override
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
+    }
+
+    @Override
+    public void pagare() {
+        StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
+        StoricoAcquistiEntity storicoAcquistiEntity = new StoricoAcquistiEntity();
+        TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
+        TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
+        titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(this));
+        storicoAcquistiEntity = storicoAcquistiEntity.toStoricoAcquistiEntity(this);
+        if(Account.getLoggedIn())
+            storicoAcquistiEntity.setUsername(Account.getInstance().getUsername());
+        else
+            storicoAcquistiEntity.setUsername(null);
+        storicoAcquistiService.persist(storicoAcquistiEntity);
     }
 
 }

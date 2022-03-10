@@ -1,6 +1,8 @@
 package it.unipv.po.aioobe.trenissimo;
 
 
+import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
+import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
@@ -21,6 +23,7 @@ import java.text.ParseException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -77,21 +80,31 @@ public class App {
         //System.out.println(viaggi.get(3).getNumeroCambi());
 
 
-
-
-        //viaggi.forEach((x)->System.out.println(x.toString()));
-
         CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
-        //orsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
-        //CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
-        //CorsaSingola biglietto4 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
+        CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+        CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
 
-        titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(biglietto));
+        List<IAcquisto> carrello = new ArrayList<>();
+
+        carrello.add(biglietto);
+        carrello.add(biglietto2);
+        carrello.add(biglietto3);
+
+        //titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(biglietto));
 
         //titoloViaggioService.findAll().forEach((x)->System.out.println(x.toString()));
 
+        Acquisto acquisto = new Acquisto();
 
-        Account.getInstance().addAcquistoToStorico(biglietto);
+        acquisto.acquistare(carrello);
+
+        for (IAcquisto a: acquisto.getAcquisti()) {
+            a.pagare();
+        }
+
+        //viaggi.forEach((x)->System.out.println(x.toString()));
+
+        //Account.getInstance().addAcquistoToStorico(biglietto);
 
         //Account.getInstance().addAcquistoToStorico(biglietto2);
 

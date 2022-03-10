@@ -37,7 +37,7 @@ public class Account {
     }
 
     public static void setLoggedIn(boolean loggedIn) {
-        loggedInProperty.setValue(loggedIn);
+        loggedInProperty.set(loggedIn);
     }
 
     public static Account getInstance() {

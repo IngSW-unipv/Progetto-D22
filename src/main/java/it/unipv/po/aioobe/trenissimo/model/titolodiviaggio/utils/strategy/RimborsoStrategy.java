@@ -15,13 +15,13 @@ public class RimborsoStrategy implements IRimborsoStrategy {
         if((r.getTitoloViaggioEntity().getDataPartenza().toLocalDate().toEpochDay() - r.getDataRichiesta().toEpochDay()) >= 3 ) {
             VoucherEntity v = new VoucherEntity();
             v.setVoucherId();
-            v.setValore(Double.valueOf(String.format(Locale.US,"%.2f", r.getStoricoAcquisti().getPrezzo()*RIMBORSOPIU3GIORNI)));
+            v.setPrezzo(Double.valueOf(String.format(Locale.US,"%.2f", r.getStoricoAcquisti().getPrezzo()*RIMBORSOPIU3GIORNI)));
             return v;
         }
         else if((r.getTitoloViaggioEntity().getDataPartenza().toLocalDate().toEpochDay() - r.getDataRichiesta().toEpochDay()) == 1) {
             VoucherEntity v = new VoucherEntity();
             v.setVoucherId();
-            v.setValore(Double.valueOf(String.format(Locale.US,"%.2f", r.getStoricoAcquisti().getPrezzo()*RIMBORSO1GIORNO)));
+            v.setPrezzo(Double.valueOf(String.format(Locale.US,"%.2f", r.getStoricoAcquisti().getPrezzo()*RIMBORSO1GIORNO)));
             return v;
         }
         else
