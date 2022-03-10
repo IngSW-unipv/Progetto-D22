@@ -8,12 +8,16 @@ import java.util.List;
 public class FiltroOrdina implements IFiltro {
 
     public enum Criterio{
+        DURATA("Durata"),
+        PREZZO("Prezzo"),
+        CAMBI("Cambi"),
+        ORARIO("Orario");
 
-        DURATA,
-        PREZZO,
-        CAMBI,
-        ORARIO
+        public final String nome;
 
+        Criterio(String nome) {
+            this.nome = nome;
+        }
     }
 
     private Criterio criterio;
@@ -23,6 +27,10 @@ public class FiltroOrdina implements IFiltro {
     }
 
     public void setCriterio(Criterio criterio) {
+        this.criterio = criterio;
+    }
+
+    public FiltroOrdina(Criterio criterio) {
         this.criterio = criterio;
     }
 

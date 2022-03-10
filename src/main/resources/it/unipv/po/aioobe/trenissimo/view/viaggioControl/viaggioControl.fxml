@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<fx:root maxHeight="1.7976931348623157E308" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" type="javafx.scene.layout.VBox" VBox.vgrow="NEVER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="1.7976931348623157E308" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" stylesheets="@../styles.css" type="javafx.scene.layout.VBox" VBox.vgrow="NEVER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox spacing="8.0" VBox.vgrow="NEVER">
             <children>
@@ -82,6 +80,14 @@
                         </Label>
                     </children>
                 </VBox>
+                <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Aggiungi" onAction="#onAddToCard">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-cart-plus" iconSize="24" />
+                    </graphic>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+                </Button>
             </children>
         </HBox>
       <VBox fx:id="boxChangesContainer" maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" visible="false">

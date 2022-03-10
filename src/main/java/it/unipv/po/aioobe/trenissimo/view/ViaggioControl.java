@@ -6,9 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
+import java.util.function.Predicate;
 
 public class ViaggioControl extends VBox {
     @FXML private Label lblCompanyId;
@@ -26,6 +28,7 @@ public class ViaggioControl extends VBox {
     @FXML private FontIcon icoChanges;
 
     private Viaggio viaggio;
+    private Callback<Void,Void> onSelected;
 
 
     public ViaggioControl() {
@@ -40,8 +43,9 @@ public class ViaggioControl extends VBox {
         }
     }
 
-    public ViaggioControl(Viaggio viaggio) {
+    public ViaggioControl(Viaggio viaggio, Callback<Void,Void> onSelected) {
         this();
+        this.onSelected = onSelected;
         setViaggio(viaggio);
     }
 
@@ -86,6 +90,11 @@ public class ViaggioControl extends VBox {
                 continue;
             }
         }
+    }
+
+    @FXML
+    protected void onAddToCard() {
+        onSelected.call(null);
     }
 
     @FXML

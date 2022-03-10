@@ -173,6 +173,10 @@ public class HomePageController implements Initializable {
                 LocalDateTime data = LocalDateTime.of(dtpBigliettoPartenza.getValue(), tmpBigliettoAndata.getValue());
 
                 Ricerca search = new Ricerca(partenzaId, destinazioneId, data);
+                if (tgsBigliettoAR.isSelected()){
+                    search.setAndataRitorno(true);
+                    search.setDataRitorno(LocalDateTime.of(dtpBigliettoRitorno.getValue(), tmpBigliettoRitorno.getValue()));
+                }
 
                 search.setNumAdulti((int)spnBigliettoAdulti.getValue());
                 search.setNumRagazzi((int)spnBigliettoRagazzi.getValue());

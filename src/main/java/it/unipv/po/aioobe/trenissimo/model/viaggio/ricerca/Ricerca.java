@@ -3,38 +3,49 @@ package it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 public class Ricerca implements IRicerca{
     private int stazionePartenza;
     private int stazioneArrivo;
-    private LocalDateTime dataPartenza;
-    private LocalDateTime dataArrivo;
+    private LocalDateTime dataAndata;
+    private LocalDateTime dataRitorno;
     private int numAdulti;
     private int numRagazzi;
     private int numBambini;
     private int numAnimali;
     private boolean andataRitorno;
 
-    private List<Viaggio> risultati;
+    private List<Viaggio> risultatiAndata;
+    private List<Viaggio> risultatiRitorno;
 
     public Ricerca(int stazionePartenza, int stazioneArrivo, LocalDateTime dataAttuale) {
         this.stazionePartenza = stazionePartenza;
         this.stazioneArrivo = stazioneArrivo;
-        this.dataPartenza = dataAttuale;
+        this.dataAndata = dataAttuale;
     }
 
     @Override
     public void eseguiRicerca() {
-        CSASearch search = new CSASearch();
-        List<Viaggio> lista = search.eseguiRicerca(stazionePartenza, stazioneArrivo);
-        lista.forEach((x)->x.setNumAdulti(this.getNumAdulti()));
-        lista.forEach((x)->x.setNumAnimali(this.getNumAnimali()));
-        lista.forEach((x)->x.setNumRagazzi(this.getNumRagazzi()));
-        lista.forEach((x)->x.setNumBambini(this.getNumBambini()));
-        lista.forEach((x)->x.setDataPartenza(this.getDataPartenza().toLocalDate()));
-        setRisultati(lista);
+        CSASearch andataSearch = new CSASearch();
+        List<Viaggio> listaA = andataSearch.eseguiRicerca(stazionePartenza, stazioneArrivo);
+        listaA.forEach((x)->x.setNumAdulti(this.getNumAdulti()));
+        listaA.forEach((x)->x.setNumAnimali(this.getNumAnimali()));
+        listaA.forEach((x)->x.setNumRagazzi(this.getNumRagazzi()));
+        listaA.forEach((x)->x.setNumBambini(this.getNumBambini()));
+        listaA.forEach((x)->x.setDataPartenza(this.getDataAndata().toLocalDate()));
+        setRisultatiAndata(listaA);
+
+        if (andataRitorno){
+            CSASearch ritornoSearch = new CSASearch();
+            List<Viaggio> listaR = ritornoSearch.eseguiRicerca(stazioneArrivo,stazionePartenza);
+            listaR.forEach((x)->x.setNumAdulti(this.getNumAdulti()));
+            listaR.forEach((x)->x.setNumAnimali(this.getNumAnimali()));
+            listaR.forEach((x)->x.setNumRagazzi(this.getNumRagazzi()));
+            listaR.forEach((x)->x.setNumBambini(this.getNumBambini()));
+            listaR.forEach((x)->x.setDataPartenza(this.getDataAndata().toLocalDate()));
+            setRisultatiRitorno(listaR);
+        }
     }
 
     public int getNumAdulti() {
@@ -61,8 +72,12 @@ public class Ricerca implements IRicerca{
         return stazioneArrivo;
     }
 
-    public LocalDateTime getDataPartenza() {
-        return dataPartenza;
+    public LocalDateTime getDataAndata() {
+        return dataAndata;
+    }
+
+    public LocalDateTime getDataRitorno() {
+        return dataRitorno;
     }
 
     public boolean isAndataRitorno() {
@@ -97,13 +112,21 @@ public class Ricerca implements IRicerca{
         this.stazioneArrivo = stazioneArrivo;
     }
 
-    public void setDataPartenza(LocalDateTime dataPartenza) {
-        this.dataPartenza = dataPartenza;
+    public void setDataAndata(LocalDateTime dataAndata) {
+        this.dataAndata = dataAndata;
     }
 
-    public List<Viaggio> getRisultati() { return risultati; }
+    public void setDataRitorno(LocalDateTime dataRitorno) {
+        this.dataRitorno = dataRitorno;
+    }
 
-    public void setRisultati(List<Viaggio> risultati) { this.risultati = risultati; }
+    public List<Viaggio> getRisultatiAndata() { return risultatiAndata; }
+
+    public void setRisultatiAndata(List<Viaggio> risultatiAndata) { this.risultatiAndata = risultatiAndata; }
+
+    public List<Viaggio> getRisultatiRitorno() { return risultatiRitorno; }
+
+    public void setRisultatiRitorno(List<Viaggio> risultatiRitorno) { this.risultatiRitorno = risultatiRitorno; }
 
     @Override
     public int compareTo(Viaggio viaggio) {
