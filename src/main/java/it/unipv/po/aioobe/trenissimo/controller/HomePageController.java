@@ -5,9 +5,6 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.VoucherService;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.Rimborso;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataAbbonamento;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.DurataInterrail;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.NumeroViaggiCarnet;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.ValoreVoucher;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
@@ -42,10 +39,7 @@ public class HomePageController implements Initializable {
     @FXML private JFXTimePicker tmpBigliettoRitorno;
     @FXML private JFXTimePicker tmpBigliettoAndata;
 
-    @FXML private ComboBox<DurataAbbonamento> cmbAbbonamentoDurata;
     @FXML private ComboBox<ValoreVoucher> cmbVoucherValore;
-    @FXML private ComboBox<NumeroViaggiCarnet> cmbCarnetNumeroViaggi;
-    @FXML private ComboBox<DurataInterrail> cmbDurataInterrail;
 
     @FXML private Label lblNumAdulti;
     @FXML private Label lblNumRagazzi;
@@ -62,10 +56,7 @@ public class HomePageController implements Initializable {
 
     @FXML private SearchableComboBox<StopsEntity> scbBigliettoPartenza;
     @FXML private SearchableComboBox<StopsEntity> scbBigliettoDestinazione;
-    @FXML private SearchableComboBox scbAbbonamentoPartenza;
-    @FXML private SearchableComboBox scbAbbonamentoDestinazione;
-    @FXML private SearchableComboBox scbCarnetPartenza;
-    @FXML private SearchableComboBox scbCarnetDestinazione;
+
 
     @FXML private TabPane tabPaneRicerca;
     @FXML private TabPane tabPaneRimborso;
@@ -113,15 +104,8 @@ public class HomePageController implements Initializable {
 
         initScb(scbBigliettoPartenza);
         initScb(scbBigliettoDestinazione);
-        initScb(scbAbbonamentoPartenza);
-        initScb(scbAbbonamentoDestinazione);
-        initScb(scbCarnetPartenza);
-        initScb(scbCarnetDestinazione);
 
-        cmbAbbonamentoDurata.setItems(FXCollections.observableArrayList(DurataAbbonamento.values()));
         cmbVoucherValore.setItems(FXCollections.observableArrayList(ValoreVoucher.values()));
-        cmbCarnetNumeroViaggi.setItems(FXCollections.observableArrayList(NumeroViaggiCarnet.values()));
-        cmbDurataInterrail.setItems(FXCollections.observableArrayList(DurataInterrail.values()));
 
 
         tgsBigliettoAR.selectedProperty().addListener((obs, oldVal, newVal) -> {

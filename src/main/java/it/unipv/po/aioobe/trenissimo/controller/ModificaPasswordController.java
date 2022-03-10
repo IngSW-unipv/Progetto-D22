@@ -168,8 +168,6 @@ public class ModificaPasswordController implements Initializable {
     protected void onSalvaPassword() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         onCheckEmpty();
 
-        // todo, manca metodo per salvare psw in db
-
         if (isPswCheckOk){
             lblSalvataggioOK.setVisible(true);
 

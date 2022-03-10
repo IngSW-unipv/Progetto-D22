@@ -25,7 +25,7 @@ public class TicketBuilder {
 
     public static final String DEST = System.getProperty("java.io.tmpdir").concat("NuovoBiglietto.pdf");
     public static final String SRC = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateBigliettoWBorder.pdf";
-    public static final String SRCVO = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/nomeTemplateVoucher.pdf"; // todo: da aggiungere path VoucherTemplate
+    public static final String SRCVO = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/nomeTemplateVoucher.pdf";
 
 
     public void createPdf(String id) throws Exception {
