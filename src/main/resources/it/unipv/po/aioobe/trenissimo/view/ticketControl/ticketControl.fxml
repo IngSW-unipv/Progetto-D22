@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import org.kordamp.ikonli.javafx.*?>
 
-<fx:root type="javafx.scene.layout.AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="200.0" styleClass="ticket" stylesheets="@ticketControl.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="200.0" styleClass="ticket" stylesheets="@ticketControl.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <effect>
       <DropShadow blurType="GAUSSIAN" height="12.0" offsetY="2.0" radius="5.5" width="12.0">
          <color>
@@ -57,6 +57,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <FontIcon iconLiteral="fas-times" iconSize="16" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" onMouseClicked="#onTicketRemove" />
+      <FontIcon iconLiteral="fas-times" iconSize="16" onMouseClicked="#onTicketRemove" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
    </children>
 </fx:root>
