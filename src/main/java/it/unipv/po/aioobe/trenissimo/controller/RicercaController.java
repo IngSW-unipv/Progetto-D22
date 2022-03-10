@@ -8,10 +8,7 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroOrdina;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroPrezzo;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.IFiltro;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
-import it.unipv.po.aioobe.trenissimo.view.HomePage;
-import it.unipv.po.aioobe.trenissimo.view.RicercaDettaglioControl;
-import it.unipv.po.aioobe.trenissimo.view.TicketControl;
-import it.unipv.po.aioobe.trenissimo.view.ViaggioControl;
+import it.unipv.po.aioobe.trenissimo.view.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -35,16 +32,10 @@ public class RicercaController implements Initializable {
     @FXML private TabPane tabPane;
     private ObservableList<Viaggio> _carrello;
 
-
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _carrello = FXCollections.observableArrayList();
         _carrello.addListener((ListChangeListener<Viaggio>) c -> updateCart());
-
-
-
     }
 
     public void setRicerca(Ricerca ricerca) {
@@ -79,7 +70,14 @@ public class RicercaController implements Initializable {
         })).toList());
     }
 
-
+    @FXML
+    protected void onAcquisto(){
+        if (!_carrello.isEmpty()){
+            AcquistoView.openScene(boxCart.getScene().getWindow(), _carrello);
+        } else {
+            //TODO: il cartello è vuoto, errore
+        }
+    }
 
     @FXML
     protected void onGoToHomepage(){

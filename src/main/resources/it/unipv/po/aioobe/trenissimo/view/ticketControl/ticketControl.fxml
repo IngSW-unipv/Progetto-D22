@@ -58,5 +58,29 @@
          </font>
       </Label>
       <FontIcon iconLiteral="fas-times" iconSize="16" onMouseClicked="#onTicketRemove" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
+      <HBox spacing="8.0" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="8.0">
+         <children>
+            <Label fx:id="lblNumAdulti" text="1">
+               <graphic>
+                  <FontIcon iconLiteral="fas-user" />
+               </graphic>
+            </Label>
+            <Label fx:id="lblNumRagazzi" text="0">
+               <graphic>
+                  <FontIcon iconLiteral="fas-child" />
+               </graphic>
+            </Label>
+            <Label fx:id="lblNumBambini" text="0">
+               <graphic>
+                  <FontIcon iconLiteral="fas-baby" />
+               </graphic>
+            </Label>
+            <Label fx:id="lblNumAnimali" text="0">
+               <graphic>
+                  <FontIcon iconLiteral="fas-dog" />
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </fx:root>

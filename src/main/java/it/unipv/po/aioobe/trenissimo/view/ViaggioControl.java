@@ -4,6 +4,7 @@ import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
@@ -26,6 +27,7 @@ public class ViaggioControl extends VBox {
     @FXML private VBox boxChanges;
     @FXML private VBox boxChangesContainer;
     @FXML private FontIcon icoChanges;
+    @FXML private Button bntAddToCart;
 
     private Viaggio viaggio;
     private Callback<Void,Void> onSelected;
@@ -46,6 +48,12 @@ public class ViaggioControl extends VBox {
     public ViaggioControl(Viaggio viaggio, Callback<Void,Void> onSelected) {
         this();
         this.onSelected = onSelected;
+        if (onSelected == null){
+            icoChanges.setManaged(false);
+            icoChanges.setVisible(false);
+            bntAddToCart.setManaged(false);
+            bntAddToCart.setVisible(false);
+        }
         setViaggio(viaggio);
     }
 

@@ -80,7 +80,7 @@
                         </Label>
                     </children>
                 </VBox>
-                <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" text="Aggiungi" onAction="#onAddToCard">
+                <Button fx:id="bntAddToCart" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#onAddToCard" text="Aggiungi">
                     <graphic>
                         <FontIcon iconLiteral="fas-cart-plus" iconSize="24" />
                     </graphic>

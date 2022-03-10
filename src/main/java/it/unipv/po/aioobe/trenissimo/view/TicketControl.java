@@ -11,6 +11,7 @@ import javafx.util.Callback;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class TicketControl extends AnchorPane {
     @FXML private Label lblDepartureTime;
@@ -19,6 +20,11 @@ public class TicketControl extends AnchorPane {
     @FXML private Label lblArrivalStation;
     @FXML private Label lblTravelTime;
     @FXML private Label lblPrice;
+
+    @FXML private Label lblNumAdulti;
+    @FXML private Label lblNumRagazzi;
+    @FXML private Label lblNumBambini;
+    @FXML private Label lblNumAnimali;
 
     private Viaggio viaggio;
     private Callback<Void, Void> onRemove;
@@ -49,12 +55,23 @@ public class TicketControl extends AnchorPane {
     public void setViaggio(Viaggio viaggio) {
         this.viaggio = viaggio;
 
-        lblDepartureTime        .textProperty().setValue(Utils.secondsToTime(viaggio.getOrarioPartenza(), false));
-        lblDepartureStation     .textProperty().setValue(viaggio.getStazionePartenza().getStopName());
-        lblArrivalTime          .textProperty().setValue(Utils.secondsToTime(viaggio.getOrarioArrivo(), false));
-        lblArrivalStation       .textProperty().setValue(viaggio.getStazioneArrivo().getStopName());
-        lblTravelTime           .textProperty().setValue(((int) viaggio.getDurata() / 60) + " mins");
-        lblPrice                .textProperty().setValue(String.valueOf(viaggio.getPrezzoTot()));
+        lblDepartureTime        .setText(Utils.secondsToTime(viaggio.getOrarioPartenza(), false));
+        lblDepartureStation     .setText(viaggio.getStazionePartenza().getStopName());
+        lblArrivalTime          .setText(Utils.secondsToTime(viaggio.getOrarioArrivo(), false));
+        lblArrivalStation       .setText(viaggio.getStazioneArrivo().getStopName());
+        lblTravelTime           .setText((viaggio.getDurata() / 60) + " mins");
+        lblPrice                .setText(String.valueOf(viaggio.getPrezzoTot()));
+
+        lblNumAdulti    .setText(String.valueOf(viaggio.getNumAdulti()));
+        lblNumRagazzi   .setText(String.valueOf(viaggio.getNumRagazzi()));
+        lblNumBambini   .setText(String.valueOf(viaggio.getNumBambini()));
+        lblNumAnimali   .setText(String.valueOf(viaggio.getNumAnimali()));
+
+        if (viaggio.getNumAdulti()  == 0)   {lblNumAdulti.setManaged(false);    lblNumAdulti.setVisible(false);};
+        if (viaggio.getNumRagazzi() == 0)   {lblNumRagazzi.setManaged(false);   lblNumRagazzi.setVisible(false);};
+        if (viaggio.getNumBambini() == 0)   {lblNumBambini.setManaged(false);   lblNumBambini.setVisible(false);};
+        if (viaggio.getNumAnimali() == 0)   {lblNumAnimali.setManaged(false);   lblNumAnimali.setVisible(false);};
+
     }
 
     @FXML
