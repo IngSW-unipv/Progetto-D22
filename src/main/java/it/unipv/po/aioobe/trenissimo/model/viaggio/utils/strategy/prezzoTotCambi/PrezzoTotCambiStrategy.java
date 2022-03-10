@@ -9,7 +9,7 @@ public class PrezzoTotCambiStrategy implements IPrezzoTotCambiStrategy{
     @Override
     public double getPrezzoTotCambi(Viaggio v){
         double prezzo=0;
-        prezzo = prezzo + v.getNumeroCambi()*PREZZOPERCAMBIO; //Per ogni cambio si aggiungono 50 centesimi
+        prezzo = prezzo - v.getNumeroCambi()*PREZZOPERCAMBIO; //Per ogni cambio si aggiungono 50 centesimi
         return prezzo;
     }
 
