@@ -29,33 +29,27 @@ public class Trenissimo {
 
     /*
     public Account creaAccount(String username, String passwordHash){
-        // todo
         return new Account();
     }
 
      */
 
     public boolean login(String username, String password){
-        // todo
         return true;
     }
 
     public void logout(){
-        // todo
     }
 
     public ArrayList<Viaggio> ricercaViaggio (IRicerca ricerca){
-        // todo
         return new ArrayList<Viaggio>();
     }
 
     public ITitoloViaggio acquistareTitoloViaggio(IPagamento pagamento, Viaggio viaggio){
-        // todo
         return null; //da cambiare, chiaramente
     }
 
     public ITitoloViaggio recuperoTitoloViaggio(String idBiglietto){
-        // todo
         return null; //da cambiare, chiaramente
     }
 }

@@ -25,6 +25,8 @@ public class SplashscreenController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // todo: finestra errore, eccezione db "ConnectionDBException"
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call()  {

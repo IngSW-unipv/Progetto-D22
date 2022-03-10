@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
-//TODO: non in UML
+
 public class Viaggio {
 
     private int numAdulti;
@@ -122,7 +122,7 @@ public class Viaggio {
     }
 
     public int getNumeroCambi() {
-        // TODO: non conta casi in cui il treno torna sulla stessa tratta (eg. R1 -> R2 -> R1 viene contato come un cambio solo invece che due)
+        // non conta casi in cui il treno torna sulla stessa tratta (eg. R1 -> R2 -> R1 viene contato come un cambio solo invece che due)
         return (int) (cambi.stream().map(x -> x.getDepartureStationTrip()).distinct().count() - 1);
     }
 

@@ -7,7 +7,6 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiSe
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.TitoloViaggioService;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.IRimborsoStrategy;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.RimborsoFactory;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.RimborsoStrategy;
 
 import java.time.LocalDate;
 
@@ -51,5 +50,11 @@ public class Rimborso {
         TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
         titoloViaggioService.deleteById(id);
         return rimborsoStrategy.getPrezzoTot(this);
+    }
+
+    public static boolean checkIdBiglietto(String idBiglietto) {
+        TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
+        TitoloViaggioEntity titolo = titoloViaggioService.findById(idBiglietto);
+        return titolo != null;
     }
 }

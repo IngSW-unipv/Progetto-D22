@@ -52,7 +52,6 @@ public class ModificaPasswordController implements Initializable {
     }
 
 
-
     @FXML
     protected void onCheck() throws IOException {
 
@@ -168,10 +167,9 @@ public class ModificaPasswordController implements Initializable {
     protected void onSalvaPassword() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         onCheckEmpty();
 
-        // todo, manca metodo per salvare psw in db
-
         if (isPswCheckOk){
             lblSalvataggioOK.setVisible(true);
+            Account.getInstance().setPassword(txtNuovaPsw.getText());
 
             Task<Void> task = new Task<Void>() {
                 @Override

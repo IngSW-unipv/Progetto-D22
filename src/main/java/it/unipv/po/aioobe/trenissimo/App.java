@@ -60,10 +60,10 @@ public class App {
 
         //accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         //viaggiPreferitiService.findAll().forEach((x)-> System.out.println(x.toString()));
-/*
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        Ricerca search = new Ricerca(1707, 1386, LocalDateTime.parse("2022-03-24 12:00:00", formatter));
+        Ricerca search = new Ricerca(1707, 1386, LocalDateTime.parse("2022-03-11 12:00:00", formatter));
 
         search.setNumAdulti(1);
         search.setNumBambini(0);
@@ -71,8 +71,8 @@ public class App {
         search.setNumRagazzi(0);
 
         search.eseguiRicerca();
-        List<Viaggio> viaggi = search.getRisultati();
-*/
+        List<Viaggio> viaggi = search.getRisultatiAndata();
+
         //Account.getInstance().addViaggioPreferito(viaggi.get(3));
         //System.out.println(viaggi.get(3).getNumeroCambi());
 
@@ -81,17 +81,17 @@ public class App {
 
         //viaggi.forEach((x)->System.out.println(x.toString()));
 
-        //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
+        CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
         //orsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
         //CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
         //CorsaSingola biglietto4 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
 
-        //titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(biglietto));
+        titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(biglietto));
 
         //titoloViaggioService.findAll().forEach((x)->System.out.println(x.toString()));
 
 
-        //Account.getInstance().addAcquistoToStorico(biglietto);
+        Account.getInstance().addAcquistoToStorico(biglietto);
 
         //Account.getInstance().addAcquistoToStorico(biglietto2);
 
@@ -104,12 +104,12 @@ public class App {
 
 
         //Rimborso r = new Rimborso("CS1646864674680");
-        VoucherService voucherService = new VoucherService();
+        //VoucherService voucherService = new VoucherService();
         //voucherService.persist(r.getRimborso());
 
-        voucherService.findAll().forEach((x)->System.out.println(x.toString()));
+        //voucherService.findAll().forEach((x)->System.out.println(x.toString()));
 
-        System.out.println(voucherService.findById("VO1646864734159").toString());
+        //System.out.println(voucherService.findById("VO1646864734159").toString());
 
 
 

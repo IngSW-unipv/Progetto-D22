@@ -18,7 +18,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//TODO: non in UML
 
 /**
  * See <a href="https://arxiv.org/pdf/1703.05997.pdf">Connection Scan Algorithm</a>

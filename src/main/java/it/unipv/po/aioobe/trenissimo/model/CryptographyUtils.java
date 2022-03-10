@@ -46,7 +46,7 @@ public class CryptographyUtils {
      * @author ArrayIndexOutOfBoundsException
      */
     public static String encryptPassword(String password) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        final String secret = "AIOOBE"; //TODO: da mettere in file configurazione
+        final String secret = "AIOOBE"; //TODO: da mettere in file properties
         var secretKey = CryptographyUtils.computeKey(secret);
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);

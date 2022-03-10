@@ -1,9 +1,8 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
-
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.TitoloViaggioService;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import javafx.concurrent.Task;
@@ -31,13 +30,11 @@ public class StoricoAcquistoControl extends VBox {
     @FXML private Button btnBigliettoPDF;
     @FXML private Button btnScarica;
 
-
     @FXML private VBox boxChanges;
     @FXML private VBox boxChangesContainer;
     @FXML private FontIcon icoChanges;
 
     private StoricoAcquistiEntity acquisto;
-    //private TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
 
     private TicketBuilder titoloViaggio;
 
@@ -130,11 +127,16 @@ public class StoricoAcquistoControl extends VBox {
     }
 
     private void fillPDF() throws Exception {
+        TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
+        TitoloViaggioEntity titoloViaggioEntity;
+        titoloViaggioEntity=titoloViaggioService.findById(lblNumeroBiglietto.getText());
+
        if(lblNumeroBiglietto.getText().substring(0,2).equals("CS"))
-            titoloViaggio = new TicketBuilder("MILANO","PAVIA", lblDataAcquisto.getText(),"20-02-2022",
-                    "13.00.00","14.00.00", Account.getInstance().getDatiPersonali().getNome(),
-                    Account.getInstance().getDatiPersonali().getCognome(),Account.getInstance().getDatiPersonali().getDataNascita().toString(),
-                    lblNumeroBiglietto.getText(), lblPrezzo.getText());
+            titoloViaggio = new TicketBuilder(titoloViaggioEntity.getStazionePartenza(),titoloViaggioEntity.getStazioneArrivo(),
+                    titoloViaggioEntity.getDataPartenza().toString(), titoloViaggioEntity.getDataArrivo().toString(),
+                    titoloViaggioEntity.getOraPartenza().toString(),titoloViaggioEntity.getOraArrivo().toString(),
+                    Account.getInstance().getDatiPersonali().getNome(), Account.getInstance().getDatiPersonali().getCognome(),
+                    Account.getInstance().getDatiPersonali().getDataNascita().toString(), lblNumeroBiglietto.getText(), lblPrezzo.getText());
        else
            titoloViaggio = new TicketBuilder(lblNumeroBiglietto.getText(), lblPrezzo.getText());
 

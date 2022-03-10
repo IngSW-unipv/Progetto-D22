@@ -523,22 +523,29 @@
                                                     <children>
                                                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                             <children>
-                                                                <Label text="Numero del biglietto:" />
-                                                                <TextField fx:id="txtRimborsoTitoloID" maxHeight="26.0" maxWidth="200.0" promptText="Numero del biglietto" styleClass="textField" />
-                                                                <Label text="Numero inserito non valido!" fx:id="lblErroreRimborso" visible="false"/>
-                                                                <Label text="Inserire un numero!" fx:id="lblErroreRimborsoEmpty" visible="false"/>
+                                                                <Label text="Numero del biglietto:">
+                                                   <padding>
+                                                      <Insets bottom="4.0" />
+                                                   </padding></Label>
+                                                                <TextField fx:id="txtRimborsoTitoloID" maxHeight="26.0" maxWidth="200.0" promptText="Numero del biglietto" styleClass="textField">
+                                                   <VBox.margin>
+                                                      <Insets bottom="8.0" />
+                                                   </VBox.margin></TextField>
+                                                                <Label fx:id="lblErroreRimborso" text="Numero inserito non valido!" textFill="#d70000" visible="false"/>
+                                                                <Label fx:id="lblErroreRimborsoEmpty" text="Inserire un numero!" textFill="#d70000" visible="false"/>
                                                             </children>
                                                         </VBox>
                                                     </children>
                                                 </HBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                     <children>
-                                                        <Button mnemonicParsing="false" onAction="#onRimborso" prefHeight="26.0" prefWidth="150.0" text="Richiedi rimborso">
-                                                            <Label text="Rimborso effettuato con successo!" fx:id="lblRimborsoOK" visible="false"/>
+                                                        <Button fx:id="btnRichiestaRimborso" mnemonicParsing="false" onAction="#onRimborso" prefHeight="26.0" prefWidth="150.0" text="Richiedi rimborso">
                                                             <VBox.margin>
-                                                                <Insets top="18.0" />
+                                                                <Insets bottom="8.0" top="18.0" />
                                                             </VBox.margin>
                                                         </Button>
+                                          <Label fx:id="lblRimborsoOK" text="Rimborso effettuato con successo!" textFill="#21b200" visible="false"/>
+                                          <Label />
                                                     </children>
                                                 </VBox>
                                             </children>

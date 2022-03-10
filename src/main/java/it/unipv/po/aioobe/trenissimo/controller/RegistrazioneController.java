@@ -275,6 +275,7 @@ public class RegistrazioneController implements Initializable {
         String citta = txtCitta.getText();
         String cap = txtCAP.getText();
 
+// todo:  errore eccezione db, se inserito username gia usato ( java.sql.SQLIntegrityConstraintViolationException)
         Account.signUp(username,psw,nome,cognome,dataNascita,mail, via, civico, citta, cap);
 
         lblRegistrazioneOK.setVisible(true);
