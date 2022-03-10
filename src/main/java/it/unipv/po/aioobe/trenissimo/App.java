@@ -63,7 +63,7 @@ public class App {
 
         //accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         //viaggiPreferitiService.findAll().forEach((x)-> System.out.println(x.toString()));
-
+/*
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         Ricerca search = new Ricerca(1707, 1386, LocalDateTime.parse("2022-03-11 12:00:00", formatter));
@@ -75,20 +75,30 @@ public class App {
 
         search.eseguiRicerca();
         List<Viaggio> viaggi = search.getRisultatiAndata();
-
+*/
         //Account.getInstance().addViaggioPreferito(viaggi.get(3));
         //System.out.println(viaggi.get(3).getNumeroCambi());
 
 
-        CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
-        CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
-        CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
+        //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
+        //CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+        //CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
 
         List<IAcquisto> carrello = new ArrayList<>();
 
-        carrello.add(biglietto);
-        carrello.add(biglietto2);
-        carrello.add(biglietto3);
+        VoucherEntity voucherEntity = new VoucherEntity();
+        voucherEntity.setPrezzo(10.0);
+
+        VoucherEntity v2 = new VoucherEntity();
+        v2.setPrezzo(100.0);
+
+        /*
+        VoucherEntity v3 = new VoucherEntity();
+        v3.setPrezzo(10.0);*/
+
+        carrello.add(voucherEntity);
+        carrello.add(v2);
+        //carrello.add(v3);
 
         //titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(biglietto));
 
@@ -97,10 +107,13 @@ public class App {
         Acquisto acquisto = new Acquisto();
 
         acquisto.acquistare(carrello);
+        System.out.println(acquisto.getPrezzoTot());
 
         for (IAcquisto a: acquisto.getAcquisti()) {
             a.pagare();
         }
+
+        System.out.println(accountService.findByUsername("vale").getPuntiFedelta());
 
         //viaggi.forEach((x)->System.out.println(x.toString()));
 

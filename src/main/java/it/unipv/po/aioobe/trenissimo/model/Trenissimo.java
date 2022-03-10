@@ -45,10 +45,6 @@ public class Trenissimo {
         return new ArrayList<Viaggio>();
     }
 
-    public ITitoloViaggio acquistareTitoloViaggio(IPagamento pagamento, Viaggio viaggio){
-        return null; //da cambiare, chiaramente
-    }
-
     public ITitoloViaggio recuperoTitoloViaggio(String idBiglietto){
         return null; //da cambiare, chiaramente
     }

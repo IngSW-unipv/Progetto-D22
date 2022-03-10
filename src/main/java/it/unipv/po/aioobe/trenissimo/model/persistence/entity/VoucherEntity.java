@@ -22,13 +22,13 @@ public class VoucherEntity implements IAcquisto {
     @Column(name = "valore", nullable = false, precision = 0)
     private double valore;
 
+    public VoucherEntity() {
+        this.voucherId = "VO" + System.nanoTime();
+    }
+
     @Override
     public String getId() {
         return voucherId;
-    }
-
-    public void setVoucherId() {
-        this.voucherId = "VO" + System.nanoTime();
     }
 
     @Override
@@ -56,16 +56,8 @@ public class VoucherEntity implements IAcquisto {
 
     @Override
     public void pagare() {
-        StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
         VoucherService voucherService = new VoucherService();
         voucherService.persist(this);
-        StoricoAcquistiEntity storicoAcquistiEntity = new StoricoAcquistiEntity();
-        storicoAcquistiEntity = storicoAcquistiEntity.toStoricoAcquistiEntity(this);
-        if(Account.getLoggedIn())
-            storicoAcquistiEntity.setUsername(Account.getInstance().getUsername());
-        else
-            storicoAcquistiEntity.setUsername(null);
-        storicoAcquistiService.persist(storicoAcquistiEntity);
     }
 
     @Override

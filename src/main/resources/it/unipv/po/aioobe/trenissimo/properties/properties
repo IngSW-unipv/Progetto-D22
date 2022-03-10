@@ -8,3 +8,5 @@ prezzoIva.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.viaggio.utils.
 
 rimborso.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.RimborsoStrategy
 
+puntiFedelta.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.acquisto.util.strategy.PuntiFedeltaStrategy
+

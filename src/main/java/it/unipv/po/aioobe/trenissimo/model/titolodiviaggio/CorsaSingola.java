@@ -63,6 +63,8 @@ public class CorsaSingola implements ITitoloViaggio {
         else
             storicoAcquistiEntity.setUsername(null);
         storicoAcquistiService.persist(storicoAcquistiEntity);
+
+
     }
 
 }
