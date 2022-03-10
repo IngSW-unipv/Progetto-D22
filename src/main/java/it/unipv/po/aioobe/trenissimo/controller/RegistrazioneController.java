@@ -182,7 +182,7 @@ public class RegistrazioneController implements Initializable {
             if(Account.getInstance().checkDatiGenerico(txtCitta.getText())) {
                 lblErroreCitta.setVisible(false);
                 btnRegistrati.setDisable(false);
-                txtCognome.setStyle("-fx-border-color: #cccccc");
+                txtCitta.setStyle("-fx-border-color: #cccccc");
             }
             else {
                 lblErroreCitta.setVisible(true);

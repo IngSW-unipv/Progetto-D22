@@ -207,11 +207,12 @@ public class AccountSettingsController implements Initializable {
                 txtCivico.setStyle("-fx-border-color: #d70000");
             }
         });
+
         txtCitta.textProperty().addListener((observable, oldValue, newValue) -> {
             if(Account.getInstance().checkDatiGenerico(txtCitta.getText())) {
                 lblErroreCitta.setVisible(false);
                 btnSalva.setDisable(false);
-                txtCognome.setStyle("-fx-border-color: #cccccc");
+                txtCitta.setStyle("-fx-border-color: #cccccc");
             }
             else {
                 lblErroreCitta.setVisible(true);

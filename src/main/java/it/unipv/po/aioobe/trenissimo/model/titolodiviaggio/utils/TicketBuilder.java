@@ -1,5 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils;
 
+
 import com.itextpdf.text.pdf.*;
 
 import java.io.*;
@@ -20,6 +21,7 @@ public class TicketBuilder {
     private String id;
     private String importo;
 
+    private File biglietto;
 
     public static final String DEST = System.getProperty("java.io.tmpdir").concat("NuovoBiglietto.pdf");
     public static final String SRC = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateTicket.pdf";
