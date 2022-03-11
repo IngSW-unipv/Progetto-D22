@@ -61,7 +61,7 @@ public class RicercaView extends Application {
 
     public static void main(String[] args) {
         launch();
-    }
+    } // todo gestire caso in cui sia spuntato andata e ritorno ma non vengano inseriti tutti i dati
 
     public static void openWindow(Ricerca ricerca, Window owner){
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("ricercaView/ricercaView.fxml"));

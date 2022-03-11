@@ -50,6 +50,7 @@ public class RegistrazioneController implements Initializable {
     @FXML private Label lblErroreCitta;
     @FXML private Label lblErroreCAP;
     @FXML private Label lblErroreCAPEmpty;
+    @FXML private Label lblUsernameEsistente;
 
     @FXML private Label lblRegistrazioneOK;
 
@@ -75,6 +76,13 @@ public class RegistrazioneController implements Initializable {
             else {
                 lblErroreUsername.setVisible(true);
                 txtUsername.setStyle("-fx-border-color: #d70000");
+            }
+            if(Account.getInstance().checkExistingUsername(txtUsername.getText())){
+                lblUsernameEsistente.setVisible(true);
+                txtUsername.setStyle("-fx-border-color: #d70000");
+            }
+            else{
+                lblUsernameEsistente.setVisible(false);
             }
         });
         txtPassword.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -194,7 +202,7 @@ public class RegistrazioneController implements Initializable {
         if (lblErroreCAP.isVisible() || lblErroreEmail.isVisible() || lblErroreDataNascita.isVisible()
             || lblErroreNome.isVisible() || lblErroreCognome.isVisible() || lblErroreVia.isVisible() ||
             lblErroreCivico.isVisible() || lblErroreCitta.isVisible() || lblErrorePassword.isVisible()
-            || lblErroreUsername.isVisible())
+            || lblErroreUsername.isVisible() || lblUsernameEsistente.isVisible())
             btnRegistrati.setDisable(true);
     });
 

@@ -143,6 +143,14 @@ public class Account {
         return accountUser != null && CryptographyUtils.encryptPassword(password).equals(accountUser.getPassword());
     }
 
+    public boolean checkExistingUsername(String username){
+         if(new AccountService().findByUsername(username) == null || username.length() == 0)
+             return false;
+         else
+             return true;
+
+    }
+
     public static Account login (String user) {
         Account account = Account.getInstance();
         account.setAccount(user);
@@ -176,11 +184,4 @@ public class Account {
         dati.setCap(Integer.valueOf(cap));
         datiPersonaliService.persist(dati);
     }
-
-
-
-
-
-
-
 }

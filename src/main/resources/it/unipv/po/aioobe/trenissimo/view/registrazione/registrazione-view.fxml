@@ -87,6 +87,7 @@
             <Label fx:id="lblErroreEmailEmpty" text="Inserire Email!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
             <Label fx:id="lblErroreCAPEmpty" text="Inserire il CAP!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
             <Label fx:id="lblRegistrazioneOK" text="Registrazione avvenuta con successo!" textFill="#21b200" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+            <Label fx:id="lblUsernameEsistente" text="Username già esistente!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
          </children>
          <BorderPane.margin>
             <Insets top="35.0" />
