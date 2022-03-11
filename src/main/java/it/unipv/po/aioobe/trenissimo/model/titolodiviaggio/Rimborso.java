@@ -48,8 +48,12 @@ public class Rimborso {
 
     public VoucherEntity getRimborso() {
         TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
-        titoloViaggioService.deleteById(id);
-        return rimborsoStrategy.getPrezzoTot(this);
+        if(rimborsoStrategy.getPrezzoTot(this)==null)
+            return null;
+        else {
+            titoloViaggioService.deleteById(id);
+            return rimborsoStrategy.getPrezzoTot(this);
+        }
     }
 
     public static boolean checkIdBiglietto(String idBiglietto) {

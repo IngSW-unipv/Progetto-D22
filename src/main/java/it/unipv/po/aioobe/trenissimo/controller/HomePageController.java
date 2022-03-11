@@ -239,6 +239,15 @@ public class HomePageController implements Initializable {
             Rimborso r = new Rimborso(txtRimborsoTitoloID.getText());
             VoucherService voucherService = new VoucherService();
             VoucherEntity v = r.getRimborso();
+            if (v==null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Trenissimo");
+                alert.setHeaderText(null);
+                alert.setContentText("Impossibile richiedere un rimborso perché la data di partenza\nè incompatibile con le modalità di rimborso!");
+                alert.showAndWait();
+                return;
+            }
+                else
             voucherService.persist(v);
 
             onScaricaBigliettoPDF(v);
