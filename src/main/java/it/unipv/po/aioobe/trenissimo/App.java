@@ -2,13 +2,9 @@ package it.unipv.po.aioobe.trenissimo;
 
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
-import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.Rimborso;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.TipoTitoloViaggio;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
@@ -80,12 +76,12 @@ public class App {
         //System.out.println(viaggi.get(3).getNumeroCambi());
 
 
-        CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
-        CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
-        CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
+       //CorsaSingola biglietto = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(0));
+        //CorsaSingola biglietto2 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(5));
+        //CorsaSingola biglietto3 = new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, viaggi.get(3));
 
-        List<IAcquisto> carrello = new ArrayList<>();
-    /*
+        List<Acquisto> carrello = new ArrayList<>();
+
         VoucherEntity voucherEntity = new VoucherEntity();
         voucherEntity.setPrezzo(10.0);
 
@@ -95,26 +91,33 @@ public class App {
 
         VoucherEntity v3 = new VoucherEntity();
         v3.setPrezzo(10.0);
-    */
 
-        carrello.add(biglietto);
-        carrello.add(biglietto2);
-        carrello.add(biglietto3);
+
+        carrello.add(voucherEntity);
+        carrello.add(v2);
+        carrello.add(v3);
+
+
 
         //titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(biglietto));
 
         //titoloViaggioService.findAll().forEach((x)->System.out.println(x.toString()));
 
-        Acquisto acquisto = new Acquisto();
 
-        acquisto.acquistare(carrello);
+        //carrello.forEach(x -> x.acquistare(carrello));
+
+        carrello.forEach(x -> x.pagare());
+
+        new VoucherService().findAll().forEach(x -> System.out.println(x.toString()));
+
+        /*acquisto.acquistare(carrello);
         System.out.println(acquisto.getPrezzoTot());
 
-        for (IAcquisto a: acquisto.getAcquisti()) {
+        for (Acquisto a: acquisto.getAcquisti()) {
             a.pagare();
-        }
+        }*/
 
-        System.out.println(accountService.findByUsername("vale").getPuntiFedelta());
+        //System.out.println(accountService.findByUsername("vale").getPuntiFedelta());
 
         //viaggi.forEach((x)->System.out.println(x.toString()));
 

@@ -2,56 +2,59 @@ package it.unipv.po.aioobe.trenissimo.model.acquisto;
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.util.strategy.IPuntiFedeltaStrategy;
 import it.unipv.po.aioobe.trenissimo.model.acquisto.util.strategy.PuntiFedeltaFactory;
-import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
-import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.RimborsoFactory;
-import it.unipv.po.aioobe.trenissimo.model.user.Account;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Acquisto {
+public abstract class Acquisto {
 
-    private List<IAcquisto> acquisti;
     private double prezzoTot;
-    private LocalDateTime dataAcquisto;
+    private final LocalDateTime dataAcquisto;
     private IPuntiFedeltaStrategy puntiFedeltaStrategy;
+    private List<Acquisto> acquisti;
 
-    public Acquisto() {
+    public Acquisto(){
+        PuntiFedeltaFactory f=new PuntiFedeltaFactory();
+        puntiFedeltaStrategy =f.getPuntiFedelta();
         this.acquisti = new ArrayList<>();
         this.prezzoTot = 0;
         this.dataAcquisto = LocalDateTime.now();
-
-        PuntiFedeltaFactory f=new PuntiFedeltaFactory();
-        puntiFedeltaStrategy =f.getPuntiFedelta();
     }
 
-    public List<IAcquisto> getAcquisti() {
-        return acquisti;
+    abstract public String getId();
+
+    public abstract double getPrezzo();
+
+    public abstract void setPrezzo(double prezzo);
+
+    public void setAcquisti(List<Acquisto> acquisti){
+        this.acquisti = acquisti;
     }
 
     public double getPrezzoTot() {
         return prezzoTot;
     }
 
-    public void setPrezzoTot(double prezzoTot) {
+    public void setPrezzoTot() {
+        double prezzoTot = 0;
+        this.getAcquisti().addAll(acquisti);
+        for (Acquisto a: acquisti) {
+            prezzoTot = prezzoTot + a.getPrezzo();
+        }
+
         this.prezzoTot = prezzoTot;
     }
 
-    public LocalDateTime getDataAcquisto() {
-        return dataAcquisto;
+    public List<Acquisto> getAcquisti() {
+        return acquisti;
     }
 
-    public void acquistare(List<IAcquisto> carrello) {
-        double prezzo = 0;
-        this.getAcquisti().addAll(carrello);
-        for (IAcquisto a: carrello) {
-            prezzo = prezzo + a.getPrezzo();
-        }
-        this.setPrezzoTot(prezzo);
+    public void puntiFedelta(List<Acquisto> acquisti){
+        this.setPrezzoTot();
         puntiFedeltaStrategy.setPuntiFedelta(this);
     }
+
+    public abstract void pagare();
 
 }

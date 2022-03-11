@@ -1,7 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.model.user;
 
 import it.unipv.po.aioobe.trenissimo.model.CryptographyUtils;
-import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
+import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
@@ -112,7 +112,7 @@ public class Account {
         viaggiPreferitiService.deleteById(viaggio.getViaggioPreferitoId().toString());
     }
 
-    public void addAcquistoToStorico (IAcquisto acquisto) {
+    public void addAcquistoToStorico (Acquisto acquisto) {
         StoricoAcquistiEntity storicoAcquisti = new StoricoAcquistiEntity();
         StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
         storicoAcquisti = storicoAcquisti.toStoricoAcquistiEntity(acquisto);

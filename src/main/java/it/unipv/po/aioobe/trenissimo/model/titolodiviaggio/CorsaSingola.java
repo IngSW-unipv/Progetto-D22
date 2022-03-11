@@ -1,7 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio;
 
-import it.unipv.po.aioobe.trenissimo.model.Utils;
-import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
+import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
@@ -12,13 +11,14 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
 import java.util.List;
 
-public class CorsaSingola implements ITitoloViaggio {
+public class CorsaSingola extends Acquisto {
     private TipoTitoloViaggio tipo;
     private double prezzo;
     private String id;
     private Viaggio viaggio;
 
     public CorsaSingola(TipoTitoloViaggio tipo, Viaggio viaggio) {
+        super();
         this.tipo = TipoTitoloViaggio.BIGLIETTOCORSASINGOLA;
         this.tipo = tipo;
         this.id = "CS" + System.nanoTime();
@@ -42,7 +42,7 @@ public class CorsaSingola implements ITitoloViaggio {
 
     @Override
     public String getId() {
-        return id;
+        return this.id;
     }
 
     @Override
@@ -63,8 +63,6 @@ public class CorsaSingola implements ITitoloViaggio {
         else
             storicoAcquistiEntity.setUsername(null);
         storicoAcquistiService.persist(storicoAcquistiEntity);
-
-
     }
 
 }

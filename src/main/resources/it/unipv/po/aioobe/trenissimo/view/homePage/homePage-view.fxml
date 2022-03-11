@@ -322,7 +322,7 @@
                                                 </HBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                     <children>
-                                                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Acquisto">
+                                                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Checkout">
                                                             <VBox.margin>
                                                                 <Insets top="18.0" />
                                                             </VBox.margin>

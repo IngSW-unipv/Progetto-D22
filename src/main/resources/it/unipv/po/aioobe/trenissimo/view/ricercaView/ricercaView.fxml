@@ -52,7 +52,7 @@
                           </HBox>
                       </content>
                   </ScrollPane>
-                  <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#onAcquisto" text="Procedi con l'acquisto" HBox.hgrow="NEVER">
+                  <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#onAcquisto" text="Checkout" HBox.hgrow="NEVER">
                       <HBox.margin>
                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                       </HBox.margin>

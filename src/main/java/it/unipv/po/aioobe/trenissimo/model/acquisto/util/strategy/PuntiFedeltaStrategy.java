@@ -1,7 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.acquisto.util.strategy;
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
-import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.AccountService;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;

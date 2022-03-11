@@ -1,11 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
-import it.unipv.po.aioobe.trenissimo.model.Utils;
-import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.TitoloViaggioService;
+import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.VoucherService;
-import it.unipv.po.aioobe.trenissimo.model.user.Account;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "voucher", schema = "trenissimo")
-public class VoucherEntity implements IAcquisto {
+public class VoucherEntity extends Acquisto {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "voucher_id", nullable = false, length = 100)
@@ -23,6 +19,7 @@ public class VoucherEntity implements IAcquisto {
     private double valore;
 
     public VoucherEntity() {
+        super();
         this.voucherId = "VO" + System.nanoTime();
     }
 

@@ -1,6 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
-import it.unipv.po.aioobe.trenissimo.model.acquisto.IAcquisto;
+import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -102,7 +102,7 @@ public class StoricoAcquistiEntity {
         this.accountByUsername = accountByUsername;
     }
 
-    public StoricoAcquistiEntity toStoricoAcquistiEntity (IAcquisto acquisto) {
+    public StoricoAcquistiEntity toStoricoAcquistiEntity (Acquisto acquisto) {
         StoricoAcquistiEntity storicoAcquisti = new StoricoAcquistiEntity();
         storicoAcquisti.setTitoloViaggioId(acquisto.getId());
         storicoAcquisti.setPrezzo(acquisto.getPrezzo());
