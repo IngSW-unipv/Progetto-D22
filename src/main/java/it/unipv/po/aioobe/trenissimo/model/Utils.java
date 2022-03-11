@@ -1,7 +1,9 @@
 package it.unipv.po.aioobe.trenissimo.model;
 
+import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.VoucherService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
@@ -57,4 +59,25 @@ public class Utils {
         long tmp = (long)Math.floor(value);
         return (double) tmp / factor;
     }
+
+    public static boolean checkDatiGenerico(String dato){
+        return dato.length() > 0 ;
+    }
+
+    public static boolean checkIdVoucher(String idVoucher){
+        VoucherService voucherService = new VoucherService();
+        VoucherEntity voucher =  voucherService.findById(idVoucher);
+        return  voucher != null;
+
+
+        /*VoucherEntity voucher = voucherService.findAll().stream().filter(x -> x.getId().equals(idVoucher)).toList().get(0);
+        if(voucher!=null) {
+            return true;
+        }
+        else
+            return false;
+            */
+
+    }
+
 }

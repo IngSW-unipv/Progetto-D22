@@ -48,7 +48,7 @@
                         </VBox>
                     </content>
                 </TitledPane>
-                <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="10.0" text="Filtri">
+                <TitledPane animated="false" collapsible="false" layoutX="10.0" layoutY="10.0" text="Ordina per">
                     <content>
                         <VBox alignment="CENTER">
                             <children>

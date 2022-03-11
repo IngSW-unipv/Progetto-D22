@@ -1,5 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StoricoAcquistiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.StoricoAcquistiService;
@@ -161,7 +162,7 @@ public class AccountSettingsController implements Initializable {
         });
 
         txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtNome.getText())) {
+            if(Utils.checkDatiGenerico(txtNome.getText())) {
                 lblErroreNome.setVisible(false);
                 btnSalva.setDisable(false);
                 txtNome.setStyle("-fx-border-color: #cccccc");
@@ -173,7 +174,7 @@ public class AccountSettingsController implements Initializable {
         });
 
         txtCognome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtCognome.getText())) {
+            if(Utils.checkDatiGenerico(txtCognome.getText())) {
                 lblErroreCognome.setVisible(false);
                 btnSalva.setDisable(false);
                 txtCognome.setStyle("-fx-border-color: #cccccc");
@@ -185,7 +186,7 @@ public class AccountSettingsController implements Initializable {
         });
 
         txtVia.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtVia.getText())) {
+            if(Utils.checkDatiGenerico(txtVia.getText())) {
                 lblErroreVia.setVisible(false);
                 btnSalva.setDisable(false);
                 txtVia.setStyle("-fx-border-color: #cccccc");
@@ -197,7 +198,7 @@ public class AccountSettingsController implements Initializable {
         });
 
         txtCivico.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtCivico.getText())) {
+            if(Utils.checkDatiGenerico(txtCivico.getText())) {
                 lblErroreCivico.setVisible(false);
                 btnSalva.setDisable(false);
                 txtCivico.setStyle("-fx-border-color: #cccccc");
@@ -209,7 +210,7 @@ public class AccountSettingsController implements Initializable {
         });
 
         txtCitta.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtCitta.getText())) {
+            if(Utils.checkDatiGenerico(txtCitta.getText())) {
                 lblErroreCitta.setVisible(false);
                 btnSalva.setDisable(false);
                 txtCitta.setStyle("-fx-border-color: #cccccc");

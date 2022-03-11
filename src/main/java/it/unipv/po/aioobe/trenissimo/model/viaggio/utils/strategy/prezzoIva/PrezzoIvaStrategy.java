@@ -11,7 +11,7 @@ public class PrezzoIvaStrategy implements IPrezzoIvaStrategy{
     @Override
     public double getPrezzoIva(Viaggio v) {
         double prezzo=0;
-        prezzo = v.getPrezzoTot()*IVA;
+        prezzo = v.getPrezzoNoIva()*IVA;
         return Double.valueOf(String.format(Locale.US,"%.2f", prezzo));
     }
 }

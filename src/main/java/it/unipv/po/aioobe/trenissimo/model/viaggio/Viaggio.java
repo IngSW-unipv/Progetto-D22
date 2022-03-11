@@ -142,7 +142,7 @@ public class Viaggio {
         return this.getPrezzoPerDistanza()+this.getPrezzoTotCambi();
     }
 
-    public double getPrezzoTot() {
+    public double getPrezzoNoIva() {
 
         return prezzoTotStrategy.getPrezzoTot(this);
 
@@ -153,7 +153,11 @@ public class Viaggio {
         return prezzoIvaStrategy.getPrezzoIva(this);
     }
 
+    public double getPrezzoTot() {
 
+        return this.getPrezzoNoIva() + this.getPrezzoIva();
+
+    }
 
     public List<StopsEntity> getCoppiaStazioni (int i) {
         List<StopsEntity> stops = CachedStopsService.getInstance().findAll();

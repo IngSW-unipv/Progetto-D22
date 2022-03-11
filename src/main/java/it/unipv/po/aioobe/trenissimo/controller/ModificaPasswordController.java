@@ -1,5 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -56,7 +57,7 @@ public class ModificaPasswordController implements Initializable {
     protected void onCheck() throws IOException {
 
         txtVecchiaPsw.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtVecchiaPsw.getText())) {
+            if(Utils.checkDatiGenerico(txtVecchiaPsw.getText())) {
                 lblErrorePasswordVecchia.setVisible(false);
                 lblErroreVecchiaEmpty.setVisible(false);
                 btnSalva.setDisable(false);
@@ -87,7 +88,7 @@ public class ModificaPasswordController implements Initializable {
             }
         });
         txtNuovaPsw.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtNuovaPsw.getText())) {
+            if(Utils.checkDatiGenerico(txtNuovaPsw.getText())) {
                 lblErroreCorrispondenza.setVisible(false);
                 lblErroreNuovaEmpty.setVisible(false);
                 btnSalva.setDisable(false);
@@ -107,7 +108,7 @@ public class ModificaPasswordController implements Initializable {
 
         });
         txtConfermaPsw.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtConfermaPsw.getText())) {
+            if(Utils.checkDatiGenerico(txtConfermaPsw.getText())) {
                 lblErroreCorrispondenza.setVisible(false);
                 lblErroreConfermaEmpty.setVisible(false);
                 btnSalva.setDisable(false);

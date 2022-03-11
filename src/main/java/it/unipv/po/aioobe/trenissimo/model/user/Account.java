@@ -133,9 +133,6 @@ public class Account {
         return data.isBefore(LocalDate.now());
     }
 
-    public boolean checkDatiGenerico(String dato){
-        return dato.length() > 0 ;
-    }
 
 
     public static boolean checkUserPassword(String user, String password) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {

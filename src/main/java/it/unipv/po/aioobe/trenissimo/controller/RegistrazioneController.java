@@ -1,5 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -68,7 +69,7 @@ public class RegistrazioneController implements Initializable {
     @FXML
     protected void onCheck() throws IOException {
         txtUsername.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtUsername.getText())) {
+            if(Utils.checkDatiGenerico(txtUsername.getText())) {
                 lblErroreUsername.setVisible(false);
                 btnRegistrati.setDisable(false);
                 txtUsername.setStyle("-fx-border-color: #cccccc");
@@ -86,7 +87,7 @@ public class RegistrazioneController implements Initializable {
             }
         });
         txtPassword.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtPassword.getText())) {
+            if(Utils.checkDatiGenerico(txtPassword.getText())) {
                 lblErrorePassword.setVisible(false);
                 btnRegistrati.setDisable(false);
                 txtPassword.setStyle("-fx-border-color: #cccccc");
@@ -140,7 +141,7 @@ public class RegistrazioneController implements Initializable {
         });
 
         txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtNome.getText())) {
+            if(Utils.checkDatiGenerico(txtNome.getText())) {
                 lblErroreNome.setVisible(false);
                 btnRegistrati.setDisable(false);
                 txtNome.setStyle("-fx-border-color: #cccccc");
@@ -152,7 +153,7 @@ public class RegistrazioneController implements Initializable {
         });
 
         txtCognome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtCognome.getText())) {
+            if(Utils.checkDatiGenerico(txtCognome.getText())) {
                 lblErroreCognome.setVisible(false);
                 btnRegistrati.setDisable(false);
                 txtCognome.setStyle("-fx-border-color: #cccccc");
@@ -164,7 +165,7 @@ public class RegistrazioneController implements Initializable {
         });
 
         txtVia.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtVia.getText())) {
+            if(Utils.checkDatiGenerico(txtVia.getText())) {
                 lblErroreVia.setVisible(false);
                 btnRegistrati.setDisable(false);
                 txtVia.setStyle("-fx-border-color: #cccccc");
@@ -176,7 +177,7 @@ public class RegistrazioneController implements Initializable {
         });
 
         txtCivico.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtCivico.getText())) {
+            if(Utils.checkDatiGenerico(txtCivico.getText())) {
                 lblErroreCivico.setVisible(false);
                 btnRegistrati.setDisable(false);
                 txtCivico.setStyle("-fx-border-color: #cccccc");
@@ -187,7 +188,7 @@ public class RegistrazioneController implements Initializable {
             }
         });
         txtCitta.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtCitta.getText())) {
+            if(Utils.checkDatiGenerico(txtCitta.getText())) {
                 lblErroreCitta.setVisible(false);
                 btnRegistrati.setDisable(false);
                 txtCitta.setStyle("-fx-border-color: #cccccc");

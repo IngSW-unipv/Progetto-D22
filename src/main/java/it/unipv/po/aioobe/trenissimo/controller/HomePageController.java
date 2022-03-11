@@ -4,6 +4,7 @@ package it.unipv.po.aioobe.trenissimo.controller;
 
 import com.jfoenix.controls.JFXTimePicker;
 import it.unipv.po.aioobe.trenissimo.model.CryptographyUtils;
+import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopsEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
@@ -260,7 +261,7 @@ public class HomePageController implements Initializable {
     private void checkIdRealTime(){
 
         txtRimborsoTitoloID.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtRimborsoTitoloID.getText())) {
+            if(Utils.checkDatiGenerico(txtRimborsoTitoloID.getText())) {
                 lblErroreRimborso.setVisible(false);
                 lblErroreRimborsoEmpty.setVisible(false);
                 btnRichiestaRimborso.setDisable(false);

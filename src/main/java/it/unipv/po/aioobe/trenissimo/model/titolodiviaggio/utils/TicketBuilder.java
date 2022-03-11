@@ -21,11 +21,13 @@ public class TicketBuilder {
     private String id;
     private String importo;
 
+    private String messaggio;
     private File biglietto;
 
     public static final String DEST = System.getProperty("java.io.tmpdir").concat("NuovoBiglietto.pdf");
     public static final String SRC = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateTicket.pdf";
     public static final String SRCVO = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateVoucher.pdf";
+public static final String SRCVOR = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/templateRegalo.pdf"; // todo da cambiare percorso
 
 
     public void createPdf(String id) throws Exception {
@@ -70,6 +72,20 @@ public class TicketBuilder {
         originale.close();
     }
 
+    public void createVORegalo() throws Exception {
+        PdfReader originale = new PdfReader(SRCVOR);
+        PdfStamper copiaModificata = new PdfStamper(originale, new FileOutputStream(DEST));
+        AcroFields placeholder = copiaModificata.getAcroFields();
+
+        placeholder.setField("ID", this.id);
+        placeholder.setField("EURO", this.importo);
+        placeholder.setField("MESSAGGIO", this.messaggio);
+
+        copiaModificata.setFormFlattening(true);
+        copiaModificata.close();
+        originale.close();
+    }
+
     public TicketBuilder(String sPart, String sDest, String dataPart, String dataArr, String oraPart, String oraArr,
                          String nome, String cognome, String dataNascita, String id, String importo) {
 
@@ -90,6 +106,12 @@ public class TicketBuilder {
         this.importo = importo;
         this.id = id;
     }
+
+    public TicketBuilder(String id, String importo, String messaggio) {
+            this.importo = importo;
+            this.id = id;
+            this.messaggio = messaggio;
+        }
 
     public static void copy(File source, File target) throws IOException {
         FileChannel sourceChannel = new FileInputStream(source).getChannel();

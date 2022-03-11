@@ -8,6 +8,7 @@
 <?import org.kordamp.ikonli.javafx.*?>
 
 <!--<?import it.unipv.po.aioobe.trenissimo.view.ViaggioControl?>-->
+<!-- todo controllare csss perche fornisce errore-->
 
 <BorderPane prefHeight="660.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.RicercaController">
     <center>
@@ -41,7 +42,7 @@
         </HBox>
     </top>
    <bottom>
-          <HBox alignment="CENTER_LEFT" prefWidth="599.0" BorderPane.alignment="CENTER">
+          <HBox alignment="CENTER_LEFT" prefWidth="599.0" stylesheets="@../styles.css" BorderPane.alignment="CENTER">
               <children>
                   <ScrollPane vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
                       <content>

@@ -1,9 +1,12 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
 
+import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.ViaggiPreferitiEntity;
+import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,8 @@ import javax.swing.text.html.ImageView;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ViaggioPreferitoControl extends VBox {
 
@@ -77,6 +82,29 @@ public class ViaggioPreferitoControl extends VBox {
 
     @FXML
     protected void onAcquista(){
+        var lista = CachedStopsService.getInstance().findAll();
+        var partenza = lista.stream().filter(x -> x.getStopName().equals(lblPartenza.getText())).toList().get(0);
+        var arrivo = lista.stream().filter(x -> x.getStopName().equals(lblArrivo.getText())).toList().get(0);
+
+
+
+        int partenzaId = partenza.getStopId();
+        int destinazioneId = arrivo.getStopId();
+        LocalDateTime data = LocalDateTime.now();
+
+        Ricerca search = new Ricerca(partenzaId, destinazioneId, data);
+        search.setNumAdulti(Integer.parseInt(lblAdulti.getText()));
+        search.setNumRagazzi(Integer.parseInt(lblRagazzi.getText()));
+        search.setNumBambini(Integer.parseInt(lblBambini.getText()));
+        search.setNumAnimali(Integer.parseInt(lblAnimali.getText()));
+
+       search.eseguiRicerca();
+       var viaggi = search.getRisultatiAndata().stream().filter(x -> x.getOrarioPartenza()== Utils.timeToSeconds(lblOrario.getText())).toList();
+
+       AcquistoView.openScene(lblArrivo.getScene().getWindow(), viaggi);
+
+
+
         // todo metodo per il tasto acquista in "tab" viaggi preferiti
     }
 
