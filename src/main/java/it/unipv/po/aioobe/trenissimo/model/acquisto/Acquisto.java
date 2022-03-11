@@ -4,7 +4,6 @@ import it.unipv.po.aioobe.trenissimo.model.acquisto.util.strategy.IPuntiFedeltaS
 import it.unipv.po.aioobe.trenissimo.model.acquisto.util.strategy.PuntiFedeltaFactory;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Acquisto {

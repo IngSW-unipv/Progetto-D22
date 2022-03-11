@@ -7,6 +7,16 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.service.VoucherService;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
 
+import javax.swing.text.DateFormatter;
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 //TODO: non in UML
 public class Utils {
     public static Integer timeToSeconds(String time) {
@@ -78,6 +88,22 @@ public class Utils {
             return false;
             */
 
+    }
+
+    public static boolean checkCVV(String cvv){
+        return cvv.length() == 3 ;
+    }
+
+    public static boolean checkNumCarta(String numero){
+        return numero.length() == 16 ;
+    }
+
+    public static boolean checkDataScadenza(String data){
+        var date = YearMonth.parse(data);
+        if (date.isAfter(YearMonth.now()))
+            return true;
+        else
+            return false;
     }
 
 }

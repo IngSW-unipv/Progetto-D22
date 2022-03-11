@@ -45,6 +45,11 @@ public class AcquistoController implements Initializable {
     @FXML
     private VBox boxViaggi;
 
+    @FXML private Button btnAcquisto;
+    @FXML private TextField txtNumCarta;
+    @FXML private TextField txtDataScadenza;
+    @FXML private TextField txtCVV;
+
     @FXML private Label lblRiscattoOK;
     @FXML private Label lblErroreRiscatto;
     @FXML private Button btnRiscatta;
@@ -170,17 +175,29 @@ titoloViaggio = new TicketBuilder(titoloViaggioEntity.getStazionePartenza(),tito
         }
 
         if(isIdVoucherOK) {
-            lblSconto.setText("-€"+voucherService.findById(txtVoucher.getText()).getPrezzo());
             String[] totaleSplit = lblTotale.getText().split("(?<=€)");
+
+            if(Double.valueOf(totaleSplit[1]) <= voucherService.findById(txtVoucher.getText()).getPrezzo())
+                lblSconto.setText("-€ " + totaleSplit[1]);
+            else
+                lblSconto.setText("-€"+voucherService.findById(txtVoucher.getText()).getPrezzo());
+
             String[] scontoSplit = lblSconto.getText().split("(?<=€)");
 
             Double calcoloTot = (Double.valueOf(totaleSplit[1]) - Double.valueOf(scontoSplit[1]));
-            if (calcoloTot<0.0)
+            if (calcoloTot<=0.0) {
+                var v = voucherService.findById(txtVoucher.getText());
+                v.setPrezzo(v.getPrezzo()-Double.valueOf(totaleSplit[1]));
+                voucherService.update(v);
                 lblTotale.setText("€ "+ 0.0);
-            else
-                lblTotale.setText("€"+ calcoloTot);
+                btnAcquisto.setDisable(false);
+            }
 
-            voucherService.deleteById(txtVoucher.getText());
+            else {
+                lblTotale.setText("€"+ Double.valueOf(String.format(Locale.US,"%.2f", calcoloTot)));
+                voucherService.deleteById(txtVoucher.getText());
+            }
+
             lblRiscattoOK.setVisible(true);
 
             Task<Void> task = new Task<Void>() {
@@ -204,6 +221,12 @@ titoloViaggio = new TicketBuilder(titoloViaggioEntity.getStazionePartenza(),tito
 
 
 
+    }
+    @FXML
+    protected void onAggiungiCarta() {
+        if (Utils.checkNumCarta(txtNumCarta.getText()) && Utils.checkDataScadenza(txtDataScadenza.getText()) && Utils.checkCVV(txtCVV.getText())) {
+            btnAcquisto.setDisable(false);
+        }
     }
 
 
