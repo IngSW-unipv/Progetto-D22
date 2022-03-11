@@ -49,11 +49,8 @@ public class AcquistoController implements Initializable {
         for (Viaggio v: _viaggi) {
             biglietti.add(new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, v));
         }
-
         biglietti.forEach(x -> x.pagare());
-
-        if (Account.getLoggedIn())
-            biglietti.forEach(x -> x.puntiFedelta(biglietti));
+        biglietti.forEach(x -> x.puntiFedelta(biglietti));
     }
 
     @FXML
