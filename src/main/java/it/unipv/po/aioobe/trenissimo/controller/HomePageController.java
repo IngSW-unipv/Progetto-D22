@@ -1,3 +1,5 @@
+
+
 package it.unipv.po.aioobe.trenissimo.controller;
 
 import com.jfoenix.controls.JFXTimePicker;
@@ -28,15 +30,9 @@ import javafx.util.StringConverter;
 import org.controlsfx.control.SearchableComboBox;
 import org.controlsfx.control.ToggleSwitch;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -137,40 +133,8 @@ public class HomePageController implements Initializable {
 
 
         onRicercaSelected();
+        checkIdRealTime();
 
-        txtRimborsoTitoloID.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkDatiGenerico(txtRimborsoTitoloID.getText())) {
-                lblErroreRimborso.setVisible(false);
-                lblErroreRimborsoEmpty.setVisible(false);
-                btnRichiestaRimborso.setDisable(false);
-                txtRimborsoTitoloID.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
-                lblErroreRimborso.setVisible(false);
-                lblErroreRimborsoEmpty.setVisible(true);
-                txtRimborsoTitoloID.setStyle("-fx-border-color: #d70000");
-            }
-            try {
-                if (!(Rimborso.checkIdBiglietto(txtRimborsoTitoloID.getText()))) {
-                    lblErroreRimborso.setVisible(true);
-                    txtRimborsoTitoloID.setStyle("-fx-border-color: #d70000");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        });
-
-        btnRichiestaRimborso.setOnMouseMoved(c -> {
-            if ( lblErroreRimborso.isVisible() || lblErroreRimborsoEmpty.isVisible())
-            {
-                btnRichiestaRimborso.setDisable(true);
-                isIdBigliettoOK = false;
-            }
-            else
-                isIdBigliettoOK = true;
-
-        });
 
     }
 
@@ -249,10 +213,10 @@ public class HomePageController implements Initializable {
         txtRimborsoTitoloID.setStyle("-fx-border-color: #cccccc");
 
     }
-   @FXML
+    @FXML
     protected void onRimborsoSelected(){
-       tabPaneRicerca.setVisible(false);
-       tabPaneRimborso.setVisible(true);
+        tabPaneRicerca.setVisible(false);
+        tabPaneRimborso.setVisible(true);
     }
 
     @FXML
@@ -265,6 +229,11 @@ public class HomePageController implements Initializable {
             txtRimborsoTitoloID.setStyle("-fx-border-color: #d70000");
             isIdBigliettoOK=false;
         }
+        if (!(Rimborso.checkIdBiglietto(txtRimborsoTitoloID.getText()))) {
+            lblErroreRimborso.setVisible(true);
+            txtRimborsoTitoloID.setStyle("-fx-border-color: #d70000");
+            isIdBigliettoOK=false;
+        }
 
         if(isIdBigliettoOK) {
             Rimborso r = new Rimborso(txtRimborsoTitoloID.getText());
@@ -273,21 +242,59 @@ public class HomePageController implements Initializable {
             voucherService.persist(v);
 
             onScaricaBigliettoPDF(v);
+            isIdBigliettoOK=false;
+
         }
 
     }
 
+    private void checkIdRealTime(){
+
+        txtRimborsoTitoloID.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(Account.getInstance().checkDatiGenerico(txtRimborsoTitoloID.getText())) {
+                lblErroreRimborso.setVisible(false);
+                lblErroreRimborsoEmpty.setVisible(false);
+                btnRichiestaRimborso.setDisable(false);
+                txtRimborsoTitoloID.setStyle("-fx-border-color: #cccccc");
+            }
+            else {
+                lblErroreRimborso.setVisible(false);
+                lblErroreRimborsoEmpty.setVisible(true);
+                txtRimborsoTitoloID.setStyle("-fx-border-color: #d70000");
+            }
+            try {
+                if (!(Rimborso.checkIdBiglietto(txtRimborsoTitoloID.getText()))) {
+                    lblErroreRimborso.setVisible(true);
+                    txtRimborsoTitoloID.setStyle("-fx-border-color: #d70000");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        });
+
+        btnRichiestaRimborso.setOnMouseMoved(c -> {
+            if ( (lblErroreRimborso.isVisible() || lblErroreRimborsoEmpty.isVisible()))
+            {
+                btnRichiestaRimborso.setDisable(true);
+                isIdBigliettoOK = false;
+            }
+            else
+                isIdBigliettoOK = true;
+
+        });
+    }
 
     @FXML
     protected void onScaricaBigliettoPDF(VoucherEntity voucherEntity) throws Exception {
-        //fillPDF(voucherEntity);
+        fillPDF(voucherEntity);
 
         File biglietto = new File(TicketBuilder.DEST); //biglietto in folder temporanea
 
         FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Scegli dove salvare il titolo di viaggio");
-        //fileChooser.setInitialFileName(voucherEntity.getVoucherId());
+        fileChooser.setInitialFileName(voucherEntity.getId());
 
         File destin = new File(fileChooser.showSaveDialog(new Stage()).getAbsolutePath().concat(".pdf"));
         TicketBuilder.copy(biglietto, destin);
@@ -306,18 +313,19 @@ public class HomePageController implements Initializable {
         task.setOnSucceeded(e -> {
             lblRimborsoOK.setVisible(false);
             biglietto.delete();
-            txtRimborsoTitoloID.setText("");
         });
         new Thread(task).start();
 
     }
 
-    /*private void fillPDF(VoucherEntity voucherEntity) throws Exception {
-            titoloViaggio = new TicketBuilder(voucherEntity.getVoucherId(), String.valueOf(voucherEntity.getValore()));
+    private void fillPDF(VoucherEntity voucherEntity) throws Exception {
+        titoloViaggio = new TicketBuilder(voucherEntity.getId(), String.valueOf(voucherEntity.getPrezzo()));
 
-        titoloViaggio.createPdf(voucherEntity.getVoucherId());
-    }*/
+        titoloViaggio.createPdf(voucherEntity.getId());
+    }
 
 
 
 }
+
+
