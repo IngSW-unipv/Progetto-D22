@@ -322,7 +322,7 @@
                                                 </HBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                     <children>
-                                                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="88.0" text="Checkout">
+                                                        <Button mnemonicParsing="false" onAction="#onVoucherCheckout" prefHeight="26.0" prefWidth="88.0" text="Checkout">
                                                             <VBox.margin>
                                                                 <Insets top="18.0" />
                                                             </VBox.margin>
@@ -363,8 +363,8 @@
                                                    <VBox.margin>
                                                       <Insets bottom="8.0" />
                                                    </VBox.margin></TextField>
-                                                                <Label fx:id="lblErroreRimborso" text="Numero inserito non valido!" textFill="#d70000" visible="false"/>
-                                                                <Label fx:id="lblErroreRimborsoEmpty" text="Inserire un numero!" textFill="#d70000" visible="false"/>
+                                                                <Label fx:id="lblErroreRimborso" text="Numero inserito non valido!" textFill="#d70000" visible="false" />
+                                                                <Label fx:id="lblErroreRimborsoEmpty" text="Inserire un numero!" textFill="#d70000" visible="false" />
                                                             </children>
                                                         </VBox>
                                                     </children>
@@ -376,7 +376,7 @@
                                                                 <Insets bottom="8.0" top="18.0" />
                                                             </VBox.margin>
                                                         </Button>
-                                          <Label fx:id="lblRimborsoOK" text="Rimborso effettuato con successo!" textFill="#21b200" visible="false"/>
+                                          <Label fx:id="lblRimborsoOK" text="Rimborso effettuato con successo!" textFill="#21b200" visible="false" />
                                           <Label />
                                                     </children>
                                                 </VBox>

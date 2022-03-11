@@ -14,11 +14,14 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.controlsfx.control.RangeSlider;
 import org.controlsfx.control.SegmentedButton;
 
@@ -75,7 +78,13 @@ public class RicercaController implements Initializable {
         if (!_carrello.isEmpty()){
             AcquistoView.openScene(boxCart.getScene().getWindow(), _carrello);
         } else {
-            //TODO: il cartello è vuoto, errore
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Trenissimo");
+            alert.setHeaderText(null);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png")));
+            alert.setContentText("Impossibile effettuare il checkout. Il carrello è vuoto!");
+            alert.showAndWait();
         }
     }
 

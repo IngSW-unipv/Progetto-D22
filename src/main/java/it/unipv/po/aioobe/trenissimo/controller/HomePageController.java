@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -106,6 +107,18 @@ public class HomePageController implements Initializable {
         return scb;
     }
 
+    private Alert setAlert(String contentText){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Trenissimo");
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png")));
+        alert.showAndWait();
+        return alert;
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -155,12 +168,13 @@ public class HomePageController implements Initializable {
     protected void onRicerca() {
 
         if (scbBigliettoPartenza.getValue() == null || scbBigliettoDestinazione.getValue() == null || scbBigliettoDestinazione.getValue() == scbBigliettoPartenza.getValue()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Trenissimo");
-            alert.setHeaderText(null);
-            alert.setContentText("Selezionare stazione di partenza e/o destinazione validi!");
+            setAlert("Selezionare stazione di partenza e/o destinazione validi!");
+            return;
+        }
 
-            alert.showAndWait();
+        if(dtpBigliettoPartenza.getValue() == null || tmpBigliettoAndata.getValue() == null || (tgsBigliettoAR.isSelected() &&
+                dtpBigliettoRitorno.getValue() == null) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null)){
+            setAlert("Inserire data e/o orario di partenza e/o ritorno");
             return;
         }
 
@@ -195,6 +209,14 @@ public class HomePageController implements Initializable {
             RicercaView.openScene((Ricerca) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
         });
         new Thread(task).start();
+    }
+
+    @FXML
+    protected void onVoucherCheckout(){
+        if(cmbVoucherValore.getValue() == null){
+            setAlert("Impossibile effettuare il checkout. Scegliere il valore del voucher!");
+            return;
+        }
     }
 
     @FXML
@@ -240,11 +262,7 @@ public class HomePageController implements Initializable {
             VoucherService voucherService = new VoucherService();
             VoucherEntity v = r.getRimborso();
             if (v==null){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Trenissimo");
-                alert.setHeaderText(null);
-                alert.setContentText("Impossibile richiedere un rimborso perché la data di partenza\nè incompatibile con le modalità di rimborso!");
-                alert.showAndWait();
+                setAlert("Impossibile richiedere un rimborso perché la data di partenza\nè incompatibile con le modalità di rimborso!");
                 return;
             }
                 else
