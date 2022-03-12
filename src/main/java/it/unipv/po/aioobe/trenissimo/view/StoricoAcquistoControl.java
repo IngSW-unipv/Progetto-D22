@@ -137,7 +137,8 @@ public class StoricoAcquistoControl extends VBox {
                     titoloViaggioEntity.getDataPartenza().toString(), titoloViaggioEntity.getDataArrivo().toString(),
                     titoloViaggioEntity.getOraPartenza().toString(),titoloViaggioEntity.getOraArrivo().toString(),
                     Account.getInstance().getDatiPersonali().getNome(), Account.getInstance().getDatiPersonali().getCognome(),
-                    Account.getInstance().getDatiPersonali().getDataNascita().toString(), lblNumeroBiglietto.getText(), lblPrezzo.getText());
+                    Account.getInstance().getDatiPersonali().getDataNascita().toString(), lblNumeroBiglietto.getText(), lblPrezzo.getText(),
+                    titoloViaggioEntity.getNumAdulti().toString(), titoloViaggioEntity.getNumRagazzi().toString(), titoloViaggioEntity.getNumBambini().toString(), titoloViaggioEntity.getNumAnimali().toString());
        else
            titoloViaggio = new TicketBuilder(lblNumeroBiglietto.getText(), lblPrezzo.getText());
 

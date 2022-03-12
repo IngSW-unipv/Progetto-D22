@@ -155,7 +155,7 @@ public class Viaggio {
 
     public double getPrezzoTot() {
 
-        return Double.valueOf(String.format(Locale.US,"%.2f", this.getPrezzoNoIva() + this.getPrezzoIva()));
+        return Double.valueOf(String.format(Locale.US,"%.02f", this.getPrezzoNoIva() + this.getPrezzoIva()));
 
     }
 

@@ -36,6 +36,18 @@ public class TitoloViaggioEntity {
     private Time oraArrivo;
     @OneToMany(mappedBy = "titoloViaggioByTitoloViaggioId")
     private Collection<StoricoAcquistiEntity> storicoAcquistisByTitoloViaggioId;
+    @Basic
+    @Column(name = "num_adulti")
+    private Integer numAdulti;
+    @Basic
+    @Column(name = "num_ragazzi")
+    private Integer numRagazzi;
+    @Basic
+    @Column(name = "num_bambini")
+    private Integer numBambini;
+    @Basic
+    @Column(name = "num_animali")
+    private Integer numAnimali;
 
     public String getTitoloViaggioId() {
         return titoloViaggioId;
@@ -93,6 +105,38 @@ public class TitoloViaggioEntity {
         this.oraArrivo = oraArrivo;
     }
 
+    public Integer getNumAdulti() {
+        return numAdulti;
+    }
+
+    public void setNumAdulti(Integer numAdulti) {
+        this.numAdulti = numAdulti;
+    }
+
+    public Integer getNumRagazzi() {
+        return numRagazzi;
+    }
+
+    public void setNumRagazzi(Integer numRagazzi) {
+        this.numRagazzi = numRagazzi;
+    }
+
+    public Integer getNumBambini() {
+        return numBambini;
+    }
+
+    public void setNumBambini(Integer numBambini) {
+        this.numBambini = numBambini;
+    }
+
+    public Integer getNumAnimali() {
+        return numAnimali;
+    }
+
+    public void setNumAnimali(Integer numAnimali) {
+        this.numAnimali = numAnimali;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -123,6 +167,10 @@ public class TitoloViaggioEntity {
         titoloViaggioEntity.setDataArrivo(Date.valueOf(biglietto.getViaggio().getDataPartenza()));
         titoloViaggioEntity.setOraPartenza(Time.valueOf(Utils.secondsToTime(biglietto.getViaggio().getOrarioPartenza())));
         titoloViaggioEntity.setOraArrivo(Time.valueOf(Utils.secondsToTime(biglietto.getViaggio().getOrarioArrivo())));
+        titoloViaggioEntity.setNumAdulti(biglietto.getViaggio().getNumAdulti());
+        titoloViaggioEntity.setNumRagazzi(biglietto.getViaggio().getNumRagazzi());
+        titoloViaggioEntity.setNumBambini(biglietto.getViaggio().getNumBambini());
+        titoloViaggioEntity.setNumAnimali(biglietto.getViaggio().getNumAnimali());
         return titoloViaggioEntity;
     }
 
@@ -136,6 +184,10 @@ public class TitoloViaggioEntity {
                 ", dataArrivo=" + dataArrivo +
                 ", oraPartenza=" + oraPartenza +
                 ", oraArrivo=" + oraArrivo +
+                ", numAdulti=" + numAdulti +
+                ", numRagazzi=" + numRagazzi +
+                ", numBambini=" + numBambini +
+                ", numAnimali=" + numAnimali +
                 '}';
     }
 }
