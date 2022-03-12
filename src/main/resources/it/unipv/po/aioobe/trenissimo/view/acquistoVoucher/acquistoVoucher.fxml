@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<BorderPane fx:id="root" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.AcquistoController">
+    <center>
+        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../styles.css">
+            <columnConstraints>
+                <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="70.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+            </rowConstraints>
+            <children>
+                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                    <content>
+                        <VBox spacing="8.0">
+                            <children>
+                                <Label text="Voucher">
+                                    <font>
+                                        <Font size="24.0" />
+                                    </font>
+                                </Label>
+                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0">
+                           <children>
+                              <VBox maxHeight="1.7976931348623157E308" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" stylesheets="@../styles.css">
+                                 <children>
+                                    <HBox spacing="8.0" VBox.vgrow="NEVER">
+                                       <children>
+                                          <Label fx:id="lblCompanyId" text="Voucher N°" />
+                                          <Label fx:id="lblTrainId" text="VO849507237609800">
+                                             <padding>
+                                                <Insets bottom="4.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                       <children>
+                                          <TextArea prefHeight="50.0" promptText="Inserire un messaggio per il destinatario (opzionale)" />
+                                          <Label fx:id="lblPrice" text="50€" textAlignment="RIGHT" textFill="#bf0000">
+                                             <font>
+                                                <Font name="System Bold" size="25.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="60.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <VBox fx:id="boxChangesContainer" maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" visible="false">
+                                       <children>
+                                          <Separator prefWidth="200.0">
+                                             <padding>
+                                                <Insets bottom="8.0" top="8.0" />
+                                             </padding>
+                                          </Separator>
+                                          <VBox fx:id="boxChanges" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                 </padding>
+                              </VBox>
+                           </children></VBox>
+                                <Label layoutX="26.0" layoutY="26.0" text="Dati personali">
+                                    <font>
+                                        <Font size="24.0" />
+                                    </font>
+                                </Label>
+                                <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" VBox.vgrow="ALWAYS">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label styleClass="title" text="Nome:">
+                                            <font>
+                                                <Font size="13.0" />
+                                            </font>
+                                        </Label>
+                                        <Label styleClass="title" text="Email:" GridPane.rowIndex="2" />
+                                        <Label styleClass="title" text="Cognome" GridPane.columnIndex="2" />
+                                        <Label styleClass="title" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                        <Label styleClass="title" text="Civico:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                        <Label styleClass="title" text="Data di nascita" GridPane.columnIndex="4" />
+                                        <TextField editable="false" promptText="Nome" styleClass="title" visible="false" GridPane.rowIndex="1" />
+                                        <Label styleClass="title" text="Via:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                        <Label alignment="TOP_CENTER" styleClass="title" text="Città:" GridPane.rowIndex="4" />
+                                        <Label styleClass="title" text="CAP:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                        <TextField fx:id="txtCitta" disable="true" mouseTransparent="true" promptText="Città" styleClass="textField" text="Pavia" GridPane.rowIndex="5" />
+                                        <TextField fx:id="txtEmail" disable="true" mouseTransparent="true" promptText="Email" styleClass="textField" text="rossi@gmail.com" GridPane.rowIndex="3" />
+                                        <TextField fx:id="txtNome" disable="true" mouseTransparent="true" promptText="Nome " styleClass="textField" text="Mario" GridPane.rowIndex="1" />
+                                        <TextField fx:id="txtCognome" disable="true" mouseTransparent="true" promptText="Cognome" styleClass="textField" text="Rossi" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <TextField fx:id="txtVia" disable="true" mouseTransparent="true" promptText="Via" styleClass="textField" text="ferrata" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <TextField fx:id="txtCAP" disable="true" mouseTransparent="true" promptText="CAP" styleClass="textField" text="12345" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                        <TextField fx:id="txtCivico" disable="true" maxWidth="150.0" mouseTransparent="true" promptText="Civico" styleClass="textField" text="8" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                        <DatePicker fx:id="dtpDataNascita" disable="true" maxWidth="1.7976931348623157E308" mouseTransparent="true" promptText="10/05/2000" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    </children>
+                                </GridPane>
+                                <Label layoutX="26.0" layoutY="285.0" text="Metodo di pagamento">
+                                    <font>
+                                        <Font size="24.0" />
+                                    </font>
+                                </Label>
+                                <Accordion>
+                                    <panes>
+                                        <TitledPane animated="false" contentDisplay="GRAPHIC_ONLY" text="Carta di credito">
+                                            <graphic>
+                                                <FontIcon iconLiteral="far-credit-card" iconSize="36" />
+                                            </graphic>
+                                            <content>
+                                                <VBox spacing="8.0">
+                                                    <children>
+                                                        <HBox>
+                                                            <children>
+                                                                <TextField fx:id="txtNumCarta" prefWidth="350.0" promptText="Numero della carta di credito" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox spacing="8.0">
+                                                            <children>
+                                                                <TextField fx:id="txtDataScadenza" promptText="Scadenza YYYY-MM" />
+                                                <TextField fx:id="txtCVV" layoutX="10.0" layoutY="10.0" promptText="CVV" />
+                                                            </children>
+                                                        </HBox>
+                                                        <Button mnemonicParsing="false" onAction="#onAggiungiCarta" text="Usa questo metodo di pagamento" />
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </TitledPane>
+                                    </panes>
+                                </Accordion>
+                            </children>
+                            <padding>
+                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                    <children>
+                        <VBox spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 8;">
+                            <VBox.margin>
+                                <Insets bottom="16.0" left="16.0" right="16.0" />
+                            </VBox.margin>
+                            <children>
+                                <HBox alignment="CENTER" VBox.vgrow="NEVER">
+                                    <children>
+                                        <Button id="buttonAcquista" fx:id="btnAcquisto" alignment="CENTER" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPaga" prefHeight="36.0" styleClass="btnAcquista" text="Acquista" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                            <font>
+                                                <Font name="System Bold" size="12.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                                <Label text="By placing your order, you agree to nothing at all!" wrapText="true" />
+                                <Separator prefWidth="200.0" />
+                                <HBox>
+                                    <children>
+                                        <Label text="Totale:" HBox.hgrow="ALWAYS">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="lblTotale" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="€ 31.70" textAlignment="RIGHT" HBox.hgrow="ALWAYS">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                            </padding>
+                            <effect>
+                                <DropShadow blurType="GAUSSIAN" height="8.0" radius="3.5" width="8.0">
+                                    <color>
+                                        <Color opacity="0.1991342008113861" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+    </center>
+    <top>
+        <HBox BorderPane.alignment="CENTER">
+            <children>
+                <Label onMouseClicked="#onGoToHomepage" text="Torna a homepage">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-arrow-left" />
+                    </graphic>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                    <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                    </padding>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Label>
+            </children>
+        </HBox>
+    </top>
+</BorderPane>
