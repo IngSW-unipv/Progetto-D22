@@ -11,6 +11,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -87,6 +88,7 @@ public class AcquistoVoucherController implements Initializable {
             if(txtMessaggio.getText().length()>=100) {
                 txtMessaggio.setStyle("-fx-border-color: #d70000; -fx-border-radius: 8 8 8 8");
                 lblErroreMaxCaratteri.setVisible(true);
+                txtMessaggio.setDisable(true);
             }
             else{
                 txtMessaggio.setStyle("-fx-border-color: #cccccc; -fx-border-radius: 8 8 8 8");
@@ -119,7 +121,21 @@ public class AcquistoVoucherController implements Initializable {
     }
 
     @FXML
+    protected void onModificaTesto() {
+        txtMessaggio.setDisable(false);
+    }
+
+    @FXML
     protected void onPaga() throws Exception {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Trenissimo");
+        alert.setHeaderText(null);
+        alert.setContentText("Acquisto avvenuto con successo!");
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png")));
+        alert.showAndWait();
+
         List<Acquisto> carrello = new ArrayList<>();
         carrello.add(this.voucher);
         carrello.get(0).pagare();
@@ -129,7 +145,9 @@ public class AcquistoVoucherController implements Initializable {
             String username = Account.getInstance().getUsername();
             Account.getInstance().setAccount(username);
         }
-       onScaricaBigliettoPDF();
+        onScaricaBigliettoPDF();
+
+        HomePage.openScene(root.getScene().getWindow());
 
     }
 

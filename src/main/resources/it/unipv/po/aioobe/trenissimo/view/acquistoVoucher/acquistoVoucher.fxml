@@ -31,7 +31,7 @@
                                 </Label>
                                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0">
                            <children>
-                              <VBox maxHeight="1.7976931348623157E308" prefHeight="170.0" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" stylesheets="@../styles.css">
+                              <VBox minHeight="-Infinity" prefHeight="155.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" stylesheets="@../styles.css">
                                  <children>
                                     <HBox spacing="8.0" VBox.vgrow="NEVER">
                                        <children>
@@ -46,7 +46,7 @@
                                     <GridPane>
                                        <columnConstraints>
                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="350.0" />
-                                          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="90.0" minWidth="10.0" />
+                                          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" />
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -65,8 +65,9 @@
                                                 </Label>
                                              </children>
                                           </HBox>
-                                          <TextArea fx:id="txtMessaggio" focusTraversable="false" maxWidth="1.7976931348623157E308" prefHeight="100.0" promptText="Inserire un messaggio per il destinatario (opzionale)" styleClass="text-area" />
+                                          <TextArea fx:id="txtMessaggio" focusTraversable="false" maxWidth="1.7976931348623157E308" prefHeight="70.0" promptText="Inserire un messaggio per il destinatario (opzionale)" styleClass="text-area" />
                                           <Label fx:id="lblErroreMaxCaratteri" text="Max caratteri superato!" textFill="#d70000" visible="false" GridPane.rowIndex="1" />
+                                          <Button fx:id="btnModificaTesto" alignment="CENTER" mnemonicParsing="false" onAction="#onModificaTesto" text="Modifica testo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                     <VBox fx:id="boxChangesContainer" maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" visible="false">
