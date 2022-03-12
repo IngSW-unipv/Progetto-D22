@@ -41,6 +41,7 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
 public class HomePageController implements Initializable {
@@ -207,6 +208,7 @@ public class HomePageController implements Initializable {
                 search.setNumBambini((int)spnBigliettoBambini.getValue());
                 search.setNumAnimali((int)spnBigliettoAnimali.getValue());
 
+
                 search.eseguiRicerca();
                 return search;
             }
@@ -215,7 +217,11 @@ public class HomePageController implements Initializable {
         task.setOnSucceeded(e -> {
             boxLoading.setVisible(false);
             boxContent.setDisable(false);
-            RicercaView.openScene((Ricerca) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
+            try {
+                RicercaView.openScene((Ricerca) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
+            }catch (NoSuchElementException ee){
+                setAlert("Viaggio inesistente!");
+            }
         });
         new Thread(task).start();
     }
@@ -351,7 +357,6 @@ public class HomePageController implements Initializable {
             biglietto.delete();
         });
         new Thread(task).start();
-
     }
 
     private void fillPDF(VoucherEntity voucherEntity) throws Exception {
