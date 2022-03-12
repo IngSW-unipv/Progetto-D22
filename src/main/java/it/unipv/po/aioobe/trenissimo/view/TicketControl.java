@@ -60,7 +60,7 @@ public class TicketControl extends AnchorPane {
         lblArrivalTime          .setText(Utils.secondsToTime(viaggio.getOrarioArrivo(), false));
         lblArrivalStation       .setText(viaggio.getStazioneArrivo().getStopName());
         lblTravelTime           .setText((viaggio.getDurata() / 60) + " mins");
-        lblPrice                .setText(String.valueOf(viaggio.getPrezzoTot()));
+        lblPrice                .setText(viaggio.getPrezzoTotString()+"€");
 
         lblNumAdulti    .setText(String.valueOf(viaggio.getNumAdulti()));
         lblNumRagazzi   .setText(String.valueOf(viaggio.getNumRagazzi()));

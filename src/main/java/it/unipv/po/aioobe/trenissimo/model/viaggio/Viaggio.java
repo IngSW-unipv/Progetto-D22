@@ -38,16 +38,16 @@ public class Viaggio {
 
     public Viaggio() {
 
-        PrezzoPerDistanzaFactory f=new PrezzoPerDistanzaFactory();
-        prezzoPerDistanzaStrategy=f.getPrezzoPerDistanzaStrategy();
+        PrezzoPerDistanzaFactory f = new PrezzoPerDistanzaFactory();
+        prezzoPerDistanzaStrategy = f.getPrezzoPerDistanzaStrategy();
 
-        PrezzoTotCambiFactory f1=new PrezzoTotCambiFactory();
-        prezzoTotCambiStrategy=f1.getPrezzoTotCambiStrategy();
+        PrezzoTotCambiFactory f1 = new PrezzoTotCambiFactory();
+        prezzoTotCambiStrategy = f1.getPrezzoTotCambiStrategy();
 
-        PrezzoTotFactory f2=new PrezzoTotFactory();
-        prezzoTotStrategy=f2.getPrezzoTot();
+        PrezzoTotFactory f2 = new PrezzoTotFactory();
+        prezzoTotStrategy = f2.getPrezzoTot();
 
-        PrezzoIvaFactory f3=new PrezzoIvaFactory();
+        PrezzoIvaFactory f3 = new PrezzoIvaFactory();
         prezzoIvaStrategy = f3.getPrezzoIvaStrategy();
 
 
@@ -109,11 +109,11 @@ public class Viaggio {
         return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(cambi.size() - 1).getArrivalStation())).findFirst().get();
     }
 
-    public int getOrarioPartenza(){
+    public int getOrarioPartenza() {
         return cambi.get(0).getDepartureTimestamp();
     }
 
-    public int getOrarioArrivo(){
+    public int getOrarioArrivo() {
         return cambi.get(cambi.size() - 1).getArrivalTimestamp();
     }
 
@@ -139,7 +139,7 @@ public class Viaggio {
     }
 
     public double getPrezzoPerPersona() {
-        return this.getPrezzoPerDistanza()+this.getPrezzoTotCambi();
+        return this.getPrezzoPerDistanza() + this.getPrezzoTotCambi();
     }
 
     public double getPrezzoNoIva() {
@@ -154,17 +154,19 @@ public class Viaggio {
     }
 
     public double getPrezzoTot() {
-
-        return Double.valueOf(String.format(Locale.US,"%.02f", this.getPrezzoNoIva() + this.getPrezzoIva()));
-
+        return Double.valueOf(getPrezzoTotString());
     }
 
-    public List<StopsEntity> getCoppiaStazioni (int i) {
+    public String getPrezzoTotString() {
+        return String.format(Locale.US, "%.2f", this.getPrezzoNoIva() + this.getPrezzoIva());
+    }
+
+    public List<StopsEntity> getCoppiaStazioni(int i) {
         List<StopsEntity> stops = CachedStopsService.getInstance().findAll();
         List<StopsEntity> coppiaStazioni = new ArrayList<>();
 
         for (StopsEntity s : stops) {
-            if (s.getStopId() == this.getCambi().get(i).getDepartureStation() || s.getStopId()==this.getCambi().get(i).getArrivalStation()) {
+            if (s.getStopId() == this.getCambi().get(i).getDepartureStation() || s.getStopId() == this.getCambi().get(i).getArrivalStation()) {
                 coppiaStazioni.add(s);
             }
         }
@@ -184,24 +186,24 @@ public class Viaggio {
 
         //Haversine formula to calculate distance from lat e lon
 
-        double latDistance = Math.toRadians(lat1-lat2);
-        double lngDistance = Math.toRadians(lon1-lon2);
+        double latDistance = Math.toRadians(lat1 - lat2);
+        double lngDistance = Math.toRadians(lon1 - lon2);
 
         double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-      + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
-      * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
 
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return raggio * c;
     }
 
-    public double getDistanzaTotale () {
+    public double getDistanzaTotale() {
         double distanza = 0;
-        for (int i=0; i<this.getCambi().size(); i++) {
+        for (int i = 0; i < this.getCambi().size(); i++) {
             distanza = distanza + getDistanza(getCoppiaStazioni(i));
         }
-        return Double.valueOf(String.format(Locale.US,"%.2f", distanza));
+        return Double.valueOf(String.format(Locale.US, "%.2f", distanza));
     }
 
     @Override
@@ -219,7 +221,7 @@ public class Viaggio {
                 "\nn. cambi=" + getNumeroCambi() +
                 "\ndistanza=" + getDistanzaTotale() + "km" +
                 "\nprezzo senza IVA=" + getPrezzoTot() + "€" +
-                "\nprezzo con IVA=" + Double.valueOf(String.format(Locale.US,"%.2f", getPrezzoTot()+getPrezzoIva())) + "€" +
+                "\nprezzo con IVA=" + Double.valueOf(String.format(Locale.US, "%.2f", getPrezzoTot() + getPrezzoIva())) + "€" +
                 "\n";
     }
 }
