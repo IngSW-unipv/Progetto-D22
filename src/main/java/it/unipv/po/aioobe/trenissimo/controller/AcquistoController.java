@@ -19,6 +19,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -84,11 +85,6 @@ public class AcquistoController implements Initializable {
 
     @FXML private VBox vboxDragMouse;
 
-
-
-
-
-
     private ObservableList<Viaggio> _viaggi;
     private TicketBuilder titoloViaggio;
 
@@ -149,6 +145,15 @@ public class AcquistoController implements Initializable {
 
     @FXML
     protected void onPaga() throws Exception {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Trenissimo");
+        alert.setHeaderText(null);
+        alert.setContentText("Acquisto avvenuto con successo!");
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png")));
+        alert.showAndWait();
+
         List<Acquisto> biglietti = new ArrayList<>();
         for (Viaggio v: _viaggi) {
             biglietti.add(new CorsaSingola(TipoTitoloViaggio.BIGLIETTOCORSASINGOLA, v));
