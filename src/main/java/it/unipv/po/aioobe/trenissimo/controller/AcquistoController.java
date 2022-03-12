@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -171,6 +172,7 @@ public class AcquistoController implements Initializable {
 
         biglietto.delete();
 
+        HomePage.openScene(root.getScene().getWindow());
     }
 
     @FXML

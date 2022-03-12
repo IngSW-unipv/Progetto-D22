@@ -119,7 +119,6 @@ public class HomePageController implements Initializable {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png")));
         alert.showAndWait();
-
     }
 
     @Override
@@ -208,7 +207,6 @@ public class HomePageController implements Initializable {
                 search.setNumBambini((int)spnBigliettoBambini.getValue());
                 search.setNumAnimali((int)spnBigliettoAnimali.getValue());
 
-
                 search.eseguiRicerca();
                 return search;
             }
@@ -219,7 +217,7 @@ public class HomePageController implements Initializable {
             boxContent.setDisable(false);
             try {
                 RicercaView.openScene((Ricerca) e.getSource().getValue(), (Stage) boxContent.getScene().getWindow());
-            }catch (NoSuchElementException ee){
+            }catch (NoSuchElementException event){
                 setAlert("Viaggio inesistente!");
             }
         });
