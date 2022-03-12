@@ -12,8 +12,7 @@
     <children>
         <HBox spacing="8.0" VBox.vgrow="NEVER">
             <children>
-                <Label fx:id="lblCompanyId" text="Trenord" />
-                <Label fx:id="lblTrainId" text="964A / 745" />
+                <Label fx:id="lblCompanyId" text="Trenissimo" />
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="8.0">

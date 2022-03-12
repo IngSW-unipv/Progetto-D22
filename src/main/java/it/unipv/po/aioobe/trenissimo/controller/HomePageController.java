@@ -226,6 +226,8 @@ public class HomePageController implements Initializable {
             setAlert("Impossibile effettuare il checkout. Scegliere il valore del voucher!");
             return;
         }
+        else
+            AcquistoVoucherView.openScene(boxContent.getScene().getWindow(), cmbVoucherValore.getValue());
     }
 
     @FXML

@@ -149,7 +149,6 @@ public class Viaggio {
     }
 
     public double getPrezzoIva() {
-
         return prezzoIvaStrategy.getPrezzoIva(this);
     }
 

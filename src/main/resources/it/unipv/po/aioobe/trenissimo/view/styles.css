@@ -28,3 +28,24 @@
     -fx-border-color: #cccccc;
     -fx-border-radius: 8;
 }
+
+.text-area {
+    -fx-background-color: #f2f3f7;
+    -fx-background-radius: 8 8 8 8;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8 8 8 8;
+}
+
+.text-area .content {
+    -fx-background-color: #f2f3f7;
+    -fx-background-radius: 8 8 8 8;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8 8 8 8;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: #f2f3f7;
+    -fx-background-radius: 8 8 8 8;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8 8 8 8;
+}

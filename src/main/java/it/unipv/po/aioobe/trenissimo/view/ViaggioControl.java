@@ -15,7 +15,6 @@ import java.util.function.Predicate;
 
 public class ViaggioControl extends VBox {
     @FXML private Label lblCompanyId;
-    @FXML private Label lblTrainId;
     @FXML private Label lblDepartureTime;
     @FXML private Label lblDepartureStation;
     @FXML private Label lblArrivalTime;
@@ -64,8 +63,7 @@ public class ViaggioControl extends VBox {
     public void setViaggio(Viaggio viaggio) {
         this.viaggio = viaggio;
 
-        lblCompanyId            .textProperty().setValue("Trenord");
-        lblTrainId              .textProperty().setValue("...");
+        lblCompanyId            .textProperty().setValue("Trenissimo");
         lblDepartureTime        .textProperty().setValue(Utils.secondsToTime(viaggio.getOrarioPartenza(), false));
         lblDepartureStation     .textProperty().setValue(viaggio.getStazionePartenza().getStopName());
         lblArrivalTime          .textProperty().setValue(Utils.secondsToTime(viaggio.getOrarioArrivo(), false));
