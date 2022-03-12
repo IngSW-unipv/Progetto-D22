@@ -1,28 +1,46 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.exception.ConnectionDBException;
 import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopTimesService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.hibernate.HibernateException;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class SplashscreenController implements Initializable{
 
+    @FXML
+    private BorderPane mainLayout;
 
+    @FXML
+    private Label lblCounter;
 
+    @FXML
+    private ProgressBar pgbSplashScreen;
+
+    @FXML
+    private Label lblStatus;
+
+    private Integer counter = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,7 +48,8 @@ public class SplashscreenController implements Initializable{
         // todo: finestra errore, eccezione db "ConnectionDBException"
         Task<Void> task = new Task<Void>() {
             @Override
-            public Void call()  {
+            public Void call() throws InterruptedException {
+                try {
                 updateMessage("Loading routes...");
                 CachedRoutesService.getInstance().findAll();
 
@@ -42,6 +61,15 @@ public class SplashscreenController implements Initializable{
 
                 updateMessage("Loading stop times...");
                 CachedStopTimesService.getInstance().findAll();
+
+                }catch (ConnectionDBException e){
+                    lblStatus.setStyle("-fx-text-fill: #d70000");
+                    for(int i = 5; i>0; i--) {
+                        updateMessage("Error loading database. Trenissimo closing in " + i + "s");
+                        TimeUnit.SECONDS.sleep(1);
+                    }
+                    System.exit(1);
+                }
 
                 return null;
             }
@@ -68,20 +96,10 @@ public class SplashscreenController implements Initializable{
         task.messageProperty().addListener((obs, oldVal, newVal) -> {
             lblStatus.setText(newVal);
         });
+
         new Thread(task).start();
 
     }
-
-    @FXML
-    private BorderPane mainLayout;
-
-    @FXML
-    private Label lblCounter;
-
-    @FXML
-    private Label lblStatus;
-
-    private Integer counter = 0;
 
     @FXML
     protected void onCounterUp(){
