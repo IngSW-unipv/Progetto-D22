@@ -14,7 +14,7 @@
     <center>
         <VBox>
             <children>
-            <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <TabPane fx:id="tabPane" stylesheets="@../homePage/homePage.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                <tabs>
                </tabs>
             </TabPane>
