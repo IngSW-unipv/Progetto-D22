@@ -24,10 +24,15 @@ public class TicketBuilder {
     private String messaggio;
     private File biglietto;
 
+    private String adulti;
+    private String ragazzi;
+    private String bambini;
+    private String animali;
+
     public static final String DEST = System.getProperty("java.io.tmpdir").concat("NuovoBiglietto.pdf");
-    public static final String SRC = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateTicket.pdf";
+    public static final String SRC = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateTicketIcon.pdf";
     public static final String SRCVO = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateVoucher.pdf";
-public static final String SRCVOR = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/templateRegalo.pdf"; // todo da cambiare percorso
+    public static final String SRCVOR = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/templateRegalo.pdf"; // todo da cambiare percorso
 
 
     public void createPdf(String id) throws Exception {
@@ -53,6 +58,11 @@ public static final String SRCVOR = "src/main/resources/it/unipv/po/aioobe/treni
         placeholder.setField("DATANASCITA", this.dataNascita);
         placeholder.setField("BIGLIETTO", this.id);
         placeholder.setField("EURO", this.importo);
+
+        placeholder.setField("AD", this.adulti);
+        placeholder.setField("R", this.ragazzi);
+        placeholder.setField("B", this.bambini);
+        placeholder.setField("AN", this.animali);
 
         copiaModificata.setFormFlattening(true);
         copiaModificata.close();
@@ -87,7 +97,7 @@ public static final String SRCVOR = "src/main/resources/it/unipv/po/aioobe/treni
     }
 
     public TicketBuilder(String sPart, String sDest, String dataPart, String dataArr, String oraPart, String oraArr,
-                         String nome, String cognome, String dataNascita, String id, String importo) {
+                         String nome, String cognome, String dataNascita, String id, String importo, String adulti, String ragazzi, String bambini, String animali) {
 
         this.sPart = sPart;
         this.sDest = sDest;
@@ -100,6 +110,10 @@ public static final String SRCVOR = "src/main/resources/it/unipv/po/aioobe/treni
         this.dataNascita = dataNascita;
         this.id = id;
         this.importo = importo;
+        this.adulti = adulti;
+        this.ragazzi = ragazzi;
+        this.bambini = bambini;
+        this.animali = animali;
     }
 
     public TicketBuilder(String id, String importo) {

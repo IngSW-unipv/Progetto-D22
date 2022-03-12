@@ -38,6 +38,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
@@ -108,7 +110,7 @@ public class HomePageController implements Initializable {
         return scb;
     }
 
-    private Alert setAlert(String contentText){
+    private void setAlert(String contentText){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Trenissimo");
         alert.setHeaderText(null);
@@ -116,7 +118,6 @@ public class HomePageController implements Initializable {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png")));
         alert.showAndWait();
-        return alert;
 
     }
 
@@ -127,6 +128,9 @@ public class HomePageController implements Initializable {
         spnBigliettoRagazzi     .valueProperty().addListener((obs,oldV,newV) -> { lblNumRagazzi.setText(newV.toString()); });
         spnBigliettoBambini     .valueProperty().addListener((obs,oldV,newV) -> { lblNumBambini.setText(newV.toString()); });
         spnBigliettoAnimali     .valueProperty().addListener((obs,oldV,newV) -> { lblNumAnimali.setText(newV.toString()); });
+
+        tmpBigliettoAndata     .set24HourView(true);
+        tmpBigliettoRitorno     .set24HourView(true);
 
         dtpBigliettoPartenza.setValue(LocalDate.now());
         tmpBigliettoAndata.setValue(LocalTime.now());
@@ -174,7 +178,11 @@ public class HomePageController implements Initializable {
         }
 
         if(dtpBigliettoPartenza.getValue() == null || tmpBigliettoAndata.getValue() == null || (tgsBigliettoAR.isSelected() &&
-                dtpBigliettoRitorno.getValue() == null) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null)){
+                dtpBigliettoRitorno.getValue() == null) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null)
+            || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now()) && dtpBigliettoPartenza.getValue().isBefore(LocalDate.now()))
+                || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoPartenza.getValue().equals(LocalDate.now()))
+                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoRitorno.getValue().isBefore(LocalDate.now()))
+                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoRitorno.getValue().equals(LocalDate.now()))){
             setAlert("Inserire data e/o orario di partenza e/o ritorno");
             return;
         }
@@ -197,7 +205,7 @@ public class HomePageController implements Initializable {
                 search.setNumAdulti((int)spnBigliettoAdulti.getValue());
                 search.setNumRagazzi((int)spnBigliettoRagazzi.getValue());
                 search.setNumBambini((int)spnBigliettoBambini.getValue());
-                search.setNumBambini((int)spnBigliettoAnimali.getValue());
+                search.setNumAnimali((int)spnBigliettoAnimali.getValue());
 
                 search.eseguiRicerca();
                 return search;

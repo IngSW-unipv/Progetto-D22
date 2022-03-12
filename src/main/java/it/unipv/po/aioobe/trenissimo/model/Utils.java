@@ -91,11 +91,11 @@ public class Utils {
     }
 
     public static boolean checkCVV(String cvv){
-        return cvv.length() == 3 ;
+        return cvv.length() == 3 && cvv.matches("^[0-9]+$");
     }
 
     public static boolean checkNumCarta(String numero){
-        return numero.length() == 16 ;
+        return numero.length() == 16 && numero.matches("^[0-9]+$");
     }
 
     public static boolean checkDataScadenza(String data){

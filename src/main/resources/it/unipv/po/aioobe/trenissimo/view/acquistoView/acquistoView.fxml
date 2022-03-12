@@ -46,34 +46,47 @@
                                     <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
+                              <Label fx:id="lblErroreDataNascita" text="Data di nascita non valida!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                                         <Label styleClass="title" text="Nome:">
                                             <font>
                                                 <Font size="13.0" />
                                             </font>
                                         </Label>
-                                        <Label styleClass="title" text="Email:" GridPane.rowIndex="2" />
+                                        <Label styleClass="title" text="Email:" GridPane.rowIndex="3" />
                                         <Label styleClass="title" text="Cognome" GridPane.columnIndex="2" />
-                                        <Label styleClass="title" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                        <Label styleClass="title" text="Civico:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                        <Label styleClass="title" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <Label styleClass="title" text="Civico:" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                                         <Label styleClass="title" text="Data di nascita" GridPane.columnIndex="4" />
                                         <TextField editable="false" promptText="Nome" styleClass="title" visible="false" GridPane.rowIndex="1" />
-                                        <Label styleClass="title" text="Via:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                        <Label alignment="TOP_CENTER" styleClass="title" text="Città:" GridPane.rowIndex="4" />
-                                        <Label styleClass="title" text="CAP:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                        <TextField fx:id="txtCitta" disable="true" mouseTransparent="true" promptText="Città" styleClass="textField" text="Pavia" GridPane.rowIndex="5" />
-                                        <TextField fx:id="txtEmail" disable="true" mouseTransparent="true" promptText="Email" styleClass="textField" text="rossi@gmail.com" GridPane.rowIndex="3" />
-                                        <TextField fx:id="txtNome" disable="true" mouseTransparent="true" promptText="Nome " styleClass="textField" text="Mario" GridPane.rowIndex="1" />
-                                        <TextField fx:id="txtCognome" disable="true" mouseTransparent="true" promptText="Cognome" styleClass="textField" text="Rossi" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                        <TextField fx:id="txtVia" disable="true" mouseTransparent="true" promptText="Via" styleClass="textField" text="ferrata" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                        <TextField fx:id="txtCAP" disable="true" mouseTransparent="true" promptText="CAP" styleClass="textField" text="12345" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                        <TextField fx:id="txtCivico" disable="true" maxWidth="150.0" mouseTransparent="true" promptText="Civico" styleClass="textField" text="8" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                                        <DatePicker fx:id="dtpDataNascita" disable="true" maxWidth="1.7976931348623157E308" mouseTransparent="true" promptText="10/05/2000" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                        <Label styleClass="title" text="Via:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <Label alignment="TOP_CENTER" styleClass="title" text="Città:" GridPane.rowIndex="6" />
+                                        <Label styleClass="title" text="CAP:" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                        <TextField fx:id="txtCitta" focusTraversable="false" promptText="Città" styleClass="textField" GridPane.rowIndex="7" />
+                                        <TextField fx:id="txtEmail" focusTraversable="false" promptText="Email" styleClass="textField" GridPane.rowIndex="4" />
+                                        <TextField fx:id="txtNome" focusTraversable="false" promptText="Nome " styleClass="textField" GridPane.rowIndex="1" />
+                                        <TextField fx:id="txtCognome" focusTraversable="false" promptText="Cognome" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <TextField fx:id="txtVia" focusTraversable="false" promptText="Via" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                        <TextField fx:id="txtCAP" focusTraversable="false" promptText="CAP" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                        <TextField fx:id="txtCivico" focusTraversable="false" maxWidth="150.0" promptText="Civico" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                        <DatePicker fx:id="dtpDataNascita" focusTraversable="false" maxWidth="1.7976931348623157E308" promptText="10/05/2000" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Label fx:id="lblErroreNome" text="Inserire il Nome!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <Label fx:id="lblErroreCognome" text="Inserisci il Cognome!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                              <Label fx:id="lblErroreEmail" text="Email non valida!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                              <Label fx:id="lblErroreVia" text="Inserisci la Via!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                              <Label fx:id="lblErroreCivico" text="Inserisci il Civico!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                              <Label fx:id="lblErroreCitta" text="Inserisci la Città!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                              <Label fx:id="lblErroreCAP" text="CAP non valido!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                              <Button fx:id="btnConferma" mnemonicParsing="false" onAction="#onConfermaDati" text="Conferma" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                              <Label fx:id="lblDatiOK" text="Dati confermati!" textFill="#21b200" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                                     </children>
                                 </GridPane>
                                 <Label layoutX="26.0" layoutY="285.0" text="Metodo di pagamento">
@@ -95,13 +108,36 @@
                                                                 <TextField fx:id="txtNumCarta" prefWidth="350.0" promptText="Numero della carta di credito" />
                                                             </children>
                                                         </HBox>
+                                          <Label fx:id="lblErroreNumCarta" text="Numero carta non valido!" textFill="#d70000" visible="false" />
                                                         <HBox spacing="8.0">
                                                             <children>
                                                                 <TextField fx:id="txtDataScadenza" promptText="Scadenza YYYY-MM" />
-                                                <TextField fx:id="txtCVV" layoutX="10.0" layoutY="10.0" promptText="CVV" />
+                                                <TextField fx:id="txtCVV" layoutX="10.0" layoutY="10.0" promptText="CVV">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin></TextField>
                                                             </children>
                                                         </HBox>
-                                                        <Button mnemonicParsing="false" onAction="#onAggiungiCarta" text="Usa questo metodo di pagamento" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="lblErroreData" text="Data di scadenza non valida!" textFill="#d70000" visible="false" />
+                                                <Label fx:id="lblErroreCVV" text="CVV non valido!" textFill="#d70000" visible="false">
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox>
+                                             <children>
+                                                              <Button fx:id="btnAggiungiPagamento" disable="true" mnemonicParsing="false" onAction="#onAggiungiCarta" text="Usa questo metodo di pagamento" />
+                                                <Label fx:id="lblCartaOK" text="Metodo di pagamento accettato!" textFill="#21b200" visible="false">
+                                                   <padding>
+                                                      <Insets left="16.0" top="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                          </HBox>
                                                     </children>
                                                 </VBox>
                                             </content>
@@ -117,20 +153,16 @@
                 </ScrollPane>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                     <children>
-                        <VBox spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 8;">
+                        <VBox fx:id="vboxDragMouse" spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 8;">
                             <VBox.margin>
                                 <Insets bottom="16.0" left="16.0" right="16.0" />
                             </VBox.margin>
                             <children>
-                                <HBox alignment="CENTER" VBox.vgrow="NEVER">
-                                    <children>
-                                        <Button id="buttonAcquista" fx:id="btnAcquisto" alignment="CENTER" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPaga" prefHeight="36.0" styleClass="btnAcquista" text="Acquista" textFill="WHITE" HBox.hgrow="ALWAYS">
-                                            <font>
-                                                <Font name="System Bold" size="12.0" />
-                                            </font>
-                                        </Button>
-                                    </children>
-                                </HBox>
+                                  <Button id="buttonAcquista" fx:id="btnAcquisto" alignment="CENTER" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPaga" prefHeight="36.0" styleClass="btnAcquista" text="Acquista" textFill="WHITE">
+                                      <font>
+                                          <Font name="System Bold" size="12.0" />
+                                      </font>
+                                  </Button>
                                 <Label text="By placing your order, you agree to nothing at all!" wrapText="true" />
                                 <Separator prefWidth="200.0" />
                                 <Label text="Riassunto">

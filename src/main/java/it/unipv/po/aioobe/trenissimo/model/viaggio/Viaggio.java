@@ -13,7 +13,6 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTot.Prez
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTotCambi.IPrezzoTotCambiStrategy;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTotCambi.PrezzoTotCambiFactory;
 
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

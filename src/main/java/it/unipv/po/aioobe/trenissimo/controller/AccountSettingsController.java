@@ -226,7 +226,7 @@ public class AccountSettingsController implements Initializable {
             || lblErroreNome.isVisible() || lblErroreCognome.isVisible() || lblErroreVia.isVisible() ||
             lblErroreCivico.isVisible() || lblErroreCitta.isVisible())
             btnSalva.setDisable(true);
-    });
+        });
 
     }
 
