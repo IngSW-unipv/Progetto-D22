@@ -2,6 +2,7 @@ package it.unipv.po.aioobe.trenissimo.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -18,6 +19,8 @@ public class Login{
         stage.initOwner(owner);
         stage.setResizable(false);
         stage.setTitle("Login");
+        Image img = new Image(HomePage.class.getResourceAsStream("homePage/LogoIcona.png"));
+        stage.getIcons().add(img);
         stage.setScene(scene);
         stage.show();
     }
