@@ -118,7 +118,7 @@
                         <Insets />
                     </VBox.margin>
                     <children>
-                        <TabPane fx:id="tabPaneRicerca" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" visible="false" GridPane.rowIndex="1">
+                        <TabPane fx:id="tabPaneRicerca" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
                             <tabs>
                                 <Tab text="Biglietto">
                                     <content>
@@ -163,14 +163,14 @@
                                                                     <children>
                                                                         <VBox>
                                                                             <children>
-                                                                                <DatePicker fx:id="dtpBigliettoPartenza" maxWidth="1.7976931348623157E308" />
-                                                                                <JFXTimePicker fx:id="tmpBigliettoAndata" maxHeight="29.0" maxWidth="170.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" />
+                                                                                <DatePicker fx:id="dtpBigliettoPartenza" editable="false" maxWidth="1.7976931348623157E308" />
+                                                                                <JFXTimePicker fx:id="tmpBigliettoAndata" maxHeight="29.0" maxWidth="170.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" editable="false"/>
                                                                             </children>
                                                                         </VBox>
                                                                         <VBox>
                                                                             <children>
-                                                                                <DatePicker fx:id="dtpBigliettoRitorno" disable="true" maxWidth="1.7976931348623157E308" />
-                                                                                <JFXTimePicker fx:id="tmpBigliettoRitorno" disable="true" maxHeight="29.0" maxWidth="183.5" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" />
+                                                                                <DatePicker fx:id="dtpBigliettoRitorno" disable="true" editable="false" maxWidth="1.7976931348623157E308" />
+                                                                                <JFXTimePicker fx:id="tmpBigliettoRitorno" disable="true" maxHeight="29.0" maxWidth="183.5" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" editable="false"/>
                                                                             </children>
                                                                         </VBox>
                                                                         <MenuButton contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false">
@@ -345,7 +345,7 @@
                                 <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                             </padding>
                         </TabPane>
-                        <TabPane fx:id="tabPaneRimborso" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
+                        <TabPane fx:id="tabPaneRimborso" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" visible="false" GridPane.rowIndex="1">
                             <tabs>
                                 <Tab text="Rimborso">
                                     <content>

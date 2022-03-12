@@ -93,9 +93,10 @@ public class AcquistoController implements Initializable {
     private TicketBuilder titoloViaggio;
 
     private boolean isIdVoucherOK;
-    private Double subtotale = 0.0;
-    private Double iva = 0.0;
+    private Double subtotale;
+    private Double iva;
     private boolean acquistoSoloVoucher;
+    private boolean isRiscattoUsed;
     private File biglietto;
 
     @Override
@@ -104,6 +105,11 @@ public class AcquistoController implements Initializable {
         _viaggi.addListener((ListChangeListener<Viaggio>) c -> {
             boxViaggi.getChildren().setAll(_viaggi.stream().map(x -> new ViaggioControl(x, null)).toList());
         });
+
+        this.subtotale = 0.0;
+        this.iva = 0.0;
+        this.isRiscattoUsed = false;
+
         checkIdRealTime();
         checkPagamentoRealTime();
         checkDatiRealTime();
@@ -206,6 +212,7 @@ public class AcquistoController implements Initializable {
         }
 
         if(isIdVoucherOK) {
+            this.isRiscattoUsed = true;
             String[] totaleSplit = lblTotale.getText().split("(?<=€)");
 
             if(Double.valueOf(totaleSplit[1]) <= voucherService.findById(txtVoucher.getText()).getPrezzo())
@@ -247,10 +254,8 @@ public class AcquistoController implements Initializable {
 
             }
 
-
         else
             isIdVoucherOK=false;
-
 
 
     }
@@ -302,7 +307,7 @@ public class AcquistoController implements Initializable {
         });
 
         btnRiscatta.setOnMouseMoved(c -> {
-            if (lblErroreRiscatto.isVisible()) {
+            if (lblErroreRiscatto.isVisible() || isRiscattoUsed) {
                 btnRiscatta.setDisable(true);
                 isIdVoucherOK = false;
             }
