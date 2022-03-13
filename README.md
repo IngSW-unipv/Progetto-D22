@@ -1,7 +1,7 @@
 # Progetto-D22
-![Java](https://img.shields.io/badge/Backend-java-red)
-![JavaFX](https://img.shields.io/badge/Frontend-javafx-blueviolet)
-![MySQL](https://img.shields.io/badge/Database-mysql-blue)
+![Java](https://img.shields.io/badge/Backend-java_17-red)
+![JavaFX](https://img.shields.io/badge/Frontend-javafx_17-blueviolet)
+![MySQL](https://img.shields.io/badge/Database-mysql_8-blue)
 
 Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
 
@@ -58,8 +58,6 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
 In caso si abbia un dispositivo con processore Apple Silicon è necessario utilizzare
 la versione `19-ea+3` di javafx.
 In particolare è necessario modificare in questo modo il file `pom.xml`:
-
-
 ```xml
 <dependencies>
      ...
@@ -76,3 +74,4 @@ In particolare è necessario modificare in questo modo il file `pom.xml`:
      ...
 </dependencies>
 ```
+e successivamente fare il load dei cambiamenti (Load Maven Changes).
