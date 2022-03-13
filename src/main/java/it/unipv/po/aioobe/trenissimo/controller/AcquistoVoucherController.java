@@ -16,62 +16,117 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
+
+/**
+ * Controller class per acquistoVoucher.fxml
+ *
+ * @author ArrayIndexOutOfBoundsException
+ * @version "%I%, %G%"
+ * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
+ * @see javafx.fxml.Initializable
+ */
 
 public class AcquistoVoucherController implements Initializable {
 
     @FXML
     private BorderPane root;
 
-    @FXML private Label lblVoucherId;
-    @FXML private TextArea txtMessaggio;
-    @FXML private Label lblPrice;
+    @FXML
+    private Label lblVoucherId;
+    @FXML
+    private TextArea txtMessaggio;
+    @FXML
+    private Label lblPrice;
 
-    @FXML private Button btnAcquisto;
-    @FXML private TextField txtNumCarta;
-    @FXML private TextField txtDataScadenza;
-    @FXML private TextField txtCVV;
+    @FXML
+    private Button btnAcquisto;
+    @FXML
+    private TextField txtNumCarta;
+    @FXML
+    private TextField txtDataScadenza;
+    @FXML
+    private TextField txtCVV;
 
-    @FXML private Label lblTotale;
+    @FXML
+    private Label lblTotale;
 
-    @FXML private TextField txtNome;
-    @FXML private TextField txtCognome;
-    @FXML private DatePicker dtpDataNascita;
-    @FXML private TextField txtEmail;
-    @FXML private TextField txtVia;
-    @FXML private TextField txtCivico;
-    @FXML private TextField txtCitta;
-    @FXML private TextField txtCAP;
+    @FXML
+    private TextField txtNome;
+    @FXML
+    private TextField txtCognome;
+    @FXML
+    private DatePicker dtpDataNascita;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtVia;
+    @FXML
+    private TextField txtCivico;
+    @FXML
+    private TextField txtCitta;
+    @FXML
+    private TextField txtCAP;
 
-    @FXML private Button btnAggiungiPagamento;
-    @FXML private Label lblErroreNumCarta;
-    @FXML private Label lblErroreData;
-    @FXML private Label lblErroreCVV;
+    @FXML
+    private Button btnAggiungiPagamento;
+    @FXML
+    private Label lblErroreNumCarta;
+    @FXML
+    private Label lblErroreData;
+    @FXML
+    private Label lblErroreCVV;
 
-    @FXML private Label lblErroreCAP;
-    @FXML private Label lblErroreEmail;
-    @FXML private Label lblErroreDataNascita;
-    @FXML private Label lblErroreNome;
-    @FXML private Label lblErroreCognome;
-    @FXML private Label lblErroreVia;
-    @FXML private Label lblErroreCivico;
-    @FXML private Label lblErroreCitta;
+    @FXML
+    private Label lblErroreCAP;
+    @FXML
+    private Label lblErroreEmail;
+    @FXML
+    private Label lblErroreDataNascita;
+    @FXML
+    private Label lblErroreNome;
+    @FXML
+    private Label lblErroreCognome;
+    @FXML
+    private Label lblErroreVia;
+    @FXML
+    private Label lblErroreCivico;
+    @FXML
+    private Label lblErroreCitta;
 
-    @FXML private Label lblCartaOK;
-    @FXML private Button btnConferma;
-    @FXML private Label lblDatiOK;
+    @FXML
+    private Label lblCartaOK;
+    @FXML
+    private Button btnConferma;
+    @FXML
+    private Label lblDatiOK;
 
-    @FXML private Label lblErroreMaxCaratteri;
+    @FXML
+    private Label lblErroreMaxCaratteri;
 
-    @FXML private VBox vboxDragMouse;
+    @FXML
+    private VBox vboxDragMouse;
 
     private TicketBuilder titoloViaggio;
     private VoucherEntity voucher;
+
+    /**
+     * Metodo d'Inizializzazione
+     *
+     * @param location
+     * @param resources
+     * @see #checkPagamentoRealTime()
+     * @see #checkDatiRealTime()
+     * @see Account
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,18 +140,17 @@ public class AcquistoVoucherController implements Initializable {
         });
 
         txtMessaggio.textProperty().addListener(c -> {
-            if(txtMessaggio.getText().length()>=100) {
+            if (txtMessaggio.getText().length() >= 100) {
                 txtMessaggio.setStyle("-fx-border-color: #d70000; -fx-border-radius: 8 8 8 8");
                 lblErroreMaxCaratteri.setVisible(true);
                 txtMessaggio.setDisable(true);
-            }
-            else{
+            } else {
                 txtMessaggio.setStyle("-fx-border-color: #cccccc; -fx-border-radius: 8 8 8 8");
                 lblErroreMaxCaratteri.setVisible(false);
             }
         });
 
-        if(Account.getLoggedIn()) {
+        if (Account.getLoggedIn()) {
             txtNome.setText(Account.getInstance().getDatiPersonali().getNome());
             txtCognome.setText(Account.getInstance().getDatiPersonali().getCognome());
             dtpDataNascita.setValue(Account.getInstance().getDatiPersonali().getDataNascita().toLocalDate());
@@ -108,33 +162,45 @@ public class AcquistoVoucherController implements Initializable {
         }
     }
 
-    public void setVoucher(ValoreVoucher importo) {
+    /**
+     * Genera un voucher dato un importo
+     *
+     * @param importo valore in euro (enum)
+     * @see VoucherEntity
+     */
+
+    public void setVoucher(@NotNull ValoreVoucher importo) {
 
         String[] valore = importo.toString().split("(?=€)");
 
         voucher = new VoucherEntity();
-        voucher.setPrezzo(Double.valueOf(valore[0]));
+        voucher.setPrezzo(Double.parseDouble(valore[0]));
         lblVoucherId.setText(voucher.getId());
         lblPrice.setText(importo.toString());
         lblTotale.setText("€ " + voucher.getPrezzo());
 
     }
 
+    /**
+     * Abilita le modifiche al text-field messaggio
+     */
     @FXML
     protected void onModificaTesto() {
         txtMessaggio.setDisable(false);
     }
 
+    /**
+     * @throws Exception
+     * @see #onAlert(String)
+     * @see #onScaricaBigliettoPDF()
+     * @see #onGoToHomepage()
+     * @see Acquisto
+     * @see Account
+     */
     @FXML
     protected void onPaga() throws Exception {
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Trenissimo");
-        alert.setHeaderText(null);
-        alert.setContentText("Acquisto avvenuto con successo!");
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png")));
-        alert.showAndWait();
+        onAlert("Acquisto avvenuto con successo!");
 
         List<Acquisto> carrello = new ArrayList<>();
         carrello.add(this.voucher);
@@ -147,44 +213,68 @@ public class AcquistoVoucherController implements Initializable {
         }
         onScaricaBigliettoPDF();
 
-        HomePage.openScene(root.getScene().getWindow());
+        onGoToHomepage();
 
     }
 
+    /**
+     * Apre il file chooser e permette di scaricare il voucher in formato PDF
+     *
+     * @throws Exception
+     * @see #fillPDF()
+     * @see File
+     * @see FileChooser
+     * @see TicketBuilder
+     */
     @FXML
     protected void onScaricaBigliettoPDF() throws Exception {
         fillPDF();
 
-        File biglietto = new File(TicketBuilder.DEST); //biglietto in folder temporanea
+        File voucher = new File(TicketBuilder.DEST);
 
         FileChooser fileChooser = new FileChooser();
 
-        fileChooser.setTitle("Scegli dove salvare il titolo di viaggio");
+        fileChooser.setTitle("Scegli dove salvare il voucher");
         fileChooser.setInitialFileName(lblVoucherId.getText());
 
         File destin = new File(fileChooser.showSaveDialog(new Stage()).getAbsolutePath().concat(".pdf"));
-        TicketBuilder.copy(biglietto, destin);
+        TicketBuilder.copy(voucher, destin);
 
-        Task<Void> task = new Task<Void>() {
+        Task<Void> task = new Task<>() {
+            /**
+             * Aspetta 4.0 secondi
+             * @return
+             * @throws InterruptedException necessaria per Thread.sleep()
+             */
             @Override
-            public Void call() throws InterruptedException {
+            public @Nullable Void call() throws InterruptedException {
                 Thread.sleep(4000);
                 return null;
             }
         };
         task.setOnSucceeded(e -> {
-            biglietto.delete();
+            voucher.delete();
         });
         new Thread(task).start();
 
     }
 
+
+    /**
+     * Compila i campi del voucher PDF
+     *
+     * @throws Exception
+     * @see TicketBuilder
+     */
     private void fillPDF() throws Exception {
 
         titoloViaggio = new TicketBuilder(lblVoucherId.getText(), lblPrice.getText(), txtMessaggio.getText());
         titoloViaggio.createVORegalo();
     }
 
+    /**
+     * Conferma i dati personali
+     */
     @FXML
     protected void onConfermaDati() {
         lblDatiOK.setVisible(true);
@@ -198,6 +288,11 @@ public class AcquistoVoucherController implements Initializable {
         txtEmail.setDisable(true);
     }
 
+    /**
+     * Gestisce il controllo e la scelta della carta di credito
+     *
+     * @see Utils
+     */
     @FXML
     protected void onAggiungiCarta() {
         if (Utils.checkNumCarta(txtNumCarta.getText()) && Utils.checkDataScadenza(txtDataScadenza.getText()) && Utils.checkCVV(txtCVV.getText())) {
@@ -208,34 +303,37 @@ public class AcquistoVoucherController implements Initializable {
         }
     }
 
+    /**
+     * Controlla la validità della carta di credito
+     *
+     * @see Utils
+     */
     private void checkPagamentoRealTime() {
 
         txtNumCarta.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkNumCarta(txtNumCarta.getText())) {
+            if (Utils.checkNumCarta(txtNumCarta.getText())) {
                 lblErroreNumCarta.setVisible(false);
                 btnAggiungiPagamento.setDisable(false);
                 txtNumCarta.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreNumCarta.setVisible(true);
                 txtNumCarta.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtCVV.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkCVV(txtCVV.getText())) {
+            if (Utils.checkCVV(txtCVV.getText())) {
                 lblErroreCVV.setVisible(false);
                 btnAggiungiPagamento.setDisable(false);
                 txtCVV.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCVV.setVisible(true);
                 txtCVV.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtDataScadenza.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(txtDataScadenza.getText().length()==7) {
+            if (txtDataScadenza.getText().length() == 7) {
                 if (Utils.checkDataScadenza(txtDataScadenza.getText())) {
                     lblErroreData.setVisible(false);
                     btnAggiungiPagamento.setDisable(false);
@@ -248,12 +346,18 @@ public class AcquistoVoucherController implements Initializable {
         });
 
         btnAggiungiPagamento.setOnMouseMoved(c -> {
-            if (lblErroreNumCarta.isVisible() || lblErroreCVV.isVisible() || lblErroreData.isVisible() || txtNumCarta.getText().length()==0 || txtCVV.getText().length()==0 || txtDataScadenza.getText().length()!=7)
+            if (lblErroreNumCarta.isVisible() || lblErroreCVV.isVisible() || lblErroreData.isVisible() || txtNumCarta.getText().length() == 0 || txtCVV.getText().length() == 0 || txtDataScadenza.getText().length() != 7)
                 btnAggiungiPagamento.setDisable(true);
         });
 
     }
 
+    /**
+     * Controlla la validità dei dati personali
+     *
+     * @see Account
+     * @see Utils
+     */
     private void checkDatiRealTime() {
 
         lblErroreCAP.setVisible(true);
@@ -268,24 +372,22 @@ public class AcquistoVoucherController implements Initializable {
         btnConferma.setDisable(true);
 
         txtCAP.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkCAP(txtCAP.getText())) {
+            if (Account.getInstance().checkCAP(txtCAP.getText())) {
                 lblErroreCAP.setVisible(false);
                 btnConferma.setDisable(false);
                 txtCAP.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCAP.setVisible(true);
                 txtCAP.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkEmail(txtEmail.getText())) {
+            if (Account.getInstance().checkEmail(txtEmail.getText())) {
                 lblErroreEmail.setVisible(false);
                 btnConferma.setDisable(false);
                 txtEmail.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreEmail.setVisible(true);
                 txtEmail.setStyle("-fx-border-color: #d70000");
 
@@ -293,73 +395,66 @@ public class AcquistoVoucherController implements Initializable {
         });
 
         dtpDataNascita.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (Account.getInstance().checkDataNascita(dtpDataNascita.getValue()))
-            {
+            if (Account.getInstance().checkDataNascita(dtpDataNascita.getValue())) {
                 lblErroreDataNascita.setVisible(false);
                 btnConferma.setDisable(false);
                 dtpDataNascita.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreDataNascita.setVisible(true);
                 dtpDataNascita.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtNome.getText())) {
+            if (Utils.checkDatiGenerico(txtNome.getText())) {
                 lblErroreNome.setVisible(false);
                 btnConferma.setDisable(false);
                 txtNome.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreNome.setVisible(true);
                 txtNome.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtCognome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtCognome.getText())) {
+            if (Utils.checkDatiGenerico(txtCognome.getText())) {
                 lblErroreCognome.setVisible(false);
                 btnConferma.setDisable(false);
                 txtCognome.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCognome.setVisible(true);
                 txtCognome.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtVia.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtVia.getText())) {
+            if (Utils.checkDatiGenerico(txtVia.getText())) {
                 lblErroreVia.setVisible(false);
                 btnConferma.setDisable(false);
                 txtVia.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreVia.setVisible(true);
                 txtVia.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtCivico.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtCivico.getText())) {
+            if (Utils.checkDatiGenerico(txtCivico.getText())) {
                 lblErroreCivico.setVisible(false);
                 btnConferma.setDisable(false);
                 txtCivico.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCivico.setVisible(true);
                 txtCivico.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtCitta.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtCitta.getText())) {
+            if (Utils.checkDatiGenerico(txtCitta.getText())) {
                 lblErroreCitta.setVisible(false);
                 btnConferma.setDisable(false);
                 txtCitta.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCitta.setVisible(true);
                 txtCitta.setStyle("-fx-border-color: #d70000");
             }
@@ -373,6 +468,29 @@ public class AcquistoVoucherController implements Initializable {
         });
     }
 
+    /**
+     * Mostra una finestra di dialogo contenente informazioni personalizzate
+     *
+     * @param messaggio
+     * @see Alert
+     * @see Stage
+     */
+    private void onAlert(String messaggio) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Trenissimo");
+        alert.setHeaderText(null);
+        alert.setContentText(messaggio);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(Objects.requireNonNull(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png"))));
+        alert.showAndWait();
+    }
+
+
+    /**
+     * Ritorna alla Home Page
+     *
+     * @see HomePage
+     */
     @FXML
     protected void onGoToHomepage() {
         HomePage.openScene(root.getScene().getWindow());
