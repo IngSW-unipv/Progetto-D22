@@ -279,12 +279,7 @@ public class HomePageController implements Initializable {
             return;
         }
 
-        if (dtpBigliettoPartenza.getValue() == null || tmpBigliettoAndata.getValue() == null || (tgsBigliettoAR.isSelected() &&
-                dtpBigliettoRitorno.getValue() == null) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null)
-                || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now()) && dtpBigliettoPartenza.getValue().isBefore(LocalDate.now()))
-                || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoPartenza.getValue().equals(LocalDate.now()))
-                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoRitorno.getValue().isBefore(LocalDate.now()))
-                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoRitorno.getValue().equals(LocalDate.now()))) {
+        if (dtpBigliettoPartenza.getValue() == null || tmpBigliettoAndata.getValue() == null || (tgsBigliettoAR.isSelected() && dtpBigliettoRitorno.getValue() == null) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null) || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now()) && dtpBigliettoPartenza.getValue().isBefore(LocalDate.now())) || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoPartenza.getValue().equals(LocalDate.now())) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoRitorno.getValue().isBefore(LocalDate.now())) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoRitorno.getValue().equals(LocalDate.now()))) {
             setAlert("Inserire data e/o orario di partenza e/o ritorno");
             return;
         }
@@ -343,8 +338,7 @@ public class HomePageController implements Initializable {
         if (cmbVoucherValore.getValue() == null) {
             setAlert("Impossibile effettuare il checkout. Scegliere il valore del voucher!");
             return;
-        } else
-            AcquistoVoucherView.openScene(boxContent.getScene().getWindow(), cmbVoucherValore.getValue());
+        } else AcquistoVoucherView.openScene(boxContent.getScene().getWindow(), cmbVoucherValore.getValue());
     }
 
     /**
@@ -415,8 +409,7 @@ public class HomePageController implements Initializable {
             if (v == null) {
                 setAlert("Impossibile richiedere un rimborso perché la data di partenza\nè incompatibile con le modalità di rimborso!");
                 return;
-            } else
-                voucherService.persist(v);
+            } else voucherService.persist(v);
 
             onScaricaBigliettoPDF(v);
             isIdBigliettoOK = false;
@@ -459,8 +452,7 @@ public class HomePageController implements Initializable {
             if ((lblErroreRimborso.isVisible() || lblErroreRimborsoEmpty.isVisible())) {
                 btnRichiestaRimborso.setDisable(true);
                 isIdBigliettoOK = false;
-            } else
-                isIdBigliettoOK = true;
+            } else isIdBigliettoOK = true;
 
         });
     }
