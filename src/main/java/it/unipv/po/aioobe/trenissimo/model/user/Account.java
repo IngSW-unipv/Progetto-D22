@@ -20,10 +20,12 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
-
+/**
+ * Classe singleton che modellizza un account.
+ * @author
+ */
 public class Account {
 
     private static Account instance;
@@ -33,14 +35,27 @@ public class Account {
 
     public static SimpleBooleanProperty loggedInProperty = new SimpleBooleanProperty(false);
 
+    /**
+     * Metodo utilizzato per conoscere lo stato del login.
+     * @return "true" se l'utente risulta loggato. <br>
+     * "false" altrimenti.
+     */
     public static boolean getLoggedIn() {
         return loggedInProperty.get();
     }
 
+    /**
+     * Metodo per settare lo stato del login
+     * @param loggedIn
+     */
     public static void setLoggedIn(boolean loggedIn) {
         loggedInProperty.set(loggedIn);
     }
 
+    /**
+     * Metodo per ottenere l'istanza di account.
+     * @return un'istanza di account.
+     */
     public static Account getInstance() {
         if (instance == null)
             instance = new Account();
@@ -69,14 +84,22 @@ public class Account {
         return this.account.getUsername();
     }
 
-    /*public String getPassword() {
-        return this.account.getPassword();
-    }*/
-
     public void setUsername(String username) {
         this.account.setUsername(username);
     }
 
+    /**
+     * Metodo che si occupa di prendere una "password" in chiaro come parametro (solitamente derivante da una TextField),
+     * la cripta e la aggiorna sul database.
+     * @param password
+     * @throws NoSuchPaddingException
+     * @throws UnsupportedEncodingException
+     * @throws IllegalBlockSizeException
+     * @throws NoSuchAlgorithmException
+     * @throws BadPaddingException
+     * @throws InvalidKeyException
+     * @see CryptographyUtils
+     */
     public void setPassword(String password) throws NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         this.account.setPassword(CryptographyUtils.encryptPassword(password));
         AccountService accountService = new AccountService();
@@ -87,6 +110,19 @@ public class Account {
         return this.account.getPuntiFedelta().toString();
     }
 
+    /**
+     * Metodo che si occupa di prendere tutti i parametri (Dati personali) che gli vengono forniti e li aggiorna nel database.
+     * @param nome
+     * @param cognome
+     * @param dataNascita
+     * @param mail
+     * @param via
+     * @param civico
+     * @param citta
+     * @param cap
+     * @return "true" se il salvataggio dei dati personali è andato a buon fine. <br>
+     * "false" altrimenti.
+     */
     public boolean salvaModificaDati(String nome, String cognome, LocalDate dataNascita, String mail, String via, String civico, String citta, String cap){
         try {
             DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
@@ -105,6 +141,12 @@ public class Account {
         }
     }
 
+    /**
+     * Metodo che si occupa di prendere un Viaggio come parametro, e salvarlo come viaggio preferito all'interno del database.
+     * @param viaggio
+     * @return "true" se l'aggiunta del viaggio preferito è andata a buon fine. <br>
+     * "false" altrimenti.
+     */
     public boolean addViaggioPreferito(Viaggio viaggio){
         try {
             ViaggiPreferitiEntity viaggioPreferito = new ViaggiPreferitiEntity();
@@ -118,6 +160,12 @@ public class Account {
         }
     }
 
+    /**
+     * Metodo che si occupa di prendere un ViaggioPreferitoEntity come parametro e di eliminarlo dal database.
+     * @param viaggio ViaggioPreferitoEntity.
+     * @return "true" se l'eliminazione del viaggio preferito è andata a buon fine. <br>
+     * "false" altrimenti.
+     */
     public boolean deleteViaggioPreferito(ViaggiPreferitiEntity viaggio){
         try {
             ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
@@ -129,6 +177,12 @@ public class Account {
 
     }
 
+    /**
+     * Metodo che si occupa di prendere un acquisto come parametro e salvarlo nel database.
+     * @param acquisto
+     * @return "true" se l'aggiunta dell'acquisto al database, è andata a buon fine. <br>
+     * "false" altrimenti.
+     */
     public boolean addAcquistoToStorico (Acquisto acquisto) {
         try {
             StoricoAcquistiEntity storicoAcquisti = new StoricoAcquistiEntity();
@@ -143,26 +197,61 @@ public class Account {
 
     }
 
+    /**
+     * Metodo per controllare che il CAP sia di 5 cifre e che siano soltanto numeri.
+     * @param CAP
+     * @return "true" se il CAP ha 5 cifre e se è composto da soltanto numeri. <br>
+     * "false" altrimenti.
+     */
     public boolean checkCAP(String CAP){
         return CAP.length() == 5 && CAP.matches("^[0-9]+$");
     }
 
+    /**
+     * Metodo per controllare che la mail inserita segua lo standard previsto.
+     * @param email
+     * @return "true" se la mail rispetta lo standard. <br>
+     * "false" altrimenti.
+     */
     public boolean checkEmail(String email){
 
         return email.matches("[A-z0-9\\.\\+_-]+@[A-z0-9\\._-]+\\.[A-z]{2,6}");
     }
 
+    /**
+     * Metodo utilizzato per verificare la validità della data di nascita.
+     * @param data
+     * @return "true" se la data passata come parametro, è precedente a quella attuale.
+     * "false" altrimenti.
+     */
     public boolean checkDataNascita(LocalDate data){
         return data.isBefore(LocalDate.now());
     }
 
-
-
+    /**
+     * Metodo utilizzato per verificare che la "password" inserita come parametro, corrisponda a quella presente nel database.
+     * @param user
+     * @param password
+     * @return "true" se la password dell'user, inserita come parametro, corrisponde a quella nel database. <br>
+     * "false" altrimenti.
+     * @throws NoSuchPaddingException
+     * @throws IllegalBlockSizeException
+     * @throws NoSuchAlgorithmException
+     * @throws BadPaddingException
+     * @throws InvalidKeyException
+     * @throws UnsupportedEncodingException
+     */
     public static boolean checkUserPassword(String user, String password) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
         var accountUser = new AccountService().findByUsername(user);
         return accountUser != null && CryptographyUtils.encryptPassword(password).equals(accountUser.getPassword());
     }
 
+    /**
+     * Metodo utilizzato per verificare se l'username inserito come parametro, esiste già nel database.
+     * @param username
+     * @return "true" se viene trovata una corrispondenza.
+     * "false" altrimenti.
+     */
     public boolean checkExistingUsername(String username){
          if(new AccountService().findByUsername(username) == null || username.length() == 0)
              return false;
@@ -171,6 +260,11 @@ public class Account {
 
     }
 
+    /**
+     * Metodo utilizzato per effettuare il login con l'username inserito come parametro.
+     * @param user
+     * @return Account
+     */
     public static Account login (String user) {
         Account account = Account.getInstance();
         account.setAccount(user);
@@ -179,11 +273,35 @@ public class Account {
         return account;
     }
 
+    /**
+     * Metodo utilizzato per effettuare il logout
+     */
     public void logout () {
         instance = null;
         setLoggedIn(false);
     }
 
+    /**
+     * Metodo utilizzato per fare la registrazione di un nuovo utente. Tutti i parametri che vengono passati al metodo, vengono salvati nel database.
+     * @param username
+     * @param password
+     * @param nome
+     * @param cognome
+     * @param dataDiNascita
+     * @param mail
+     * @param via
+     * @param civico
+     * @param citta
+     * @param cap
+     * @return "true" se la registrazione è andata a buon fine. <br>
+     * "false" altrimenti.
+     * @throws NoSuchPaddingException
+     * @throws IllegalBlockSizeException
+     * @throws NoSuchAlgorithmException
+     * @throws BadPaddingException
+     * @throws InvalidKeyException
+     * @throws UnsupportedEncodingException
+     */
     public static boolean signUp(String username, String password, String nome, String cognome, LocalDate dataDiNascita, String mail, String via, String civico, String citta, String cap) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
         try {
             AccountService accountService = new AccountService();
