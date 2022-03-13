@@ -46,7 +46,7 @@ public class ViaggioPreferitoControl extends VBox {
 
 
     private ViaggiPreferitiEntity viaggio;
-
+    public static Boolean fromViaggioControl = false;
 
     public ViaggioPreferitoControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("accountSettingsView/viaggioPreferitoControl.fxml"));
@@ -108,12 +108,13 @@ public class ViaggioPreferitoControl extends VBox {
 
     }
 
-    // TODO: 12/03/2022 sistemare posizionamento e dopo eliminazioni ricaricare viaggiPreferiti invece che AccountSettings
+    // TODO: 12/03/2022 sistemare posizionamento
     @FXML
     protected void onDeletePreferito(){
         Account.getInstance().deleteViaggioPreferito(viaggio);
         btnDeletePreferito.setDisable(true);
         lblDeleteOK.setVisible(true);
+        fromViaggioControl = true;
 
         Task<Void> task = new Task<Void>() {
             @Override

@@ -16,10 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -60,6 +57,8 @@ public class AccountSettingsController implements Initializable {
     @FXML private VBox layout;
     @FXML private VBox layoutStorico;
 
+    @FXML private TabPane tabPane;
+
     private ObservableList<ViaggiPreferitiEntity> viaggiPreferiti;
     private ObservableList<StoricoAcquistiEntity> acquisti;
 
@@ -77,6 +76,10 @@ public class AccountSettingsController implements Initializable {
 
     @FXML
     protected void onStart(){
+        if(ViaggioPreferitoControl.fromViaggioControl)
+            tabPane.getSelectionModel().select(1);
+        else
+            tabPane.getSelectionModel().select(0);
 
         //metodo per leggere i dati da db e caricarli nelle varie textfield
 
