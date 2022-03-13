@@ -52,9 +52,10 @@ public class VoucherEntity extends Acquisto {
     }
 
     @Override
-    public void pagare() {
+    public boolean pagare() {
         VoucherService voucherService = new VoucherService();
         voucherService.persist(this);
+        return true;
     }
 
     @Override

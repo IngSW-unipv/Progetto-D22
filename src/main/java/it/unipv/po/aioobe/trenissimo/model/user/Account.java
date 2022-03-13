@@ -20,6 +20,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 
@@ -86,38 +87,60 @@ public class Account {
         return this.account.getPuntiFedelta().toString();
     }
 
-    public void salvaModificaDati(String nome, String cognome, LocalDate dataNascita, String mail, String via, String civico, String citta, String cap){
-        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
-        datiPersonali.setNome(nome);
-        datiPersonali.setCognome(cognome);
-        datiPersonali.setDataNascita(Date.valueOf(dataNascita));
-        datiPersonali.setMail(mail);
-        datiPersonali.setVia(via);
-        datiPersonali.setCivico(civico);
-        datiPersonali.setCitta(citta);
-        datiPersonali.setCap(Integer.valueOf(cap));
-        datiPersonaliService.update(datiPersonali);
+    public boolean salvaModificaDati(String nome, String cognome, LocalDate dataNascita, String mail, String via, String civico, String citta, String cap){
+        try {
+            DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
+            datiPersonali.setNome(nome);
+            datiPersonali.setCognome(cognome);
+            datiPersonali.setDataNascita(Date.valueOf(dataNascita));
+            datiPersonali.setMail(mail);
+            datiPersonali.setVia(via);
+            datiPersonali.setCivico(civico);
+            datiPersonali.setCitta(citta);
+            datiPersonali.setCap(Integer.valueOf(cap));
+            datiPersonaliService.update(datiPersonali);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
-    public void addViaggioPreferito(Viaggio viaggio){
-        ViaggiPreferitiEntity viaggioPreferito = new ViaggiPreferitiEntity();
-        ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
-        viaggioPreferito = viaggioPreferito.toViaggiPreferitiEntity(viaggio);
-        viaggioPreferito.setUsername(account.getUsername());
-        viaggiPreferitiService.persist(viaggioPreferito);
+    public boolean addViaggioPreferito(Viaggio viaggio){
+        try {
+            ViaggiPreferitiEntity viaggioPreferito = new ViaggiPreferitiEntity();
+            ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
+            viaggioPreferito = viaggioPreferito.toViaggiPreferitiEntity(viaggio);
+            viaggioPreferito.setUsername(account.getUsername());
+            viaggiPreferitiService.persist(viaggioPreferito);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public void deleteViaggioPreferito(ViaggiPreferitiEntity viaggio){
-        ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
-        viaggiPreferitiService.deleteById(viaggio.getViaggioPreferitoId().toString());
+    public boolean deleteViaggioPreferito(ViaggiPreferitiEntity viaggio){
+        try {
+            ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
+            viaggiPreferitiService.deleteById(viaggio.getViaggioPreferitoId().toString());
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+
     }
 
-    public void addAcquistoToStorico (Acquisto acquisto) {
-        StoricoAcquistiEntity storicoAcquisti = new StoricoAcquistiEntity();
-        StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
-        storicoAcquisti = storicoAcquisti.toStoricoAcquistiEntity(acquisto);
-        storicoAcquisti.setUsername(account.getUsername());
-        storicoAcquistiService.persist(storicoAcquisti);
+    public boolean addAcquistoToStorico (Acquisto acquisto) {
+        try {
+            StoricoAcquistiEntity storicoAcquisti = new StoricoAcquistiEntity();
+            StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
+            storicoAcquisti = storicoAcquisti.toStoricoAcquistiEntity(acquisto);
+            storicoAcquisti.setUsername(account.getUsername());
+            storicoAcquistiService.persist(storicoAcquisti);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     public boolean checkCAP(String CAP){
@@ -161,24 +184,29 @@ public class Account {
         setLoggedIn(false);
     }
 
-    public static void signUp(String username, String password, String nome, String cognome, LocalDate dataDiNascita, String mail, String via, String civico, String citta, String cap) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
-        AccountService accountService = new AccountService();
-        DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
-        AccountEntity account = new AccountEntity();
-        DatiPersonaliEntity dati = new DatiPersonaliEntity();
-        account.setUsername(username);
-        account.setPassword(CryptographyUtils.encryptPassword(password));
-        account.setPuntiFedelta(0);
-        accountService.persist(account);
-        dati.setUsername(username);
-        dati.setNome(nome);
-        dati.setCognome(cognome);
-        dati.setDataNascita(Date.valueOf(dataDiNascita));
-        dati.setMail(mail);
-        dati.setVia(via);
-        dati.setCivico(civico);
-        dati.setCitta(citta);
-        dati.setCap(Integer.valueOf(cap));
-        datiPersonaliService.persist(dati);
+    public static boolean signUp(String username, String password, String nome, String cognome, LocalDate dataDiNascita, String mail, String via, String civico, String citta, String cap) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
+        try {
+            AccountService accountService = new AccountService();
+            DatiPersonaliService datiPersonaliService = new DatiPersonaliService();
+            AccountEntity account = new AccountEntity();
+            DatiPersonaliEntity dati = new DatiPersonaliEntity();
+            account.setUsername(username);
+            account.setPassword(CryptographyUtils.encryptPassword(password));
+            account.setPuntiFedelta(0);
+            accountService.persist(account);
+            dati.setUsername(username);
+            dati.setNome(nome);
+            dati.setCognome(cognome);
+            dati.setDataNascita(Date.valueOf(dataDiNascita));
+            dati.setMail(mail);
+            dati.setVia(via);
+            dati.setCivico(civico);
+            dati.setCitta(citta);
+            dati.setCap(Integer.valueOf(cap));
+            datiPersonaliService.persist(dati);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

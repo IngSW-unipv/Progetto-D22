@@ -7,6 +7,7 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.*;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.CSASearch;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
 
 import javax.crypto.BadPaddingException;
@@ -59,7 +60,7 @@ public class App {
 
         //accountService.findAll().forEach((x)-> System.out.println(x.toString()));
         //viaggiPreferitiService.findAll().forEach((x)-> System.out.println(x.toString()));
-
+/*
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         Ricerca search = new Ricerca(1707, 1386, LocalDateTime.parse("2022-03-23 12:00:00", formatter));
@@ -141,7 +142,9 @@ public class App {
 
         //System.out.println(voucherService.findById("VO1646864734159").toString());
 
-
+        CSASearch search = new CSASearch();
+        List<Viaggio> risultati = search.eseguiRicerca(367, 400);
+        System.out.println(risultati.size());
 
 
 

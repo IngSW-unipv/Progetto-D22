@@ -51,7 +51,7 @@ public class CorsaSingola extends Acquisto {
     }
 
     @Override
-    public void pagare() {
+    public boolean pagare() {
         StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
         StoricoAcquistiEntity storicoAcquistiEntity = new StoricoAcquistiEntity();
         TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
@@ -63,6 +63,7 @@ public class CorsaSingola extends Acquisto {
         else
             storicoAcquistiEntity.setUsername(null);
         storicoAcquistiService.persist(storicoAcquistiEntity);
+        return true;
     }
 
 }

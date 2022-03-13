@@ -62,6 +62,6 @@ public abstract class Acquisto {
     /**
      * Metodo astratto che verrà implementato dalle classi che estenderanno questa classe
      */
-    public abstract void pagare();
+    public abstract boolean pagare();
 
 }
