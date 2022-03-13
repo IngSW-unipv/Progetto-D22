@@ -1,21 +1,17 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
-import it.unipv.po.aioobe.trenissimo.model.persistence.util.exception.ConnectionDBException;
-import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedRoutesService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopTimesService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
-import javafx.application.Platform;
+import it.unipv.po.aioobe.trenissimo.model.persistence.util.exception.ConnectionDBException;
+import it.unipv.po.aioobe.trenissimo.view.HomePage;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -23,31 +19,52 @@ import org.hibernate.HibernateException;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Controller class per splashscreen.fxml
+ *
+ * @author ArrayIndexOutOfBoundsException
+ * @version %I%, %G%
+ * @see it.unipv.po.aioobe.trenissimo.view.splashScreen
+ * @see javafx.fxml.Initializable
+ */
 public class SplashscreenController implements Initializable{
 
     @FXML
     private BorderPane mainLayout;
 
     @FXML
-    private Label lblCounter;
-
-    @FXML
-    private ProgressBar pgbSplashScreen;
-
-    @FXML
     private Label lblStatus;
 
-    private Integer counter = 0;
-
+    /**
+     * Metodo d'Inizializzazione
+     *
+     * @param location
+     * @param resources
+     * @see HomePage
+     * @see Scene
+     * @see Stage
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         Task<Void> task = new Task<Void>() {
+            /**
+             *
+             * @return sempre null
+             * @throws InterruptedException necessario per TimeUnit
+             * @throws ConnectionDBException utilizzato per verificare la connessione ad database
+             * @see CachedRoutesService
+             * @see CachedStopsService
+             * @see CachedTripsService
+             * @see CachedStopTimesService
+             * @see TimeUnit
+             */
             @Override
-            public Void call() throws InterruptedException {
+            public Void call() throws InterruptedException, ConnectionDBException {
                 try {
                 updateMessage("Loading routes...");
                 CachedRoutesService.getInstance().findAll();
@@ -86,7 +103,7 @@ public class SplashscreenController implements Initializable{
             stage.setResizable(false);
             stage.setTitle("Trenissimo");
             stage.setScene(scene);
-            Image img = new Image(HomePage.class.getResourceAsStream("homePage/LogoIcona.png"));
+            Image img = new Image(Objects.requireNonNull(HomePage.class.getResourceAsStream("homePage/LogoIcona.png")));
             stage.getIcons().add(img);
             stage.show();
             ((Stage) mainLayout.getScene().getWindow()).close();
@@ -98,12 +115,6 @@ public class SplashscreenController implements Initializable{
 
         new Thread(task).start();
 
-    }
-
-    @FXML
-    protected void onCounterUp(){
-        counter += 1;
-        lblCounter.setText(counter.toString());
     }
 }
 
