@@ -11,8 +11,10 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
   3. Utilizzando MySQL Workbench, importare il file dump `./resources/trenissimo_db_dump.sql` (Server -> Data Import -> Import from Self-Contained File)
   4. Procedere con Start Import
   5. Modificare adeguatamente gli elementi `property` nel file `./src/hibernate.cfg.xml`
-  6. Con IntelliJ IDEA prima di eseguire l'entry point Trenissimo aggiungere le VM options
-     (Edit Configurations -> Trenissimo -> Modify options -> Add VM options):
+  6. Prima di eseguire l'entry point Trenissimo aggiungere le VM options:
+
+     (IntelliJ: Edit Configurations -> Trenissimo -> Modify options -> Add VM options)
+     (Eclipse: Run -> Run Configurations -> Arguments -> VM arguments)
 
      --add-exports
      javafx.graphics/com.sun.javafx.scene=com.jfoenix
@@ -35,3 +37,5 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
      javafx.controls/com.sun.javafx.scene.control.inputmap=org.controlsfx.controls
      --add-exports
      javafx.graphics/com.sun.javafx.scene.traversal=org.controlsfx.controls
+
+  8. In Eclipse sussiste un problema probabilmente relativo all'Encoding UTF-8 che visualizza "€" con "â‚¬"
