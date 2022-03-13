@@ -24,6 +24,13 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for accountSettings-view.fxml
+ * @author ArrayIndexOutOfBoundsException
+ * @version "%I%, %G%"
+ * @see it.unipv.po.aioobe.trenissimo.view.accountSettingsView
+ * @see javafx.fxml.Initializable 
+ */
 public class AccountSettingsController implements Initializable {
 
 
@@ -62,6 +69,17 @@ public class AccountSettingsController implements Initializable {
     private ObservableList<ViaggiPreferitiEntity> viaggiPreferiti;
     private ObservableList<StoricoAcquistiEntity> acquisti;
 
+
+    /**
+     * Initialize method
+     * @param url
+     * @param resourceBundle
+     * @see #onStart()
+     * @see #updateListStoricoAcquisti() 
+     * @see #updateListStoricoAcquisti()
+     * @see ViaggiPreferitiEntity
+     * @see StoricoAcquistiEntity
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         onStart();
@@ -74,6 +92,11 @@ public class AccountSettingsController implements Initializable {
 
     }
 
+    /**
+     * Read data from db and fill all text-fields
+     * @see ViaggioPreferitoControl
+     * @see Account
+     */
     @FXML
     protected void onStart(){
         if(ViaggioPreferitoControl.fromViaggioControl)
@@ -97,11 +120,20 @@ public class AccountSettingsController implements Initializable {
 
     }
 
+    /**
+     * Got to home page
+     * @see HomePage
+     */
     @FXML
     protected void onGoToHomepage(){
         HomePage.openScene(lblBenvenuto.getScene().getWindow());
     }
 
+    /**
+     * Enable supervised changes on text-fields
+     * @throws IOException
+     * @see #abilita(TextField)
+     */
     @FXML
     protected void onModifica() throws IOException {
 
@@ -233,24 +265,44 @@ public class AccountSettingsController implements Initializable {
 
     }
 
+    /**
+     * Enable password changes by opening modificaPassword-view
+     * @throws IOException
+     * @see #onAnnulla()
+     * @see ModificaPassword
+     * @see it.unipv.po.aioobe.trenissimo.view.modificaPassword
+     */
     @FXML
     protected void onModificaPassword() throws IOException {
         ModificaPassword.open(lblBenvenuto.getScene().getWindow());
 
         Task<Void> task = new Task<Void>() {
+
+            /**
+             * Wait 1.5 seconds
+             * @return
+             * @throws InterruptedException
+             * @see Thread
+             */
             @Override
             public Void call() throws InterruptedException {
                 Thread.sleep(1500);
                 return null;
             }
         };
+
         task.setOnSucceeded(e -> {
             onAnnulla();
         });
+
         new Thread(task).start();
     }
 
-
+    /**
+     * Disable text-fields and buttons
+     * @see #disabilita(TextField)
+     * @see #onStart() 
+     */
     @FXML
     protected void onAnnulla(){
 
@@ -274,6 +326,13 @@ public class AccountSettingsController implements Initializable {
 
         onStart();
     }
+
+    /**
+     * Save updated data given by dati personali text-fields
+     * @see #onStart()
+     * @see #onAnnulla()
+     * @see Account
+     */
     @FXML
     protected void onSalva(){
 
@@ -297,32 +356,63 @@ public class AccountSettingsController implements Initializable {
 
     }
 
+    /**
+     * Load viaggi preferiti section into view
+     * @see ViaggiPreferitiService
+     * @see ViaggiPreferitiEntity
+     */
     public void setViaggiPreferiti() {
         ViaggiPreferitiService viaggiPreferitiService = new ViaggiPreferitiService();
         this.viaggiPreferiti.addAll(viaggiPreferitiService.findByUsername(Account.getInstance().getUsername()));
 
     }
 
+    /**
+     * Update viaggi preferiti section into view
+     * @see ViaggioPreferitoControl
+     * @see ViaggiPreferitiEntity
+     */
     private void updateListViaggiPreferiti(){
         layout.getChildren().setAll(viaggiPreferiti.stream().map(ViaggioPreferitoControl::new).toList());
     }
 
+    /**
+     * Load storico acquisti section into view
+     * @see StoricoAcquistiService
+     * @see StoricoAcquistiEntity
+     */
     public void setStoricoAcquisti() {
         StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
         this.acquisti.addAll(storicoAcquistiService.findByUsername(Account.getInstance().getUsername()));
     }
 
+    /**
+     * Update storico acquisti section into view
+     * @see StoricoAcquistoControl
+     * @see StoricoAcquistiEntity
+     */
     private void updateListStoricoAcquisti(){
         layoutStorico.getChildren().setAll(acquisti.stream().map(StoricoAcquistoControl::new).toList());
     }
 
 
-    //metodi per abilitare e disabilitare le textfield
+    /**
+     * Enable single text-field
+     * @param a
+     * @see #onModifica()
+     * @see #onModificaPassword()
+     */
     private void abilita(TextField a){
         a.setMouseTransparent(false);
         a.setDisable(false);
         a.setFocusTraversable(false);
     }
+    /**
+     * disable single text-field
+     * @param a
+     * @see #onModifica()
+     * @see #onModificaPassword()
+     */
     private void disabilita(TextField a){
         a.setMouseTransparent(true);
         a.setDisable(true);
