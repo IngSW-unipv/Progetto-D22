@@ -11,3 +11,27 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
   3. Utilizzando MySQL Workbench, importare il file dump `./resources/trenissimo_db_dump.sql` (Server -> Data Import -> Import from Self-Contained File)
   4. Procedere con Start Import
   5. Modificare adeguatamente gli elementi `property` nel file `./src/hibernate.cfg.xml`
+  6. Con IntelliJ IDEA prima di eseguire l'entry point Trenissimo aggiungere le VM options
+     (Edit Configurations -> Trenissimo -> Modify options -> Add VM options):
+
+     --add-exports
+     javafx.graphics/com.sun.javafx.scene=com.jfoenix
+     --add-exports
+     javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix
+     --add-exports
+     javafx.controls/com.sun.javafx.scene.control=com.jfoenix
+     --add-exports
+     javafx.base/com.sun.javafx.binding=com.jfoenix
+     --add-exports
+     javafx.base/com.sun.javafx.event=com.jfoenix
+     --add-exports
+     javafx.graphics/com.sun.javafx.stage=com.jfoenix
+     --add-opens=java.base/java.lang.reflect=com.jfoenix
+     --add-exports
+     javafx.base/com.sun.javafx.runtime=org.controlsfx.controls
+     --add-exports
+     javafx.controls/com.sun.javafx.scene.control.behavior=org.controlsfx.controls
+     --add-exports
+     javafx.controls/com.sun.javafx.scene.control.inputmap=org.controlsfx.controls
+     --add-exports
+     javafx.graphics/com.sun.javafx.scene.traversal=org.controlsfx.controls

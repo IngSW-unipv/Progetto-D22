@@ -20,6 +20,8 @@ public class Splashscreen extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
+
         FXMLLoader fxmlLoader = new FXMLLoader(Splashscreen.class.getResource("splashScreen/splashscreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 640, 380);
         stage.setTitle("Trenissimo");
