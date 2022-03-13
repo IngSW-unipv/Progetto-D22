@@ -15,7 +15,7 @@
                 <Label fx:id="lblCompanyId" maxWidth="1.7976931348623157E308" prefWidth="713.0" text="Trenissimo" HBox.hgrow="ALWAYS" />
             <Button fx:id="btnAddPreferiti" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#onAddPreferiti" text="Aggiungi">
                <graphic>
-                  <FontIcon iconLiteral="fas-cart-plus" iconSize="24" />
+                  <FontIcon iconLiteral="far-heart" iconSize="24" />
                </graphic>
             </Button>
             </children>

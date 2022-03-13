@@ -115,6 +115,7 @@ public class ViaggioControl extends VBox {
     @FXML
     protected void onAddPreferiti() {
         Account.getInstance().addViaggioPreferito(viaggio);
+        btnAddPreferiti.setStyle("-fx-background-color: red");
         btnAddPreferiti.setDisable(true);
     }
 
