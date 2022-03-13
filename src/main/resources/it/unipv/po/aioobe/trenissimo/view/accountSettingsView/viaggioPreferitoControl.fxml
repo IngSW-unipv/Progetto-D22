@@ -92,9 +92,12 @@
             <Insets right="64.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="27.0" layoutY="27.0">
+      <HBox alignment="CENTER_RIGHT" layoutX="27.0" layoutY="27.0">
          <children>
-            <Label fx:id="lblDeleteOK" alignment="TOP_RIGHT" prefWidth="300.0" text="Eliminato con successo!" textFill="#21b200" visible="false" />
+            <Label fx:id="lblDeleteOK" alignment="TOP_RIGHT" prefWidth="300.0" text="Eliminato con successo!" textFill="#21b200" visible="false">
+               <padding>
+                  <Insets right="8.0" />
+               </padding></Label>
             <Button fx:id="btnDeletePreferito" mnemonicParsing="false" onAction="#onDeletePreferito" prefHeight="27.0" prefWidth="62.0" stylesheets="@../styles.css" text="Elimina" />
          </children></HBox>
    </children>
