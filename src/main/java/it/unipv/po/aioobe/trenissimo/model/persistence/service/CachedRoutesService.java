@@ -6,9 +6,16 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IRoutesServi
 
 import java.util.List;
 
+/**
+ * Versione Singleton della classe RoutesService
+ */
 public class CachedRoutesService implements IRoutesService, ICached {
     private static CachedRoutesService instance = null;
     private static RoutesService routesService;
+    /**
+     * Lista che conterrà tutti i risultati che verranno trovati da database
+     */
+    private List<RoutesEntity> cachedFindAll = null;
 
     private CachedRoutesService() {
         routesService = new RoutesService();
@@ -21,8 +28,6 @@ public class CachedRoutesService implements IRoutesService, ICached {
         return instance;
     }
 
-    private List<RoutesEntity> cachedFindAll = null;
-
     @Override
     public List<RoutesEntity> findAll() {
         if (cachedFindAll == null) {
@@ -30,7 +35,9 @@ public class CachedRoutesService implements IRoutesService, ICached {
         }
         return cachedFindAll;
     }
-
+    /**
+     * Metodo che pone a null la lista cachedFindAll
+     */
     @Override
     public void clearCache() {
         cachedFindAll = null;

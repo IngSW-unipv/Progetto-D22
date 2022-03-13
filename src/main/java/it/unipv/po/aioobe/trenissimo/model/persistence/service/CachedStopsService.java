@@ -5,10 +5,16 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.ICached;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStopsService;
 
 import java.util.List;
-
+/**
+ * Versione Singleton della classe StopsService
+ */
 public class CachedStopsService implements IStopsService, ICached {
     private static CachedStopsService instance = null;
     private static StopsService stopsService;
+    /**
+     * Lista che conterrà tutti i risultati che verranno trovati da database
+     */
+    private List<StopsEntity> cachedFindAll = null;
 
     private CachedStopsService() {
         stopsService = new StopsService();
@@ -21,8 +27,6 @@ public class CachedStopsService implements IStopsService, ICached {
         return instance;
     }
 
-    private List<StopsEntity> cachedFindAll = null;
-
     @Override
     public List<StopsEntity> findAll() {
         if (cachedFindAll == null) {
@@ -30,7 +34,9 @@ public class CachedStopsService implements IStopsService, ICached {
         }
         return cachedFindAll;
     }
-
+    /**
+     * Metodo che pone a null la lista cachedFindAll
+     */
     @Override
     public void clearCache() {
         cachedFindAll = null;

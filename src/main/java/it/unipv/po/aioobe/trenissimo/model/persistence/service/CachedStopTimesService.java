@@ -6,9 +6,16 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStopTimesSe
 
 import java.util.List;
 
+/**
+ * Versione Singleton della classe StopTimesService
+ */
 public class CachedStopTimesService implements IStopTimesService, ICached {
     private static CachedStopTimesService instance = null;
     private static StopTimesService stopTimesService;
+    /**
+     * Lista che conterrà tutti i risultati che verranno trovati da database
+     */
+    private List<StopTimesEntity> cachedFindAll = null;
 
     private CachedStopTimesService() {
         stopTimesService = new StopTimesService();
@@ -21,8 +28,6 @@ public class CachedStopTimesService implements IStopTimesService, ICached {
         return instance;
     }
 
-    private List<StopTimesEntity> cachedFindAll = null;
-
     @Override
     public List<StopTimesEntity> findAll() {
         if (cachedFindAll == null) {
@@ -30,7 +35,9 @@ public class CachedStopTimesService implements IStopTimesService, ICached {
         }
         return cachedFindAll;
     }
-
+    /**
+     * Metodo che pone a null la lista cachedFindAll
+     */
     @Override
     public void clearCache() {
         cachedFindAll = null;

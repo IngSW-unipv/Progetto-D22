@@ -9,7 +9,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">Rootroot00!</property>
+        <property name="connection.password">root</property>
 
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.AgencyEntity"/>
         <mapping class="it.unipv.po.aioobe.trenissimo.model.persistence.entity.CalendarEntity"/>

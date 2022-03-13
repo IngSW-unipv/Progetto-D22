@@ -2,6 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.CorsaSingola;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -9,6 +10,10 @@ import java.sql.Time;
 import java.util.Collection;
 import java.util.Objects;
 
+/**
+ * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ * @author ArrayIndexOutOfBoundsException
+ */
 @Entity
 @Table(name = "titolo_viaggio", schema = "trenissimo")
 public class TitoloViaggioEntity {
@@ -158,7 +163,12 @@ public class TitoloViaggioEntity {
         this.storicoAcquistisByTitoloViaggioId = storicoAcquistisByTitoloViaggioId;
     }
 
-    public TitoloViaggioEntity toTitoloViaggioEntity(CorsaSingola biglietto) {
+    /**
+     * Converte il biglietto passato per parametro in una TitoloViaggioEntity per permettere il salvataggio delle informazioni in database
+     * @param biglietto istanza della classe CorsaSingola
+     * @return
+     */
+    public TitoloViaggioEntity toTitoloViaggioEntity(@NotNull CorsaSingola biglietto) {
         TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
         titoloViaggioEntity.setTitoloViaggioId(biglietto.getId());
         titoloViaggioEntity.setStazionePartenza(biglietto.getViaggio().getStazionePartenza().getStopName());

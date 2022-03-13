@@ -4,8 +4,14 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.StopTimesEntity;
 
 import java.util.List;
 
+/**
+ * @author ArrayIndexOutOfBoundsException
+ */
 public interface IStopTimesDao {
-
+    /**
+     * Metodo da implementare per poter ottenere tutte le tuple sottoforma di classi di modello
+     * @return una lista di StopTimesEntity
+     */
     public List<StopTimesEntity> findAll();
 
 }

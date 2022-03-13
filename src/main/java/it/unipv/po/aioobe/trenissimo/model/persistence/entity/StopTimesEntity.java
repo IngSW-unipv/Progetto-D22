@@ -3,6 +3,10 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ * @author ArrayIndexOutOfBoundsException
+ */
 @Entity
 @Table(name = "stop_times", schema = "trenissimo")
 @IdClass(StopTimesEntityPK.class)

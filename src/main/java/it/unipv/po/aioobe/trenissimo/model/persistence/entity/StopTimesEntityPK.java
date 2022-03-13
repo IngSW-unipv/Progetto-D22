@@ -7,6 +7,10 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Classe generata automaticamente dal framework Hibernate che modellizza la chiave primaria composta della table StopTimes in database
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class StopTimesEntityPK implements Serializable {
     @Column(name = "trip_id", nullable = false)
     @Id

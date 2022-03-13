@@ -1,12 +1,17 @@
 package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
 import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ * @author ArrayIndexOutOfBoundsException
+ */
 @Entity
 @Table(name = "storico_acquisti", schema = "trenissimo")
 public class StoricoAcquistiEntity {
@@ -101,8 +106,12 @@ public class StoricoAcquistiEntity {
     public void setAccountByUsername(AccountEntity accountByUsername) {
         this.accountByUsername = accountByUsername;
     }
-
-    public StoricoAcquistiEntity toStoricoAcquistiEntity (Acquisto acquisto) {
+    /**
+     * Converte l'acquisto passato per parametro in una StoricoAcquistiEntity per permettere il salvataggio delle informazioni in database
+     * @param acquisto istanza della classe Acquisto
+     * @return una StoricoAcquistiEntity
+     */
+    public StoricoAcquistiEntity toStoricoAcquistiEntity (@NotNull Acquisto acquisto) {
         StoricoAcquistiEntity storicoAcquisti = new StoricoAcquistiEntity();
         storicoAcquisti.setTitoloViaggioId(acquisto.getId());
         storicoAcquisti.setPrezzo(acquisto.getPrezzo());

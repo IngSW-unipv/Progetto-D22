@@ -7,6 +7,11 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AgencyEntity;
 
 import java.util.List;
 
+/**
+ * Classe che, secondo il pattern Facade, implementa gli stessi metodi di AgencyDao con l'aggiunta della gestione delle sessioni del framework Hibernate.
+ * Classe progettata per nascondere al modello delle classi la complessità del sistema sottostante (Hibernate)
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class AgencyService implements IAgencyService {
 
     private static AgencyDao agencyDao;
@@ -14,13 +19,6 @@ public class AgencyService implements IAgencyService {
     public AgencyService() {
         agencyDao = new AgencyDao();
     }
-
-    /*public AgencyEntity findById(String id) {
-        agencyDao.openCurrentSession();
-        AgencyEntity agency = agencyDao.findById(id);
-        agencyDao.closeCurrentSession();
-        return agency;
-    }*/
 
     @Override
     public List<AgencyEntity> findAll() {

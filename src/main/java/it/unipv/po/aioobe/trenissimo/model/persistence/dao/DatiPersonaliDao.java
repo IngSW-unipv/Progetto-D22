@@ -5,8 +5,9 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.DatiPersonaliEntit
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.IDatiPersonaliDao;
 
 import java.util.List;
+
 /**
- * Classe che, mediante il pattern DAO, implementa le query a database sottoforma di metodi
+ * Classe che, secondo il pattern DAO, implementa le query a database sottoforma di metodi
  * @author ArrayIndexOutOfBoundsException
  */
 public class DatiPersonaliDao implements IDatiPersonaliDao {

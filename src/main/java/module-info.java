@@ -12,6 +12,7 @@ module it.unipv.po.aioobe.trenissimo {
     requires com.jfoenix;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fontawesome5;
+    requires org.jetbrains.annotations;
 
 
     opens it.unipv.po.aioobe.trenissimo.model.persistence.entity to org.hibernate.orm.core, javafx.fxml;
