@@ -6,8 +6,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.time.YearMonth;
 
-//TODO: non in UML
-
 /**
  * Classe contenente metodi di utilità generica.
  * @author ArrayIndexOutOfBoundsException
