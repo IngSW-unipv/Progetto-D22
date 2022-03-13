@@ -18,6 +18,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,7 +27,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
- * Controller class for accountSettings-view.fxml
+ * Controller class per accountSettings-view.fxml
  *
  * @author ArrayIndexOutOfBoundsException
  * @version "%I%, %G%"
@@ -98,7 +100,7 @@ public class AccountSettingsController implements Initializable {
 
 
     /**
-     * Initialize method
+     * Metodo d'Inizializzazione
      *
      * @param url
      * @param resourceBundle
@@ -121,17 +123,15 @@ public class AccountSettingsController implements Initializable {
     }
 
     /**
-     * Read data from db and fill all text-fields
+     * Prende dati dal database e riempie i text-fields della view
      *
      * @see ViaggioPreferitoControl
      * @see Account
      */
     @FXML
     protected void onStart() {
-        if (ViaggioPreferitoControl.fromViaggioControl)
-            tabPane.getSelectionModel().select(1);
-        else
-            tabPane.getSelectionModel().select(0);
+        if (ViaggioPreferitoControl.fromViaggioControl) tabPane.getSelectionModel().select(1);
+        else tabPane.getSelectionModel().select(0);
 
         //metodo per leggere i dati da db e caricarli nelle varie textfield
 
@@ -150,7 +150,7 @@ public class AccountSettingsController implements Initializable {
     }
 
     /**
-     * Got to home page
+     * Ritorna alla Home Page
      *
      * @see HomePage
      */
@@ -160,15 +160,14 @@ public class AccountSettingsController implements Initializable {
     }
 
     /**
-     * Enable supervised changes on text-fields
+     * Abilita la possibilità di modificare i dati con controlli sul formato
      *
      * @throws IOException
      * @see #abilita(TextField)
+     * @see Utils
      */
     @FXML
     protected void onModifica() throws IOException {
-
-        //metodo per il click del tasto modifica
 
         lblDatiPersonali.setText("Modifica i dati personali:");
 
@@ -279,16 +278,14 @@ public class AccountSettingsController implements Initializable {
         });
 
         btnSalva.setOnMouseMoved(c -> {
-            if (lblErroreCAP.isVisible() || lblErroreEmail.isVisible() || lblErroreDataNascita.isVisible()
-                    || lblErroreNome.isVisible() || lblErroreCognome.isVisible() || lblErroreVia.isVisible() ||
-                    lblErroreCivico.isVisible() || lblErroreCitta.isVisible())
+            if (lblErroreCAP.isVisible() || lblErroreEmail.isVisible() || lblErroreDataNascita.isVisible() || lblErroreNome.isVisible() || lblErroreCognome.isVisible() || lblErroreVia.isVisible() || lblErroreCivico.isVisible() || lblErroreCitta.isVisible())
                 btnSalva.setDisable(true);
         });
 
     }
 
     /**
-     * Enable password changes by opening modificaPassword-view
+     * Abilita la possibilità di modificare la password aprendo modificaPassword-view
      *
      * @throws IOException
      * @see #onAnnulla()
@@ -302,13 +299,13 @@ public class AccountSettingsController implements Initializable {
         Task<Void> task = new Task<Void>() {
 
             /**
-             * Wait 1.5 seconds
+             * Aspetta 1.5 secondi
              * @return
              * @throws InterruptedException
              * @see Thread
              */
             @Override
-            public Void call() throws InterruptedException {
+            public @Nullable Void call() throws InterruptedException {
                 Thread.sleep(1500);
                 return null;
             }
@@ -322,15 +319,13 @@ public class AccountSettingsController implements Initializable {
     }
 
     /**
-     * Disable text-fields and buttons
+     * Disabilita text-fields e buttons
      *
      * @see #disabilita(TextField)
      * @see #onStart()
      */
     @FXML
     protected void onAnnulla() {
-
-        //metodo per il tasto annulla, disabilita tutte le textField/button
 
         disabilita(txtNome);
         disabilita(txtCognome);
@@ -352,7 +347,7 @@ public class AccountSettingsController implements Initializable {
     }
 
     /**
-     * Save updated data given by dati personali text-fields
+     * Prende i dati dai text-field dei dati personali e li salva nel database
      *
      * @see #onStart()
      * @see #onAnnulla()
@@ -360,8 +355,6 @@ public class AccountSettingsController implements Initializable {
      */
     @FXML
     protected void onSalva() {
-
-        //metodo per il click del tasto salva
 
         String nome = txtNome.getText();
         String cognome = txtCognome.getText();
@@ -374,15 +367,14 @@ public class AccountSettingsController implements Initializable {
 
         Account.getInstance().salvaModificaDati(nome, cognome, dataNascita, mail, via, civico, citta, cap);
 
-        onStart(); //per ricaricare i dati all'interno delle textfield
+        onStart();
 
-        onAnnulla(); //per disabilitare tutti i bottoni/textField, necessito delle stesse cose che fa annulla
-        // annulla a differenza di questo, non salva i cambiamenti
+        onAnnulla();
 
     }
 
     /**
-     * Load viaggi preferiti section into view
+     * Carica dal database i viaggi preferiti
      *
      * @see ViaggiPreferitiService
      * @see ViaggiPreferitiEntity
@@ -394,7 +386,7 @@ public class AccountSettingsController implements Initializable {
     }
 
     /**
-     * Update viaggi preferiti section into view
+     * Aggiorna i viaggi preferiti all'interno della view
      *
      * @see ViaggioPreferitoControl
      * @see ViaggiPreferitiEntity
@@ -404,7 +396,7 @@ public class AccountSettingsController implements Initializable {
     }
 
     /**
-     * Load storico acquisti section into view
+     * Carica dal database gli storico acquisto
      *
      * @see StoricoAcquistiService
      * @see StoricoAcquistiEntity
@@ -415,7 +407,7 @@ public class AccountSettingsController implements Initializable {
     }
 
     /**
-     * Update storico acquisti section into view
+     * Aggiorna gli storico acquisto all'interno della view
      *
      * @see StoricoAcquistoControl
      * @see StoricoAcquistiEntity
@@ -426,26 +418,26 @@ public class AccountSettingsController implements Initializable {
 
 
     /**
-     * Enable single text-field
+     * Abilita singolo text-field
      *
      * @param a
      * @see #onModifica()
      * @see #onModificaPassword()
      */
-    private void abilita(TextField a) {
+    private void abilita(@NotNull TextField a) {
         a.setMouseTransparent(false);
         a.setDisable(false);
         a.setFocusTraversable(false);
     }
 
     /**
-     * disable single text-field
+     * Disabilita singolo text-field
      *
      * @param a
      * @see #onModifica()
      * @see #onModificaPassword()
      */
-    private void disabilita(TextField a) {
+    private void disabilita(@NotNull TextField a) {
         a.setMouseTransparent(true);
         a.setDisable(true);
         a.setFocusTraversable(true);
