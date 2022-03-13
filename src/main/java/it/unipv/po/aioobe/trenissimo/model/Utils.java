@@ -1,21 +1,10 @@
 package it.unipv.po.aioobe.trenissimo.model;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedStopsService;
-import it.unipv.po.aioobe.trenissimo.model.persistence.service.CachedTripsService;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.VoucherService;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection;
+import org.jetbrains.annotations.NotNull;
 
-import javax.swing.text.DateFormatter;
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 //TODO: non in UML
 public class Utils {
@@ -41,21 +30,6 @@ public class Utils {
         }
     }
 
-    public static void printViaggio(Viaggio v){
-        var result = v.getCambi();
-
-        System.out.println("Partenza: " + Utils.secondsToTime(v.getStazionePartenza().getStopId()) + " - Durata: " + Utils.secondsToTime(v.getDurata()));
-        System.out.println("Cambi: " + (result.stream().map(x -> x.getDepartureStationTrip()).distinct().count() - 1));
-        for (Connection x : result) {
-            var routeFrom = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() ==x.getDepartureStationTrip()).findFirst().get().getRouteId();
-            var routeTo = CachedTripsService.getInstance().findAll().stream().filter(y -> y.getTripId() == x.getArrivalStationTrip()).findFirst().get().getRouteId();
-            System.out.println(
-                    "[" + routeFrom + "] " + CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.getDepartureStation()).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.getDepartureTimestamp())
-                            + ") -> [" + routeTo + "] " +  CachedStopsService.getInstance().findAll().stream().filter(y -> y.getStopId() == x.getArrivalStation()).findAny().get().getStopName() + " (" + Utils.secondsToTime(x.getArrivalTimestamp()) + ")");
-        }
-        System.out.println("\n\n");
-    }
-
     public static double ceil(double value, int places) {
         double factor =  Math.pow(10, places);
         value = value * factor;
@@ -70,7 +44,7 @@ public class Utils {
         return (double) tmp / factor;
     }
 
-    public static boolean checkDatiGenerico(String dato){
+    public static boolean checkDatiGenerico(@NotNull String dato){
         return dato.length() > 0 ;
     }
 
@@ -79,22 +53,13 @@ public class Utils {
         VoucherEntity voucher =  voucherService.findById(idVoucher);
         return  voucher != null;
 
-
-        /*VoucherEntity voucher = voucherService.findAll().stream().filter(x -> x.getId().equals(idVoucher)).toList().get(0);
-        if(voucher!=null) {
-            return true;
-        }
-        else
-            return false;
-            */
-
     }
 
-    public static boolean checkCVV(String cvv){
+    public static boolean checkCVV(@NotNull String cvv){
         return cvv.length() == 3 && cvv.matches("^[0-9]+$");
     }
 
-    public static boolean checkNumCarta(String numero){
+    public static boolean checkNumCarta(@NotNull String numero){
         return numero.length() == 16 && numero.matches("^[0-9]+$");
     }
 
