@@ -13,10 +13,15 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
 
+/**
+ * Classe mediante la quale criptiamo una password passata come stringa
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class CryptographyUtils {
 
     /**
      * See <a href="https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"></a>
+     * Computa la stringa passata come parametro per renderla una chiave privata utilizzabile per la criptazione di tipo AES
      * @param myKey
      * @return
      * @throws NoSuchAlgorithmException
@@ -33,6 +38,7 @@ public class CryptographyUtils {
     }
     /**
      * code ref "https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"
+     * Cripta la password passata come parametro utilizzando una chiave segreta (calcolata mediante il metodo SecretKeySpec computeKey(final String myKey))
      * @param password
      * @return password criptata
      * @throws NoSuchPaddingException

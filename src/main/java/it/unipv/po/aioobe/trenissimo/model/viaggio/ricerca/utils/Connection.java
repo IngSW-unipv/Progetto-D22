@@ -1,6 +1,11 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils;
 
 //TODO: non in UML
+
+/**
+ * Classe che identifica una connessione tra 2 stazioni
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class Connection {
     private int departure_station, arrival_station;
     private int departure_timestamp, arrival_timestamp;

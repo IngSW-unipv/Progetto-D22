@@ -1,10 +1,15 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca;
 
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Classe che modellizza una ricerca completa di un viaggio
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class Ricerca implements IRicerca{
     private int stazionePartenza;
     private int stazioneArrivo;
@@ -25,6 +30,9 @@ public class Ricerca implements IRicerca{
         this.dataAndata = dataAttuale;
     }
 
+    /**
+     * Metodo che richiama l'algoritmo di ricerca CSA che esegue una ricerca andando a impostare i risultati nella lista risultatiAndata e/o risultatiRitorno
+     */
     @Override
     public void eseguiRicerca() {
         CSASearch andataSearch = new CSASearch();
@@ -128,8 +136,4 @@ public class Ricerca implements IRicerca{
 
     public void setRisultatiRitorno(List<Viaggio> risultatiRitorno) { this.risultatiRitorno = risultatiRitorno; }
 
-    @Override
-    public int compareTo(Viaggio viaggio) {
-        return 0;
-    }
 }
