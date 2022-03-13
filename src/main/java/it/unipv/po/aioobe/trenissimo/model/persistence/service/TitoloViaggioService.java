@@ -36,17 +36,10 @@ public class TitoloViaggioService implements ITitoloVIaggioService {
     }
 
     @Override
-    //public void persist(AccountEntity account) throws SQLException {
     public void persist(TitoloViaggioEntity titoloViaggio) {
-
-        //try {
         titoloViaggioDao.getConn().openCurrentSessionwithTransaction();
         titoloViaggioDao.persist(titoloViaggio);
         titoloViaggioDao.getConn().closeCurrentSessionwithTransaction();
-             /*catch (Exception e) {
-                System.out.println(e.getCause().getCause().getLocalizedMessage());
-            }*/
-
     }
 
 

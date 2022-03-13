@@ -8,6 +8,10 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * Classe mediante la quale definiamo una connessione al database con il framework Hibernate
+ * See <a href="https://docs.jboss.org/hibernate/orm/5.2/javadocs/"></a>
+ */
 public class HibernateConnection {
 
     private Session currentSession;
@@ -44,11 +48,6 @@ public class HibernateConnection {
         currentSession.close();
     }
 
-    /**
-     *
-     * @return
-     * @throws ConnectionDBException
-     */
     private static SessionFactory getSessionFactory() throws ConnectionDBException {
 
         SessionFactory sessionFactory = null;
