@@ -5,6 +5,12 @@
 
 Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
 
+# TRENISSIMO
+
+<p align="center">
+  <img width="300" style= alt="Trenissimo logo grande (1)" src="https://user-images.githubusercontent.com/69969487/158078673-7bf6c617-ea79-4c27-984a-bf3a2145dbba.png">
+</p>
+
 ## Setup iniziale database
   1. Installare MySQL Server e MySQL Workbench sulla propria macchina
   2. Accedere all'istanza database locale
@@ -41,6 +47,7 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
      javafx.graphics/com.sun.javafx.scene.traversal=org.controlsfx.controls
      ```
      
+
   2. Selezionare come "main class" la classe `it/unipv/po/aioobe/trenissimo/Trenissimo.java`
   3. Premere il tasto Run
   4. In Eclipse sussiste un problema probabilmente relativo all'Encoding UTF-8 che visualizza "€" con "â‚¬".
