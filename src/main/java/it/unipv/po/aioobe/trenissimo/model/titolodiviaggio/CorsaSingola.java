@@ -8,25 +8,32 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.service.TitoloViaggioServ
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration.*;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 
+/**
+ * Classe che modellizza un biglietto corsa singola
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class CorsaSingola extends Acquisto {
     private TipoTitoloViaggio tipo;
     private double prezzo;
     private String id;
     private Viaggio viaggio;
 
-    public CorsaSingola(TipoTitoloViaggio tipo, Viaggio viaggio) {
+    /**
+     * Costruttore utilizzato per creare un biglietto corsa singola
+     * @param tipo
+     * @param viaggio
+     */
+    public CorsaSingola(TipoTitoloViaggio tipo, @NotNull Viaggio viaggio) {
         super();
-        this.tipo = TipoTitoloViaggio.BIGLIETTOCORSASINGOLA;
         this.tipo = tipo;
         this.id = "CS" + System.nanoTime();
         this.viaggio = viaggio;
         this.prezzo = viaggio.getPrezzoTot();
     }
 
-    //getter
     public Viaggio getViaggio() {
         return viaggio;
     }
@@ -50,20 +57,32 @@ public class CorsaSingola extends Acquisto {
         this.prezzo = prezzo;
     }
 
+    /**
+     * Metodo che implementa il metodo astratto della superclasse, Viene richiamato quando si vuole fare </br>
+     * un pagamento di un biglietto corsa singola. Il metodo salva nel database il titolo di viaggio, e, se </br>
+     * si è loggati, verrà salvato anche nello storico acquisti.
+     * @return "true" se il pagamento è andato a buon fine. "false" altrimenti.
+     */
     @Override
     public boolean pagare() {
-        StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
-        StoricoAcquistiEntity storicoAcquistiEntity = new StoricoAcquistiEntity();
-        TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
-        TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
-        titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(this));
-        storicoAcquistiEntity = storicoAcquistiEntity.toStoricoAcquistiEntity(this);
-        if(Account.getLoggedIn())
-            storicoAcquistiEntity.setUsername(Account.getInstance().getUsername());
-        else
-            storicoAcquistiEntity.setUsername(null);
-        storicoAcquistiService.persist(storicoAcquistiEntity);
-        return true;
+        try{
+
+            StoricoAcquistiService storicoAcquistiService = new StoricoAcquistiService();
+            StoricoAcquistiEntity storicoAcquistiEntity = new StoricoAcquistiEntity();
+            TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
+            TitoloViaggioEntity titoloViaggioEntity = new TitoloViaggioEntity();
+            titoloViaggioService.persist(titoloViaggioEntity.toTitoloViaggioEntity(this));
+            storicoAcquistiEntity = storicoAcquistiEntity.toStoricoAcquistiEntity(this);
+            if(Account.getLoggedIn())
+                storicoAcquistiEntity.setUsername(Account.getInstance().getUsername());
+            else
+                storicoAcquistiEntity.setUsername(null);
+            storicoAcquistiService.persist(storicoAcquistiEntity);
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 
 }

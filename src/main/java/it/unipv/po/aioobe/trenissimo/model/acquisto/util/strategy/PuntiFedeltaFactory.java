@@ -8,7 +8,6 @@ import java.util.Properties;
  * Classe mediante la quale in base al property name passato da file di configurazione possiamo decidere quale strategy instanziare
  * @author ArrayIndexOutOfBoundsException
  */
-
 public class PuntiFedeltaFactory {
 
     IPuntiFedeltaStrategy puntiFedelta;
@@ -17,7 +16,6 @@ public class PuntiFedeltaFactory {
      * Nel file di configurazione, a questa stringa verrà assegnato il percorso della classe strategy da instanziare
      */
     private final String PROPERTYNAME="puntiFedelta.strategy.class.name";
-
     /**
      * @return istanza della strategy scelta mediante il PROPERTYNAME
      */

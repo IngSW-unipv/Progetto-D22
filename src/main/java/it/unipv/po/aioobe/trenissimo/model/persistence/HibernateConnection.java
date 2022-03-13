@@ -44,6 +44,11 @@ public class HibernateConnection {
         currentSession.close();
     }
 
+    /**
+     *
+     * @return
+     * @throws ConnectionDBException
+     */
     private static SessionFactory getSessionFactory() throws ConnectionDBException {
 
         SessionFactory sessionFactory = null;

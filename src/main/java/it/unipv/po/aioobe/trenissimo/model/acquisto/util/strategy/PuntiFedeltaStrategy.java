@@ -4,6 +4,7 @@ import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.AccountService;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Classe che implementa una strategia per l'assegnazione dei punti fedeltà
@@ -19,7 +20,7 @@ public class PuntiFedeltaStrategy implements IPuntiFedeltaStrategy{
      * @param acquisto
      */
     @Override
-    public void setPuntiFedelta(Acquisto acquisto) {
+    public void setPuntiFedelta(@NotNull Acquisto acquisto) {
         AccountService accountService = new AccountService();
         AccountEntity account = new AccountEntity();
         account = accountService.findByUsername(Account.getInstance().getUsername());

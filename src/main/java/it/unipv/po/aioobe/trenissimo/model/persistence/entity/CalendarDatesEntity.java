@@ -3,6 +3,10 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ * @author ArrayIndexOutOfBoundsException
+ */
 @Entity
 @Table(name = "calendar_dates", schema = "trenissimo")
 public class CalendarDatesEntity {

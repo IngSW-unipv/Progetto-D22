@@ -2,11 +2,16 @@ package it.unipv.po.aioobe.trenissimo.model.persistence.entity;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Objects;
 
+/**
+ * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ * @author ArrayIndexOutOfBoundsException
+ */
 @Entity
 @Table(name = "viaggi_preferiti", schema = "trenissimo")
 public class ViaggiPreferitiEntity {
@@ -145,8 +150,12 @@ public class ViaggiPreferitiEntity {
     public void setAccountByUsername(AccountEntity accountByUsername) {
         this.accountByUsername = accountByUsername;
     }
-
-    public ViaggiPreferitiEntity toViaggiPreferitiEntity(Viaggio v){
+    /**
+     * Converte l'acquisto passato per parametro in una ViaggiPreferitiEntity per permettere il salvataggio delle informazioni in database
+     * @param v istanza della classe Viaggio
+     * @return una ViaggiPreferitiEntity
+     */
+    public ViaggiPreferitiEntity toViaggiPreferitiEntity(@NotNull Viaggio v){
         ViaggiPreferitiEntity viaggiPreferitiEntity = new ViaggiPreferitiEntity();
         viaggiPreferitiEntity.setStazionePartenza(v.getStazionePartenza().getStopName());
         viaggiPreferitiEntity.setStazioneArrivo(v.getStazioneArrivo().getStopName());

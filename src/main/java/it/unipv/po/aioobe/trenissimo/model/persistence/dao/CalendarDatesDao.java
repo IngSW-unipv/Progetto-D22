@@ -7,7 +7,7 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.CalendarDatesEntit
 import java.util.List;
 
 /**
- * Classe che, mediante il pattern DAO, implementa le query a database sottoforma di metodi
+ * Classe che, secondo il pattern DAO, implementa le query a database sottoforma di metodi
  * @author ArrayIndexOutOfBoundsException
  */
 public class CalendarDatesDao implements ICalendarDatesDao {

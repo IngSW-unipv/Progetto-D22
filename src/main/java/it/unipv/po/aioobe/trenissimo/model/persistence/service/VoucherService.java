@@ -6,6 +6,11 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IVoucherServ
 
 import java.util.List;
 
+/**
+ * Classe che, secondo il pattern Facade, implementa gli stessi metodi di VoucherDao con l'aggiunta della gestione delle sessioni del framework Hibernate.
+ * Classe progettata per nascondere al modello delle classi la complessità del sistema sottostante (Hibernate)
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class VoucherService implements IVoucherService {
 
     private static VoucherDao voucherDao;
@@ -31,37 +36,26 @@ public class VoucherService implements IVoucherService {
     }
 
     @Override
-    //public void persist(AccountEntity account) throws SQLException {
     public void persist(VoucherEntity voucher) {
-
-        //try {
         voucherDao.getConn().openCurrentSessionwithTransaction();
         voucherDao.persist(voucher);
         voucherDao.getConn().closeCurrentSessionwithTransaction();
-             /*catch (Exception e) {
-                System.out.println(e.getCause().getCause().getLocalizedMessage());
-            }*/
-
     }
 
 
     @Override
     public void update(VoucherEntity voucher) {
-
         voucherDao.getConn().openCurrentSessionwithTransaction();
         voucherDao.update(voucher);
         voucherDao.getConn().closeCurrentSessionwithTransaction();
-
     }
 
     @Override
     public void deleteById(String id){
-
         voucherDao.getConn().openCurrentSessionwithTransaction();
         VoucherEntity voucher = voucherDao.findById(id);
         voucherDao.delete(voucher);
         voucherDao.getConn().closeCurrentSessionwithTransaction();
-
     }
 
 

@@ -4,9 +4,13 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.dao.AccountDao;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IAccountService;
 
-import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Classe che, secondo il pattern Facade, implementa gli stessi metodi di AccountDao con l'aggiunta della gestione delle sessioni del framework Hibernate.
+ * Classe progettata per nascondere al modello delle classi la complessità del sistema sottostante (Hibernate)
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class AccountService implements IAccountService {
 
     private static AccountDao accountDao;
@@ -32,41 +36,27 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    //public void persist(AccountEntity account) throws SQLException {
     public void persist(AccountEntity account) {
-
-            //try {
-                accountDao.getConn().openCurrentSessionwithTransaction();
-                accountDao.persist(account);
-                accountDao.getConn().closeCurrentSessionwithTransaction();
-             /*catch (Exception e) {
-                System.out.println(e.getCause().getCause().getLocalizedMessage());
-            }*/
+        accountDao.getConn().openCurrentSessionwithTransaction();
+        accountDao.persist(account);
+        accountDao.getConn().closeCurrentSessionwithTransaction();
 
     }
-
 
     @Override
     public void update(AccountEntity account) {
-
-            accountDao.getConn().openCurrentSessionwithTransaction();
-            accountDao.update(account);
-            accountDao.getConn().closeCurrentSessionwithTransaction();
-
+        accountDao.getConn().openCurrentSessionwithTransaction();
+        accountDao.update(account);
+        accountDao.getConn().closeCurrentSessionwithTransaction();
     }
 
     @Override
-    public void deleteByUsername(String user) throws SQLException{
-        try {
-            accountDao.getConn().openCurrentSessionwithTransaction();
-            AccountEntity account = accountDao.findByUsername(user);
-            accountDao.delete(account);
-            accountDao.getConn().closeCurrentSessionwithTransaction();
-        } catch (Exception e) {
-            System.out.println(e.getLocalizedMessage());
-        }
+    public void deleteByUsername(String user) {
+        accountDao.getConn().openCurrentSessionwithTransaction();
+        AccountEntity account = accountDao.findByUsername(user);
+        accountDao.delete(account);
+        accountDao.getConn().closeCurrentSessionwithTransaction();
     }
-
 
     public AccountDao getAccountDao() {
         return accountDao;

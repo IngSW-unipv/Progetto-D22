@@ -15,9 +15,8 @@ import java.util.Base64;
 
 public class CryptographyUtils {
 
-
     /**
-     * code ref "https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"
+     * code ref <a href="https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"/>
      * @param myKey
      * @return
      * @throws NoSuchAlgorithmException
@@ -32,7 +31,6 @@ public class CryptographyUtils {
         key = Arrays.copyOf(key, 16);
         return new SecretKeySpec(key, "AES");
     }
-
     /**
      * code ref "https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"
      * @param password

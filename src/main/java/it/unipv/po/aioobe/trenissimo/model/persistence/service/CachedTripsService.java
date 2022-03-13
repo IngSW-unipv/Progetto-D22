@@ -6,9 +6,16 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.ITripsServic
 
 import java.util.List;
 
+/**
+ * Versione Singleton della classe TripsService
+ */
 public class CachedTripsService implements ITripsService, ICached {
     private static CachedTripsService instance = null;
     private static TripsService tripsService;
+    /**
+     * Lista che conterrà tutti i risultati che verranno trovati da database
+     */
+    private List<TripsEntity> cachedFindAll = null;
 
     private CachedTripsService() {
         tripsService = new TripsService();
@@ -21,8 +28,6 @@ public class CachedTripsService implements ITripsService, ICached {
         return instance;
     }
 
-    private List<TripsEntity> cachedFindAll = null;
-
     @Override
     public List<TripsEntity> findAll() {
         if (cachedFindAll == null) {
@@ -30,7 +35,9 @@ public class CachedTripsService implements ITripsService, ICached {
         }
         return cachedFindAll;
     }
-
+    /**
+     * Metodo che pone a null la lista cachedFindAll
+     */
     @Override
     public void clearCache() {
         cachedFindAll = null;

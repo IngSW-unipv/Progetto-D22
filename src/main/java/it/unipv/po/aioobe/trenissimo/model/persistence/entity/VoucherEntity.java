@@ -4,9 +4,12 @@ import it.unipv.po.aioobe.trenissimo.model.acquisto.Acquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.VoucherService;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
+/**
+ * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ * @author ArrayIndexOutOfBoundsException
+ */
 @Entity
 @Table(name = "voucher", schema = "trenissimo")
 public class VoucherEntity extends Acquisto {
@@ -18,6 +21,9 @@ public class VoucherEntity extends Acquisto {
     @Column(name = "valore", nullable = false, precision = 0)
     private double valore;
 
+    /**
+     * Genera in maniera univoca l'id del voucher
+     */
     public VoucherEntity() {
         super();
         this.voucherId = "VO" + System.nanoTime();
@@ -51,11 +57,19 @@ public class VoucherEntity extends Acquisto {
         return Objects.hash(voucherId, valore);
     }
 
+    /**
+     * Implementa il metodo astratto ereditato dalla superclasse che effettua il pagamento e salva in database il voucher
+     * @return true se il pagamento è andato a buon fine, ritorna false altrimenti
+     */
     @Override
     public boolean pagare() {
-        VoucherService voucherService = new VoucherService();
-        voucherService.persist(this);
-        return true;
+        try {
+            VoucherService voucherService = new VoucherService();
+            voucherService.persist(this);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

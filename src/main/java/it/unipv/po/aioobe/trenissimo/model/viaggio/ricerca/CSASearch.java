@@ -21,10 +21,19 @@ import java.util.stream.Collectors;
 
 /**
  * See <a href="https://arxiv.org/pdf/1703.05997.pdf">Connection Scan Algorithm</a>
+ * @author ArrayIndexOutOfBoundsException
  */
 public class CSASearch {
     public static final int MAX_STATIONS = 100000;
 
+    /**
+     * See <a href="https://arxiv.org/pdf/1703.05997.pdf">Connection Scan Algorithm</a>
+     * @param routesList
+     * @param stopsList
+     * @param stopTimesList
+     * @param tripsList
+     * @return una lista di Connection di stazioni ordinate cronologicamente
+     */
     private List<Connection> generaTimetable(List<RoutesEntity> routesList, List<StopsEntity> stopsList, List<StopTimesEntity> stopTimesList, List<TripsEntity> tripsList) {
         List<Connection> timetable = new ArrayList<Connection>();
 

@@ -5,6 +5,10 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
+/**
+ * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ * @author ArrayIndexOutOfBoundsException
+ */
 @Entity
 @Table(name = "agency", schema = "trenissimo")
 public class
