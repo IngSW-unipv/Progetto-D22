@@ -163,7 +163,6 @@ public class CSASearch {
 
 
         // compute(...) tira fuori solo il primo viaggio possibile a partire dal departure_time, bisogna ciclare finche ritorna null
-        // TODO: da rivedere, magari fatto meglio? sto while true non mi piace
 
         List<Viaggio> viaggi = new ArrayList<Viaggio>();
 

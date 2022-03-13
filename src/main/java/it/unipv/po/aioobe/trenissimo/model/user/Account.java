@@ -16,6 +16,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -100,7 +101,7 @@ public class Account {
      * @throws InvalidKeyException
      * @see CryptographyUtils
      */
-    public void setPassword(String password) throws NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    public void setPassword(String password) throws NoSuchPaddingException, IOException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         this.account.setPassword(CryptographyUtils.encryptPassword(password));
         AccountService accountService = new AccountService();
         accountService.update(this.account);
@@ -241,7 +242,7 @@ public class Account {
      * @throws InvalidKeyException
      * @throws UnsupportedEncodingException
      */
-    public static boolean checkUserPassword(String user, String password) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, UnsupportedEncodingException {
+    public static boolean checkUserPassword(String user, String password) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException, IOException {
         var accountUser = new AccountService().findByUsername(user);
         return accountUser != null && CryptographyUtils.encryptPassword(password).equals(accountUser.getPassword());
     }

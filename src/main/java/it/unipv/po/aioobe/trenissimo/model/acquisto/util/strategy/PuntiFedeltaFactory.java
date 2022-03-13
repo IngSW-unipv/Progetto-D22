@@ -10,7 +10,7 @@ import java.util.Properties;
  */
 public class PuntiFedeltaFactory {
 
-    IPuntiFedeltaStrategy puntiFedelta;
+    private IPuntiFedeltaStrategy puntiFedelta;
     /**
      * Stringa mediante la quale possiamo andare a trovare il nome effettivo della strategy da voler implementare.
      * Nel file di configurazione, a questa stringa verrà assegnato il percorso della classe strategy da instanziare

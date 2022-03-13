@@ -108,6 +108,8 @@ public class ModificaPasswordController implements Initializable {
                 }
             } catch (NoSuchPaddingException | IllegalBlockSizeException | NoSuchAlgorithmException | BadPaddingException | InvalidKeyException | UnsupportedEncodingException e) {
                 e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
         txtNuovaPsw.textProperty().addListener((observable, oldValue, newValue) -> {

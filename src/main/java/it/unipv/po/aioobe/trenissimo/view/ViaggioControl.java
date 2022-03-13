@@ -110,8 +110,6 @@ public class ViaggioControl extends VBox {
         onSelected.call(null);
     }
 
-    // TODO: 12/03/2022 sistemare icona viaggi preferiti e posizionamento tutto a dx
-
     @FXML
     protected void onAddPreferiti() {
         Account.getInstance().addViaggioPreferito(viaggio);

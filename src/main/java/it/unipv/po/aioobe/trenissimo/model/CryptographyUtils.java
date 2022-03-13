@@ -5,6 +5,9 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
@@ -12,6 +15,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Properties;
 
 /**
  * Classe mediante la quale criptiamo una password passata come stringa
@@ -49,9 +53,11 @@ public class CryptographyUtils {
      * @throws BadPaddingException
      * @author ArrayIndexOutOfBoundsException
      */
-    public static String encryptPassword(String password) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        final String secret = "AIOOBE"; //TODO: da mettere in file properties
-        var secretKey = CryptographyUtils.computeKey(secret);
+    public static String encryptPassword(String password) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
+        final String CFGNAME = "secretKey";
+        Properties p = new Properties(System.getProperties());
+        p.load(new FileInputStream("src/main/resources/it/unipv/po/aioobe/trenissimo/properties/properties"));
+        var secretKey = CryptographyUtils.computeKey(p.getProperty(CFGNAME));
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         return Base64.getEncoder().encodeToString(cipher.doFinal(password.getBytes(StandardCharsets.UTF_8)));
