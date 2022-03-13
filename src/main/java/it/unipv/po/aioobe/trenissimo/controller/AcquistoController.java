@@ -25,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.net.URL;
@@ -335,10 +336,10 @@ public class AcquistoController implements Initializable {
                 /**
                  * Aspetta 2.0 secondi
                  * @return
-                 * @throws InterruptedException
+                 * @throws InterruptedException necessaria per Thread.sleep()
                  */
                 @Override
-                public Void call() throws InterruptedException {
+                public @Nullable Void call() throws InterruptedException {
                     Thread.sleep(2000);
                     return null;
                 }
@@ -371,7 +372,7 @@ public class AcquistoController implements Initializable {
     }
 
     /**
-     * Gestisce il controllo e la scelta della carta d credito
+     * Gestisce il controllo e la scelta della carta di credito
      *
      * @see Utils
      */
