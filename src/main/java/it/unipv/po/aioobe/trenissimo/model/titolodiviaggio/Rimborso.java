@@ -16,11 +16,11 @@ import java.time.LocalDate;
  */
 public class Rimborso {
 
-    public StoricoAcquistiEntity storicoAcquisti;
-    public TitoloViaggioEntity titoloViaggioEntity;
-    public LocalDate dataRichiesta;
-    public String id;
-    public IRimborsoStrategy rimborsoStrategy;
+    private StoricoAcquistiEntity storicoAcquisti;
+    private TitoloViaggioEntity titoloViaggioEntity;
+    private LocalDate dataRichiesta;
+    private String id;
+    private IRimborsoStrategy rimborsoStrategy;
 
     /**
      * Costruttore che istanzia un service per lo storico acquisti ed un service per il titolo di viaggio assegnando l'istanza
