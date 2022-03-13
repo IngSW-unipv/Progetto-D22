@@ -11,7 +11,8 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
   3. Utilizzando MySQL Workbench, importare il file dump `./resources/trenissimo_db_dump.sql` (Server -> Data Import -> Import from Self-Contained File)
   4. Procedere con Start Import
   5. Modificare adeguatamente gli elementi `property` nel file `./src/hibernate.cfg.xml`
-  6. Prima di eseguire l'entry point Trenissimo aggiungere le VM options:
+## Setup iniziale progetto
+  1. Prima di eseguire l'entrypoint Trenissimo aggiungere le VM options:
 
      (IntelliJ: Edit Configurations -> Trenissimo -> Modify options -> Add VM options)
      (Eclipse: Run -> Run Configurations -> Arguments -> VM arguments)
@@ -37,8 +38,10 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
      javafx.controls/com.sun.javafx.scene.control.inputmap=org.controlsfx.controls
      --add-exports
      javafx.graphics/com.sun.javafx.scene.traversal=org.controlsfx.controls
-
-  7. In Eclipse sussiste un problema probabilmente relativo all'Encoding UTF-8 che visualizza "€" con "â‚¬".
+     
+  2. Selezionare come "main class" la classe `it/unipv/po/aioobe/trenissimo/Trenissimo.java`
+  3. Premere il tasto Run
+  4. In Eclipse sussiste un problema probabilmente relativo all'Encoding UTF-8 che visualizza "€" con "â‚¬".
      Per risolvere la cosa:
        1) Go to Window->Preferences->General->Content Types
        2) Select "Text" at the top tree-list.
