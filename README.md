@@ -53,3 +53,26 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
   
      Recarsi nel file `src/main/java/it/unipv/po/aioobe/trenissimo/model/titolodiviaggio/enumeration/ValoreVoucher.java`
      e sostuire "â‚¬" con "€"
+
+### ATTENZIONE!
+In caso si abbia un dispositivo con processore Apple Silicon è necessario utilizzare
+la versione `19-ea+3` di javafx.
+In particolare è necessario modificare in questo modo il file `pom.xml`:
+
+
+```xml
+<dependencies>
+     ...
+     <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-controls</artifactId>
+          <version>19-ea+3</version>
+     </dependency>
+     <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-fxml</artifactId>
+          <version>19-ea+3</version>
+     </dependency>
+     ...
+</dependencies>
+```
