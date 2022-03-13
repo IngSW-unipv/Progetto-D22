@@ -31,22 +31,33 @@ import java.util.ResourceBundle;
  */
 public class ModificaPasswordController implements Initializable {
 
-    @FXML private Button btnAnnulla;
-    @FXML private Button btnSalva;
+    @FXML
+    private Button btnAnnulla;
+    @FXML
+    private Button btnSalva;
 
-    @FXML private TextField txtVecchiaPsw;
-    @FXML private TextField txtNuovaPsw;
-    @FXML private TextField txtConfermaPsw;
+    @FXML
+    private TextField txtVecchiaPsw;
+    @FXML
+    private TextField txtNuovaPsw;
+    @FXML
+    private TextField txtConfermaPsw;
 
 
-    @FXML private Label lblErroreCorrispondenza;
-    @FXML private Label lblErrorePasswordVecchia;
+    @FXML
+    private Label lblErroreCorrispondenza;
+    @FXML
+    private Label lblErrorePasswordVecchia;
 
-    @FXML private Label lblErroreVecchiaEmpty;
-    @FXML private Label lblErroreNuovaEmpty;
-    @FXML private Label lblErroreConfermaEmpty;
+    @FXML
+    private Label lblErroreVecchiaEmpty;
+    @FXML
+    private Label lblErroreNuovaEmpty;
+    @FXML
+    private Label lblErroreConfermaEmpty;
 
-    @FXML private Label lblSalvataggioOK;
+    @FXML
+    private Label lblSalvataggioOK;
 
     private boolean isPswCheckOk;
 
@@ -71,6 +82,7 @@ public class ModificaPasswordController implements Initializable {
 
     /**
      * Controllo sulla vecchia e nuova password
+     *
      * @throws IOException
      * @see Account
      * @see Utils
@@ -79,13 +91,12 @@ public class ModificaPasswordController implements Initializable {
     protected void onCheck() throws IOException {
 
         txtVecchiaPsw.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtVecchiaPsw.getText())) {
+            if (Utils.checkDatiGenerico(txtVecchiaPsw.getText())) {
                 lblErrorePasswordVecchia.setVisible(false);
                 lblErroreVecchiaEmpty.setVisible(false);
                 btnSalva.setDisable(false);
                 txtVecchiaPsw.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErrorePasswordVecchia.setVisible(false);
                 lblErroreVecchiaEmpty.setVisible(true);
                 txtVecchiaPsw.setStyle("-fx-border-color: #d70000");
@@ -100,39 +111,37 @@ public class ModificaPasswordController implements Initializable {
             }
         });
         txtNuovaPsw.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtNuovaPsw.getText())) {
+            if (Utils.checkDatiGenerico(txtNuovaPsw.getText())) {
                 lblErroreCorrispondenza.setVisible(false);
                 lblErroreNuovaEmpty.setVisible(false);
                 btnSalva.setDisable(false);
                 txtNuovaPsw.setStyle("-fx-border-color: #cccccc");
                 txtConfermaPsw.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCorrispondenza.setVisible(false);
                 lblErroreNuovaEmpty.setVisible(true);
                 txtNuovaPsw.setStyle("-fx-border-color: #d70000");
             }
 
-            if (!(txtNuovaPsw.getText().equals(txtConfermaPsw.getText()))){
+            if (!(txtNuovaPsw.getText().equals(txtConfermaPsw.getText()))) {
                 txtConfermaPsw.setStyle("-fx-border-color: #d70000");
                 lblErroreCorrispondenza.setVisible(true);
             }
 
         });
         txtConfermaPsw.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtConfermaPsw.getText())) {
+            if (Utils.checkDatiGenerico(txtConfermaPsw.getText())) {
                 lblErroreCorrispondenza.setVisible(false);
                 lblErroreConfermaEmpty.setVisible(false);
                 btnSalva.setDisable(false);
                 txtConfermaPsw.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCorrispondenza.setVisible(false);
                 lblErroreConfermaEmpty.setVisible(true);
                 txtConfermaPsw.setStyle("-fx-border-color: #d70000");
             }
 
-            if (!(txtNuovaPsw.getText().equals(txtConfermaPsw.getText()))){
+            if (!(txtNuovaPsw.getText().equals(txtConfermaPsw.getText()))) {
                 txtConfermaPsw.setStyle("-fx-border-color: #d70000");
                 lblErroreCorrispondenza.setVisible(true);
             }
@@ -140,16 +149,12 @@ public class ModificaPasswordController implements Initializable {
 
 
         btnSalva.setOnMouseMoved(c -> {
-        if ( lblErroreConfermaEmpty.isVisible() || lblErroreNuovaEmpty.isVisible() || lblErroreVecchiaEmpty.isVisible()
-            || lblErroreCorrispondenza.isVisible() || lblErrorePasswordVecchia.isVisible())
-        {
-            btnSalva.setDisable(true);
-            isPswCheckOk = false;
-        }
-        else
-            isPswCheckOk = true;
+            if (lblErroreConfermaEmpty.isVisible() || lblErroreNuovaEmpty.isVisible() || lblErroreVecchiaEmpty.isVisible() || lblErroreCorrispondenza.isVisible() || lblErrorePasswordVecchia.isVisible()) {
+                btnSalva.setDisable(true);
+                isPswCheckOk = false;
+            } else isPswCheckOk = true;
 
-    });
+        });
 
     }
 
@@ -178,12 +183,13 @@ public class ModificaPasswordController implements Initializable {
      * Annulla operazione di cambio password
      */
     @FXML
-    protected void onAnnulla(){
+    protected void onAnnulla() {
         ((Stage) btnAnnulla.getScene().getWindow()).close();
     }
 
     /**
      * Salva la nuova password
+     *
      * @throws IOException
      * @throws NoSuchPaddingException
      * @throws IllegalBlockSizeException
@@ -199,7 +205,7 @@ public class ModificaPasswordController implements Initializable {
     protected void onSalvaPassword() throws IOException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         onCheckEmpty();
 
-        if (isPswCheckOk){
+        if (isPswCheckOk) {
             lblSalvataggioOK.setVisible(true);
             Account.getInstance().setPassword(txtNuovaPsw.getText());
 
