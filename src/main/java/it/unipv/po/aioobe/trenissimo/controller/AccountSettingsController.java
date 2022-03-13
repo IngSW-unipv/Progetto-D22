@@ -133,8 +133,6 @@ public class AccountSettingsController implements Initializable {
         if (ViaggioPreferitoControl.fromViaggioControl) tabPane.getSelectionModel().select(1);
         else tabPane.getSelectionModel().select(0);
 
-        //metodo per leggere i dati da db e caricarli nelle varie textfield
-
         lblBenvenuto.setText("Ciao, " + Account.getInstance().getDatiPersonali().getNome());
         lblPunti.setText(Account.getInstance().getPuntiFedelta());
         lblDatiPersonali.setText("Dati Personali");
@@ -162,12 +160,11 @@ public class AccountSettingsController implements Initializable {
     /**
      * Abilita la possibilità di modificare i dati con controlli sul formato
      *
-     * @throws IOException
      * @see #abilita(TextField)
      * @see Utils
      */
     @FXML
-    protected void onModifica() throws IOException {
+    protected void onModifica(){
 
         lblDatiPersonali.setText("Modifica i dati personali:");
 
@@ -296,12 +293,12 @@ public class AccountSettingsController implements Initializable {
     protected void onModificaPassword() throws IOException {
         ModificaPassword.open(lblBenvenuto.getScene().getWindow());
 
-        Task<Void> task = new Task<Void>() {
+        Task<Void> task = new Task<>() {
 
             /**
              * Aspetta 1.5 secondi
-             * @return
-             * @throws InterruptedException
+             * @return null
+             * @throws InterruptedException necessaria per Thread.sleep()
              * @see Thread
              */
             @Override
@@ -311,9 +308,7 @@ public class AccountSettingsController implements Initializable {
             }
         };
 
-        task.setOnSucceeded(e -> {
-            onAnnulla();
-        });
+        task.setOnSucceeded(e -> onAnnulla());
 
         new Thread(task).start();
     }
@@ -420,7 +415,7 @@ public class AccountSettingsController implements Initializable {
     /**
      * Abilita singolo text-field
      *
-     * @param a
+     * @param a Text-field da abilitare
      * @see #onModifica()
      * @see #onModificaPassword()
      */
@@ -433,7 +428,7 @@ public class AccountSettingsController implements Initializable {
     /**
      * Disabilita singolo text-field
      *
-     * @param a
+     * @param a Text-field da disabilitare
      * @see #onModifica()
      * @see #onModificaPassword()
      */
