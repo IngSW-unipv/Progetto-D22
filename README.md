@@ -17,6 +17,7 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
      (IntelliJ: Edit Configurations -> Trenissimo -> Modify options -> Add VM options)
      (Eclipse: Run -> Run Configurations -> Arguments -> VM arguments)
 
+     ```
      --add-exports
      javafx.graphics/com.sun.javafx.scene=com.jfoenix
      --add-exports
@@ -38,6 +39,7 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
      javafx.controls/com.sun.javafx.scene.control.inputmap=org.controlsfx.controls
      --add-exports
      javafx.graphics/com.sun.javafx.scene.traversal=org.controlsfx.controls
+     ```
      
   2. Selezionare come "main class" la classe `it/unipv/po/aioobe/trenissimo/Trenissimo.java`
   3. Premere il tasto Run
