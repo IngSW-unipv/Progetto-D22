@@ -12,12 +12,12 @@ public class RimborsoStrategy implements IRimborsoStrategy {
     public final double RIMBORSO1GIORNO = (double)50/100;
 
     /**
-     * Override del metodo la cui signature è stata ereditata dall'interfaccia implementata. </br>
+     * Override del metodo la cui signature è stata ereditata dall'interfaccia implementata. <br>
      * Metodo che calcola il prezzo totale da assegnare al voucher che creerà.
-     * Il calcolo del prezzo avviene secondo la seguente strategia: </br>
-     * Se la richiesta è effettuata almeno 3 giorni prima della data di partenza del viaggio, si ha un rimborso del 75%; </br>
-     * Se la richiesta è effettuata il giorno prima della data di partenza del viaggio, si ha un rimborso del 50%; </br>
-     * Se la richiesta è effettuata il giorno stesso della data di partenza del viaggio, non si può avere rimborso </br>
+     * Il calcolo del prezzo avviene secondo la seguente strategia: <br>
+     * Se la richiesta è effettuata almeno 3 giorni prima della data di partenza del viaggio, si ha un rimborso del 75%; <br>
+     * Se la richiesta è effettuata il giorno prima della data di partenza del viaggio, si ha un rimborso del 50%; <br>
+     * Se la richiesta è effettuata il giorno stesso della data di partenza del viaggio, non si può avere rimborso. <br>
      * @return VoucherEntity
      */
     @Override

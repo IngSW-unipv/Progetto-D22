@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 
 /**
- * Classe che modellizza un biglietto corsa singola
+ * Classe che modellizza un biglietto corsa singola.
  * @author ArrayIndexOutOfBoundsException
  */
 public class CorsaSingola extends Acquisto {
@@ -22,7 +22,7 @@ public class CorsaSingola extends Acquisto {
     private Viaggio viaggio;
 
     /**
-     * Costruttore utilizzato per creare un biglietto corsa singola
+     * Costruttore utilizzato per creare un biglietto corsa singola.
      * @param tipo
      * @param viaggio
      */
@@ -58,9 +58,9 @@ public class CorsaSingola extends Acquisto {
     }
 
     /**
-     * Metodo che implementa il metodo astratto della superclasse, Viene richiamato quando si vuole fare </br>
-     * un pagamento di un biglietto corsa singola. Il metodo salva nel database il titolo di viaggio, e, se </br>
-     * si è loggati, verrà salvato anche nello storico acquisti.
+     * Metodo che implementa il metodo astratto della superclasse, Viene richiamato quando si vuole fare un pagamento
+     * di un biglietto corsa singola. <br>
+     * Il metodo salva nel database il titolo di viaggio, e, se si è loggati, verrà salvato anche nello storico acquisti.
      * @return "true" se il pagamento è andato a buon fine. "false" altrimenti.
      */
     @Override

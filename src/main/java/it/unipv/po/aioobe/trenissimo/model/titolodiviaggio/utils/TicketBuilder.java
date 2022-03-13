@@ -33,26 +33,26 @@ public class TicketBuilder {
     private String animali;
 
     /**
-     * DEST serve per ottenere il percorso delle cartelle di sistema che contengono file temporanei </br>
+     * DEST serve per ottenere il percorso delle cartelle di sistema che contengono file temporanei.
      */
     public static final String DEST = System.getProperty("java.io.tmpdir").concat("NuovoBiglietto.pdf");
     /**
-     * SRC contiene il percorso del template per il biglietto corsa singola
+     * SRC contiene il percorso del template per il biglietto corsa singola.
      */
     public static final String SRC = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateTicketIcon.pdf";
     /**
-     * SRCVO contiene il percorso del template per il voucher (generato dopo un rimborso)
+     * SRCVO contiene il percorso del template per il voucher (generato dopo un rimborso).
      */
     public static final String SRCVO = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateVoucher.pdf";
     /**
-     * SRCVOR contiene il percorso del template per il voucher regalo (o gift card) acquistabile dalla sezione apposita
+     * SRCVOR contiene il percorso del template per il voucher regalo (o gift card) acquistabile dalla sezione apposita.
      */
     public static final String SRCVOR = "src/main/resources/it/unipv/po/aioobe/trenissimo/assets/TemplateGiftCard.pdf";
 
 
     /**
-     * Metodo generale che, ricevuto un id di un biglietto, ne analizza i primi 2 caratteri per restituire la funzione </br>
-     * di creazione del pdf
+     * Metodo generale che, ricevuto un id di un biglietto, ne analizza i primi 2 caratteri per restituire la funzione
+     * di creazione del pdf.
      * @param id
      * @throws Exception
      */
@@ -64,7 +64,7 @@ public class TicketBuilder {
     }
 
     /**
-     * Metodo che crea (e compila) il pdf del biglietto corsa singola
+     * Metodo che crea (e compila) il pdf del biglietto corsa singola.
      * @throws Exception
      */
     public void createCS() throws Exception {
@@ -95,7 +95,7 @@ public class TicketBuilder {
     }
 
     /**
-     * Metodo che crea (e compila) il pdf del voucher
+     * Metodo che crea (e compila) il pdf del voucher.
      * @throws Exception
      */
     public void createVO() throws Exception {
@@ -112,7 +112,7 @@ public class TicketBuilder {
     }
 
     /**
-     * Metodo che crea (e compila) il pdf della gift card
+     * Metodo che crea (e compila) il pdf della gift card.
      * @throws Exception
      */
     public void createVORegalo() throws Exception {
@@ -130,7 +130,7 @@ public class TicketBuilder {
     }
 
     /**
-     * Costruttore richiamato nel caso in cui si voglia generare un biglietto corsa singola
+     * Costruttore richiamato nel caso in cui si voglia generare un biglietto corsa singola.
      * @param sPart
      * @param sDest
      * @param dataPart
@@ -168,7 +168,7 @@ public class TicketBuilder {
     }
 
     /**
-     * Costruttore richiamato nel caso in cui si voglia generare un voucher
+     * Costruttore richiamato nel caso in cui si voglia generare un voucher.
      * @param id
      * @param importo
      */
@@ -178,7 +178,7 @@ public class TicketBuilder {
     }
 
     /**
-     * Costruttore richiamato nel caso in cui si voglia generare un voucher regalo (o Gift Card)
+     * Costruttore richiamato nel caso in cui si voglia generare un voucher regalo (o Gift Card).
      * @param id
      * @param importo
      * @param messaggio

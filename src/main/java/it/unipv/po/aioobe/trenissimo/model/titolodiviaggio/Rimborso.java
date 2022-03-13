@@ -11,7 +11,7 @@ import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.strategy.Rimbor
 import java.time.LocalDate;
 
 /**
- * Classe che modellizza un rimborso
+ * Classe che modellizza un rimborso.
  * @author ArrayIndexOutOfBoundsException
  */
 public class Rimborso {
@@ -23,9 +23,10 @@ public class Rimborso {
     public IRimborsoStrategy rimborsoStrategy;
 
     /**
-     * Costruttore che istanzia un service per lo storico acquisti ed un service per il titolo di viaggio assegnando l'istanza </br>
-     * agli attributi privati titoloViaggioEntity e storicoAcquisti. Inoltre assegna l'id del biglietto che è passato come parametro </br>
-     * all'attributo privato relativo, ed assegna alla data di richiesta, la data attuale al momento della chiamata del costruttore
+     * Costruttore che istanzia un service per lo storico acquisti ed un service per il titolo di viaggio assegnando l'istanza
+     * agli attributi privati titoloViaggioEntity e storicoAcquisti. <br>
+     * Inoltre assegna l'id del biglietto che è passato come parametro all'attributo privato relativo, ed assegna alla
+     * data di richiesta, la data attuale al momento della chiamata del costruttore.
      * @param id del biglietto
      */
     public Rimborso(String id) {
@@ -57,7 +58,7 @@ public class Rimborso {
     }
 
     /**
-     * Metodo che richiama il metodo getPrezzoTot della RimborsoStrategy
+     * Metodo che richiama il metodo getPrezzoTot della RimborsoStrategy.
      * @return "VoucherEntity" se RimborsoStrategy ritorna un voucher. "null" altrimenti.
      */
     public VoucherEntity getRimborso() {
@@ -71,9 +72,9 @@ public class Rimborso {
     }
 
     /**
-     * Metodo che, dato un ID del biglietto, controlla se esiste nel database
+     * Metodo che, dato un ID del biglietto, controlla se esiste nel database.
      * @param idBiglietto
-     * @return "true" se il biglietto esiste nel database. "false" altrimenti
+     * @return "true" se il biglietto esiste nel database. "false" altrimenti.
      */
     public static boolean checkIdBiglietto(String idBiglietto) {
         TitoloViaggioService titoloViaggioService = new TitoloViaggioService();
