@@ -26,45 +26,72 @@ import java.util.ResourceBundle;
 
 /**
  * Controller class for accountSettings-view.fxml
+ *
  * @author ArrayIndexOutOfBoundsException
  * @version "%I%, %G%"
  * @see it.unipv.po.aioobe.trenissimo.view.accountSettingsView
- * @see javafx.fxml.Initializable 
+ * @see javafx.fxml.Initializable
  */
 public class AccountSettingsController implements Initializable {
 
 
-    @FXML private Button btnModifica;
-    @FXML private Button btnAnnulla;
-    @FXML private Button btnSalva;
-    @FXML private Button btnModificaPassword;
+    @FXML
+    private Button btnModifica;
+    @FXML
+    private Button btnAnnulla;
+    @FXML
+    private Button btnSalva;
+    @FXML
+    private Button btnModificaPassword;
 
-    @FXML private Label lblBenvenuto;
-    @FXML private Label lblPunti;
-    @FXML private Label lblDatiPersonali;
-    @FXML private TextField txtNome;
-    @FXML private TextField txtCognome;
-    @FXML private DatePicker dtpDataNascita;
-    @FXML private TextField txtEmail;
-    @FXML private TextField txtVia;
-    @FXML private TextField txtCivico;
-    @FXML private TextField txtCitta;
-    @FXML private TextField txtCAP;
+    @FXML
+    private Label lblBenvenuto;
+    @FXML
+    private Label lblPunti;
+    @FXML
+    private Label lblDatiPersonali;
+    @FXML
+    private TextField txtNome;
+    @FXML
+    private TextField txtCognome;
+    @FXML
+    private DatePicker dtpDataNascita;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtVia;
+    @FXML
+    private TextField txtCivico;
+    @FXML
+    private TextField txtCitta;
+    @FXML
+    private TextField txtCAP;
 
-    @FXML private Label lblErroreCAP;
-    @FXML private Label lblErroreEmail;
-    @FXML private Label lblErroreDataNascita;
+    @FXML
+    private Label lblErroreCAP;
+    @FXML
+    private Label lblErroreEmail;
+    @FXML
+    private Label lblErroreDataNascita;
 
-    @FXML private Label lblErroreNome;
-    @FXML private Label lblErroreCognome;
-    @FXML private Label lblErroreVia;
-    @FXML private Label lblErroreCivico;
-    @FXML private Label lblErroreCitta;
+    @FXML
+    private Label lblErroreNome;
+    @FXML
+    private Label lblErroreCognome;
+    @FXML
+    private Label lblErroreVia;
+    @FXML
+    private Label lblErroreCivico;
+    @FXML
+    private Label lblErroreCitta;
 
-    @FXML private VBox layout;
-    @FXML private VBox layoutStorico;
+    @FXML
+    private VBox layout;
+    @FXML
+    private VBox layoutStorico;
 
-    @FXML private TabPane tabPane;
+    @FXML
+    private TabPane tabPane;
 
     private ObservableList<ViaggiPreferitiEntity> viaggiPreferiti;
     private ObservableList<StoricoAcquistiEntity> acquisti;
@@ -72,10 +99,11 @@ public class AccountSettingsController implements Initializable {
 
     /**
      * Initialize method
+     *
      * @param url
      * @param resourceBundle
      * @see #onStart()
-     * @see #updateListStoricoAcquisti() 
+     * @see #updateListStoricoAcquisti()
      * @see #updateListStoricoAcquisti()
      * @see ViaggiPreferitiEntity
      * @see StoricoAcquistiEntity
@@ -94,19 +122,20 @@ public class AccountSettingsController implements Initializable {
 
     /**
      * Read data from db and fill all text-fields
+     *
      * @see ViaggioPreferitoControl
      * @see Account
      */
     @FXML
-    protected void onStart(){
-        if(ViaggioPreferitoControl.fromViaggioControl)
+    protected void onStart() {
+        if (ViaggioPreferitoControl.fromViaggioControl)
             tabPane.getSelectionModel().select(1);
         else
             tabPane.getSelectionModel().select(0);
 
         //metodo per leggere i dati da db e caricarli nelle varie textfield
 
-        lblBenvenuto.setText("Ciao, "+ Account.getInstance().getDatiPersonali().getNome());
+        lblBenvenuto.setText("Ciao, " + Account.getInstance().getDatiPersonali().getNome());
         lblPunti.setText(Account.getInstance().getPuntiFedelta());
         lblDatiPersonali.setText("Dati Personali");
         txtNome.setText(Account.getInstance().getDatiPersonali().getNome());
@@ -122,15 +151,17 @@ public class AccountSettingsController implements Initializable {
 
     /**
      * Got to home page
+     *
      * @see HomePage
      */
     @FXML
-    protected void onGoToHomepage(){
+    protected void onGoToHomepage() {
         HomePage.openScene(lblBenvenuto.getScene().getWindow());
     }
 
     /**
      * Enable supervised changes on text-fields
+     *
      * @throws IOException
      * @see #abilita(TextField)
      */
@@ -159,24 +190,22 @@ public class AccountSettingsController implements Initializable {
         btnModificaPassword.setDisable(false);
 
         txtCAP.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkCAP(txtCAP.getText())) {
+            if (Account.getInstance().checkCAP(txtCAP.getText())) {
                 lblErroreCAP.setVisible(false);
                 btnSalva.setDisable(false);
                 txtCAP.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCAP.setVisible(true);
                 txtCAP.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Account.getInstance().checkEmail(txtEmail.getText())) {
+            if (Account.getInstance().checkEmail(txtEmail.getText())) {
                 lblErroreEmail.setVisible(false);
                 btnSalva.setDisable(false);
                 txtEmail.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreEmail.setVisible(true);
                 txtEmail.setStyle("-fx-border-color: #d70000");
 
@@ -184,89 +213,83 @@ public class AccountSettingsController implements Initializable {
         });
 
         dtpDataNascita.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (Account.getInstance().checkDataNascita(dtpDataNascita.getValue()))
-            {
+            if (Account.getInstance().checkDataNascita(dtpDataNascita.getValue())) {
                 lblErroreDataNascita.setVisible(false);
                 btnSalva.setDisable(false);
                 dtpDataNascita.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreDataNascita.setVisible(true);
                 dtpDataNascita.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtNome.getText())) {
+            if (Utils.checkDatiGenerico(txtNome.getText())) {
                 lblErroreNome.setVisible(false);
                 btnSalva.setDisable(false);
                 txtNome.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreNome.setVisible(true);
                 txtNome.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtCognome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtCognome.getText())) {
+            if (Utils.checkDatiGenerico(txtCognome.getText())) {
                 lblErroreCognome.setVisible(false);
                 btnSalva.setDisable(false);
                 txtCognome.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCognome.setVisible(true);
                 txtCognome.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtVia.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtVia.getText())) {
+            if (Utils.checkDatiGenerico(txtVia.getText())) {
                 lblErroreVia.setVisible(false);
                 btnSalva.setDisable(false);
                 txtVia.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreVia.setVisible(true);
                 txtVia.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtCivico.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtCivico.getText())) {
+            if (Utils.checkDatiGenerico(txtCivico.getText())) {
                 lblErroreCivico.setVisible(false);
                 btnSalva.setDisable(false);
                 txtCivico.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCivico.setVisible(true);
                 txtCivico.setStyle("-fx-border-color: #d70000");
             }
         });
 
         txtCitta.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(Utils.checkDatiGenerico(txtCitta.getText())) {
+            if (Utils.checkDatiGenerico(txtCitta.getText())) {
                 lblErroreCitta.setVisible(false);
                 btnSalva.setDisable(false);
                 txtCitta.setStyle("-fx-border-color: #cccccc");
-            }
-            else {
+            } else {
                 lblErroreCitta.setVisible(true);
                 txtCitta.setStyle("-fx-border-color: #d70000");
             }
         });
 
         btnSalva.setOnMouseMoved(c -> {
-        if (lblErroreCAP.isVisible() || lblErroreEmail.isVisible() || lblErroreDataNascita.isVisible()
-            || lblErroreNome.isVisible() || lblErroreCognome.isVisible() || lblErroreVia.isVisible() ||
-            lblErroreCivico.isVisible() || lblErroreCitta.isVisible())
-            btnSalva.setDisable(true);
+            if (lblErroreCAP.isVisible() || lblErroreEmail.isVisible() || lblErroreDataNascita.isVisible()
+                    || lblErroreNome.isVisible() || lblErroreCognome.isVisible() || lblErroreVia.isVisible() ||
+                    lblErroreCivico.isVisible() || lblErroreCitta.isVisible())
+                btnSalva.setDisable(true);
         });
 
     }
 
     /**
      * Enable password changes by opening modificaPassword-view
+     *
      * @throws IOException
      * @see #onAnnulla()
      * @see ModificaPassword
@@ -300,11 +323,12 @@ public class AccountSettingsController implements Initializable {
 
     /**
      * Disable text-fields and buttons
+     *
      * @see #disabilita(TextField)
-     * @see #onStart() 
+     * @see #onStart()
      */
     @FXML
-    protected void onAnnulla(){
+    protected void onAnnulla() {
 
         //metodo per il tasto annulla, disabilita tutte le textField/button
 
@@ -329,17 +353,18 @@ public class AccountSettingsController implements Initializable {
 
     /**
      * Save updated data given by dati personali text-fields
+     *
      * @see #onStart()
      * @see #onAnnulla()
      * @see Account
      */
     @FXML
-    protected void onSalva(){
+    protected void onSalva() {
 
         //metodo per il click del tasto salva
 
-        String nome = txtNome.getText();;
-        String cognome = txtCognome.getText();;
+        String nome = txtNome.getText();
+        String cognome = txtCognome.getText();
         LocalDate dataNascita = LocalDate.parse(dtpDataNascita.getValue().toString());
         String mail = txtEmail.getText();
         String via = txtVia.getText();
@@ -347,17 +372,18 @@ public class AccountSettingsController implements Initializable {
         String citta = txtCitta.getText();
         String cap = txtCAP.getText();
 
-        Account.getInstance().salvaModificaDati(nome,cognome,dataNascita,mail, via, civico, citta, cap);
+        Account.getInstance().salvaModificaDati(nome, cognome, dataNascita, mail, via, civico, citta, cap);
 
         onStart(); //per ricaricare i dati all'interno delle textfield
 
         onAnnulla(); //per disabilitare tutti i bottoni/textField, necessito delle stesse cose che fa annulla
-                    // annulla a differenza di questo, non salva i cambiamenti
+        // annulla a differenza di questo, non salva i cambiamenti
 
     }
 
     /**
      * Load viaggi preferiti section into view
+     *
      * @see ViaggiPreferitiService
      * @see ViaggiPreferitiEntity
      */
@@ -369,15 +395,17 @@ public class AccountSettingsController implements Initializable {
 
     /**
      * Update viaggi preferiti section into view
+     *
      * @see ViaggioPreferitoControl
      * @see ViaggiPreferitiEntity
      */
-    private void updateListViaggiPreferiti(){
+    private void updateListViaggiPreferiti() {
         layout.getChildren().setAll(viaggiPreferiti.stream().map(ViaggioPreferitoControl::new).toList());
     }
 
     /**
      * Load storico acquisti section into view
+     *
      * @see StoricoAcquistiService
      * @see StoricoAcquistiEntity
      */
@@ -388,32 +416,36 @@ public class AccountSettingsController implements Initializable {
 
     /**
      * Update storico acquisti section into view
+     *
      * @see StoricoAcquistoControl
      * @see StoricoAcquistiEntity
      */
-    private void updateListStoricoAcquisti(){
+    private void updateListStoricoAcquisti() {
         layoutStorico.getChildren().setAll(acquisti.stream().map(StoricoAcquistoControl::new).toList());
     }
 
 
     /**
      * Enable single text-field
+     *
      * @param a
      * @see #onModifica()
      * @see #onModificaPassword()
      */
-    private void abilita(TextField a){
+    private void abilita(TextField a) {
         a.setMouseTransparent(false);
         a.setDisable(false);
         a.setFocusTraversable(false);
     }
+
     /**
      * disable single text-field
+     *
      * @param a
      * @see #onModifica()
      * @see #onModificaPassword()
      */
-    private void disabilita(TextField a){
+    private void disabilita(TextField a) {
         a.setMouseTransparent(true);
         a.setDisable(true);
         a.setFocusTraversable(true);
