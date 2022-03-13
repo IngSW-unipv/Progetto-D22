@@ -10,3 +10,5 @@ rimborso.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.titolodiviaggio
 
 puntiFedelta.strategy.class.name=it.unipv.po.aioobe.trenissimo.model.acquisto.util.strategy.PuntiFedeltaStrategy
 
+secretKey=AIOOBE
+

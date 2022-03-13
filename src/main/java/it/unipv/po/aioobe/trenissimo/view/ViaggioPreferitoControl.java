@@ -108,7 +108,6 @@ public class ViaggioPreferitoControl extends VBox {
 
     }
 
-    // TODO: 12/03/2022 sistemare posizionamento
     @FXML
     protected void onDeletePreferito(){
         Account.getInstance().deleteViaggioPreferito(viaggio);
