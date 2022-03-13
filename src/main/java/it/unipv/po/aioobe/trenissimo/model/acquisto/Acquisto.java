@@ -6,12 +6,21 @@ import it.unipv.po.aioobe.trenissimo.model.acquisto.util.strategy.PuntiFedeltaFa
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Classe astratta che individua un acquisto
+ * @author ArrayIndexOutOfBoundsException
+ */
+
 public abstract class Acquisto {
 
     private double prezzoTot;
     private final LocalDateTime dataAcquisto;
     private IPuntiFedeltaStrategy puntiFedeltaStrategy;
 
+    /**
+     * Costruttore che istanzia il Factory per i punti fedeltà ed assegna l'instanza della Strategy all'attributo privato puntiFedeltaStrategy.
+     * Inoltre asseggna al prezzo un valore iniziale di 0 ed assegna alla data di acquisto la data attuale al momento della chiamata del costruttore
+     */
     public Acquisto(){
         PuntiFedeltaFactory f=new PuntiFedeltaFactory();
         puntiFedeltaStrategy =f.getPuntiFedelta();
@@ -29,6 +38,10 @@ public abstract class Acquisto {
         return prezzoTot;
     }
 
+    /**
+     * Metodo che calcola il valore totale della lista di acquisti passata come parametro
+     * @param acquisti una lista di istanze della classe Acquisto
+     */
     public void setPrezzoTot(List<Acquisto> acquisti) {
         double prezzoTot = 0;
         for (Acquisto a: acquisti) {
@@ -37,11 +50,18 @@ public abstract class Acquisto {
         this.prezzoTot = prezzoTot;
     }
 
+    /**
+     * Metodo che richiama il metodo setPuntiFedelta della strategy
+     * @param acquisti una lista di istanze della classe Acquisto
+     */
     public void puntiFedelta(List<Acquisto> acquisti){
         this.setPrezzoTot(acquisti);
         puntiFedeltaStrategy.setPuntiFedelta(this);
     }
 
+    /**
+     * Metodo astratto che verrà implementato dalle classi che estenderanno questa classe
+     */
     public abstract void pagare();
 
 }

@@ -1,6 +1,7 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
 import it.unipv.po.aioobe.trenissimo.model.Utils;
+import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,8 @@ public class ViaggioControl extends VBox {
     @FXML private FontIcon icoChanges;
     @FXML private Button bntAddToCart;
 
+    @FXML private Button btnAddPreferiti;
+
     private Viaggio viaggio;
     private Callback<Void,Void> onSelected;
 
@@ -52,6 +55,10 @@ public class ViaggioControl extends VBox {
             icoChanges.setVisible(false);
             bntAddToCart.setManaged(false);
             bntAddToCart.setVisible(false);
+        }
+        if (!Account.getLoggedIn()){
+            btnAddPreferiti.setVisible(false);
+            btnAddPreferiti.setDisable(true);
         }
         setViaggio(viaggio);
     }
@@ -101,6 +108,14 @@ public class ViaggioControl extends VBox {
     @FXML
     protected void onAddToCard() {
         onSelected.call(null);
+    }
+
+    // TODO: 12/03/2022 sistemare icona viaggi preferiti e posizionamento tutto a dx
+
+    @FXML
+    protected void onAddPreferiti() {
+        Account.getInstance().addViaggioPreferito(viaggio);
+        btnAddPreferiti.setDisable(true);
     }
 
     @FXML

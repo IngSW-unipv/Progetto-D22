@@ -6,10 +6,18 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AgencyEntity;
 
 import java.util.List;
 
+/**
+ * Classe che, mediante il pattern DAO, implementa le query a database sottoforma di metodi
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class AgencyDao implements IAgencyDao  {
-
+    /**
+     * Connessione al database mediante il framework di Hibernate
+     */
     private HibernateConnection conn;
-
+    /**
+     * Viene assegnata all'attributo privato conn l'istanza Singleton della connessione di Hibernate al database
+     */
     public AgencyDao() {
         this.conn = HibernateConnection.getInstance();
     }
@@ -22,11 +30,10 @@ public class AgencyDao implements IAgencyDao  {
         this.conn = conn;
     }
 
-    /*public AgencyEntity findById(String id) {
-        AgencyEntity agency = (AgencyEntity) getCurrentSession().get(AgencyEntity.class, id);
-        return agency;
-    }*/
-
+    /**
+     * Metodo che implementa la query al database che ritorna tutte le tuple nella table di riferimento
+     * @return una lista di AgencyEntity
+     */
     @Override
     @SuppressWarnings("unchecked")
     public List<AgencyEntity> findAll() {

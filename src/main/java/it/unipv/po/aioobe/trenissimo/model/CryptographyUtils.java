@@ -17,10 +17,10 @@ public class CryptographyUtils {
 
 
     /**
+     * code ref "https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"
      * @param myKey
      * @return
      * @throws NoSuchAlgorithmException
-     * @implNote code ref "https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"
      * @author ArrayIndexOutOfBoundsException
      */
     public static SecretKeySpec computeKey(final String myKey) throws NoSuchAlgorithmException {
@@ -34,6 +34,7 @@ public class CryptographyUtils {
     }
 
     /**
+     * code ref "https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"
      * @param password
      * @return password criptata
      * @throws NoSuchPaddingException
@@ -42,7 +43,6 @@ public class CryptographyUtils {
      * @throws InvalidKeyException
      * @throws IllegalBlockSizeException
      * @throws BadPaddingException
-     * @implNote code ref "https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"
      * @author ArrayIndexOutOfBoundsException
      */
     public static String encryptPassword(String password) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {

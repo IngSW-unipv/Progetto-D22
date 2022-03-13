@@ -165,8 +165,6 @@ public class AcquistoVoucherController implements Initializable {
         File destin = new File(fileChooser.showSaveDialog(new Stage()).getAbsolutePath().concat(".pdf"));
         TicketBuilder.copy(biglietto, destin);
 
-        // todo aggiungere controllo su getAbsPath
-
         Task<Void> task = new Task<Void>() {
             @Override
             public Void call() throws InterruptedException {

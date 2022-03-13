@@ -9,7 +9,7 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.dao.ITitoloViaggioDa
 import java.util.List;
 
 /**
- * @
+ *
  */
 public class TitoloViaggioDao implements ITitoloViaggioDao {
 

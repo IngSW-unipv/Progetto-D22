@@ -26,8 +26,6 @@ public class AcquistoVoucherView extends Application {
         launch();
     }
 
-    //todo aggiungere a livello grafico/controller il riscatto del voucher
-
     public static void openWindow(Window owner){
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("acquistoVoucher/acquistoVoucher.fxml"));
         Stage stage = new Stage();

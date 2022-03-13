@@ -5,8 +5,19 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.AccountEntity;
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.AccountService;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
 
+/**
+ * Classe che implementa una strategia per l'assegnazione dei punti fedeltà
+ * @author ArrayIndexOutOfBoundsException
+ */
+
 public class PuntiFedeltaStrategy implements IPuntiFedeltaStrategy{
 
+    /**
+     * Override del metodo la cui signature è stata ereditata dall'interfaccia implementata.
+     * Metodo che calcola il numero di punti fedeltà da aggiungere all'account con cui è stato fatto l'acquisto e aggiorna il database con tale dato.
+     * L'assegnamento dei punti fedeltà viene fatto secondo la seguente strategia: 1 punto ogni 1€ di spesa per acquisti sotto i 15€; 2 punti ogni 1€ di spesa per acquisti fatti tra i 15€ e i 50€; 3 punti ogni 1€ di spesa per acquisti fatti tra i 50€ e i 100€; 5 punti ogni 1€ di spesa per acquisti fatti sopra i 100€
+     * @param acquisto
+     */
     @Override
     public void setPuntiFedelta(Acquisto acquisto) {
         AccountService accountService = new AccountService();

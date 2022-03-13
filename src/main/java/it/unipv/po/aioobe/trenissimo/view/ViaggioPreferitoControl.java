@@ -41,6 +41,9 @@ public class ViaggioPreferitoControl extends VBox {
     @FXML private VBox boxChangesContainer;
     @FXML private FontIcon icoChanges;
 
+    @FXML private Button btnDeletePreferito;
+    @FXML private Label lblDeleteOK;
+
 
     private ViaggiPreferitiEntity viaggio;
 
@@ -103,9 +106,26 @@ public class ViaggioPreferitoControl extends VBox {
 
        AcquistoView.openScene(lblArrivo.getScene().getWindow(), viaggi);
 
+    }
 
+    // TODO: 12/03/2022 sistemare posizionamento e dopo eliminazioni ricaricare viaggiPreferiti invece che AccountSettings
+    @FXML
+    protected void onDeletePreferito(){
+        Account.getInstance().deleteViaggioPreferito(viaggio);
+        btnDeletePreferito.setDisable(true);
+        lblDeleteOK.setVisible(true);
 
-        // todo metodo per il tasto acquista in "tab" viaggi preferiti
+        Task<Void> task = new Task<Void>() {
+            @Override
+            public Void call() throws InterruptedException {
+                Thread.sleep(1000);
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            AccountSettings.openScene(lblArrivo.getScene().getWindow());
+        });
+        new Thread(task).start();
     }
 
 

@@ -209,7 +209,7 @@ public class AcquistoController implements Initializable {
 
     @FXML
     protected void onRiscatta() throws Exception {
-        // todo aggiungere controlli dopo parte grafica
+
         VoucherService voucherService = new VoucherService();
 
         if (!(Utils.checkIdVoucher(txtVoucher.getText()))) {

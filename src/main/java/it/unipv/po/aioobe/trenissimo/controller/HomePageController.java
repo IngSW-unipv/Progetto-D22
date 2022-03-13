@@ -80,7 +80,6 @@ public class HomePageController implements Initializable {
     @FXML private Label lblErroreRimborsoEmpty;
     @FXML private Label lblRimborsoOK;
     @FXML private Button btnRichiestaRimborso;
-// todo continuare gestione errori
 
     private TicketBuilder titoloViaggio;
     private boolean isIdBigliettoOK;
@@ -258,7 +257,6 @@ public class HomePageController implements Initializable {
 
     @FXML
     protected void onRimborso() throws Exception {
-        // todo aggiungere controlli dopo parte grafica
 
         if (txtRimborsoTitoloID.getText().isEmpty())
         {
@@ -340,8 +338,6 @@ public class HomePageController implements Initializable {
 
         File destin = new File(fileChooser.showSaveDialog(new Stage()).getAbsolutePath().concat(".pdf"));
         TicketBuilder.copy(biglietto, destin);
-
-        // todo aggiungere controllo su getAbsPath
 
         lblRimborsoOK.setVisible(true);
 

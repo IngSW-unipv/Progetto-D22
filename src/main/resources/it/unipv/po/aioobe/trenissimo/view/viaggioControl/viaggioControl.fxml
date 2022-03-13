@@ -12,7 +12,12 @@
     <children>
         <HBox spacing="8.0" VBox.vgrow="NEVER">
             <children>
-                <Label fx:id="lblCompanyId" text="Trenissimo" />
+                <Label fx:id="lblCompanyId" maxWidth="1.7976931348623157E308" prefWidth="713.0" text="Trenissimo" />
+            <Button fx:id="btnAddPreferiti" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#onAddPreferiti" text="Aggiungi">
+               <graphic>
+                  <FontIcon iconLiteral="fas-cart-plus" iconSize="24" />
+               </graphic>
+            </Button>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="8.0">

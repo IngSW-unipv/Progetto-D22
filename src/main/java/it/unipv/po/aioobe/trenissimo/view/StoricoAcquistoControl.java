@@ -108,8 +108,6 @@ public class StoricoAcquistoControl extends VBox {
         File destin = new File(fileChooser.showSaveDialog(new Stage()).getAbsolutePath().concat(".pdf"));
         TicketBuilder.copy(biglietto, destin);
 
-        // todo aggiungere controllo su getAbsPath
-
         lblDownloadOK.setVisible(true);
 
         Task<Void> task = new Task<Void>() {
