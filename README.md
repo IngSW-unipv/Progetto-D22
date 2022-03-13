@@ -38,4 +38,15 @@ Progetto studenti (gruppo ArrayIndexOutOfBoundsException)
      --add-exports
      javafx.graphics/com.sun.javafx.scene.traversal=org.controlsfx.controls
 
-  8. In Eclipse sussiste un problema probabilmente relativo all'Encoding UTF-8 che visualizza "€" con "â‚¬"
+  7. In Eclipse sussiste un problema probabilmente relativo all'Encoding UTF-8 che visualizza "€" con "â‚¬".
+     Per risolvere la cosa:
+       1) Go to Window->Preferences->General->Content Types
+       2) Select "Text" at the top tree-list.
+       3) Specify "UTF8" in the bottom text box labeled "Default encoding".
+       4) Click on the "Update" button.
+       5) Select "Java Class File" at the top tree-list.
+       6) Repeat (3) and (4)
+       7) Click OK to save preferences.
+  
+     Recarsi nel file `src/main/java/it/unipv/po/aioobe/trenissimo/model/titolodiviaggio/enumeration/ValoreVoucher.java`
+     e sostuire "â‚¬" con "€"
