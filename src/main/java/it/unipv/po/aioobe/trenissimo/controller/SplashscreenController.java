@@ -15,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.hibernate.HibernateException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  * @see it.unipv.po.aioobe.trenissimo.view.splashScreen
  * @see javafx.fxml.Initializable
  */
-public class SplashscreenController implements Initializable{
+public class SplashscreenController implements Initializable {
 
     @FXML
     private BorderPane mainLayout;
@@ -66,21 +65,21 @@ public class SplashscreenController implements Initializable{
             @Override
             public Void call() throws InterruptedException, ConnectionDBException {
                 try {
-                updateMessage("Loading routes...");
-                CachedRoutesService.getInstance().findAll();
+                    updateMessage("Loading routes...");
+                    CachedRoutesService.getInstance().findAll();
 
-                updateMessage("Loading stops...");
-                CachedStopsService.getInstance().findAll();
+                    updateMessage("Loading stops...");
+                    CachedStopsService.getInstance().findAll();
 
-                updateMessage("Loading trips...");
-                CachedTripsService.getInstance().findAll();
+                    updateMessage("Loading trips...");
+                    CachedTripsService.getInstance().findAll();
 
-                updateMessage("Loading stop times...");
-                CachedStopTimesService.getInstance().findAll();
+                    updateMessage("Loading stop times...");
+                    CachedStopTimesService.getInstance().findAll();
 
-                }catch (ConnectionDBException e){
+                } catch (ConnectionDBException e) {
                     lblStatus.setStyle("-fx-text-fill: #d70000");
-                    for(int i = 5; i>0; i--) {
+                    for (int i = 5; i > 0; i--) {
                         updateMessage("Error loading database. Trenissimo closing in " + i + "s");
                         TimeUnit.SECONDS.sleep(1);
                     }
