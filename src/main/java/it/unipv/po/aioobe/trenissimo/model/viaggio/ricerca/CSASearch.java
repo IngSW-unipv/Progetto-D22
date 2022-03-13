@@ -28,10 +28,11 @@ public class CSASearch {
 
     /**
      * See <a href="https://arxiv.org/pdf/1703.05997.pdf">Connection Scan Algorithm</a>
-     * @param routesList
-     * @param stopsList
-     * @param stopTimesList
-     * @param tripsList
+     * Metodo che genera una lista di connessioni di stazioni ordinate cronologicamente
+     * @param routesList lista di tratte
+     * @param stopsList lista di fermate
+     * @param stopTimesList lista di orari
+     * @param tripsList lista di viaggi
      * @return una lista di Connection di stazioni ordinate cronologicamente
      */
     private List<Connection> generaTimetable(List<RoutesEntity> routesList, List<StopsEntity> stopsList, List<StopTimesEntity> stopTimesList, List<TripsEntity> tripsList) {
@@ -90,7 +91,14 @@ public class CSASearch {
 
         return timetable;
     }
-
+    /**
+     * Metodo che calcola il viaggio possibile partendo da departure_time tra la stazione di partenza e di arrivo passate come parametro
+     * @param departure_station id della stazione di partenza
+     * @param arrival_station id della stazione di arrivo
+     * @param departure_time ora di partenza
+     * @param timetable lista di connessioni
+     * @return lista di Connection che identificano un viaggio dalla stazione di partenza a quella di arrivo
+     */
     private List<Connection> compute(int departure_station, int arrival_station, int departure_time, List<Connection> timetable) {
         Connection[] in_connection = new Connection[MAX_STATIONS];
         int[] earliest_arrival = new int[MAX_STATIONS];
@@ -135,6 +143,12 @@ public class CSASearch {
         }
     }
 
+    /**
+     * Metodo che ritorna una lista di viaggi data una stazione di partenza e una stazione di arrivo riordinata per orario di partenza
+     * @param departureStopId id stazione di partenza
+     * @param arrivalStopId id stazione arrivo
+     * @return lista di Viaggio
+     */
     public List<Viaggio> eseguiRicerca(int departureStopId, int arrivalStopId) {
 
 
