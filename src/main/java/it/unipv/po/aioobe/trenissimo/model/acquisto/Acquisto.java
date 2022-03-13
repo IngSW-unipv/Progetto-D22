@@ -51,7 +51,7 @@ public abstract class Acquisto {
     }
 
     /**
-     * Metodo che richiama il metodo setPuntiFedelta della strategy
+     * Metodo che richiama il metodo setPuntiFedelta della PuntiFedeltaStrategy
      * @param acquisti una lista di istanze della classe Acquisto
      */
     public void puntiFedelta(List<Acquisto> acquisti){
