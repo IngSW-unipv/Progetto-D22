@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  * Controller class per acquistoVoucher.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version "%I%, %G%"
+ * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
  * @see javafx.fxml.Initializable
  */
@@ -135,8 +135,7 @@ public class AcquistoVoucherController implements Initializable {
         checkDatiRealTime();
 
         vboxDragMouse.setOnMouseMoved(c -> {
-            if ((lblDatiOK.isVisible() && lblCartaOK.isVisible()))
-                btnAcquisto.setDisable(false);
+            if ((lblDatiOK.isVisible() && lblCartaOK.isVisible())) btnAcquisto.setDisable(false);
         });
 
         txtMessaggio.textProperty().addListener(c -> {
@@ -243,7 +242,7 @@ public class AcquistoVoucherController implements Initializable {
         Task<Void> task = new Task<>() {
             /**
              * Aspetta 4.0 secondi
-             * @return
+             * @return sempre null
              * @throws InterruptedException necessaria per Thread.sleep()
              */
             @Override
@@ -461,8 +460,7 @@ public class AcquistoVoucherController implements Initializable {
         });
 
         btnConferma.setOnMouseMoved(c -> {
-            if (lblErroreNome.isVisible() || lblErroreCognome.isVisible() || lblErroreDataNascita.isVisible() || lblErroreEmail.isVisible()
-                    || lblErroreVia.isVisible() || lblErroreCivico.isVisible() || lblErroreCitta.isVisible() || lblErroreCAP.isVisible()) {
+            if (lblErroreNome.isVisible() || lblErroreCognome.isVisible() || lblErroreDataNascita.isVisible() || lblErroreEmail.isVisible() || lblErroreVia.isVisible() || lblErroreCivico.isVisible() || lblErroreCitta.isVisible() || lblErroreCAP.isVisible()) {
                 btnConferma.setDisable(true);
             }
         });
@@ -471,7 +469,7 @@ public class AcquistoVoucherController implements Initializable {
     /**
      * Mostra una finestra di dialogo contenente informazioni personalizzate
      *
-     * @param messaggio
+     * @param messaggio messaggio da stampare nell'alert
      * @see Alert
      * @see Stage
      */

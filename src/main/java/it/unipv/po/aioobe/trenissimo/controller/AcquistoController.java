@@ -35,7 +35,7 @@ import java.util.*;
  * Controller class per acquistoView.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version "%I%, %G%"
+ * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoView
  * @see javafx.fxml.Initializable
  */
@@ -268,7 +268,7 @@ public class AcquistoController implements Initializable {
     /**
      * Compila i campi del biglietto PDF
      *
-     * @param a
+     * @param a acquisto da cui prendere informazioni
      * @throws Exception
      * @see TitoloViaggioService
      * @see TitoloViaggioEntity
@@ -335,7 +335,7 @@ public class AcquistoController implements Initializable {
 
                 /**
                  * Aspetta 2.0 secondi
-                 * @return
+                 * @return sempre null
                  * @throws InterruptedException necessaria per Thread.sleep()
                  */
                 @Override
@@ -589,7 +589,7 @@ public class AcquistoController implements Initializable {
     /**
      * Mostra una finestra di dialogo contenente informazioni personalizzate
      *
-     * @param messaggio
+     * @param messaggio messaggio da stampare nell'alert
      * @see Alert
      * @see Stage
      */
