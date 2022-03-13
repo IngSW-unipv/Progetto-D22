@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
  * Controller class per accountSettings-view.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version "%I%, %G%"
+ * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.accountSettingsView
  * @see javafx.fxml.Initializable
  */
@@ -105,7 +105,7 @@ public class AccountSettingsController implements Initializable {
      * @param url
      * @param resourceBundle
      * @see #onStart()
-     * @see #updateListStoricoAcquisti()
+     * @see #updateListViaggiPreferiti()
      * @see #updateListStoricoAcquisti()
      * @see ViaggiPreferitiEntity
      * @see StoricoAcquistiEntity

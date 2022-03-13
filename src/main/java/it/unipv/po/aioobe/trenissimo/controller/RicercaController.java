@@ -1,14 +1,11 @@
 package it.unipv.po.aioobe.trenissimo.controller;
 
-import com.jfoenix.controls.JFXTimePicker;
-import it.unipv.po.aioobe.trenissimo.model.Utils;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroOrario;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroOrdina;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.FiltroPrezzo;
-import it.unipv.po.aioobe.trenissimo.model.viaggio.filtri.IFiltro;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.Ricerca;
-import it.unipv.po.aioobe.trenissimo.view.*;
+import it.unipv.po.aioobe.trenissimo.view.AcquistoView;
+import it.unipv.po.aioobe.trenissimo.view.HomePage;
+import it.unipv.po.aioobe.trenissimo.view.RicercaDettaglioControl;
+import it.unipv.po.aioobe.trenissimo.view.TicketControl;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -17,45 +14,64 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.controlsfx.control.RangeSlider;
-import org.controlsfx.control.SegmentedButton;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
-import java.time.LocalTime;
-import java.util.*;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
+
+/**
+ * Controller class per ricercaDettaglioControl.fxml
+ *
+ * @author ArrayIndexOutOfBoundsException
+ * @version %I%, %G%
+ * @see it.unipv.po.aioobe.trenissimo.view.ricercaDettaglioControl
+ * @see javafx.fxml.Initializable
+ */
 public class RicercaController implements Initializable {
 
-    @FXML private HBox boxCart;
-    @FXML private TabPane tabPane;
+    @FXML
+    private HBox boxCart;
+    @FXML
+    private TabPane tabPane;
     private ObservableList<Viaggio> _carrello;
 
+    /**
+     * Metodo d'Inizializzazione
+     *
+     * @param location
+     * @param resources
+     * @see #updateCart()
+     * @see Viaggio
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _carrello = FXCollections.observableArrayList();
         _carrello.addListener((ListChangeListener<Viaggio>) c -> updateCart());
     }
 
-    public void setRicerca(Ricerca ricerca) {
+    /**
+     * @param ricerca
+     */
+    public void setRicerca(@NotNull Ricerca ricerca) {
         var andataTab = new Tab();
         andataTab.setText("Andata");
         var rdcAndata = new RicercaDettaglioControl();
-        rdcAndata.setViaggi(ricerca.getRisultatiAndata(), ricerca.getDataAndata().toLocalTime(), v-> {
+        rdcAndata.setViaggi(ricerca.getRisultatiAndata(), ricerca.getDataAndata().toLocalTime(), v -> {
             _carrello.add(v);
             return null;
         });
         andataTab.setContent(rdcAndata);
         tabPane.getTabs().add(andataTab);
-        if (ricerca.isAndataRitorno()){
+        if (ricerca.isAndataRitorno()) {
             var ritornoTab = new Tab();
             ritornoTab.setText("Ritorno");
             var rdcRitorno = new RicercaDettaglioControl();
-            rdcRitorno.setViaggi(ricerca.getRisultatiRitorno(), ricerca.getDataRitorno().toLocalTime(), v-> {
+            rdcRitorno.setViaggi(ricerca.getRisultatiRitorno(), ricerca.getDataRitorno().toLocalTime(), v -> {
                 _carrello.add(v);
                 return null;
             });
@@ -65,31 +81,48 @@ public class RicercaController implements Initializable {
     }
 
 
-
-    private void updateCart(){
-        boxCart.getChildren().setAll(_carrello.stream().map(x -> new TicketControl(x,param -> {
+    /**
+     * Aggiorna il carrello
+     *
+     * @see TicketControl
+     */
+    private void updateCart() {
+        boxCart.getChildren().setAll(_carrello.stream().map(x -> new TicketControl(x, param -> {
             _carrello.remove(x);
             return null;
         })).toList());
     }
 
+    /**
+     * Permette di procedere con l'acquisto dei titoli di viaggio nel carrello, aprendo acquistoView.fxml
+     *
+     * @see AcquistoView
+     * @see Alert
+     * @see Stage
+     * @see it.unipv.po.aioobe.trenissimo.view.acquistoView
+     */
     @FXML
-    protected void onAcquisto(){
-        if (!_carrello.isEmpty()){
+    protected void onAcquisto() {
+        if (!_carrello.isEmpty()) {
             AcquistoView.openScene(boxCart.getScene().getWindow(), _carrello);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Trenissimo");
             alert.setHeaderText(null);
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png")));
+            stage.getIcons().add(new Image(Objects.requireNonNull(HomePage.class.getResourceAsStream("HomePage/LogoIcona.png"))));
             alert.setContentText("Impossibile effettuare il checkout. Il carrello è vuoto!");
             alert.showAndWait();
         }
     }
 
+    /**
+     * Ritorna alla Home Page
+     *
+     * @see HomePage
+     */
     @FXML
-    protected void onGoToHomepage(){
+    protected void onGoToHomepage() {
         HomePage.openScene(boxCart.getScene().getWindow());
     }
 }

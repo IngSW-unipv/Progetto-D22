@@ -14,7 +14,14 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+/**
+ * Controller class per login-view.fxml
+ *
+ * @author ArrayIndexOutOfBoundsException
+ * @version %I%, %G%
+ * @see it.unipv.po.aioobe.trenissimo.view.login
+ * @see javafx.fxml.Initializable
+ */
 public class LoginController implements Initializable {
 
     @FXML
@@ -30,28 +37,37 @@ public class LoginController implements Initializable {
     private Label lblLoginError;
 
 
+    /**
+     * Effettua il login
+     *
+     * @see Account
+     */
     @FXML
-    protected void onLogin()  {
+    protected void onLogin() {
 
         try {
-            if(Account.checkUserPassword(txtUsername.getText(), pwfPassword.getText())) {
+            if (Account.checkUserPassword(txtUsername.getText(), pwfPassword.getText())) {
                 btnAccedi.setBackground(Background.EMPTY);
                 Account.login(txtUsername.getText());
                 ((Stage) btnAccedi.getScene().getWindow()).close();
-            }
-            else
-                lblLoginError.setVisible(true);
+            } else lblLoginError.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Metodo d'Inizializzazione
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pwfPassword.setOnKeyPressed( event -> {
-            if(event.getCode() == KeyCode.ENTER) {
+        pwfPassword.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
                 onLogin();
             }
-        } );
+        });
     }
 }

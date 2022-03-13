@@ -16,7 +16,7 @@ import java.util.Base64;
 public class CryptographyUtils {
 
     /**
-     * code ref <a href="https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"/>
+     * See <a href="https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"></a>
      * @param myKey
      * @return
      * @throws NoSuchAlgorithmException

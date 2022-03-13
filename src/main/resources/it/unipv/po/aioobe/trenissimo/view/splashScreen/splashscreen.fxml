@@ -14,7 +14,7 @@
                 <children>
                   <StackPane>
                      <children>
-                          <ProgressBar fx:id="pgbSplashScreen" maxWidth="1.7976931348623157E308" prefHeight="24.0" progress="-1" />
+                          <ProgressBar maxWidth="1.7976931348623157E308" prefHeight="24.0" progress="-1" />
                           <Label fx:id="lblStatus" text="Label" />
                      </children>
                   </StackPane>
