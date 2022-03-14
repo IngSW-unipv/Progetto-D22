@@ -4,6 +4,7 @@ import org.hibernate.HibernateException;
 
 /**
  * Eccezione che viene lanciata in caso di errori inerenti al framework Hibernate e al colloquio con il database
+ * @author ArrayIndexOutOfBoundsException
  */
 public class ConnectionDBException extends HibernateException {
 
