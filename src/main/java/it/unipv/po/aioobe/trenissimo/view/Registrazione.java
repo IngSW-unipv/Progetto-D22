@@ -10,7 +10,7 @@ import javafx.stage.Window;
 import java.io.IOException;
 
 /**
- * Main class che gestisce il render del file modificaPassword-view.fxml
+ * Main class che gestisce il render del file registrazione-view.fxml
  *
  * @see Application
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
