@@ -23,6 +23,7 @@ public class Login {
      * Risponde alle chiamate esterne di altri componenti
      *
      * @param owner finestra che contiene l'elemento che ha chiamato il metodo
+     * @throws IOException
      * @see Login
      * @see HomePage
      */

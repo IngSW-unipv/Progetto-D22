@@ -21,6 +21,7 @@ public class ModificaPassword {
      * Risponde alle chiamate esterne di altri componenti
      *
      * @param owner finestra che contiene l'elemento che ha chiamato il metodo
+     * @throws IOException
      * @see ModificaPassword
      */
     public static void open(Window owner) throws IOException {
