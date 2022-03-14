@@ -28,14 +28,14 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Main class che gestisce il render del file registrazione-view.fxml
+ * Main class che gestisce il render del file ricercaDettaglioControl.fxml
  *
  * @author ArrayIndexOutOfBoundsException
  * @see BorderPane
  * @see Viaggio
  * @see IFiltro
  * @see FiltroOrdina
- * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
+ * @see it.unipv.po.aioobe.trenissimo.view.ricercaDettaglioControl
  */
 public class RicercaDettaglioControl extends BorderPane {
     private final ObservableList<Viaggio> viaggi;
@@ -176,6 +176,7 @@ public class RicercaDettaglioControl extends BorderPane {
      * @see #rngPrezzo
      * @see #updateFiltri()
      */
+    // TODO: 14/03/22 FERRA GUARDATI STO CALLBACK QUI, non saprei bene cosa aggiungere come descrizione di onAddToCart
     public void setViaggi(@NotNull List<Viaggio> viaggi, LocalTime oraPartenza, Callback<Viaggio, Void> onAddToCart) {
         this.onAddToCart = onAddToCart;
         rngPrezzo.setMax(Utils.ceil(viaggi.stream().max(Comparator.comparing(Viaggio::getPrezzoTot)).get().getPrezzoTot(), -1));

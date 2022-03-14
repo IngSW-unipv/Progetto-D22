@@ -18,6 +18,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main class che gestisce il render del file ricercaView.fxml
+ *
+ * @author ArrayIndexOutOfBoundsException
+ * @see Application
+ * @see it.unipv.po.aioobe.trenissimo.view.ricercaView
+ */
+
 public class RicercaView extends Application {
 
     /**
@@ -92,7 +100,7 @@ public class RicercaView extends Application {
      * @see Ricerca
      * @see RicercaController
      */
-
+    // TODO: 14/03/22 FERRA GUARDATI STO METODO, mi sa che non lo usiamo da nessuna parte ed era di debug, aspetto conferme per toglierlo 
     @Override
     public void start(@NotNull Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("ricercaView/ricercaView.fxml"));
