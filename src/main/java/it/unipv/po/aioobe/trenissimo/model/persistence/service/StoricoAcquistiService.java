@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Classe che, secondo il pattern Facade, implementa gli stessi metodi di StoricoAcquistiDao con l'aggiunta della gestione delle sessioni del framework Hibernate.
  * Classe progettata per nascondere al modello delle classi la complessità del sistema sottostante (Hibernate)
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 public class StoricoAcquistiService implements IStoricoAcquistiService {
@@ -38,7 +39,7 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
     @Override
     public List<StoricoAcquistiEntity> findByUsername(String username) {
         storicoAcquistiDao.getConn().openCurrentSession();
-        List<StoricoAcquistiEntity> storicoAcquisti = (List<StoricoAcquistiEntity>) storicoAcquistiDao.findByUsername(username);
+        List<StoricoAcquistiEntity> storicoAcquisti = storicoAcquistiDao.findByUsername(username);
         storicoAcquistiDao.getConn().closeCurrentSession();
         return storicoAcquisti;
     }
@@ -46,7 +47,7 @@ public class StoricoAcquistiService implements IStoricoAcquistiService {
     @Override
     public StoricoAcquistiEntity findByTitoloViaggioId(String id) {
         storicoAcquistiDao.getConn().openCurrentSession();
-        StoricoAcquistiEntity storicoAcquisti = (StoricoAcquistiEntity) storicoAcquistiDao.findByTitoloViaggioId(id);
+        StoricoAcquistiEntity storicoAcquisti = storicoAcquistiDao.findByTitoloViaggioId(id);
         storicoAcquistiDao.getConn().closeCurrentSession();
         return storicoAcquisti;
     }

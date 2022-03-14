@@ -35,6 +35,7 @@ public class CachedRoutesService implements IRoutesService, ICached {
         }
         return cachedFindAll;
     }
+
     /**
      * Metodo che pone a null la lista cachedFindAll
      */

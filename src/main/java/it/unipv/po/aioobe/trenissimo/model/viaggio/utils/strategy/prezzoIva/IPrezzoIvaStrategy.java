@@ -9,8 +9,9 @@ public interface IPrezzoIvaStrategy {
 
     /**
      * Metodo da implementare per poter ottenere l'IVA del prezzo del viaggio passato come parametro
+     *
      * @param v Viaggio
      */
-    public double getPrezzoIva(Viaggio v);
+    double getPrezzoIva(Viaggio v);
 
 }

@@ -6,14 +6,19 @@ import java.util.List;
 
 /**
  * Interfaccia che definisce le signature dei metodi che implementeranno gli stessi metodi del Dao con l'aggiunta della gestione della sessione del framework Hibernate
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 public interface IDatiPersonaliService {
 
-    public List<DatiPersonaliEntity> findAll();
-    public DatiPersonaliEntity findByUsername(String user);
-    public void persist(DatiPersonaliEntity datiPersonali);
-    public void update(DatiPersonaliEntity datiPersonali);
-    public void deleteByUsername(String user);
+    List<DatiPersonaliEntity> findAll();
+
+    DatiPersonaliEntity findByUsername(String user);
+
+    void persist(DatiPersonaliEntity datiPersonali);
+
+    void update(DatiPersonaliEntity datiPersonali);
+
+    void deleteByUsername(String user);
 
 }

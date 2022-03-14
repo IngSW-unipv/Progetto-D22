@@ -2,6 +2,7 @@ package it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.enumeration;
 
 /**
  * Enumeration che definisce il valore numerico del voucher regalo (o Gift Card).
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 public enum ValoreVoucher {
@@ -14,18 +15,20 @@ public enum ValoreVoucher {
 
     /**
      * Metodo che associa un'etichetta (label) all'elemento della enum.
+     *
      * @param label
      */
-    private ValoreVoucher(String label){
+    ValoreVoucher(String label) {
         this.label = label;
     }
 
     /**
      * Metodo che stampa l'etichetta associata alla enumeration (non il valore della enum).
+     *
      * @return
      */
     @Override
-    public String toString(){
+    public String toString() {
         return label;
     }
 

@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 @Entity
@@ -59,6 +60,7 @@ public class VoucherEntity extends Acquisto {
 
     /**
      * Implementa il metodo astratto ereditato dalla superclasse che effettua il pagamento e salva in database il voucher
+     *
      * @return true se il pagamento è andato a buon fine, ritorna false altrimenti
      */
     @Override

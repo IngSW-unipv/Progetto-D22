@@ -163,7 +163,7 @@ public class AccountSettingsController implements Initializable {
      * @see Utils
      */
     @FXML
-    protected void onModifica(){
+    protected void onModifica() {
 
         lblDatiPersonali.setText("Modifica i dati personali:");
 

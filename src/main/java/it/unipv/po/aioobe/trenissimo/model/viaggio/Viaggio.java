@@ -22,22 +22,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Classe che modellizza un viaggio.
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 public class Viaggio {
 
+    private static final AtomicInteger count = new AtomicInteger(0);
     private int numAdulti;
     private int numRagazzi;
     private int numBambini;
     private int numAnimali;
     private LocalDate dataPartenza;
     private List<Connection> cambi;
-    private IPrezzoPerDistanzaStrategy prezzoPerDistanzaStrategy;
-    private IPrezzoTotCambiStrategy prezzoTotCambiStrategy;
-    private IPrezzoTotStrategy prezzoTotStrategy;
-    private IPrezzoIvaStrategy prezzoIvaStrategy;
-
-    private static final AtomicInteger count = new AtomicInteger(0);
+    private final IPrezzoPerDistanzaStrategy prezzoPerDistanzaStrategy;
+    private final IPrezzoTotCambiStrategy prezzoTotCambiStrategy;
+    private final IPrezzoTotStrategy prezzoTotStrategy;
+    private final IPrezzoIvaStrategy prezzoIvaStrategy;
 
 
     /**
@@ -109,6 +109,7 @@ public class Viaggio {
 
     /**
      * Metodo per ottenere la stazione di partenza dalla classe CachedStopsService
+     *
      * @return StopsEntity
      */
     public StopsEntity getStazionePartenza() {
@@ -117,6 +118,7 @@ public class Viaggio {
 
     /**
      * Metodo per ottenere la stazione di arrivo dalla classe CachedStopsService
+     *
      * @return StopsEntity
      */
     public StopsEntity getStazioneArrivo() {
@@ -176,6 +178,7 @@ public class Viaggio {
 
     /**
      * Metodo che viene utilizzato per ottenere una coppia di stazioni.
+     *
      * @param i indice (in quanto utilizzato all'interno di un ciclo for).
      * @return una lista di StopsEntity
      */
@@ -195,6 +198,7 @@ public class Viaggio {
 
     /**
      * Metodo utilizzato per ottenere la distanza tra una coppia di stazioni.
+     *
      * @param coppiaStazioni
      * @return distanza (double). <br>
      * @see <a href="https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula">Link</a>
@@ -224,6 +228,7 @@ public class Viaggio {
 
     /**
      * Metodo che viene utilizzato per ottenere la distanza totale del viaggio, tenendo conto dei cambi.
+     *
      * @return distanza (Double)
      */
     public double getDistanzaTotale() {

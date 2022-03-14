@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import org.controlsfx.control.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.SearchableComboBox?>
+<?import org.controlsfx.control.ToggleSwitch?>
 <?import org.kordamp.ikonli.javafx.*?>
-
-<StackPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.HomePageController">
+<StackPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16"
+           fx:controller="it.unipv.po.aioobe.trenissimo.controller.HomePageController">
     <children>
-        <VBox fx:id="boxContent" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="32.0" style="-fx-background-color: white;" styleClass="body" stylesheets="@homePage.css">
+        <VBox fx:id="boxContent" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1440.0" spacing="32.0"
+              style="-fx-background-color: white;" styleClass="body" stylesheets="@homePage.css">
             <children>
                 <StackPane>
                     <VBox.margin>
-                        <Insets />
+                        <Insets/>
                     </VBox.margin>
                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1440.0" StackPane.alignment="TOP_CENTER">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE"
+                                   strokeWidth="0.0" width="1440.0" StackPane.alignment="TOP_CENTER">
                             <fill>
                                 <LinearGradient endX="1.0" endY="1.0" startX="1.0">
                                     <stops>
                                         <Stop>
                                             <color>
-                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                                <Color red="1.0" green="1.0" blue="1.0"/>
                                             </color>
                                         </Stop>
                                         <Stop offset="0.5830970105163653">
                                             <color>
-                                                <Color red="1.0" green="1.0" blue="1.0" opacity="0.5" />
+                                                <Color red="1.0" green="1.0" blue="1.0" opacity="0.5"/>
                                             </color>
                                         </Stop>
                                         <Stop offset="1.0">
                                             <color>
-                                                <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                                                <Color red="1.0" green="1.0" blue="1.0" opacity="0.0"/>
                                             </color>
                                         </Stop>
                                     </stops>
@@ -49,76 +54,91 @@
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                     <HBox.margin>
-                                        <Insets />
+                                        <Insets/>
                                     </HBox.margin>
                                     <children>
-                                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@../../logo.png" />
+                                                <Image url="@../../logo.png"/>
                                             </image>
                                         </ImageView>
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0"
+                                      prefWidth="200.0" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="480.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #ffffffcc; -fx-background-radius: 8;">
+                                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="480.0"
+                                              prefHeight="50.0" prefWidth="200.0"
+                                              style="-fx-background-color: #ffffffcc; -fx-background-radius: 8;">
                                             <children>
-                                                <Button fx:id="btnRicerca" mnemonicParsing="false" onAction="#onRicercaSelected" text="Ricerca">
+                                                <Button fx:id="btnRicerca" mnemonicParsing="false"
+                                                        onAction="#onRicercaSelected" text="Ricerca">
                                                     <HBox.margin>
-                                                        <Insets right="32.0" />
+                                                        <Insets right="32.0"/>
                                                     </HBox.margin>
                                                 </Button>
-                                                <Button fx:id="btnRimborso" mnemonicParsing="false" onAction="#onRimborsoSelected" text="Rimborso" HBox.hgrow="ALWAYS">
+                                                <Button fx:id="btnRimborso" mnemonicParsing="false"
+                                                        onAction="#onRimborsoSelected" text="Rimborso"
+                                                        HBox.hgrow="ALWAYS">
                                                     <HBox.margin>
-                                                        <Insets />
+                                                        <Insets/>
                                                     </HBox.margin>
                                                 </Button>
                                             </children>
                                             <HBox.margin>
-                                                <Insets />
+                                                <Insets/>
                                             </HBox.margin>
                                             <padding>
-                                                <Insets left="16.0" right="16.0" />
+                                                <Insets left="16.0" right="16.0"/>
                                             </padding>
                                         </HBox>
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER_RIGHT" maxWidth="480.0" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+                                <HBox alignment="CENTER_RIGHT" maxWidth="480.0" prefHeight="100.0" prefWidth="200.0"
+                                      spacing="16.0">
                                     <children>
-                              <Group fx:id="grpLoggedOut">
-                                 <children>
-                                              <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#onLogin" text="Accedi" />
-                                              <Button fx:id="btnSignup" layoutX="70.0" mnemonicParsing="false" onAction="#onSignup" text="Registrati" />
-                                 </children>
-                              </Group>
-                              <Group fx:id="grpLoggedIn">
-                                 <children>
-                                              <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#onLogout" text="Logout" />
-                                              <Button fx:id="btnAccountSettings" layoutX="72.0" mnemonicParsing="false" onAction="#onAccountSettings" text="Account" />
-                                 </children>
-                              </Group>
+                                        <Group fx:id="grpLoggedOut">
+                                            <children>
+                                                <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#onLogin"
+                                                        text="Accedi"/>
+                                                <Button fx:id="btnSignup" layoutX="70.0" mnemonicParsing="false"
+                                                        onAction="#onSignup" text="Registrati"/>
+                                            </children>
+                                        </Group>
+                                        <Group fx:id="grpLoggedIn">
+                                            <children>
+                                                <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#onLogout"
+                                                        text="Logout"/>
+                                                <Button fx:id="btnAccountSettings" layoutX="72.0"
+                                                        mnemonicParsing="false" onAction="#onAccountSettings"
+                                                        text="Account"/>
+                                            </children>
+                                        </Group>
                                     </children>
                                 </HBox>
                             </children>
                             <padding>
-                                <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                                <Insets bottom="32.0" left="32.0" right="32.0" top="32.0"/>
                             </padding>
                         </HBox>
                     </children>
                 </StackPane>
                 <GridPane VBox.vgrow="ALWAYS">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="241.60001220703123" minHeight="10.0" prefHeight="241.60001220703123" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="241.60001220703123" minHeight="10.0" prefHeight="241.60001220703123"
+                                        vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <VBox.margin>
-                        <Insets />
+                        <Insets/>
                     </VBox.margin>
                     <children>
-                        <TabPane fx:id="tabPaneRicerca" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
+                        <TabPane fx:id="tabPaneRicerca" prefHeight="200.0" prefWidth="200.0"
+                                 tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
                             <tabs>
                                 <Tab text="Biglietto">
                                     <content>
@@ -130,117 +150,174 @@
                                                             <children>
                                                                 <Label text="Stazione di partenza">
                                                                     <padding>
-                                                                        <Insets bottom="4.0" />
+                                                                        <Insets bottom="4.0"/>
                                                                     </padding>
                                                                 </Label>
-                                                                <SearchableComboBox fx:id="scbBigliettoPartenza" editable="true" prefWidth="100.0" />
+                                                                <SearchableComboBox fx:id="scbBigliettoPartenza"
+                                                                                    editable="true" prefWidth="100.0"/>
                                                             </children>
                                                             <padding>
-                                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
                                                             </padding>
                                                         </VBox>
-                                                        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                                                        <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0"
+                                                              HBox.hgrow="ALWAYS">
                                                             <children>
                                                                 <Label text="Stazione di destinazione">
                                                                     <padding>
-                                                                        <Insets bottom="4.0" />
+                                                                        <Insets bottom="4.0"/>
                                                                     </padding>
                                                                 </Label>
-                                                                <SearchableComboBox fx:id="scbBigliettoDestinazione" editable="true" prefWidth="100.0" />
+                                                                <SearchableComboBox fx:id="scbBigliettoDestinazione"
+                                                                                    editable="true" prefWidth="100.0"/>
                                                             </children>
                                                             <padding>
-                                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
                                                             </padding>
                                                         </VBox>
-                                                        <VBox alignment="CENTER_LEFT" layoutX="110.0" layoutY="10.0" maxWidth="-Infinity" HBox.hgrow="ALWAYS">
+                                                        <VBox alignment="CENTER_LEFT" layoutX="110.0" layoutY="10.0"
+                                                              maxWidth="-Infinity" HBox.hgrow="ALWAYS">
                                                             <children>
-                                                                <ToggleSwitch fx:id="tgsBigliettoAR" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" style="-fx-label-padding: 4px;" text="Andata e ritorno">
+                                                                <ToggleSwitch fx:id="tgsBigliettoAR" alignment="CENTER"
+                                                                              contentDisplay="GRAPHIC_ONLY"
+                                                                              style="-fx-label-padding: 4px;"
+                                                                              text="Andata e ritorno">
                                                                     <padding>
-                                                                        <Insets bottom="4.0" />
+                                                                        <Insets bottom="4.0"/>
                                                                     </padding>
                                                                 </ToggleSwitch>
                                                                 <HBox maxWidth="-Infinity" spacing="16.0">
                                                                     <children>
                                                                         <VBox>
                                                                             <children>
-                                                                                <DatePicker fx:id="dtpBigliettoPartenza" editable="false" maxWidth="1.7976931348623157E308" />
-                                                                                <JFXTimePicker fx:id="tmpBigliettoAndata" editable="false" maxHeight="29.0" maxWidth="170.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" />
+                                                                                <DatePicker fx:id="dtpBigliettoPartenza"
+                                                                                            editable="false"
+                                                                                            maxWidth="1.7976931348623157E308"/>
+                                                                                <JFXTimePicker
+                                                                                        fx:id="tmpBigliettoAndata"
+                                                                                        editable="false"
+                                                                                        maxHeight="29.0"
+                                                                                        maxWidth="170.0"
+                                                                                        minHeight="-Infinity"
+                                                                                        minWidth="-Infinity"
+                                                                                        prefHeight="29.0"
+                                                                                        prefWidth="183.5"/>
                                                                             </children>
                                                                         </VBox>
                                                                         <VBox>
                                                                             <children>
-                                                                                <DatePicker fx:id="dtpBigliettoRitorno" disable="true" editable="false" maxWidth="1.7976931348623157E308" />
-                                                                                <JFXTimePicker fx:id="tmpBigliettoRitorno" disable="true" editable="false" maxHeight="29.0" maxWidth="183.5" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" />
+                                                                                <DatePicker fx:id="dtpBigliettoRitorno"
+                                                                                            disable="true"
+                                                                                            editable="false"
+                                                                                            maxWidth="1.7976931348623157E308"/>
+                                                                                <JFXTimePicker
+                                                                                        fx:id="tmpBigliettoRitorno"
+                                                                                        disable="true" editable="false"
+                                                                                        maxHeight="29.0"
+                                                                                        maxWidth="183.5"
+                                                                                        minHeight="-Infinity"
+                                                                                        minWidth="-Infinity"
+                                                                                        prefHeight="29.0"
+                                                                                        prefWidth="183.5"/>
                                                                             </children>
                                                                         </VBox>
-                                                                        <MenuButton contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false">
+                                                                        <MenuButton contentDisplay="GRAPHIC_ONLY"
+                                                                                    mnemonicParsing="false">
                                                                             <items>
-                                                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
+                                                                                <CustomMenuItem hideOnClick="false"
+                                                                                                mnemonicParsing="false"
+                                                                                                text="Unspecified Action">
                                                                                     <content>
                                                                                         <VBox>
                                                                                             <children>
                                                                                                 <Label text="Adulti">
                                                                                                     <graphic>
-                                                                                                        <FontIcon iconLiteral="fas-user" />
+                                                                                                        <FontIcon
+                                                                                                                iconLiteral="fas-user"/>
                                                                                                     </graphic>
                                                                                                 </Label>
-                                                                                                <Spinner fx:id="spnBigliettoAdulti">
+                                                                                                <Spinner
+                                                                                                        fx:id="spnBigliettoAdulti">
                                                                                                     <valueFactory>
-                                                                                                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="99" min="0" />
+                                                                                                        <SpinnerValueFactory.IntegerSpinnerValueFactory
+                                                                                                                initialValue="1"
+                                                                                                                max="99"
+                                                                                                                min="0"/>
                                                                                                     </valueFactory>
                                                                                                 </Spinner>
                                                                                             </children>
                                                                                         </VBox>
                                                                                     </content>
                                                                                 </CustomMenuItem>
-                                                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
+                                                                                <CustomMenuItem hideOnClick="false"
+                                                                                                mnemonicParsing="false"
+                                                                                                text="Unspecified Action">
                                                                                     <content>
                                                                                         <VBox>
                                                                                             <children>
                                                                                                 <Label text="Ragazzi">
                                                                                                     <graphic>
-                                                                                                        <FontIcon iconLiteral="fas-child" />
+                                                                                                        <FontIcon
+                                                                                                                iconLiteral="fas-child"/>
                                                                                                     </graphic>
                                                                                                 </Label>
-                                                                                                <Spinner fx:id="spnBigliettoRagazzi">
+                                                                                                <Spinner
+                                                                                                        fx:id="spnBigliettoRagazzi">
                                                                                                     <valueFactory>
-                                                                                                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="0" />
+                                                                                                        <SpinnerValueFactory.IntegerSpinnerValueFactory
+                                                                                                                initialValue="0"
+                                                                                                                max="99"
+                                                                                                                min="0"/>
                                                                                                     </valueFactory>
                                                                                                 </Spinner>
                                                                                             </children>
                                                                                         </VBox>
                                                                                     </content>
                                                                                 </CustomMenuItem>
-                                                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
+                                                                                <CustomMenuItem hideOnClick="false"
+                                                                                                mnemonicParsing="false"
+                                                                                                text="Unspecified Action">
                                                                                     <content>
                                                                                         <VBox>
                                                                                             <children>
                                                                                                 <Label text="Bambini">
                                                                                                     <graphic>
-                                                                                                        <FontIcon iconLiteral="fas-baby" />
+                                                                                                        <FontIcon
+                                                                                                                iconLiteral="fas-baby"/>
                                                                                                     </graphic>
                                                                                                 </Label>
-                                                                                                <Spinner fx:id="spnBigliettoBambini">
+                                                                                                <Spinner
+                                                                                                        fx:id="spnBigliettoBambini">
                                                                                                     <valueFactory>
-                                                                                                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="0" />
+                                                                                                        <SpinnerValueFactory.IntegerSpinnerValueFactory
+                                                                                                                initialValue="0"
+                                                                                                                max="99"
+                                                                                                                min="0"/>
                                                                                                     </valueFactory>
                                                                                                 </Spinner>
                                                                                             </children>
                                                                                         </VBox>
                                                                                     </content>
                                                                                 </CustomMenuItem>
-                                                                                <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
+                                                                                <CustomMenuItem hideOnClick="false"
+                                                                                                mnemonicParsing="false"
+                                                                                                text="Unspecified Action">
                                                                                     <content>
                                                                                         <VBox>
                                                                                             <children>
                                                                                                 <Label text="Animali">
                                                                                                     <graphic>
-                                                                                                        <FontIcon iconLiteral="fas-dog" />
+                                                                                                        <FontIcon
+                                                                                                                iconLiteral="fas-dog"/>
                                                                                                     </graphic>
                                                                                                 </Label>
-                                                                                                <Spinner fx:id="spnBigliettoAnimali">
+                                                                                                <Spinner
+                                                                                                        fx:id="spnBigliettoAnimali">
                                                                                                     <valueFactory>
-                                                                                                        <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" max="99" min="0" />
+                                                                                                        <SpinnerValueFactory.IntegerSpinnerValueFactory
+                                                                                                                initialValue="0"
+                                                                                                                max="99"
+                                                                                                                min="0"/>
                                                                                                     </valueFactory>
                                                                                                 </Spinner>
                                                                                             </children>
@@ -251,27 +328,35 @@
                                                                             <graphic>
                                                                                 <VBox alignment="CENTER_LEFT">
                                                                                     <children>
-                                                                                        <Label text="Passeggeri" />
+                                                                                        <Label text="Passeggeri"/>
                                                                                         <HBox spacing="8.0">
                                                                                             <children>
-                                                                                                <Label fx:id="lblNumAdulti" text="1">
+                                                                                                <Label fx:id="lblNumAdulti"
+                                                                                                       text="1">
                                                                                                     <graphic>
-                                                                                                        <FontIcon iconLiteral="fas-user" />
+                                                                                                        <FontIcon
+                                                                                                                iconLiteral="fas-user"/>
                                                                                                     </graphic>
                                                                                                 </Label>
-                                                                                                <Label fx:id="lblNumRagazzi" text="0">
+                                                                                                <Label fx:id="lblNumRagazzi"
+                                                                                                       text="0">
                                                                                                     <graphic>
-                                                                                                        <FontIcon iconLiteral="fas-child" />
+                                                                                                        <FontIcon
+                                                                                                                iconLiteral="fas-child"/>
                                                                                                     </graphic>
                                                                                                 </Label>
-                                                                                                <Label fx:id="lblNumBambini" text="0">
+                                                                                                <Label fx:id="lblNumBambini"
+                                                                                                       text="0">
                                                                                                     <graphic>
-                                                                                                        <FontIcon iconLiteral="fas-baby" />
+                                                                                                        <FontIcon
+                                                                                                                iconLiteral="fas-baby"/>
                                                                                                     </graphic>
                                                                                                 </Label>
-                                                                                                <Label fx:id="lblNumAnimali" text="0">
+                                                                                                <Label fx:id="lblNumAnimali"
+                                                                                                       text="0">
                                                                                                     <graphic>
-                                                                                                        <FontIcon iconLiteral="fas-dog" />
+                                                                                                        <FontIcon
+                                                                                                                iconLiteral="fas-dog"/>
                                                                                                     </graphic>
                                                                                                 </Label>
                                                                                             </children>
@@ -284,19 +369,21 @@
                                                                 </HBox>
                                                             </children>
                                                             <padding>
-                                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
                                                             </padding>
                                                         </VBox>
                                                     </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER_RIGHT">
                                                     <children>
-                                                        <Button mnemonicParsing="false" onAction="#onRicerca" prefWidth="127.0" text="Ricerca">
+                                                        <Button mnemonicParsing="false" onAction="#onRicerca"
+                                                                prefWidth="127.0" text="Ricerca">
                                                             <padding>
-                                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
                                                             </padding>
                                                             <HBox.margin>
-                                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                                                <Insets bottom="16.0" left="16.0" right="16.0"
+                                                                        top="16.0"/>
                                                             </HBox.margin>
                                                         </Button>
                                                     </children>
@@ -312,19 +399,22 @@
                                             <children>
                                                 <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                                     <children>
-                                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+                                                              HBox.hgrow="ALWAYS">
                                                             <children>
-                                                                <Label text="Valore €" />
-                                                                <ComboBox fx:id="cmbVoucherValore" prefWidth="150.0" />
+                                                                <Label text="Valore €"/>
+                                                                <ComboBox fx:id="cmbVoucherValore" prefWidth="150.0"/>
                                                             </children>
                                                         </VBox>
                                                     </children>
                                                 </HBox>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+                                                      HBox.hgrow="ALWAYS">
                                                     <children>
-                                                        <Button mnemonicParsing="false" onAction="#onVoucherCheckout" prefHeight="26.0" prefWidth="88.0" text="Checkout">
+                                                        <Button mnemonicParsing="false" onAction="#onVoucherCheckout"
+                                                                prefHeight="26.0" prefWidth="88.0" text="Checkout">
                                                             <VBox.margin>
-                                                                <Insets top="18.0" />
+                                                                <Insets top="18.0"/>
                                                             </VBox.margin>
                                                         </Button>
                                                     </children>
@@ -337,15 +427,16 @@
                             <effect>
                                 <DropShadow height="48.0" radius="23.5" width="48.0">
                                     <color>
-                                        <Color opacity="0.5" />
+                                        <Color opacity="0.5"/>
                                     </color>
                                 </DropShadow>
                             </effect>
                             <padding>
-                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
                             </padding>
                         </TabPane>
-                        <TabPane fx:id="tabPaneRimborso" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" visible="false" GridPane.rowIndex="1">
+                        <TabPane fx:id="tabPaneRimborso" prefHeight="200.0" prefWidth="200.0"
+                                 tabClosingPolicy="UNAVAILABLE" visible="false" GridPane.rowIndex="1">
                             <tabs>
                                 <Tab text="Rimborso">
                                     <content>
@@ -353,31 +444,46 @@
                                             <children>
                                                 <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                                     <children>
-                                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+                                                              HBox.hgrow="ALWAYS">
                                                             <children>
                                                                 <Label text="Numero del biglietto:">
-                                                   <padding>
-                                                      <Insets bottom="4.0" />
-                                                   </padding></Label>
-                                                                <TextField fx:id="txtRimborsoTitoloID" maxHeight="26.0" maxWidth="200.0" promptText="Numero del biglietto" styleClass="textField">
-                                                   <VBox.margin>
-                                                      <Insets bottom="8.0" />
-                                                   </VBox.margin></TextField>
-                                                                <Label fx:id="lblErroreRimborso" text="Numero inserito non valido!" textFill="#d70000" visible="false" />
-                                                                <Label fx:id="lblErroreRimborsoEmpty" text="Inserire un numero!" textFill="#d70000" visible="false" />
+                                                                    <padding>
+                                                                        <Insets bottom="4.0"/>
+                                                                    </padding>
+                                                                </Label>
+                                                                <TextField fx:id="txtRimborsoTitoloID" maxHeight="26.0"
+                                                                           maxWidth="200.0"
+                                                                           promptText="Numero del biglietto"
+                                                                           styleClass="textField">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="8.0"/>
+                                                                    </VBox.margin>
+                                                                </TextField>
+                                                                <Label fx:id="lblErroreRimborso"
+                                                                       text="Numero inserito non valido!"
+                                                                       textFill="#d70000" visible="false"/>
+                                                                <Label fx:id="lblErroreRimborsoEmpty"
+                                                                       text="Inserire un numero!" textFill="#d70000"
+                                                                       visible="false"/>
                                                             </children>
                                                         </VBox>
                                                     </children>
                                                 </HBox>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+                                                      HBox.hgrow="ALWAYS">
                                                     <children>
-                                                        <Button fx:id="btnRichiestaRimborso" mnemonicParsing="false" onAction="#onRimborso" prefHeight="26.0" prefWidth="150.0" text="Richiedi rimborso">
+                                                        <Button fx:id="btnRichiestaRimborso" mnemonicParsing="false"
+                                                                onAction="#onRimborso" prefHeight="26.0"
+                                                                prefWidth="150.0" text="Richiedi rimborso">
                                                             <VBox.margin>
-                                                                <Insets bottom="8.0" top="18.0" />
+                                                                <Insets bottom="8.0" top="18.0"/>
                                                             </VBox.margin>
                                                         </Button>
-                                          <Label fx:id="lblRimborsoOK" text="Rimborso effettuato con successo!" textFill="#21b200" visible="false" />
-                                          <Label />
+                                                        <Label fx:id="lblRimborsoOK"
+                                                               text="Rimborso effettuato con successo!"
+                                                               textFill="#21b200" visible="false"/>
+                                                        <Label/>
                                                     </children>
                                                 </VBox>
                                             </children>
@@ -388,51 +494,52 @@
                             <effect>
                                 <DropShadow height="48.0" radius="23.5" width="48.0">
                                     <color>
-                                        <Color opacity="0.5" />
+                                        <Color opacity="0.5"/>
                                     </color>
                                 </DropShadow>
                             </effect>
                             <padding>
-                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
                             </padding>
                         </TabPane>
                     </children>
                     <padding>
-                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
                     </padding>
                 </GridPane>
             </children>
         </VBox>
-        <VBox fx:id="boxLoading" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 8;" visible="false">
+        <VBox fx:id="boxLoading" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0"
+              prefWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 8;" visible="false">
             <children>
-                <ProgressIndicator />
+                <ProgressIndicator/>
                 <Label text="Caricamento in corso">
                     <VBox.margin>
-                        <Insets top="16.0" />
+                        <Insets top="16.0"/>
                     </VBox.margin>
                     <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="24.0"/>
                     </font>
                 </Label>
             </children>
             <effect>
                 <DropShadow blurType="GAUSSIAN" height="64.0" radius="31.5" width="64.0">
                     <color>
-                        <Color opacity="0.4545454680919647" />
+                        <Color opacity="0.4545454680919647"/>
                     </color>
                 </DropShadow>
             </effect>
         </VBox>
-      <Label onMouseClicked="#onSandraBullock" text="π" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <padding>
-            <Insets right="4.0" />
-         </padding>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
+        <Label onMouseClicked="#onSandraBullock" text="π" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+            <padding>
+                <Insets right="4.0"/>
+            </padding>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Label>
     </children>
 </StackPane>

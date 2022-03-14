@@ -40,7 +40,7 @@ class AccountTest {
     public void login() {
         String[] username = {"vale", "nyquist", "zambo", "ale"};
         boolean result = true;
-        for(String s:username) {
+        for (String s : username) {
             Account.login(s);
             result = result && Account.getLoggedIn();
         }

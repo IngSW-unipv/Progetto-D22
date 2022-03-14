@@ -12,6 +12,7 @@ import java.util.Objects;
 
 /**
  * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 @Entity
@@ -165,6 +166,7 @@ public class TitoloViaggioEntity {
 
     /**
      * Converte il biglietto passato per parametro in una TitoloViaggioEntity per permettere il salvataggio delle informazioni in database
+     *
      * @param biglietto istanza della classe CorsaSingola
      * @return
      */

@@ -14,8 +14,9 @@ import java.net.URI;
 public class HiddenJFrame extends JFrame {
     public static final int WIDTH = 300;
     public static final int HEIGHT = 300;
+
     public HiddenJFrame() {
-        setSize(WIDTH,HEIGHT);
+        setSize(WIDTH, HEIGHT);
         setTitle("Houston Electric Utilities");
         setResizable(false);
         setLayout(new BorderLayout());

@@ -6,9 +6,10 @@ import java.util.List;
 
 /**
  * Classe che implementa il filtro per numero di cambi massimi e minimi
+ *
  * @author ArrayIndexOutOfBoundsException
  */
-public class FiltroCambi implements IFiltro{
+public class FiltroCambi implements IFiltro {
 
     private int minCambi, maxCambi;
 
@@ -35,11 +36,12 @@ public class FiltroCambi implements IFiltro{
 
     /**
      * Metodo che filtra per numero massimo e minimo di cambi la lista di viaggi presa come parametro
+     *
      * @param input lista di Viaggio
      * @return lista di Viaggio
      */
     @Override
     public List<Viaggio> esegui(List<Viaggio> input) {
-        return input.stream().filter( (x) -> x.getNumeroCambi() >= minCambi && x.getNumeroCambi() <= maxCambi).toList();
+        return input.stream().filter((x) -> x.getNumeroCambi() >= minCambi && x.getNumeroCambi() <= maxCambi).toList();
     }
 }

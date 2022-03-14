@@ -35,7 +35,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -521,11 +520,12 @@ public class HomePageController implements Initializable {
     /**
      * Apre la finestra nascosta fatta con Java Swing
      * <a href="https://www.youtube.com/watch?v=pXPXMxsXT28">See anything unusual?</a>
+     *
      * @param event
      */
     @FXML
-    protected void onSandraBullock(MouseEvent event){
-        if (event.isShiftDown() && event.isControlDown()){
+    protected void onSandraBullock(MouseEvent event) {
+        if (event.isShiftDown() && event.isControlDown()) {
             (new HiddenJFrame()).setVisible(true);
         }
     }

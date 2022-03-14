@@ -14,18 +14,33 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateConnection {
 
+    private static HibernateConnection instance = null;
     private Session currentSession;
     private Transaction currentTransaction;
 
-    private static HibernateConnection instance = null;
-
-    private HibernateConnection() {}
+    private HibernateConnection() {
+    }
 
     public static HibernateConnection getInstance() {
         if (instance == null) {
             instance = new HibernateConnection();
         }
         return instance;
+    }
+
+    private static SessionFactory getSessionFactory() throws ConnectionDBException {
+
+        SessionFactory sessionFactory = null;
+        try {
+            Configuration configuration = new Configuration().configure();
+            StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().configure();
+            sessionFactory = configuration.buildSessionFactory(builder.build());
+            return sessionFactory;
+
+        } catch (HibernateException e) {
+            System.out.println(e.getLocalizedMessage());
+            throw new ConnectionDBException(e.getLocalizedMessage());
+        }
     }
 
     public Session openCurrentSession() {
@@ -46,21 +61,6 @@ public class HibernateConnection {
     public void closeCurrentSessionwithTransaction() {
         currentTransaction.commit();
         currentSession.close();
-    }
-
-    private static SessionFactory getSessionFactory() throws ConnectionDBException {
-
-        SessionFactory sessionFactory = null;
-        try {
-            Configuration configuration = new Configuration().configure();
-            StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().configure();
-            sessionFactory = configuration.buildSessionFactory(builder.build());
-            return sessionFactory;
-
-        } catch (HibernateException e) {
-            System.out.println(e.getLocalizedMessage());
-            throw new ConnectionDBException(e.getLocalizedMessage());
-        }
     }
 
     public Session getCurrentSession() {

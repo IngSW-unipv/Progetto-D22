@@ -1,13 +1,14 @@
 @import url("../styles.css");
 
-.body
-{
+.body {
     -fx-background-image: url("../sfondoHomePage.jpg");
 }
-.title{
+
+.title {
     -fx-font-weight: bold;
 }
-.data{
+
+.data {
     -fx-text-fill: grey;
 }
 
@@ -15,23 +16,20 @@
     -fx-opacity: 0;
 }
 
-.tab-pane
-{
-    -fx-tab-min-width:90px;
+.tab-pane {
+    -fx-tab-min-width: 90px;
 }
 
-.tab{
-    -fx-background-insets: 0 1 0 1,0,0;
+.tab {
+    -fx-background-insets: 0 1 0 1, 0, 0;
 
 }
 
-.tab-pane .tab
-{
+.tab-pane .tab {
     -fx-background-color: #e6e6e6;
 }
 
-.tab-pane .tab:selected
-{
+.tab-pane .tab:selected {
     -fx-background-color: white;
 }
 
@@ -51,7 +49,7 @@
     -fx-padding: 0 0 0 10;
 }
 
-.tab-content-area{
+.tab-content-area {
     -fx-background-color: white;
     -fx-background-radius: 8;
 }

@@ -9,8 +9,9 @@ public interface IPrezzoTotStrategy {
 
     /**
      * Metodo da implementare per poter ottenere il prezzo totale del viaggio passato come parametro.
+     *
      * @param v Viaggio.
      */
-    public double getPrezzoTot(Viaggio v);
+    double getPrezzoTot(Viaggio v);
 
 }

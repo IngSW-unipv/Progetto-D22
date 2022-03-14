@@ -1,97 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0" prefWidth="910.0" style="-fx-background-color: #F4F4F4;" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.RegistrazioneController">
-   <center>
-      <GridPane alignment="TOP_CENTER" prefHeight="445.0" prefWidth="910.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label fx:id="lblRegistrazione" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="148.0" text="Registrazione">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label styleClass="title" text="Nome:" GridPane.rowIndex="5">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label styleClass="title" text="Email:" GridPane.rowIndex="8" />
-            <Label styleClass="title" text="Cognome" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Label styleClass="title" text="Civico:" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-            <Label styleClass="title" text="Data di nascita" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <Label styleClass="title" text="Via:" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-            <Label styleClass="title" text="Città:" GridPane.rowIndex="11" />
-            <Label styleClass="title" text="CAP:" GridPane.columnIndex="2" GridPane.rowIndex="11" />
-            <TextField fx:id="txtCitta" focusTraversable="false" promptText="Città" styleClass="textField" GridPane.rowIndex="12" />
-            <Button id="buttonSalva" fx:id="btnRegistrati" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onRegistrati" text="Registrati" textFill="#006565" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
-            <Button id="buttonAnnulla" fx:id="btnAnnulla" contentDisplay="CENTER" layoutX="635.0" layoutY="11.0" mnemonicParsing="false" onAction="#onAnnulla" text="Annulla" textFill="#b51039" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
-            <TextField fx:id="txtEmail" focusTraversable="false" promptText="Email" styleClass="textField" GridPane.rowIndex="9" />
-            <TextField fx:id="txtNome" focusTraversable="false" promptText="Nome " styleClass="textField" GridPane.rowIndex="6" />
-            <TextField fx:id="txtCognome" focusTraversable="false" promptText="Cognome" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <TextField fx:id="txtVia" focusTraversable="false" promptText="Via" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-            <TextField fx:id="txtCAP" focusTraversable="false" promptText="CAP" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="12" />
-            <TextField fx:id="txtCivico" focusTraversable="false" maxWidth="150.0" promptText="Civico" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="9" />
-            <DatePicker fx:id="dtpDataNascita" editable="false" focusTraversable="false" maxWidth="1.7976931348623157E308" promptText="gg/mm/aaaa" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-            <Label fx:id="lblErroreCAP" text="CAP inserito non valido!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
-            <Label fx:id="lblErroreEmail" text="Email non valida!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <Label fx:id="lblErroreDataNascita" text="Data di nascita non valida!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-            <Label fx:id="lblErroreNome" text="Inserire il Nome!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-            <Label fx:id="lblErroreCitta" text="Inserire la Città!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
-            <Label fx:id="lblErroreCognome" text="Inserire il Cognome!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-            <Label fx:id="lblErroreVia" text="Inserire la Via!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <Label fx:id="lblErroreCivico" text="Inserire il Civico!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="10">
-               <GridPane.margin>
-                  <Insets left="32.0" />
-               </GridPane.margin></Label>
-            <TextField fx:id="txtUsername" focusTraversable="false" promptText="Username" styleClass="textField" GridPane.rowIndex="3" />
-            <TextField fx:id="txtPassword" focusTraversable="false" promptText="Password" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label styleClass="title" text="Username:" GridPane.rowIndex="2" />
-            <Label styleClass="title" text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label fx:id="lblErroreUsername" text="Inserire Username!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Label fx:id="lblErrorePassword" text="Inserire la password!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Label fx:id="lblErroreDataNascitaEmpty" text="Inserire la Data di nascita!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-            <Label fx:id="lblErroreEmailEmpty" text="Inserire Email!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <Label fx:id="lblErroreCAPEmpty" text="Inserire il CAP!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
-            <Label fx:id="lblRegistrazioneOK" text="Registrazione avvenuta con successo!" textFill="#21b200" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
-            <Label fx:id="lblUsernameEsistente" text="Username già esistente!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-         </children>
-         <BorderPane.margin>
-            <Insets top="35.0" />
-         </BorderPane.margin>
-      </GridPane>
-   </center>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500.0"
+            prefWidth="910.0" style="-fx-background-color: #F4F4F4;" stylesheets="@../styles.css"
+            xmlns="http://javafx.com/javafx/17"
+            fx:controller="it.unipv.po.aioobe.trenissimo.controller.RegistrazioneController">
+    <center>
+        <GridPane alignment="TOP_CENTER" prefHeight="445.0" prefWidth="910.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label fx:id="lblRegistrazione" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="148.0"
+                       text="Registrazione">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Label>
+                <Label styleClass="title" text="Nome:" GridPane.rowIndex="5">
+                    <font>
+                        <Font name="System Bold" size="13.0"/>
+                    </font>
+                </Label>
+                <Label styleClass="title" text="Email:" GridPane.rowIndex="8"/>
+                <Label styleClass="title" text="Cognome" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                <Label styleClass="title" text="Civico:" GridPane.columnIndex="4" GridPane.rowIndex="8"/>
+                <Label styleClass="title" text="Data di nascita" GridPane.columnIndex="4" GridPane.rowIndex="5"/>
+                <Label styleClass="title" text="Via:" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+                <Label styleClass="title" text="Città:" GridPane.rowIndex="11"/>
+                <Label styleClass="title" text="CAP:" GridPane.columnIndex="2" GridPane.rowIndex="11"/>
+                <TextField fx:id="txtCitta" focusTraversable="false" promptText="Città" styleClass="textField"
+                           GridPane.rowIndex="12"/>
+                <Button id="buttonSalva" fx:id="btnRegistrati" alignment="CENTER_RIGHT" contentDisplay="CENTER"
+                        mnemonicParsing="false" onAction="#onRegistrati" text="Registrati" textFill="#006565"
+                        GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="13"/>
+                <Button id="buttonAnnulla" fx:id="btnAnnulla" contentDisplay="CENTER" layoutX="635.0" layoutY="11.0"
+                        mnemonicParsing="false" onAction="#onAnnulla" text="Annulla" textFill="#b51039"
+                        GridPane.columnIndex="4" GridPane.halignment="RIGHT"/>
+                <TextField fx:id="txtEmail" focusTraversable="false" promptText="Email" styleClass="textField"
+                           GridPane.rowIndex="9"/>
+                <TextField fx:id="txtNome" focusTraversable="false" promptText="Nome " styleClass="textField"
+                           GridPane.rowIndex="6"/>
+                <TextField fx:id="txtCognome" focusTraversable="false" promptText="Cognome" styleClass="textField"
+                           GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+                <TextField fx:id="txtVia" focusTraversable="false" promptText="Via" styleClass="textField"
+                           GridPane.columnIndex="2" GridPane.rowIndex="9"/>
+                <TextField fx:id="txtCAP" focusTraversable="false" promptText="CAP" styleClass="textField"
+                           GridPane.columnIndex="2" GridPane.rowIndex="12"/>
+                <TextField fx:id="txtCivico" focusTraversable="false" maxWidth="150.0" promptText="Civico"
+                           styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="9"/>
+                <DatePicker fx:id="dtpDataNascita" editable="false" focusTraversable="false"
+                            maxWidth="1.7976931348623157E308" promptText="gg/mm/aaaa" styleClass="textField"
+                            GridPane.columnIndex="4" GridPane.rowIndex="6"/>
+                <Label fx:id="lblErroreCAP" text="CAP inserito non valido!" textFill="#d70000" visible="false"
+                       GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="13"/>
+                <Label fx:id="lblErroreEmail" text="Email non valida!" textFill="#d70000" visible="false"
+                       GridPane.halignment="CENTER" GridPane.rowIndex="10"/>
+                <Label fx:id="lblErroreDataNascita" text="Data di nascita non valida!" textFill="#d70000"
+                       visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7"/>
+                <Label fx:id="lblErroreNome" text="Inserire il Nome!" textFill="#d70000" visible="false"
+                       GridPane.halignment="CENTER" GridPane.rowIndex="7"/>
+                <Label fx:id="lblErroreCitta" text="Inserire la Città!" textFill="#d70000" visible="false"
+                       GridPane.halignment="CENTER" GridPane.rowIndex="13"/>
+                <Label fx:id="lblErroreCognome" text="Inserire il Cognome!" textFill="#d70000" visible="false"
+                       GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7"/>
+                <Label fx:id="lblErroreVia" text="Inserire la Via!" textFill="#d70000" visible="false"
+                       GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10"/>
+                <Label fx:id="lblErroreCivico" text="Inserire il Civico!" textFill="#d70000" visible="false"
+                       GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="10">
+                    <GridPane.margin>
+                        <Insets left="32.0"/>
+                    </GridPane.margin>
+                </Label>
+                <TextField fx:id="txtUsername" focusTraversable="false" promptText="Username" styleClass="textField"
+                           GridPane.rowIndex="3"/>
+                <TextField fx:id="txtPassword" focusTraversable="false" promptText="Password" styleClass="textField"
+                           GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                <Label styleClass="title" text="Username:" GridPane.rowIndex="2"/>
+                <Label styleClass="title" text="Password:" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                <Label fx:id="lblErroreUsername" text="Inserire Username!" textFill="#d70000" visible="false"
+                       GridPane.halignment="CENTER" GridPane.rowIndex="4"/>
+                <Label fx:id="lblErrorePassword" text="Inserire la password!" textFill="#d70000" visible="false"
+                       GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4"/>
+                <Label fx:id="lblErroreDataNascitaEmpty" text="Inserire la Data di nascita!" textFill="#d70000"
+                       visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7"/>
+                <Label fx:id="lblErroreEmailEmpty" text="Inserire Email!" textFill="#d70000" visible="false"
+                       GridPane.halignment="CENTER" GridPane.rowIndex="10"/>
+                <Label fx:id="lblErroreCAPEmpty" text="Inserire il CAP!" textFill="#d70000" visible="false"
+                       GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="13"/>
+                <Label fx:id="lblRegistrazioneOK" text="Registrazione avvenuta con successo!" textFill="#21b200"
+                       visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="14"/>
+                <Label fx:id="lblUsernameEsistente" text="Username già esistente!" textFill="#d70000" visible="false"
+                       GridPane.halignment="CENTER" GridPane.rowIndex="4"/>
+            </children>
+            <BorderPane.margin>
+                <Insets top="35.0"/>
+            </BorderPane.margin>
+        </GridPane>
+    </center>
 </BorderPane>

@@ -9,22 +9,23 @@ import java.util.List;
 
 /**
  * Classe astratta che individua un acquisto
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 
 public abstract class Acquisto {
 
-    private double prezzoTot;
     private final LocalDateTime dataAcquisto;
-    private IPuntiFedeltaStrategy puntiFedeltaStrategy;
+    private double prezzoTot;
+    private final IPuntiFedeltaStrategy puntiFedeltaStrategy;
 
     /**
      * Costruttore che istanzia il Factory per i punti fedeltà ed assegna l'istanza della Strategy all'attributo privato puntiFedeltaStrategy.
      * Inoltre assegna al prezzo un valore iniziale di 0 ed assegna alla data di acquisto la data attuale al momento della chiamata del costruttore.
      */
-    public Acquisto(){
-        PuntiFedeltaFactory f=new PuntiFedeltaFactory();
-        puntiFedeltaStrategy =f.getPuntiFedelta();
+    public Acquisto() {
+        PuntiFedeltaFactory f = new PuntiFedeltaFactory();
+        puntiFedeltaStrategy = f.getPuntiFedelta();
         this.prezzoTot = 0;
         this.dataAcquisto = LocalDateTime.now();
     }
@@ -41,11 +42,12 @@ public abstract class Acquisto {
 
     /**
      * Metodo che calcola il valore totale della lista di acquisti passata come parametro
+     *
      * @param acquisti una lista di istanze della classe Acquisto
      */
     public void setPrezzoTot(@NotNull List<Acquisto> acquisti) {
         double prezzoTot = 0;
-        for (Acquisto a: acquisti) {
+        for (Acquisto a : acquisti) {
             prezzoTot = prezzoTot + a.getPrezzo();
         }
         this.prezzoTot = prezzoTot;
@@ -53,9 +55,10 @@ public abstract class Acquisto {
 
     /**
      * Metodo che richiama il metodo setPuntiFedelta della PuntiFedeltaStrategy
+     *
      * @param acquisti una lista di istanze della classe Acquisto
      */
-    public void puntiFedelta(List<Acquisto> acquisti){
+    public void puntiFedelta(List<Acquisto> acquisti) {
         this.setPrezzoTot(acquisti);
         puntiFedeltaStrategy.setPuntiFedelta(this);
     }

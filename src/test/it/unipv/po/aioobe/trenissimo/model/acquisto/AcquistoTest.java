@@ -3,6 +3,7 @@ package it.unipv.po.aioobe.trenissimo.model.acquisto;
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ class AcquistoTest {
         carrello.add(v1);
         carrello.add(v2);
         carrello.add(v3);
-        for(Acquisto a:carrello){
+        for (Acquisto a : carrello) {
             result = result && a.pagare();
         }
         assertTrue(result);

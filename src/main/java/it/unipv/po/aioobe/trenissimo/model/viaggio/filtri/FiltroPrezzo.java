@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Classe che implementa il filtro per prezzo massimo e minimo
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 public class FiltroPrezzo implements IFiltro {
@@ -33,8 +34,10 @@ public class FiltroPrezzo implements IFiltro {
     public void setMaxPrezzo(double maxPrezzo) {
         this.maxPrezzo = maxPrezzo;
     }
+
     /**
      * Metodo che filtra per prezzo massimo e minimo la lista di viaggi presa come parametro
+     *
      * @param input lista di Viaggio
      * @return lista di Viaggio
      */

@@ -9,6 +9,7 @@ import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.Rimborso;
 public interface IRimborsoStrategy {
     /**
      * Metodo da implementare per poter ottenere il voucher con un valore calcolato in base al rimborso che viene passato come parametro.
+     *
      * @param r (Rimborso)
      */
     VoucherEntity getPrezzoTot(Rimborso r);

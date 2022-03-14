@@ -35,6 +35,7 @@ public class CachedTripsService implements ITripsService, ICached {
         }
         return cachedFindAll;
     }
+
     /**
      * Metodo che pone a null la lista cachedFindAll
      */

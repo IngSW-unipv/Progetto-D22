@@ -9,8 +9,9 @@ public interface IPuntiFedeltaStrategy {
 
     /**
      * Metodo da implementare per poter ottenere il numero di punti fedeltà ricevuti in base al prezzo dell'acquisto passato come parametro
+     *
      * @param acquisto
      */
-    public void setPuntiFedelta(Acquisto acquisto);
+    void setPuntiFedelta(Acquisto acquisto);
 
 }

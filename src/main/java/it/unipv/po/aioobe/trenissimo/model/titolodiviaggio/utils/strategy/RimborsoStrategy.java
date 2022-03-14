@@ -8,12 +8,13 @@ import java.util.Locale;
 
 /**
  * Classe che implementa una strategia per il calcolo del prezzo totale del voucher derivante da un rimborso passato come parametro.
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 public class RimborsoStrategy implements IRimborsoStrategy {
 
-    public final double RIMBORSOPIU3GIORNI = (double)75/100;
-    public final double RIMBORSO1GIORNO = (double)50/100;
+    public final double RIMBORSOPIU3GIORNI = (double) 75 / 100;
+    public final double RIMBORSO1GIORNO = (double) 50 / 100;
 
     /**
      * Override del metodo la cui signature è stata ereditata dall'interfaccia implementata. <br>
@@ -22,21 +23,20 @@ public class RimborsoStrategy implements IRimborsoStrategy {
      * Se la richiesta è effettuata almeno 3 giorni prima della data di partenza del viaggio, si ha un rimborso del 75%; <br>
      * Se la richiesta è effettuata il giorno prima della data di partenza del viaggio, si ha un rimborso del 50%; <br>
      * Se la richiesta è effettuata il giorno stesso della data di partenza del viaggio, non si può avere rimborso. <br>
+     *
      * @return VoucherEntity
      */
     @Override
     public VoucherEntity getPrezzoTot(@NotNull Rimborso r) {
-        if((r.getTitoloViaggioEntity().getDataPartenza().toLocalDate().toEpochDay() - r.getDataRichiesta().toEpochDay()) >= 3 ) {
+        if ((r.getTitoloViaggioEntity().getDataPartenza().toLocalDate().toEpochDay() - r.getDataRichiesta().toEpochDay()) >= 3) {
             VoucherEntity v = new VoucherEntity();
-            v.setPrezzo(Double.valueOf(String.format(Locale.US,"%.2f", r.getStoricoAcquisti().getPrezzo()*RIMBORSOPIU3GIORNI)));
+            v.setPrezzo(Double.valueOf(String.format(Locale.US, "%.2f", r.getStoricoAcquisti().getPrezzo() * RIMBORSOPIU3GIORNI)));
             return v;
-        }
-        else if((r.getTitoloViaggioEntity().getDataPartenza().toLocalDate().toEpochDay() - r.getDataRichiesta().toEpochDay()) == 1) {
+        } else if ((r.getTitoloViaggioEntity().getDataPartenza().toLocalDate().toEpochDay() - r.getDataRichiesta().toEpochDay()) == 1) {
             VoucherEntity v = new VoucherEntity();
-            v.setPrezzo(Double.valueOf(String.format(Locale.US,"%.2f", r.getStoricoAcquisti().getPrezzo()*RIMBORSO1GIORNO)));
+            v.setPrezzo(Double.valueOf(String.format(Locale.US, "%.2f", r.getStoricoAcquisti().getPrezzo() * RIMBORSO1GIORNO)));
             return v;
-        }
-        else
+        } else
             return null;
 
     }

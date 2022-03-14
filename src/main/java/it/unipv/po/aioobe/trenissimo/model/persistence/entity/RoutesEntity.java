@@ -6,11 +6,12 @@ import java.util.Objects;
 
 /**
  * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 @Entity
 @Table(name = "routes", schema = "trenissimo")
-public class    RoutesEntity implements Serializable {
+public class RoutesEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "route_id", nullable = false, length = 100)

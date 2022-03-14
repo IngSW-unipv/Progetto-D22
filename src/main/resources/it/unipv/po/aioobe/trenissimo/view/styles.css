@@ -1,28 +1,32 @@
-.button{
+.button {
     -fx-background-color: #f2f3f7;
     -fx-background-radius: 8;
     -fx-border-color: #cccccc;
     -fx-border-radius: 8;
 }
-.button:hover{
+
+.button:hover {
     -fx-background-color: rgb(187, 187, 187);
     -fx-background-radius: 8;
     -fx-border-color: #cccccc;
     -fx-border-radius: 8;
 }
-.btnAcquista{
+
+.btnAcquista {
     -fx-background-color: rgb(0, 101, 101);
     -fx-background-radius: 8;
     -fx-border-color: #006565;
     -fx-border-radius: 8;
 }
-.btnAcquista:hover{
+
+.btnAcquista:hover {
     -fx-background-color: rgb(73, 152, 152);
     -fx-background-radius: 8;
     -fx-border-color: #499898;
     -fx-border-radius: 8;
 }
-.textField{
+
+.textField {
     -fx-background-color: #f2f3f7;
     -fx-background-radius: 8;
     -fx-border-color: #cccccc;

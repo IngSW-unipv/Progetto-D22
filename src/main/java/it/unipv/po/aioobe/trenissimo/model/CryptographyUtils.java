@@ -6,7 +6,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -19,6 +18,7 @@ import java.util.Properties;
 
 /**
  * Classe mediante la quale criptiamo una password passata come stringa
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 public class CryptographyUtils {
@@ -26,6 +26,7 @@ public class CryptographyUtils {
     /**
      * See <a href="https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"></a>
      * Computa la stringa passata come parametro per renderla una chiave privata utilizzabile per la criptazione di tipo AES
+     *
      * @param myKey
      * @return
      * @throws NoSuchAlgorithmException
@@ -40,9 +41,11 @@ public class CryptographyUtils {
         key = Arrays.copyOf(key, 16);
         return new SecretKeySpec(key, "AES");
     }
+
     /**
      * See <a href="https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"></a>
      * Cripta la password passata come parametro utilizzando una chiave segreta (calcolata mediante il metodo SecretKeySpec computeKey(final String myKey))
+     *
      * @param password
      * @return password criptata
      * @throws NoSuchPaddingException

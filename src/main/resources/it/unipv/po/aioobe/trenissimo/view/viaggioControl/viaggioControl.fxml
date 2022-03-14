@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import org.kordamp.ikonli.javafx.*?>
-
-<fx:root maxHeight="1.7976931348623157E308" prefWidth="800.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" stylesheets="@../styles.css" type="javafx.scene.layout.VBox" VBox.vgrow="NEVER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" maxHeight="1.7976931348623157E308"
+         prefWidth="800.0"
+         style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" stylesheets="@../styles.css" type="javafx.scene.layout.VBox"
+         VBox.vgrow="NEVER" xmlns="http://javafx.com/javafx/16">
     <children>
         <HBox spacing="8.0" VBox.vgrow="NEVER">
             <children>
-                <Label fx:id="lblCompanyId" maxWidth="1.7976931348623157E308" prefWidth="713.0" text="Trenissimo" HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblCompanyId" maxWidth="1.7976931348623157E308" prefWidth="713.0" text="Trenissimo"
+                       HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="8.0">
@@ -23,89 +26,99 @@
                             <children>
                                 <Label fx:id="lblDepartureTime" text="13:27" textFill="#006565">
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Label>
-                                <Label fx:id="lblDepartureStation" text="Casteggio" />
+                                <Label fx:id="lblDepartureStation" text="Casteggio"/>
                             </children>
                         </VBox>
                         <HBox alignment="CENTER">
                             <children>
-                                <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
-                           <HBox.margin>
-                              <Insets left="8.0" right="8.0" />
-                           </HBox.margin></Line>
-                                <Label fx:id="lblTravelTime" text="56min" HBox.hgrow="ALWAYS" />
-                                <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
-                           <HBox.margin>
-                              <Insets left="8.0" right="8.0" />
-                           </HBox.margin></Line>
+                                <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND"
+                                      strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                    <HBox.margin>
+                                        <Insets left="8.0" right="8.0"/>
+                                    </HBox.margin>
+                                </Line>
+                                <Label fx:id="lblTravelTime" text="56min" HBox.hgrow="ALWAYS"/>
+                                <Line endX="100.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND"
+                                      strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                    <HBox.margin>
+                                        <Insets left="8.0" right="8.0"/>
+                                    </HBox.margin>
+                                </Line>
                             </children>
                         </HBox>
                         <VBox alignment="CENTER_LEFT">
                             <children>
                                 <Label fx:id="lblArrivalTime" text="14:23" textFill="#006565">
                                     <font>
-                                        <Font name="System Bold" size="18.0" />
+                                        <Font name="System Bold" size="18.0"/>
                                     </font>
                                 </Label>
-                                <Label fx:id="lblArrivalStation" text="Pavia" />
+                                <Label fx:id="lblArrivalStation" text="Pavia"/>
                             </children>
                         </VBox>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                     <children>
-                        <Label fx:id="lblChanges" contentDisplay="RIGHT" graphicTextGap="8.0" onMouseClicked="#onToggleChangeVisibility" text="1 cambio">
-                     <graphic>
-                        <FontIcon fx:id="icoChanges" iconColor="#636a77" iconLiteral="fas-angle-down" iconSize="16" />
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Label>
+                        <Label fx:id="lblChanges" contentDisplay="RIGHT" graphicTextGap="8.0"
+                               onMouseClicked="#onToggleChangeVisibility" text="1 cambio">
+                            <graphic>
+                                <FontIcon fx:id="icoChanges" iconColor="#636a77" iconLiteral="fas-angle-down"
+                                          iconSize="16"/>
+                            </graphic>
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Label>
                     </children>
                 </HBox>
                 <VBox alignment="CENTER_RIGHT">
                     <children>
                         <Label text="a partire da">
                             <font>
-                                <Font size="9.0" />
+                                <Font size="9.0"/>
                             </font>
                         </Label>
                         <Label fx:id="lblPrice" text="10,30€" textAlignment="RIGHT" textFill="#bf0000">
                             <font>
-                                <Font name="System Bold" size="25.0" />
+                                <Font name="System Bold" size="25.0"/>
                             </font>
                         </Label>
                     </children>
                 </VBox>
-            <Button fx:id="btnAddPreferiti" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#onAddPreferiti" text="Salva">
-               <graphic>
-                  <FontIcon fx:id="icoPreferiti" iconLiteral="far-heart" iconSize="24" />
-               </graphic>
-            </Button>
-                <Button fx:id="bntAddToCart" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#onAddToCard" text="Aggiungi">
+                <Button fx:id="btnAddPreferiti" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false"
+                        onAction="#onAddPreferiti" text="Salva">
                     <graphic>
-                        <FontIcon iconLiteral="fas-cart-plus" iconSize="24" />
+                        <FontIcon fx:id="icoPreferiti" iconLiteral="far-heart" iconSize="24"/>
                     </graphic>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
+                </Button>
+                <Button fx:id="bntAddToCart" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false"
+                        onAction="#onAddToCard" text="Aggiungi">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-cart-plus" iconSize="24"/>
+                    </graphic>
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
                 </Button>
             </children>
         </HBox>
-      <VBox fx:id="boxChangesContainer" maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" visible="false">
-         <children>
-            <Separator prefWidth="200.0">
-               <padding>
-                  <Insets bottom="8.0" top="8.0" />
-               </padding>
-            </Separator>
-            <VBox fx:id="boxChanges" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" />
-         </children>
-      </VBox>
+        <VBox fx:id="boxChangesContainer" maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0"
+              visible="false">
+            <children>
+                <Separator prefWidth="200.0">
+                    <padding>
+                        <Insets bottom="8.0" top="8.0"/>
+                    </padding>
+                </Separator>
+                <VBox fx:id="boxChanges" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308"/>
+            </children>
+        </VBox>
     </children>
     <padding>
-        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
     </padding>
 </fx:root>

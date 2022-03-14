@@ -9,9 +9,10 @@ public interface IPrezzoTotCambiStrategy {
 
     /**
      * Metodo da implementare per poter ottenere il prezzo totale in base al numero di cambi del viaggio passato come parametro.
+     *
      * @param v Viaggio
      * @return prezzo (double).
      */
-    public double getPrezzoTotCambi(Viaggio v);
+    double getPrezzoTotCambi(Viaggio v);
 
 }

@@ -3,105 +3,113 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import org.kordamp.ikonli.javafx.*?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1"
+         maxWidth="1.7976931348623157E308"
+         style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" type="javafx.scene.layout.VBox" VBox.vgrow="NEVER"
+         xmlns="http://javafx.com/javafx/16">
 
-<fx:root maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" type="javafx.scene.layout.VBox" VBox.vgrow="NEVER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-
-   <children>
-      <HBox alignment="CENTER_LEFT" spacing="8.0">
-         <children>
-            <HBox>
-               <children>
-                  <VBox alignment="CENTER_LEFT">
-                     <children>
-                        <Label fx:id="lblPartenza" text="Partenza" textFill="#006565">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <HBox>
+                    <children>
+                        <VBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label fx:id="lblPartenza" text="Partenza" textFill="#006565">
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="lblOrario" text="00:00"/>
+                            </children>
+                        </VBox>
+                        <HBox alignment="CENTER">
+                            <children>
+                                <Line endX="130.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND"
+                                      strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
+                                    <HBox.margin>
+                                        <Insets left="8.0" right="8.0"/>
+                                    </HBox.margin>
+                                </Line>
+                            </children>
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                            <padding>
+                                <Insets bottom="12.0"/>
+                            </padding>
+                        </HBox>
+                        <VBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label fx:id="lblArrivo" text="Arrivo" textFill="#006565">
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+                                </Label>
+                                <Label/>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" HBox.hgrow="ALWAYS"/>
+                <VBox alignment="CENTER_RIGHT">
+                    <children>
+                        <Button fx:id="btnAcquista" mnemonicParsing="false" onAction="#onAcquista"
+                                stylesheets="@../styles.css" text="Acquista"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER">
+            <children>
+                <Label fx:id="lblCambi" text="1 cambi"/>
+                <Line endX="20.0" rotate="90.0"/>
+                <HBox spacing="8.0">
+                    <children>
+                        <Label fx:id="lblAdulti" text="1">
+                            <graphic>
+                                <FontIcon iconLiteral="fas-user"/>
+                            </graphic>
                         </Label>
-                        <Label fx:id="lblOrario" text="00:00" />
-                     </children>
-                  </VBox>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <Line endX="130.0" fill="#4d9e9e" smooth="false" stroke="#bfbfbf" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-stroke-dash-array: 3;" HBox.hgrow="NEVER">
-                           <HBox.margin>
-                              <Insets left="8.0" right="8.0" />
-                           </HBox.margin>
-                        </Line>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="12.0" />
-                     </padding>
-                  </HBox>
-                  <VBox alignment="CENTER_LEFT">
-                     <children>
-                        <Label fx:id="lblArrivo" text="Arrivo" textFill="#006565">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
+                        <Label fx:id="lblRagazzi" text="0">
+                            <graphic>
+                                <FontIcon iconLiteral="fas-child"/>
+                            </graphic>
                         </Label>
-                        <Label />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER_RIGHT">
-               <children>
-                  <Button fx:id="btnAcquista" mnemonicParsing="false" onAction="#onAcquista" stylesheets="@../styles.css" text="Acquista" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER">
-         <children>
-            <Label fx:id="lblCambi" text="1 cambi" />
-            <Line endX="20.0" rotate="90.0" />
-            <HBox spacing="8.0">
-               <children>
-                  <Label fx:id="lblAdulti" text="1">
-                     <graphic>
-                        <FontIcon iconLiteral="fas-user" />
-                     </graphic>
-                  </Label>
-                  <Label fx:id="lblRagazzi" text="0">
-                     <graphic>
-                        <FontIcon iconLiteral="fas-child" />
-                     </graphic>
-                  </Label>
-                  <Label fx:id="lblBambini" text="0">
-                     <graphic>
-                        <FontIcon iconLiteral="fas-baby" />
-                     </graphic>
-                  </Label>
-                  <Label fx:id="lblAnimali" text="0">
-                     <graphic>
-                        <FontIcon iconLiteral="fas-dog" />
-                     </graphic>
-                  </Label>
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets right="64.0" />
-         </padding>
-      </HBox>
-      <HBox alignment="CENTER_RIGHT" layoutX="27.0" layoutY="27.0">
-         <children>
-            <Label fx:id="lblDeleteOK" alignment="TOP_RIGHT" prefWidth="300.0" text="Eliminato con successo!" textFill="#21b200" visible="false">
-               <padding>
-                  <Insets right="8.0" />
-               </padding></Label>
-            <Button fx:id="btnDeletePreferito" mnemonicParsing="false" onAction="#onDeletePreferito" prefHeight="27.0" prefWidth="62.0" stylesheets="@../styles.css" text="Elimina" />
-         </children></HBox>
-   </children>
-   <padding>
-      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-   </padding>
+                        <Label fx:id="lblBambini" text="0">
+                            <graphic>
+                                <FontIcon iconLiteral="fas-baby"/>
+                            </graphic>
+                        </Label>
+                        <Label fx:id="lblAnimali" text="0">
+                            <graphic>
+                                <FontIcon iconLiteral="fas-dog"/>
+                            </graphic>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets right="64.0"/>
+            </padding>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" layoutX="27.0" layoutY="27.0">
+            <children>
+                <Label fx:id="lblDeleteOK" alignment="TOP_RIGHT" prefWidth="300.0" text="Eliminato con successo!"
+                       textFill="#21b200" visible="false">
+                    <padding>
+                        <Insets right="8.0"/>
+                    </padding>
+                </Label>
+                <Button fx:id="btnDeletePreferito" mnemonicParsing="false" onAction="#onDeletePreferito"
+                        prefHeight="27.0" prefWidth="62.0" stylesheets="@../styles.css" text="Elimina"/>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+    </padding>
 </fx:root>

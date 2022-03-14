@@ -1,252 +1,342 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.*?>
-<?import org.kordamp.ikonli.javafx.*?>
-
-<BorderPane fx:id="root" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unipv.po.aioobe.trenissimo.controller.AcquistoVoucherController">
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="root" prefHeight="800.0" prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/16"
+            fx:controller="it.unipv.po.aioobe.trenissimo.controller.AcquistoVoucherController">
     <center>
-        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../styles.css">
+        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                  minWidth="-Infinity" stylesheets="@../styles.css">
             <columnConstraints>
-                <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="70.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+                <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="70.0"
+                                   prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
             </rowConstraints>
             <children>
-                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER"
+                            style="-fx-background-color: transparent;" vbarPolicy="NEVER">
                     <content>
                         <VBox spacing="8.0">
                             <children>
                                 <Label text="Voucher">
                                     <font>
-                                        <Font size="24.0" />
+                                        <Font size="24.0"/>
                                     </font>
                                 </Label>
                                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0">
-                           <children>
-                              <VBox minHeight="-Infinity" prefHeight="155.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;" stylesheets="@../styles.css">
-                                 <children>
-                                    <HBox spacing="8.0" VBox.vgrow="NEVER">
-                                       <children>
-                                          <Label text="Voucher N°" />
-                                          <Label fx:id="lblVoucherId" text="VO849507237609800">
-                                             <padding>
-                                                <Insets bottom="4.0" />
-                                             </padding>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <GridPane>
-                                       <columnConstraints>
-                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="350.0" />
-                                          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <HBox alignment="CENTER_RIGHT" prefWidth="0.0" spacing="8.0" GridPane.columnIndex="1">
-                                             <children>
-                                                <Label fx:id="lblPrice" text="200€" textAlignment="RIGHT" textFill="#bf0000" HBox.hgrow="ALWAYS">
-                                                   <font>
-                                                      <Font name="System Bold" size="25.0" />
-                                                   </font>
-                                                   <padding>
-                                                      <Insets right="8.0" />
-                                                   </padding>
-                                                </Label>
-                                             </children>
-                                          </HBox>
-                                          <TextArea fx:id="txtMessaggio" focusTraversable="false" maxWidth="1.7976931348623157E308" prefHeight="70.0" promptText="Inserire un messaggio per il destinatario (opzionale)" styleClass="text-area" />
-                                          <Label fx:id="lblErroreMaxCaratteri" text="Max caratteri superato!" textFill="#d70000" visible="false" GridPane.rowIndex="1" />
-                                          <Button fx:id="btnModificaTesto" alignment="CENTER" mnemonicParsing="false" onAction="#onModificaTesto" text="Modifica testo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                       </children>
-                                    </GridPane>
-                                    <VBox fx:id="boxChangesContainer" maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" visible="false">
-                                       <children>
-                                          <Separator prefWidth="200.0">
-                                             <padding>
-                                                <Insets bottom="8.0" top="8.0" />
-                                             </padding>
-                                          </Separator>
-                                          <VBox fx:id="boxChanges" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                                 </padding>
-                              </VBox>
-                           </children></VBox>
+                                    <children>
+                                        <VBox minHeight="-Infinity" prefHeight="155.0" prefWidth="100.0"
+                                              style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #cccccc; -fx-border-radius: 8;"
+                                              stylesheets="@../styles.css">
+                                            <children>
+                                                <HBox spacing="8.0" VBox.vgrow="NEVER">
+                                                    <children>
+                                                        <Label text="Voucher N°"/>
+                                                        <Label fx:id="lblVoucherId" text="VO849507237609800">
+                                                            <padding>
+                                                                <Insets bottom="4.0"/>
+                                                            </padding>
+                                                        </Label>
+                                                    </children>
+                                                </HBox>
+                                                <GridPane>
+                                                    <columnConstraints>
+                                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES"
+                                                                           maxWidth="1.7976931348623157E308"
+                                                                           minWidth="10.0" prefWidth="350.0"/>
+                                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES"
+                                                                           maxWidth="110.0" minWidth="10.0"/>
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                        vgrow="SOMETIMES"/>
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <HBox alignment="CENTER_RIGHT" prefWidth="0.0" spacing="8.0"
+                                                              GridPane.columnIndex="1">
+                                                            <children>
+                                                                <Label fx:id="lblPrice" text="200€"
+                                                                       textAlignment="RIGHT" textFill="#bf0000"
+                                                                       HBox.hgrow="ALWAYS">
+                                                                    <font>
+                                                                        <Font name="System Bold" size="25.0"/>
+                                                                    </font>
+                                                                    <padding>
+                                                                        <Insets right="8.0"/>
+                                                                    </padding>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+                                                        <TextArea fx:id="txtMessaggio" focusTraversable="false"
+                                                                  maxWidth="1.7976931348623157E308" prefHeight="70.0"
+                                                                  promptText="Inserire un messaggio per il destinatario (opzionale)"
+                                                                  styleClass="text-area"/>
+                                                        <Label fx:id="lblErroreMaxCaratteri"
+                                                               text="Max caratteri superato!" textFill="#d70000"
+                                                               visible="false" GridPane.rowIndex="1"/>
+                                                        <Button fx:id="btnModificaTesto" alignment="CENTER"
+                                                                mnemonicParsing="false" onAction="#onModificaTesto"
+                                                                text="Modifica testo" GridPane.columnIndex="1"
+                                                                GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+                                                    </children>
+                                                </GridPane>
+                                                <VBox fx:id="boxChangesContainer" maxHeight="1.7976931348623157E308"
+                                                      minHeight="0.0" prefHeight="0.0" visible="false">
+                                                    <children>
+                                                        <Separator prefWidth="200.0">
+                                                            <padding>
+                                                                <Insets bottom="8.0" top="8.0"/>
+                                                            </padding>
+                                                        </Separator>
+                                                        <VBox fx:id="boxChanges" alignment="TOP_CENTER"
+                                                              maxWidth="1.7976931348623157E308"/>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </VBox>
                                 <Label layoutX="26.0" layoutY="26.0" text="Dati di fatturazione">
                                     <font>
-                                        <Font size="24.0" />
+                                        <Font size="24.0"/>
                                     </font>
                                 </Label>
-                        <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Label fx:id="lblErroreDataNascita" text="Data di nascita non valida!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <Label styleClass="title" text="Nome:">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label styleClass="title" text="Email:" GridPane.rowIndex="3" />
-                              <Label styleClass="title" text="Cognome" GridPane.columnIndex="2" />
-                              <Label styleClass="title" text="Civico:" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                              <Label styleClass="title" text="Data di nascita" GridPane.columnIndex="4" />
-                              <TextField editable="false" promptText="Nome" styleClass="title" visible="false" GridPane.rowIndex="1" />
-                              <Label styleClass="title" text="Via:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <Label alignment="TOP_CENTER" styleClass="title" text="Città:" GridPane.rowIndex="6" />
-                              <Label styleClass="title" text="CAP:" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                              <TextField fx:id="txtCitta" focusTraversable="false" promptText="Città" styleClass="textField" GridPane.rowIndex="7" />
-                              <TextField fx:id="txtEmail" focusTraversable="false" promptText="Email" styleClass="textField" GridPane.rowIndex="4" />
-                              <TextField fx:id="txtNome" focusTraversable="false" promptText="Nome " styleClass="textField" GridPane.rowIndex="1" />
-                              <TextField fx:id="txtCognome" focusTraversable="false" promptText="Cognome" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <TextField fx:id="txtVia" focusTraversable="false" promptText="Via" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <TextField fx:id="txtCAP" focusTraversable="false" promptText="CAP" styleClass="textField" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                              <TextField fx:id="txtCivico" focusTraversable="false" maxWidth="150.0" promptText="Civico" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                              <DatePicker fx:id="dtpDataNascita" editable="false" focusTraversable="false" maxWidth="1.7976931348623157E308" promptText="10/05/2000" styleClass="textField" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <Label fx:id="lblErroreNome" text="Inserire il Nome!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <Label fx:id="lblErroreCognome" text="Inserisci il Cognome!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <Label fx:id="lblErroreEmail" text="Email non valida!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                              <Label fx:id="lblErroreVia" text="Inserisci la Via!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                              <Label fx:id="lblErroreCivico" text="Inserisci il Civico!" textFill="#d70000" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                              <Label fx:id="lblErroreCitta" text="Inserisci la Città!" textFill="#d70000" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                              <Label fx:id="lblErroreCAP" text="CAP non valido!" textFill="#d70000" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                              <Button fx:id="btnConferma" mnemonicParsing="false" onAction="#onConfermaDati" text="Conferma" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                              <Label fx:id="lblDatiOK" text="Dati confermati!" textFill="#21b200" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                           </children>
-                        </GridPane>
+                                <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="30.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" prefWidth="265.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0"
+                                                        vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <Label fx:id="lblErroreDataNascita" text="Data di nascita non valida!"
+                                               textFill="#d70000" visible="false" GridPane.columnIndex="4"
+                                               GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+                                        <Label styleClass="title" text="Nome:">
+                                            <font>
+                                                <Font size="13.0"/>
+                                            </font>
+                                        </Label>
+                                        <Label styleClass="title" text="Email:" GridPane.rowIndex="3"/>
+                                        <Label styleClass="title" text="Cognome" GridPane.columnIndex="2"/>
+                                        <Label styleClass="title" text="Civico:" GridPane.columnIndex="4"
+                                               GridPane.rowIndex="3"/>
+                                        <Label styleClass="title" text="Data di nascita" GridPane.columnIndex="4"/>
+                                        <TextField editable="false" promptText="Nome" styleClass="title" visible="false"
+                                                   GridPane.rowIndex="1"/>
+                                        <Label styleClass="title" text="Via:" GridPane.columnIndex="2"
+                                               GridPane.rowIndex="3"/>
+                                        <Label alignment="TOP_CENTER" styleClass="title" text="Città:"
+                                               GridPane.rowIndex="6"/>
+                                        <Label styleClass="title" text="CAP:" GridPane.columnIndex="2"
+                                               GridPane.rowIndex="6"/>
+                                        <TextField fx:id="txtCitta" focusTraversable="false" promptText="Città"
+                                                   styleClass="textField" GridPane.rowIndex="7"/>
+                                        <TextField fx:id="txtEmail" focusTraversable="false" promptText="Email"
+                                                   styleClass="textField" GridPane.rowIndex="4"/>
+                                        <TextField fx:id="txtNome" focusTraversable="false" promptText="Nome "
+                                                   styleClass="textField" GridPane.rowIndex="1"/>
+                                        <TextField fx:id="txtCognome" focusTraversable="false" promptText="Cognome"
+                                                   styleClass="textField" GridPane.columnIndex="2"
+                                                   GridPane.rowIndex="1"/>
+                                        <TextField fx:id="txtVia" focusTraversable="false" promptText="Via"
+                                                   styleClass="textField" GridPane.columnIndex="2"
+                                                   GridPane.rowIndex="4"/>
+                                        <TextField fx:id="txtCAP" focusTraversable="false" promptText="CAP"
+                                                   styleClass="textField" GridPane.columnIndex="2"
+                                                   GridPane.rowIndex="7"/>
+                                        <TextField fx:id="txtCivico" focusTraversable="false" maxWidth="150.0"
+                                                   promptText="Civico" styleClass="textField" GridPane.columnIndex="4"
+                                                   GridPane.rowIndex="4"/>
+                                        <DatePicker fx:id="dtpDataNascita" editable="false" focusTraversable="false"
+                                                    maxWidth="1.7976931348623157E308" promptText="10/05/2000"
+                                                    styleClass="textField" GridPane.columnIndex="4"
+                                                    GridPane.rowIndex="1"/>
+                                        <Label fx:id="lblErroreNome" text="Inserire il Nome!" textFill="#d70000"
+                                               visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+                                        <Label fx:id="lblErroreCognome" text="Inserisci il Cognome!" textFill="#d70000"
+                                               visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER"
+                                               GridPane.rowIndex="2"/>
+                                        <Label fx:id="lblErroreEmail" text="Email non valida!" textFill="#d70000"
+                                               visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="5"/>
+                                        <Label fx:id="lblErroreVia" text="Inserisci la Via!" textFill="#d70000"
+                                               visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER"
+                                               GridPane.rowIndex="5"/>
+                                        <Label fx:id="lblErroreCivico" text="Inserisci il Civico!" textFill="#d70000"
+                                               visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER"
+                                               GridPane.rowIndex="5"/>
+                                        <Label fx:id="lblErroreCitta" text="Inserisci la Città!" textFill="#d70000"
+                                               visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="8"/>
+                                        <Label fx:id="lblErroreCAP" text="CAP non valido!" textFill="#d70000"
+                                               visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER"
+                                               GridPane.rowIndex="8"/>
+                                        <Button fx:id="btnConferma" mnemonicParsing="false" onAction="#onConfermaDati"
+                                                text="Conferma" GridPane.columnIndex="4" GridPane.halignment="CENTER"
+                                                GridPane.rowIndex="7"/>
+                                        <Label fx:id="lblDatiOK" text="Dati confermati!" textFill="#21b200"
+                                               visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER"
+                                               GridPane.rowIndex="8"/>
+                                    </children>
+                                </GridPane>
                                 <Label layoutX="26.0" layoutY="285.0" text="Metodo di pagamento">
                                     <font>
-                                        <Font size="24.0" />
+                                        <Font size="24.0"/>
                                     </font>
                                 </Label>
                                 <Accordion>
                                     <panes>
-                                        <TitledPane animated="false" contentDisplay="GRAPHIC_ONLY" text="Carta di credito">
+                                        <TitledPane animated="false" contentDisplay="GRAPHIC_ONLY"
+                                                    text="Carta di credito">
                                             <graphic>
-                                                <FontIcon iconLiteral="far-credit-card" iconSize="36" />
+                                                <FontIcon iconLiteral="far-credit-card" iconSize="36"/>
                                             </graphic>
-                                 <content>
-                                    <VBox spacing="8.0">
-                                       <children>
-                                          <HBox>
-                                             <children>
-                                                <TextField fx:id="txtNumCarta" prefWidth="350.0" promptText="Numero della carta di credito" styleClass="textField" />
-                                             </children>
-                                          </HBox>
-                                          <Label fx:id="lblErroreNumCarta" text="Numero carta non valido!" textFill="#d70000" visible="false" />
-                                          <HBox spacing="8.0">
-                                             <children>
-                                                <TextField fx:id="txtDataScadenza" focusTraversable="false" promptText="Scadenza YYYY-MM" styleClass="textField" />
-                                                <TextField fx:id="txtCVV" focusTraversable="false" layoutX="10.0" layoutY="10.0" promptText="CVV" styleClass="textField">
-                                                   <HBox.margin>
-                                                      <Insets left="10.0" />
-                                                   </HBox.margin>
-                                                </TextField>
-                                             </children>
-                                          </HBox>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
-                                             <children>
-                                                <Label fx:id="lblErroreData" text="Data di scadenza non valida!" textFill="#d70000" visible="false" />
-                                                <Label fx:id="lblErroreCVV" text="CVV non valido!" textFill="#d70000" visible="false">
-                                                   <padding>
-                                                      <Insets left="20.0" />
-                                                   </padding>
-                                                </Label>
-                                             </children>
-                                          </HBox>
-                                          <HBox>
-                                             <children>
-                                                <Button fx:id="btnAggiungiPagamento" disable="true" mnemonicParsing="false" onAction="#onAggiungiCarta" text="Usa questo metodo di pagamento" />
-                                                <Label fx:id="lblCartaOK" text="Metodo di pagamento accettato!" textFill="#21b200" visible="false">
-                                                   <padding>
-                                                      <Insets left="16.0" top="5.0" />
-                                                   </padding>
-                                                </Label>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </content>
+                                            <content>
+                                                <VBox spacing="8.0">
+                                                    <children>
+                                                        <HBox>
+                                                            <children>
+                                                                <TextField fx:id="txtNumCarta" prefWidth="350.0"
+                                                                           promptText="Numero della carta di credito"
+                                                                           styleClass="textField"/>
+                                                            </children>
+                                                        </HBox>
+                                                        <Label fx:id="lblErroreNumCarta" text="Numero carta non valido!"
+                                                               textFill="#d70000" visible="false"/>
+                                                        <HBox spacing="8.0">
+                                                            <children>
+                                                                <TextField fx:id="txtDataScadenza"
+                                                                           focusTraversable="false"
+                                                                           promptText="Scadenza YYYY-MM"
+                                                                           styleClass="textField"/>
+                                                                <TextField fx:id="txtCVV" focusTraversable="false"
+                                                                           layoutX="10.0" layoutY="10.0"
+                                                                           promptText="CVV" styleClass="textField">
+                                                                    <HBox.margin>
+                                                                        <Insets left="10.0"/>
+                                                                    </HBox.margin>
+                                                                </TextField>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                                            <children>
+                                                                <Label fx:id="lblErroreData"
+                                                                       text="Data di scadenza non valida!"
+                                                                       textFill="#d70000" visible="false"/>
+                                                                <Label fx:id="lblErroreCVV" text="CVV non valido!"
+                                                                       textFill="#d70000" visible="false">
+                                                                    <padding>
+                                                                        <Insets left="20.0"/>
+                                                                    </padding>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox>
+                                                            <children>
+                                                                <Button fx:id="btnAggiungiPagamento" disable="true"
+                                                                        mnemonicParsing="false"
+                                                                        onAction="#onAggiungiCarta"
+                                                                        text="Usa questo metodo di pagamento"/>
+                                                                <Label fx:id="lblCartaOK"
+                                                                       text="Metodo di pagamento accettato!"
+                                                                       textFill="#21b200" visible="false">
+                                                                    <padding>
+                                                                        <Insets left="16.0" top="5.0"/>
+                                                                    </padding>
+                                                                </Label>
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+                                            </content>
                                         </TitledPane>
                                     </panes>
                                 </Accordion>
                             </children>
                             <padding>
-                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
                             </padding>
                         </VBox>
                     </content>
                 </ScrollPane>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                     <children>
-                        <VBox fx:id="vboxDragMouse" spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 8;">
+                        <VBox fx:id="vboxDragMouse" spacing="8.0"
+                              style="-fx-background-color: white; -fx-background-radius: 8;">
                             <VBox.margin>
-                                <Insets bottom="16.0" left="16.0" right="16.0" />
+                                <Insets bottom="16.0" left="16.0" right="16.0"/>
                             </VBox.margin>
                             <children>
                                 <HBox alignment="CENTER" VBox.vgrow="NEVER">
                                     <children>
-                                        <Button id="buttonAcquista" fx:id="btnAcquisto" alignment="CENTER" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPaga" prefHeight="36.0" styleClass="btnAcquista" text="Acquista" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                        <Button id="buttonAcquista" fx:id="btnAcquisto" alignment="CENTER"
+                                                disable="true" maxHeight="1.7976931348623157E308"
+                                                maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                                                onAction="#onPaga" prefHeight="36.0" styleClass="btnAcquista"
+                                                text="Acquista" textFill="WHITE" HBox.hgrow="ALWAYS">
                                             <font>
-                                                <Font name="System Bold" size="12.0" />
+                                                <Font name="System Bold" size="12.0"/>
                                             </font>
                                         </Button>
                                     </children>
                                 </HBox>
-                                <Label text="By placing your order, you agree to nothing at all!" wrapText="true" />
-                                <Separator prefWidth="200.0" />
+                                <Label text="By placing your order, you agree to nothing at all!" wrapText="true"/>
+                                <Separator prefWidth="200.0"/>
                                 <HBox>
                                     <children>
                                         <Label text="Totale:" HBox.hgrow="ALWAYS">
                                             <font>
-                                                <Font size="18.0" />
+                                                <Font size="18.0"/>
                                             </font>
                                         </Label>
-                                        <Label fx:id="lblTotale" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="€ 31.70" textAlignment="RIGHT" HBox.hgrow="ALWAYS">
+                                        <Label fx:id="lblTotale" alignment="CENTER_RIGHT"
+                                               maxWidth="1.7976931348623157E308" text="€ 31.70" textAlignment="RIGHT"
+                                               HBox.hgrow="ALWAYS">
                                             <font>
-                                                <Font size="18.0" />
+                                                <Font size="18.0"/>
                                             </font>
                                         </Label>
                                     </children>
                                 </HBox>
                             </children>
                             <padding>
-                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
                             </padding>
                             <effect>
                                 <DropShadow blurType="GAUSSIAN" height="8.0" radius="3.5" width="8.0">
                                     <color>
-                                        <Color opacity="0.1991342008113861" />
+                                        <Color opacity="0.1991342008113861"/>
                                     </color>
                                 </DropShadow>
                             </effect>
@@ -261,16 +351,16 @@
             <children>
                 <Label onMouseClicked="#onGoToHomepage" text="Torna a homepage">
                     <graphic>
-                        <FontIcon iconLiteral="fas-arrow-left" />
+                        <FontIcon iconLiteral="fas-arrow-left"/>
                     </graphic>
                     <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                     </font>
                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
                     </padding>
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                 </Label>
             </children>

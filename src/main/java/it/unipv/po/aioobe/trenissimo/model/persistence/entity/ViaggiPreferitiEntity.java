@@ -10,6 +10,7 @@ import java.util.Objects;
 
 /**
  * Classe generata automaticamente mediante il tool OR mapping del framework Hibernate che modellizza le table contenute in database
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 @Entity
@@ -150,12 +151,14 @@ public class ViaggiPreferitiEntity {
     public void setAccountByUsername(AccountEntity accountByUsername) {
         this.accountByUsername = accountByUsername;
     }
+
     /**
      * Converte l'acquisto passato per parametro in una ViaggiPreferitiEntity per permettere il salvataggio delle informazioni in database
+     *
      * @param v istanza della classe Viaggio
      * @return una ViaggiPreferitiEntity
      */
-    public ViaggiPreferitiEntity toViaggiPreferitiEntity(@NotNull Viaggio v){
+    public ViaggiPreferitiEntity toViaggiPreferitiEntity(@NotNull Viaggio v) {
         ViaggiPreferitiEntity viaggiPreferitiEntity = new ViaggiPreferitiEntity();
         viaggiPreferitiEntity.setStazionePartenza(v.getStazionePartenza().getStopName());
         viaggiPreferitiEntity.setStazioneArrivo(v.getStazioneArrivo().getStopName());

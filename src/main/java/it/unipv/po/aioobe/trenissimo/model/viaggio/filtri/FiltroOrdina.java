@@ -7,26 +7,20 @@ import java.util.List;
 
 /**
  * Classe che implementa l'ordinamento secondo alcuni parametri identificati da una enumeration definita internamente alla classe stessa
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 public class FiltroOrdina implements IFiltro {
-    /**
-     * Enumeration che indica i diversi tipi di ordinamento che si possono eseguire
-     */
-    public enum Criterio{
-        DURATA("Durata"),
-        PREZZO("Prezzo"),
-        CAMBI("Cambi"),
-        ORARIO("Orario");
-
-        public final String nome;
-
-        Criterio(String nome) {
-            this.nome = nome;
-        }
-    }
-
     private Criterio criterio;
+
+    /**
+     * Metodo per assegnare all'attributo criterio un tipo di ordinamento scelto tra quelli della enumaration
+     *
+     * @param criterio
+     */
+    public FiltroOrdina(Criterio criterio) {
+        this.criterio = criterio;
+    }
 
     public Criterio getCriterio() {
         return criterio;
@@ -37,22 +31,15 @@ public class FiltroOrdina implements IFiltro {
     }
 
     /**
-     * Metodo per assegnare all'attributo criterio un tipo di ordinamento scelto tra quelli della enumaration
-     * @param criterio
-     */
-    public FiltroOrdina(Criterio criterio) {
-        this.criterio = criterio;
-    }
-
-    /**
      * Metodo che ordina in base al valore dell'attributo criterio
+     *
      * @param input lista di Viaggio
      * @return lista di Viaggio
      */
     @Override
     public List<Viaggio> esegui(List<Viaggio> input) {
 
-        switch (criterio){
+        switch (criterio) {
             case DURATA -> {
                 return input.stream().sorted(Comparator.comparing(Viaggio::getDurata)).toList();
             }
@@ -68,6 +55,22 @@ public class FiltroOrdina implements IFiltro {
             default -> {
                 return input;
             }
+        }
+    }
+
+    /**
+     * Enumeration che indica i diversi tipi di ordinamento che si possono eseguire
+     */
+    public enum Criterio {
+        DURATA("Durata"),
+        PREZZO("Prezzo"),
+        CAMBI("Cambi"),
+        ORARIO("Orario");
+
+        public final String nome;
+
+        Criterio(String nome) {
+            this.nome = nome;
         }
     }
 

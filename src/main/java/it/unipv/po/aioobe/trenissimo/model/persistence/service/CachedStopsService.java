@@ -5,6 +5,7 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.util.ICached;
 import it.unipv.po.aioobe.trenissimo.model.persistence.util.service.IStopsService;
 
 import java.util.List;
+
 /**
  * Versione Singleton della classe StopsService
  */
@@ -34,6 +35,7 @@ public class CachedStopsService implements IStopsService, ICached {
         }
         return cachedFindAll;
     }
+
     /**
      * Metodo che pone a null la lista cachedFindAll
      */

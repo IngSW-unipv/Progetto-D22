@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Classe che, secondo il pattern Facade, implementa gli stessi metodi di VoucherDao con l'aggiunta della gestione delle sessioni del framework Hibernate.
  * Classe progettata per nascondere al modello delle classi la complessità del sistema sottostante (Hibernate)
+ *
  * @author ArrayIndexOutOfBoundsException
  */
 public class VoucherService implements IVoucherService {
@@ -51,7 +52,7 @@ public class VoucherService implements IVoucherService {
     }
 
     @Override
-    public void deleteById(String id){
+    public void deleteById(String id) {
         voucherDao.getConn().openCurrentSessionwithTransaction();
         VoucherEntity voucher = voucherDao.findById(id);
         voucherDao.delete(voucher);

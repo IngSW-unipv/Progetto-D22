@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import org.controlsfx.control.*?>
-
-<fx:root prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.BorderPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-<center>
-    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" vbarPolicy="ALWAYS">
-        <content>
-            <VBox fx:id="boxAndata" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" spacing="8.0">
-                <padding>
-                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                </padding>
-            </VBox>
-        </content>
-    </ScrollPane>
-</center>
+<?import org.controlsfx.control.RangeSlider?>
+<?import org.controlsfx.control.SegmentedButton?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.BorderPane"
+         xmlns="http://javafx.com/javafx/16">
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" vbarPolicy="ALWAYS">
+            <content>
+                <VBox fx:id="boxAndata" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" spacing="8.0">
+                    <padding>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
     <left>
         <VBox prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER">
             <children>
@@ -25,7 +26,9 @@
                     <content>
                         <VBox>
                             <children>
-                                <RangeSlider fx:id="rngPrezzo" blockIncrement="0.0" highValue="50.0" lowValue="20.0" majorTickUnit="2.0" max="15.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                                <RangeSlider fx:id="rngPrezzo" blockIncrement="0.0" highValue="50.0" lowValue="20.0"
+                                             majorTickUnit="2.0" max="15.0" minorTickCount="2" showTickLabels="true"
+                                             showTickMarks="true" snapToTicks="true"/>
                             </children>
                         </VBox>
                     </content>
@@ -34,7 +37,9 @@
                     <content>
                         <VBox>
                             <children>
-                                <JFXTimePicker fx:id="tmpPartenza" maxHeight="29.0" maxWidth="278.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" />
+                                <JFXTimePicker fx:id="tmpPartenza" maxHeight="29.0" maxWidth="278.0"
+                                               minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0"
+                                               prefWidth="278.0"/>
                             </children>
                         </VBox>
                     </content>
@@ -43,7 +48,8 @@
                     <content>
                         <VBox>
                             <children>
-                                <JFXTimePicker fx:id="tmpArrivo" maxHeight="29.0" maxWidth="278.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" />
+                                <JFXTimePicker fx:id="tmpArrivo" maxHeight="29.0" maxWidth="278.0" minHeight="-Infinity"
+                                               minWidth="-Infinity" prefHeight="29.0" prefWidth="278.0"/>
                             </children>
                         </VBox>
                     </content>
