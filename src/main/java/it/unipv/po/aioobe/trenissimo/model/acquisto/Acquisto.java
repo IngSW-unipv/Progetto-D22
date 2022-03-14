@@ -19,8 +19,8 @@ public abstract class Acquisto {
     private IPuntiFedeltaStrategy puntiFedeltaStrategy;
 
     /**
-     * Costruttore che istanzia il Factory per i punti fedeltà ed assegna l'instanza della Strategy all'attributo privato puntiFedeltaStrategy.
-     * Inoltre asseggna al prezzo un valore iniziale di 0 ed assegna alla data di acquisto la data attuale al momento della chiamata del costruttore
+     * Costruttore che istanzia il Factory per i punti fedeltà ed assegna l'istanza della Strategy all'attributo privato puntiFedeltaStrategy.
+     * Inoltre assegna al prezzo un valore iniziale di 0 ed assegna alla data di acquisto la data attuale al momento della chiamata del costruttore.
      */
     public Acquisto(){
         PuntiFedeltaFactory f=new PuntiFedeltaFactory();
