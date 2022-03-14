@@ -1,7 +1,5 @@
 package it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTotCambi;
 
-import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoPerDistanza.IPrezzoPerDistanzaStrategy;
-
 import java.io.FileInputStream;
 import java.lang.reflect.Constructor;
 import java.util.Properties;
