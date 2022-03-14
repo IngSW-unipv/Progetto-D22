@@ -2,8 +2,16 @@ package it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTotCamb
 
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 
+/**
+ * @author ArrayIndexOutOfBoundsException
+ */
 public interface IPrezzoTotCambiStrategy {
 
-    double getPrezzoTotCambi(Viaggio v);
+    /**
+     * Metodo da implementare per poter ottenere il prezzo totale in base al numero di cambi del viaggio passato come parametro.
+     * @param v Viaggio
+     * @return prezzo (double).
+     */
+    public double getPrezzoTotCambi(Viaggio v);
 
 }

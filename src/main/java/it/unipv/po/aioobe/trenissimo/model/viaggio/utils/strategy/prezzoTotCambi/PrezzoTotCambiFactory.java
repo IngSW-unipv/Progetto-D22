@@ -6,11 +6,23 @@ import java.io.FileInputStream;
 import java.lang.reflect.Constructor;
 import java.util.Properties;
 
+/**
+ * Classe mediante la quale in base al property name passato da file di configurazione possiamo decidere quale strategy istanziare
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class PrezzoTotCambiFactory {
 
     IPrezzoTotCambiStrategy prezzoTotCambi;
+
+    /**
+     * Stringa mediante la quale possiamo andare a trovare il nome effettivo della strategy da voler implementare.
+     * Nel file di configurazione, a questa stringa verrà assegnato il percorso della classe strategy da istanziare
+     */
     private final String PROPERTYNAME="prezzoTotCambi.strategy.class.name";
 
+    /**
+     * @return istanza della strategy scelta mediante il PROPERTYNAME
+     */
     public IPrezzoTotCambiStrategy getPrezzoTotCambiStrategy() {
 
         if(prezzoTotCambi==null) {
