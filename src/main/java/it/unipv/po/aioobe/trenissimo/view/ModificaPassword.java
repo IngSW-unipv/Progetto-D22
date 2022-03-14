@@ -1,5 +1,6 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
@@ -8,8 +9,20 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 
+/**
+ * Main class che gestisce il render del file modificaPassword-view.fxml
+ *
+ * @see Application
+ * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
+ */
 public class ModificaPassword {
 
+    /**
+     * Risponde alle chiamate esterne di altri componenti
+     *
+     * @param owner finestra che contiene l'elemento che ha chiamato il metodo
+     * @see ModificaPassword
+     */
     public static void open(Window owner) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ModificaPassword.class.getResource("modificaPassword/modificaPassword-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 705, 370);
