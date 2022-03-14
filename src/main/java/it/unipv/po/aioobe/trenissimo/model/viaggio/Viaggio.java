@@ -12,6 +12,7 @@ import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTot.IPre
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTot.PrezzoTotFactory;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTotCambi.IPrezzoTotCambiStrategy;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.utils.strategy.prezzoTotCambi.PrezzoTotCambiFactory;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,7 +20,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+/**
+ * Classe che modellizza un viaggio.
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class Viaggio {
 
     private int numAdulti;
@@ -36,6 +40,9 @@ public class Viaggio {
     private static final AtomicInteger count = new AtomicInteger(0);
 
 
+    /**
+     * Costruttore del viaggio. Vengono istanziate le diverse strategy per il calcolo del prezzo totale.
+     */
     public Viaggio() {
 
         PrezzoPerDistanzaFactory f = new PrezzoPerDistanzaFactory();
@@ -49,7 +56,6 @@ public class Viaggio {
 
         PrezzoIvaFactory f3 = new PrezzoIvaFactory();
         prezzoIvaStrategy = f3.getPrezzoIvaStrategy();
-
 
     }
 
@@ -101,10 +107,18 @@ public class Viaggio {
         this.cambi = cambi;
     }
 
+    /**
+     * Metodo per ottenere la stazione di partenza dalla classe CachedStopsService
+     * @return StopsEntity
+     */
     public StopsEntity getStazionePartenza() {
         return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(0).getDepartureStation())).findFirst().get();
     }
 
+    /**
+     * Metodo per ottenere la stazione di arrivo dalla classe CachedStopsService
+     * @return StopsEntity
+     */
     public StopsEntity getStazioneArrivo() {
         return CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == (cambi.get(cambi.size() - 1).getArrivalStation())).findFirst().get();
     }
@@ -160,6 +174,11 @@ public class Viaggio {
         return String.format(Locale.US, "%.2f", this.getPrezzoNoIva() + this.getPrezzoIva());
     }
 
+    /**
+     * Metodo che viene utilizzato per ottenere una coppia di stazioni.
+     * @param i indice (in quanto utilizzato all'interno di un ciclo for).
+     * @return List<StopsEntity>
+     */
     public List<StopsEntity> getCoppiaStazioni(int i) {
         List<StopsEntity> stops = CachedStopsService.getInstance().findAll();
         List<StopsEntity> coppiaStazioni = new ArrayList<>();
@@ -174,7 +193,13 @@ public class Viaggio {
 
     }
 
-    public double getDistanza(List<StopsEntity> coppiaStazioni) {
+    /**
+     * Metodo utilizzato per ottenere la distanza tra una coppia di stazioni.
+     * @param coppiaStazioni
+     * @return distanza (double). <br>
+     * @see <a href="https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula">Link</a>
+     */
+    public double getDistanza(@NotNull List<StopsEntity> coppiaStazioni) {
 
         int raggio = 6371; //raggio Terra approssimato in km
 
@@ -197,6 +222,10 @@ public class Viaggio {
         return raggio * c;
     }
 
+    /**
+     * Metodo che viene utilizzato per ottenere la distanza totale del viaggio, tenendo conto dei cambi.
+     * @return distanza (Double)
+     */
     public double getDistanzaTotale() {
         double distanza = 0;
         for (int i = 0; i < this.getCambi().size(); i++) {
