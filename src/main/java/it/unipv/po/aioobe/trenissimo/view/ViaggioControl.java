@@ -9,33 +9,59 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
+import org.jetbrains.annotations.NotNull;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
-import java.util.function.Predicate;
+
+/**
+ * Main class che gestisce il render del file viaggioControl.fxml
+ * è anche il controller di se stesso
+ *
+ * @author ArrayIndexOutOfBoundsException
+ * @see VBox
+ * @see it.unipv.po.aioobe.trenissimo.view.viaggioControl
+ */
 
 public class ViaggioControl extends VBox {
-    @FXML private Label lblCompanyId;
-    @FXML private Label lblDepartureTime;
-    @FXML private Label lblDepartureStation;
-    @FXML private Label lblArrivalTime;
-    @FXML private Label lblArrivalStation;
-    @FXML private Label lblTravelTime;
-    @FXML private Label lblChanges;
-    @FXML private Label lblPrice;
-    @FXML private FontIcon icoPreferiti;
+    @FXML
+    private Label lblCompanyId;
+    @FXML
+    private Label lblDepartureTime;
+    @FXML
+    private Label lblDepartureStation;
+    @FXML
+    private Label lblArrivalTime;
+    @FXML
+    private Label lblArrivalStation;
+    @FXML
+    private Label lblTravelTime;
+    @FXML
+    private Label lblChanges;
+    @FXML
+    private Label lblPrice;
+    @FXML
+    private FontIcon icoPreferiti;
 
-    @FXML private VBox boxChanges;
-    @FXML private VBox boxChangesContainer;
-    @FXML private FontIcon icoChanges;
-    @FXML private Button bntAddToCart;
+    @FXML
+    private VBox boxChanges;
+    @FXML
+    private VBox boxChangesContainer;
+    @FXML
+    private FontIcon icoChanges;
+    @FXML
+    private Button bntAddToCart;
 
-    @FXML private Button btnAddPreferiti;
+    @FXML
+    private Button btnAddPreferiti;
 
     private Viaggio viaggio;
-    private Callback<Void,Void> onSelected;
+    private Callback<Void, Void> onSelected;
 
 
+    /**
+     * Costruttore per la visualizzazione di viaggioControl.fxml
+     */
     public ViaggioControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("viaggioControl/viaggioControl.fxml"));
         fxmlLoader.setRoot(this);
@@ -48,10 +74,16 @@ public class ViaggioControl extends VBox {
         }
     }
 
-    public ViaggioControl(Viaggio viaggio, Callback<Void,Void> onSelected) {
+    /**
+     * Costruttore per la visualizzazione di viaggioControl.fxml
+     *
+     * @param viaggio    Viaggio da cui estrarre informazioni
+     * @param onSelected callback visualizzazione bottone
+     */
+    public ViaggioControl(Viaggio viaggio, Callback<Void, Void> onSelected) {
         this();
         this.onSelected = onSelected;
-        if (onSelected == null){
+        if (onSelected == null) {
             icoChanges.setManaged(false);
             icoChanges.setVisible(false);
             bntAddToCart.setManaged(false);
@@ -59,30 +91,46 @@ public class ViaggioControl extends VBox {
             btnAddPreferiti.setVisible(false);
             btnAddPreferiti.setManaged(false);
         }
-        if (!Account.getLoggedIn()){
+        if (!Account.getLoggedIn()) {
             btnAddPreferiti.setVisible(false);
             btnAddPreferiti.setManaged(false);
         }
         setViaggio(viaggio);
     }
 
+    /**
+     * Ritorna un Viaggio
+     *
+     * @return viaggio
+     */
     public Viaggio getViaggio() {
         return viaggio;
     }
 
-    public void setViaggio(Viaggio viaggio) {
+    /**
+     * Raccoglie i dati di uno Viaggio
+     *
+     * @param viaggio
+     */
+    public void setViaggio(@NotNull Viaggio viaggio) {
         this.viaggio = viaggio;
 
-        lblCompanyId            .textProperty().setValue("Trenissimo");
-        lblDepartureTime        .textProperty().setValue(Utils.secondsToTime(viaggio.getOrarioPartenza(), false));
-        lblDepartureStation     .textProperty().setValue(viaggio.getStazionePartenza().getStopName());
-        lblArrivalTime          .textProperty().setValue(Utils.secondsToTime(viaggio.getOrarioArrivo(), false));
-        lblArrivalStation       .textProperty().setValue(viaggio.getStazioneArrivo().getStopName());
-        lblTravelTime           .textProperty().setValue(((int) viaggio.getDurata() / 60) + " mins");
-        lblChanges              .textProperty().setValue(viaggio.getNumeroCambi() + " cambi");
-        lblPrice                .textProperty().setValue(viaggio.getPrezzoTotString()+"€");
+        lblCompanyId.textProperty().setValue("Trenissimo");
+        lblDepartureTime.textProperty().setValue(Utils.secondsToTime(viaggio.getOrarioPartenza(), false));
+        lblDepartureStation.textProperty().setValue(viaggio.getStazionePartenza().getStopName());
+        lblArrivalTime.textProperty().setValue(Utils.secondsToTime(viaggio.getOrarioArrivo(), false));
+        lblArrivalStation.textProperty().setValue(viaggio.getStazioneArrivo().getStopName());
+        lblTravelTime.textProperty().setValue((viaggio.getDurata() / 60) + " mins");
+        lblChanges.textProperty().setValue(viaggio.getNumeroCambi() + " cambi");
+        lblPrice.textProperty().setValue(viaggio.getPrezzoTotString() + "€");
     }
 
+    /**
+     * Renderizza i cambiamenti avvenuti
+     *
+     * @see CambioControl
+     * @see it.unipv.po.aioobe.trenissimo.model.viaggio.ricerca.utils.Connection
+     */
     private void renderChanges() {
         var cambi = viaggio.getCambi();
 
@@ -108,11 +156,19 @@ public class ViaggioControl extends VBox {
         }
     }
 
+    /**
+     * Aggiunge al carrello
+     */
     @FXML
     protected void onAddToCard() {
         onSelected.call(null);
     }
 
+    /**
+     * Aggiunge ai Preferiti
+     *
+     * @see Account
+     */
     @FXML
     protected void onAddPreferiti() {
         Account.getInstance().addViaggioPreferito(viaggio);
@@ -120,6 +176,9 @@ public class ViaggioControl extends VBox {
         btnAddPreferiti.setDisable(true);
     }
 
+    /**
+     * Renderizza i cambi, espande e chiude la visualizzazione dei cambi
+     */
     @FXML
     protected void onToggleChangeVisibility() {
         if (boxChangesContainer.isVisible()) {
