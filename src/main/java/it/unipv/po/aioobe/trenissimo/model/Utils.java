@@ -54,7 +54,12 @@ public class Utils {
     }
 
 
-    // todo, da fare javadoc
+    /**
+     * Metodo estensione di Math.ceil, restituisce il primo intero superiore del valore di partenza che sia multiplo di 10^(places)
+     * @param value valore di partenza
+     * @param places precisione dell'approssimazione
+     * @return
+     */
     public static double ceil(double value, int places) {
         double factor =  Math.pow(10, places);
         value = value * factor;
@@ -62,7 +67,12 @@ public class Utils {
         return (double) tmp / factor;
     }
 
-    // todo, da fare javadoc
+    /**
+     * Metodo estensione di Math.floor, restituisce il ultimo intero inferiore del valore di partenza che sia multiplo di 10^(places)
+     * @param value valore di partenza
+     * @param places precisione dell'approssimazione
+     * @return
+     */
     public static double floor(double value, int places) {
         double factor =  Math.pow(10, places);
         value = value * factor;

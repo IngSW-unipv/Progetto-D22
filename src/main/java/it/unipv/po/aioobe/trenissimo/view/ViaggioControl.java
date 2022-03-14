@@ -23,6 +23,7 @@ public class ViaggioControl extends VBox {
     @FXML private Label lblTravelTime;
     @FXML private Label lblChanges;
     @FXML private Label lblPrice;
+    @FXML private FontIcon icoPreferiti;
 
     @FXML private VBox boxChanges;
     @FXML private VBox boxChangesContainer;
@@ -58,7 +59,7 @@ public class ViaggioControl extends VBox {
         }
         if (!Account.getLoggedIn()){
             btnAddPreferiti.setVisible(false);
-            btnAddPreferiti.setDisable(true);
+            btnAddPreferiti.setManaged(false);
         }
         setViaggio(viaggio);
     }
@@ -113,7 +114,7 @@ public class ViaggioControl extends VBox {
     @FXML
     protected void onAddPreferiti() {
         Account.getInstance().addViaggioPreferito(viaggio);
-        btnAddPreferiti.setStyle("-fx-background-color: red");
+        icoPreferiti.setIconLiteral("fas-heart");
         btnAddPreferiti.setDisable(true);
     }
 

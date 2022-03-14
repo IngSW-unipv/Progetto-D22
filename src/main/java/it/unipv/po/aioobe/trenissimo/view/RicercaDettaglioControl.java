@@ -173,11 +173,10 @@ public class RicercaDettaglioControl extends BorderPane {
      *
      * @param viaggi      lista di viaggi da mostrare
      * @param oraPartenza orario dal quale si vogliono iniziare a vedere i viaggi
-     * @param onAddToCart metodo per aggiungere il viaggio al carrello
+     * @param onAddToCart callback di acquisto viaggio
      * @see #rngPrezzo
      * @see #updateFiltri()
      */
-    // TODO: 14/03/22 FERRA GUARDATI STO CALLBACK QUI, non saprei bene cosa aggiungere come descrizione di onAddToCart
     public void setViaggi(@NotNull List<Viaggio> viaggi, LocalTime oraPartenza, Callback<Viaggio, Void> onAddToCart) {
         this.onAddToCart = onAddToCart;
         rngPrezzo.setMax(Utils.ceil(viaggi.stream().max(Comparator.comparing(Viaggio::getPrezzoTot)).get().getPrezzoTot(), -1));

@@ -276,10 +276,11 @@ public class HomePageController implements Initializable {
         if (scbBigliettoPartenza.getValue() == null || scbBigliettoDestinazione.getValue() == null || scbBigliettoDestinazione.getValue() == scbBigliettoPartenza.getValue()) {
             setAlert("Selezionare stazione di partenza e/o destinazione validi!");
             return;
-        }
-
-        if (dtpBigliettoPartenza.getValue() == null || tmpBigliettoAndata.getValue() == null || (tgsBigliettoAR.isSelected() && dtpBigliettoRitorno.getValue() == null) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null) || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now()) && dtpBigliettoPartenza.getValue().isBefore(LocalDate.now())) || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoPartenza.getValue().equals(LocalDate.now())) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoRitorno.getValue().isBefore(LocalDate.now())) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.MINUTES)) && dtpBigliettoRitorno.getValue().equals(LocalDate.now()))) {
-            setAlert("Inserire data e/o orario di partenza e/o ritorno");
+        } else if (dtpBigliettoPartenza.getValue() == null
+                || tmpBigliettoAndata.getValue() == null
+                || (tgsBigliettoAR.isSelected() && dtpBigliettoRitorno.getValue() == null)
+                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null)) {
+            setAlert("Inserire data e/o orario di partenza e/o ritorno validi!");
             return;
         }
 

@@ -13,11 +13,6 @@
         <HBox spacing="8.0" VBox.vgrow="NEVER">
             <children>
                 <Label fx:id="lblCompanyId" maxWidth="1.7976931348623157E308" prefWidth="713.0" text="Trenissimo" HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnAddPreferiti" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#onAddPreferiti" text="Aggiungi">
-               <graphic>
-                  <FontIcon iconLiteral="far-heart" iconSize="24" />
-               </graphic>
-            </Button>
             </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="8.0">
@@ -84,6 +79,11 @@
                         </Label>
                     </children>
                 </VBox>
+            <Button fx:id="btnAddPreferiti" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#onAddPreferiti" text="Salva">
+               <graphic>
+                  <FontIcon fx:id="icoPreferiti" iconLiteral="far-heart" iconSize="24" />
+               </graphic>
+            </Button>
                 <Button fx:id="bntAddToCart" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#onAddToCard" text="Aggiungi">
                     <graphic>
                         <FontIcon iconLiteral="fas-cart-plus" iconSize="24" />

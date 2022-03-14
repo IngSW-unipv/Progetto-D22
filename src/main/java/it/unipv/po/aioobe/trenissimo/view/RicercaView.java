@@ -26,20 +26,7 @@ import java.util.List;
  * @see it.unipv.po.aioobe.trenissimo.view.ricercaView
  */
 
-public class RicercaView extends Application {
-
-    /**
-     * Lancia il render della parte grafica
-     *
-     * @param args argomenti da linea di comando
-     * @author ArrayIndexOutOfBoundsException
-     * @see #launch(String...)
-     * @see #start(Stage)
-     */
-    public static void main(String[] args) {
-        launch();
-    }
-
+public class RicercaView {
     /**
      * Risponde alle chiamate esterne di altri componenti
      *
@@ -85,57 +72,5 @@ public class RicercaView extends Application {
 
         ((RicercaController) fxmlLoader.getController()).setRicerca(ricerca);
         owner.getScene().setRoot(scene);
-    }
-
-    /**
-     * Risponde alla chiamata del main
-     *
-     * @param stage stage che contiene l'elemento che ha chiamato il metodo
-     * @throws IOException
-     * @see #launch(String...)
-     * @see Application
-     * @see HomePage
-     * @see Connection
-     * @see Viaggio
-     * @see Ricerca
-     * @see RicercaController
-     */
-    // TODO: 14/03/22 FERRA GUARDATI STO METODO, mi sa che non lo usiamo da nessuna parte ed era di debug, aspetto conferme per toglierlo 
-    @Override
-    public void start(@NotNull Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("ricercaView/ricercaView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-
-
-        List<Connection> cambi = new ArrayList<>();
-
-        // Per prototipi più veloci
-
-        cambi.add(new Connection(367, 3053, 25500, 25980, 14158963, 14158963));
-        cambi.add(new Connection(3053, 2036, 26040, 26340, 14158963, 14158963));
-        cambi.add(new Connection(2036, 1858, 26400, 26820, 14158963, 14158963));
-        cambi.add(new Connection(1858, 406, 26880, 27120, 14156467, 14156467));
-
-
-        Viaggio viaggio1 = new Viaggio();
-        viaggio1.setCambi(cambi);
-        viaggio1.setNumAdulti(1);
-
-        Viaggio viaggio2 = new Viaggio();
-        viaggio2.setCambi(cambi);
-        viaggio2.setNumAdulti(2);
-
-        List<Viaggio> viaggi = new ArrayList<>();
-
-        viaggi.add(viaggio2);
-        viaggi.add(viaggio1);
-
-        Ricerca ricerca = new Ricerca(0, 0, LocalDateTime.now());
-        ricerca.setRisultatiAndata(viaggi);
-
-        ((RicercaController) fxmlLoader.getController()).setRicerca(ricerca);
-        stage.setTitle("RicercaView");
-        stage.setScene(scene);
-        stage.show();
     }
 }
