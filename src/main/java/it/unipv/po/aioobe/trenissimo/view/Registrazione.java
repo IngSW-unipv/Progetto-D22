@@ -12,7 +12,7 @@ import java.io.IOException;
  * Main class che gestisce il render del file registrazione-view.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
+ * @see it.unipv.po.aioobe.trenissimo.view.registrazione
  */
 public class Registrazione {
 

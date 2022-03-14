@@ -14,7 +14,7 @@ import java.util.Objects;
  * Main class che gestisce il render del file login-view.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
+ * @see it.unipv.po.aioobe.trenissimo.view.login
  */
 public class Login {
 

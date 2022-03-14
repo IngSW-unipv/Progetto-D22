@@ -19,7 +19,7 @@ import java.util.logging.Level;
  *
  * @author ArrayIndexOutOfBoundsException
  * @see Application
- * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
+ * @see it.unipv.po.aioobe.trenissimo.view.homePage
  */
 
 public class HomePage extends Application {

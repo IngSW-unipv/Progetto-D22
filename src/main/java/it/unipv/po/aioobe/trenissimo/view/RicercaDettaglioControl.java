@@ -29,6 +29,7 @@ import java.util.List;
 
 /**
  * Main class che gestisce il render del file ricercaDettaglioControl.fxml
+ * è anche il controller di se stesso
  *
  * @author ArrayIndexOutOfBoundsException
  * @see BorderPane
@@ -56,7 +57,7 @@ public class RicercaDettaglioControl extends BorderPane {
     private FiltroOrdina.Criterio criterioOrdine;
 
     /**
-     * Controller per la visualizzazione dei risultati
+     * Controller per la visualizzazione di ricercaDettaglioControl.fxml
      *
      * @see FiltroOrdina
      * @see Viaggio

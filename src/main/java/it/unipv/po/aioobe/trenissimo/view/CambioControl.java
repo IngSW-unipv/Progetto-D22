@@ -12,11 +12,12 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 /**
- * Gestisce la parte di visualizzazione dei cambi
+ * Gestisce la parte di visualizzazione dei cambi (cambioControl.fxml)
  * è anche il controller di se stesso
  *
  * @author ArrayIndexOutOfBoundsException
  * @see VBox
+ * @see it.unipv.po.aioobe.trenissimo.view.cambioControl
  */
 public class CambioControl extends VBox {
     @FXML
@@ -43,6 +44,8 @@ public class CambioControl extends VBox {
 
 
     /**
+     * Costruttore per la visualizzazione di cambioControl.fxml
+     *
      * @param cambio     rappresenta la connection di provenienza (stazione 1)
      * @param cambioPrev rappresenta la connection di arrivo (stazione 2)
      * @param tipo       tipo di connessione
