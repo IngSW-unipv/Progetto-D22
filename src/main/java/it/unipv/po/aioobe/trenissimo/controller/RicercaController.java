@@ -54,6 +54,7 @@ public class RicercaController implements Initializable {
     }
 
     /**
+     * Permette di gestire la visualizzazione dei viaggi di andata e/o ritorno ricercati
      * @param ricerca
      */
     public void setRicerca(@NotNull Ricerca ricerca) {
