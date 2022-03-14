@@ -125,9 +125,6 @@ public class AcquistoController implements Initializable {
     @FXML
     private Label lblDatiOK;
 
-    @FXML
-    private VBox vboxDragMouse;
-
     private ObservableList<Viaggio> _viaggi;
     private TicketBuilder titoloViaggio;
 
@@ -164,11 +161,6 @@ public class AcquistoController implements Initializable {
         checkPagamentoRealTime();
         checkDatiRealTime();
 
-        vboxDragMouse.setOnMouseMoved(c -> {
-            if ((lblDatiOK.isVisible() && lblCartaOK.isVisible())) btnAcquisto.setDisable(false);
-            else if ((lblDatiOK.isVisible() && acquistoSoloVoucher)) btnAcquisto.setDisable(false);
-        });
-
         if (Account.getLoggedIn()) {
             txtNome.setText(Account.getInstance().getDatiPersonali().getNome());
             txtCognome.setText(Account.getInstance().getDatiPersonali().getCognome());
@@ -179,6 +171,14 @@ public class AcquistoController implements Initializable {
             txtCitta.setText(Account.getInstance().getDatiPersonali().getCitta());
             txtCAP.setText(Account.getInstance().getDatiPersonali().getCap().toString());
         }
+    }
+
+    /**
+     * Verifica per abilitazione del tasto acquista dopo la conferma dei dati personali e dei dati di pagamento/riscatto voucher
+     */
+    private void check() {
+        if ((lblDatiOK.isVisible() && lblCartaOK.isVisible())) btnAcquisto.setDisable(false);
+        else if ((lblDatiOK.isVisible() && acquistoSoloVoucher)) btnAcquisto.setDisable(false);
     }
 
     /**
@@ -351,7 +351,7 @@ public class AcquistoController implements Initializable {
 
         } else isIdVoucherOK = false;
 
-
+        check();
     }
 
     /**
@@ -368,6 +368,7 @@ public class AcquistoController implements Initializable {
         txtCitta.setDisable(true);
         txtCAP.setDisable(true);
         txtEmail.setDisable(true);
+        check();
     }
 
     /**
@@ -383,6 +384,7 @@ public class AcquistoController implements Initializable {
             txtDataScadenza.setDisable(true);
             txtCVV.setDisable(true);
         }
+        check();
     }
 
     /**

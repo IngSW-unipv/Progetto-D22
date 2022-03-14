@@ -56,6 +56,8 @@ public class ViaggioControl extends VBox {
             icoChanges.setVisible(false);
             bntAddToCart.setManaged(false);
             bntAddToCart.setVisible(false);
+            btnAddPreferiti.setVisible(false);
+            btnAddPreferiti.setManaged(false);
         }
         if (!Account.getLoggedIn()){
             btnAddPreferiti.setVisible(false);

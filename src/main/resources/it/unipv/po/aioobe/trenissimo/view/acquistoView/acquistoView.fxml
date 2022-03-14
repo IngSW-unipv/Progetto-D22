@@ -153,7 +153,7 @@
                 </ScrollPane>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                     <children>
-                        <VBox fx:id="vboxDragMouse" spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 8;">
+                        <VBox spacing="8.0" style="-fx-background-color: white; -fx-background-radius: 8;">
                             <VBox.margin>
                                 <Insets bottom="16.0" left="16.0" right="16.0" />
                             </VBox.margin>
