@@ -35,7 +35,6 @@ import java.util.*;
  * Controller class per acquistoView.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoView
  * @see javafx.fxml.Initializable
  */

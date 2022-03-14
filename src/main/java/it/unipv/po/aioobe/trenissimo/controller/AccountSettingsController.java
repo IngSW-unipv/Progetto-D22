@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
  * Controller class per accountSettings-view.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.accountSettingsView
  * @see javafx.fxml.Initializable
  */

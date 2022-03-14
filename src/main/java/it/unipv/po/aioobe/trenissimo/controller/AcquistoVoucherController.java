@@ -30,7 +30,6 @@ import java.util.ResourceBundle;
  * Controller class per acquistoVoucher.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
  * @see javafx.fxml.Initializable
  */

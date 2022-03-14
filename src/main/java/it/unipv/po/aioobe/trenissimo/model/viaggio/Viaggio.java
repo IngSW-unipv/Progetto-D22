@@ -177,7 +177,7 @@ public class Viaggio {
     /**
      * Metodo che viene utilizzato per ottenere una coppia di stazioni.
      * @param i indice (in quanto utilizzato all'interno di un ciclo for).
-     * @return List<StopsEntity>
+     * @return una lista di StopsEntity
      */
     public List<StopsEntity> getCoppiaStazioni(int i) {
         List<StopsEntity> stops = CachedStopsService.getInstance().findAll();

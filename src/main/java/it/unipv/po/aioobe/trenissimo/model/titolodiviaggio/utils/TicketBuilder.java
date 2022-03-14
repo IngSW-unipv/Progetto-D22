@@ -7,8 +7,8 @@ import java.nio.channels.FileChannel;
 
 /**
  * Classe che si occupa di creare e riempire dei file pdf
+ * See <a href="https://api.itextpdf.com/iText5/java/5.5.13.3/">IText 5.5.13.3</a>
  * @author ArrayIndexOutOfBoundsException
- * @See <a href="https://api.itextpdf.com/iText5/java/5.5.13.3/">IText 5.5.13.3</a>
  */
 public class TicketBuilder {
 

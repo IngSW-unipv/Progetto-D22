@@ -25,7 +25,6 @@ import java.util.ResourceBundle;
  * Controller class per modificaPassword-view.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.login
  * @see javafx.fxml.Initializable
  */

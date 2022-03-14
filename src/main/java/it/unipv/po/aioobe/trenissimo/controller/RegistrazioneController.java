@@ -26,7 +26,6 @@ import java.util.ResourceBundle;
  * Controller class per registrazione-view.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.registrazione
  * @see javafx.fxml.Initializable
  */

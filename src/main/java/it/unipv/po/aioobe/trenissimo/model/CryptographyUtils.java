@@ -41,7 +41,7 @@ public class CryptographyUtils {
         return new SecretKeySpec(key, "AES");
     }
     /**
-     * code ref "https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"
+     * See <a href="https://howtodoinjava.com/java/java-security/java-aes-encryption-example/"></a>
      * Cripta la password passata come parametro utilizzando una chiave segreta (calcolata mediante il metodo SecretKeySpec computeKey(final String myKey))
      * @param password
      * @return password criptata

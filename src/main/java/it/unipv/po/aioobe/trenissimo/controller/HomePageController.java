@@ -44,7 +44,6 @@ import java.util.ResourceBundle;
  * Controller class per homePage-view.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.homePage
  * @see javafx.fxml.Initializable
  */

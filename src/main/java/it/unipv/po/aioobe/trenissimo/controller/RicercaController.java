@@ -28,7 +28,6 @@ import java.util.ResourceBundle;
  * Controller class per ricercaDettaglioControl.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.ricercaDettaglioControl
  * @see javafx.fxml.Initializable
  */

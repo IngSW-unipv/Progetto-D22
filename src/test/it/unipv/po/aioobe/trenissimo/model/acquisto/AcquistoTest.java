@@ -1,12 +1,12 @@
 package it.unipv.po.aioobe.trenissimo.model.acquisto;
 
 import it.unipv.po.aioobe.trenissimo.model.persistence.entity.VoucherEntity;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class AcquistoTest {
 

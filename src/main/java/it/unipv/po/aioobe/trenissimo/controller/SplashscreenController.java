@@ -26,7 +26,6 @@ import java.util.concurrent.TimeUnit;
  * Controller class per splashscreen.fxml
  *
  * @author ArrayIndexOutOfBoundsException
- * @version %I%, %G%
  * @see it.unipv.po.aioobe.trenissimo.view.splashScreen
  * @see javafx.fxml.Initializable
  */

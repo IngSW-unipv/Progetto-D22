@@ -25,7 +25,7 @@ import java.time.LocalDate;
 
 /**
  * Classe singleton che modellizza un account.
- * @author
+ * @author ArrayIndexOutOfBoundsException
  */
 public class Account {
 
