@@ -11,30 +11,44 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-
+/**
+ * Gestisce la parte di visualizzazione dei cambi
+ * e anche il controller di se stesso
+ *
+ * @see VBox
+ */
 public class CambioControl extends VBox {
-    @FXML private GridPane boxStart;
-    @FXML private GridPane boxSpacer;
-    @FXML private GridPane boxEnd;
-    @FXML private GridPane boxMiddle;
+    @FXML
+    private GridPane boxStart;
+    @FXML
+    private GridPane boxSpacer;
+    @FXML
+    private GridPane boxEnd;
+    @FXML
+    private GridPane boxMiddle;
 
-    @FXML private Label lblStartTime;
-    @FXML private Label lblStartStation;
-    @FXML private Label lblEndTime;
-    @FXML private Label lblEndStation;
-    @FXML private Label lblMiddleTime;
-    @FXML private Label lblMiddleStation;
+    @FXML
+    private Label lblStartTime;
+    @FXML
+    private Label lblStartStation;
+    @FXML
+    private Label lblEndTime;
+    @FXML
+    private Label lblEndStation;
+    @FXML
+    private Label lblMiddleTime;
+    @FXML
+    private Label lblMiddleStation;
 
 
-    public enum TipoCambio{
-        START,
-        SPACER,
-        END,
-        MIDDLE,
-        END_LAST
-    }
-
-
+    /**
+     * @param cambio     rappresenta la connection di provenienza (stazione 1)
+     * @param cambioPrev rappresenta la connection di arrivo (stazione 2)
+     * @param tipo       tipo di connessione
+     * @see TipoCambio
+     * @see Connection
+     * @see Utils
+     */
     public CambioControl(Connection cambio, Connection cambioPrev, TipoCambio tipo) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("cambioControl/cambioControl.fxml"));
         fxmlLoader.setRoot(this);
@@ -58,38 +72,45 @@ public class CambioControl extends VBox {
         boxMiddle.setVisible(false);
         boxMiddle.setPrefHeight(0);
 
-        switch (tipo){
-            case START:
+        switch (tipo) {
+            case START -> {
                 boxStart.setVisible(true);
                 boxStart.setPrefHeight(-1);
                 lblStartTime.setText(Utils.secondsToTime(cambio.getDepartureTimestamp(), false));
                 lblStartStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.getDepartureStation()).findFirst().get().getStopName());
-                break;
-            case SPACER:
+            }
+            case SPACER -> {
                 boxSpacer.setVisible(true);
                 boxSpacer.setPrefHeight(-1);
-                break;
-            case END:
+            }
+            case END -> {
                 boxEnd.setVisible(true);
                 boxEnd.setPrefHeight(-1);
                 lblEndTime.setText(Utils.secondsToTime(cambioPrev.getArrivalTimestamp(), false));
                 lblEndStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.getDepartureStation()).findFirst().get().getStopName());
-                break;
-            case MIDDLE:
+            }
+            case MIDDLE -> {
                 boxMiddle.setVisible(true);
                 boxMiddle.setPrefHeight(-1);
                 lblMiddleTime.setText(Utils.secondsToTime(cambioPrev.getArrivalTimestamp(), false) + "\n" + Utils.secondsToTime(cambio.getDepartureTimestamp(), false));
                 lblMiddleStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.getDepartureStation()).findFirst().get().getStopName());
-                break;
-            case END_LAST:
+            }
+            case END_LAST -> {
                 boxEnd.setVisible(true);
                 boxEnd.setPrefHeight(-1);
                 lblEndTime.setText(Utils.secondsToTime(cambio.getArrivalTimestamp(), false));
                 lblEndStation.setText(CachedStopsService.getInstance().findAll().stream().filter(x -> x.getStopId() == cambio.getArrivalStation()).findFirst().get().getStopName());
-                break;
+            }
         }
     }
 
+
+    /**
+     * Tipo di nodo
+     */
+    public enum TipoCambio {
+        START, SPACER, END, MIDDLE, END_LAST
+    }
 
 
 }
