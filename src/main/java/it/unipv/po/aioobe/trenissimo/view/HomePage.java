@@ -17,6 +17,7 @@ import java.util.logging.Level;
 /**
  * Main class che gestisce il render del file homePage-view.fxml
  *
+ * @author ArrayIndexOutOfBoundsException
  * @see Application
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
  */

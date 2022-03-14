@@ -30,6 +30,7 @@ import java.util.List;
 /**
  * Main class che gestisce il render del file registrazione-view.fxml
  *
+ * @author ArrayIndexOutOfBoundsException
  * @see BorderPane
  * @see Viaggio
  * @see IFiltro
@@ -37,9 +38,10 @@ import java.util.List;
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
  */
 public class RicercaDettaglioControl extends BorderPane {
+    private final ObservableList<Viaggio> viaggi;
+    private final ObservableList<IFiltro> filtri;
     @FXML
     private VBox boxAndata;
-
     @FXML
     private RangeSlider rngPrezzo;
     @FXML
@@ -48,10 +50,6 @@ public class RicercaDettaglioControl extends BorderPane {
     private JFXTimePicker tmpArrivo;
     @FXML
     private SegmentedButton sbtFiltro;
-
-    private final ObservableList<Viaggio> viaggi;
-    private final ObservableList<IFiltro> filtri;
-
     private Callback<Viaggio, Void> onAddToCart;
 
 

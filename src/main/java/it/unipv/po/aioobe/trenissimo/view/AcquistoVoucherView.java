@@ -17,6 +17,7 @@ import java.io.IOException;
 /**
  * Main class che gestisce il render del file acquistoVoucher.fxml
  *
+ * @author ArrayIndexOutOfBoundsException
  * @see Application
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
  */

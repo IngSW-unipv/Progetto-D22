@@ -24,6 +24,7 @@ public class RicercaView extends Application {
      * Lancia il render della parte grafica
      *
      * @param args argomenti da linea di comando
+     * @author ArrayIndexOutOfBoundsException
      * @see #launch(String...)
      * @see #start(Stage)
      */

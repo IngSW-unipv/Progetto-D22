@@ -18,6 +18,7 @@ import java.util.List;
 /**
  * Main class che gestisce il render del file acquistoView.fxml
  *
+ * @author ArrayIndexOutOfBoundsException
  * @see Application
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoView
  */

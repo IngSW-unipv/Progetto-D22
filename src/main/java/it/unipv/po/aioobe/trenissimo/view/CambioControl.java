@@ -15,6 +15,7 @@ import java.io.IOException;
  * Gestisce la parte di visualizzazione dei cambi
  * e anche il controller di se stesso
  *
+ * @author ArrayIndexOutOfBoundsException
  * @see VBox
  */
 public class CambioControl extends VBox {

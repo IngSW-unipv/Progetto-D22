@@ -14,6 +14,7 @@ import java.io.IOException;
 /**
  * Main class che gestisce il render del file accountSettings-view.fxml
  *
+ * @author ArrayIndexOutOfBoundsException
  * @see Application
  * @see it.unipv.po.aioobe.trenissimo.view.accountSettingsView
  */

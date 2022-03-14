@@ -14,6 +14,7 @@ import java.util.logging.Level;
 /**
  * Main class che gestisce il render del file splashscreen.fxml
  *
+ * @author ArrayIndexOutOfBoundsException
  * @see Application
  * @see it.unipv.po.aioobe.trenissimo.view.splashScreen
  */
