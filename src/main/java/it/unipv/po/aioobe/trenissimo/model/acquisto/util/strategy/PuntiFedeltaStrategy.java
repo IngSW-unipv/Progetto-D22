@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
  * Classe che implementa una strategia per l'assegnazione dei punti fedeltà
  * @author ArrayIndexOutOfBoundsException
  */
-
 public class PuntiFedeltaStrategy implements IPuntiFedeltaStrategy{
 
     /**
