@@ -1,6 +1,5 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -14,7 +13,6 @@ import java.util.Objects;
 /**
  * Main class che gestisce il render del file login-view.fxml
  *
- * @see Application
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
  */
 public class Login {

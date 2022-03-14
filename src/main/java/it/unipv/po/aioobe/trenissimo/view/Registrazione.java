@@ -1,6 +1,5 @@
 package it.unipv.po.aioobe.trenissimo.view;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
@@ -12,7 +11,6 @@ import java.io.IOException;
 /**
  * Main class che gestisce il render del file registrazione-view.fxml
  *
- * @see Application
  * @see it.unipv.po.aioobe.trenissimo.view.acquistoVoucher
  */
 public class Registrazione {
