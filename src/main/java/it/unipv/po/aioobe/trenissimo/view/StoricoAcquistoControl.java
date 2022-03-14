@@ -5,7 +5,6 @@ import it.unipv.po.aioobe.trenissimo.model.persistence.entity.TitoloViaggioEntit
 import it.unipv.po.aioobe.trenissimo.model.persistence.service.TitoloViaggioService;
 import it.unipv.po.aioobe.trenissimo.model.titolodiviaggio.utils.TicketBuilder;
 import it.unipv.po.aioobe.trenissimo.model.user.Account;
-import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,13 +21,12 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Main class che gestisce il render del file splashscreen.fxml
+ * Main class che gestisce il render del file storicoAcquistoControl.fxml
  * è anche il controller di se stesso
  *
  * @author ArrayIndexOutOfBoundsException
- * @see Application
  * @see VBox
- * @see it.unipv.po.aioobe.trenissimo.view.splashScreen
+ * @see it.unipv.po.aioobe.trenissimo.view.accountSettingsView
  */
 
 public class StoricoAcquistoControl extends VBox {
@@ -88,7 +86,7 @@ public class StoricoAcquistoControl extends VBox {
     }
 
     /**
-     * Ritorna l'acquisto
+     * Ritorna uno StoricoAcquistiEntity
      *
      * @return acquisto
      */
