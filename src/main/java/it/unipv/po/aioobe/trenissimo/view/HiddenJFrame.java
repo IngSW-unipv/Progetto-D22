@@ -11,10 +11,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URI;
 
+/**
+ * Just think about it. Our whole world is sitting there on a computer.
+ * It's in the computer, everything: your, your DMV records, your, your social security, your credit cards, your medical records.
+ * It's all right there. Everyone is stored in there.
+ * It's like this little electronic shadow on each and everyone of us, just, just begging for someone to screw with, and you know what?
+ * They've done it to me, and you know what?
+ * They're gonna do it to you.
+ */
 public class HiddenJFrame extends JFrame {
     public static final int WIDTH = 300;
     public static final int HEIGHT = 300;
 
+    /**
+     * Give us the disk and we'll give you your life back.
+     */
     public HiddenJFrame() {
         setSize(WIDTH, HEIGHT);
         setTitle("Houston Electric Utilities");
@@ -61,6 +72,7 @@ public class HiddenJFrame extends JFrame {
         lblLink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         lblLink.setForeground(Color.BLUE.darker());
         lblLink.addMouseListener(new MouseListener() {
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
@@ -69,6 +81,7 @@ public class HiddenJFrame extends JFrame {
                     ex.printStackTrace();
                 }
             }
+
 
             @Override
             public void mousePressed(MouseEvent e) {
