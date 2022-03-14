@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -516,6 +517,18 @@ public class HomePageController implements Initializable {
         titoloViaggio.createPdf(voucherEntity.getId());
     }
 
+
+    /**
+     * Apre la finestra nascosta fatta con Java Swing
+     * <a href="https://www.youtube.com/watch?v=pXPXMxsXT28">See anything unusual?</a>
+     * @param event
+     */
+    @FXML
+    protected void onSandraBullock(MouseEvent event){
+        if (event.isShiftDown() && event.isControlDown()){
+            (new HiddenJFrame()).setVisible(true);
+        }
+    }
 
 }
 

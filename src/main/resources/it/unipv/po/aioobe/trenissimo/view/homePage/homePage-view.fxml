@@ -164,13 +164,13 @@
                                                                         <VBox>
                                                                             <children>
                                                                                 <DatePicker fx:id="dtpBigliettoPartenza" editable="false" maxWidth="1.7976931348623157E308" />
-                                                                                <JFXTimePicker fx:id="tmpBigliettoAndata" maxHeight="29.0" maxWidth="170.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" editable="false"/>
+                                                                                <JFXTimePicker fx:id="tmpBigliettoAndata" editable="false" maxHeight="29.0" maxWidth="170.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" />
                                                                             </children>
                                                                         </VBox>
                                                                         <VBox>
                                                                             <children>
                                                                                 <DatePicker fx:id="dtpBigliettoRitorno" disable="true" editable="false" maxWidth="1.7976931348623157E308" />
-                                                                                <JFXTimePicker fx:id="tmpBigliettoRitorno" disable="true" maxHeight="29.0" maxWidth="183.5" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" editable="false"/>
+                                                                                <JFXTimePicker fx:id="tmpBigliettoRitorno" disable="true" editable="false" maxHeight="29.0" maxWidth="183.5" minHeight="-Infinity" minWidth="-Infinity" prefHeight="29.0" prefWidth="183.5" />
                                                                             </children>
                                                                         </VBox>
                                                                         <MenuButton contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false">
@@ -423,5 +423,16 @@
                 </DropShadow>
             </effect>
         </VBox>
+      <Label onMouseClicked="#onSandraBullock" text="π" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <padding>
+            <Insets right="4.0" />
+         </padding>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
     </children>
 </StackPane>
