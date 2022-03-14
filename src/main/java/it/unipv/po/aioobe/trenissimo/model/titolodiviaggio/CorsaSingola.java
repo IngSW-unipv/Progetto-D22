@@ -10,7 +10,6 @@ import it.unipv.po.aioobe.trenissimo.model.user.Account;
 import it.unipv.po.aioobe.trenissimo.model.viaggio.Viaggio;
 import org.jetbrains.annotations.NotNull;
 
-
 /**
  * Classe che modellizza un biglietto corsa singola.
  * @author ArrayIndexOutOfBoundsException

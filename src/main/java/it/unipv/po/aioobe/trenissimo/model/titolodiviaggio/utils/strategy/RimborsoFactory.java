@@ -8,7 +8,6 @@ import java.util.Properties;
  * Classe mediante la quale in base al property name passato da file di configurazione possiamo decidere quale strategy instanziare.
  * @author ArrayIndexOutOfBoundsException
  */
-
 public class RimborsoFactory {
 
     IRimborsoStrategy rimborso;
