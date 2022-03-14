@@ -6,6 +6,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
+/**
+ * Classe che implementa una strategia per il calcolo del prezzo totale del voucher derivante da un rimborso passato come parametro.
+ * @author ArrayIndexOutOfBoundsException
+ */
 public class RimborsoStrategy implements IRimborsoStrategy {
 
     public final double RIMBORSOPIU3GIORNI = (double)75/100;
