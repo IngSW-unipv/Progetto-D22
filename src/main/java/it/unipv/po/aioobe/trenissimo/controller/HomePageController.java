@@ -35,6 +35,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -279,8 +280,15 @@ public class HomePageController implements Initializable {
         } else if (dtpBigliettoPartenza.getValue() == null
                 || tmpBigliettoAndata.getValue() == null
                 || (tgsBigliettoAR.isSelected() && dtpBigliettoRitorno.getValue() == null)
-                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null)) {
+                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null)
+                || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now()) && dtpBigliettoPartenza.getValue().isBefore(LocalDate.now()))
+                || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.HOURS)) && dtpBigliettoPartenza.getValue().equals(LocalDate.now()))
+                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.HOURS)) && dtpBigliettoRitorno.getValue().isBefore(LocalDate.now()))
+                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.HOURS)) && dtpBigliettoRitorno.getValue().equals(LocalDate.now()))){
             setAlert("Inserire data e/o orario di partenza e/o ritorno validi!");
+            return;
+        } else if ((int)spnBigliettoAdulti.getValue() == 0 && (int)spnBigliettoRagazzi.getValue() == 0 && (int)spnBigliettoBambini.getValue() == 0 && (int)spnBigliettoAnimali.getValue() == 0) {
+            setAlert("Inserire almeno un passeggero!");
             return;
         }
 
