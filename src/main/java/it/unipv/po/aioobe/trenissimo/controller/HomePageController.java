@@ -281,10 +281,11 @@ public class HomePageController implements Initializable {
                 || tmpBigliettoAndata.getValue() == null
                 || (tgsBigliettoAR.isSelected() && dtpBigliettoRitorno.getValue() == null)
                 || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue() == null)
-                || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now()) && dtpBigliettoPartenza.getValue().isBefore(LocalDate.now()))
+                || (dtpBigliettoPartenza.getValue().isBefore(LocalDate.now()))
                 || (tmpBigliettoAndata.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.HOURS)) && dtpBigliettoPartenza.getValue().equals(LocalDate.now()))
-                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.HOURS)) && dtpBigliettoRitorno.getValue().isBefore(LocalDate.now()))
-                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.HOURS)) && dtpBigliettoRitorno.getValue().equals(LocalDate.now()))){
+                || (tgsBigliettoAR.isSelected() && dtpBigliettoRitorno.getValue().isBefore(LocalDate.now()))
+                || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(LocalTime.now().truncatedTo(ChronoUnit.HOURS)) && dtpBigliettoRitorno.getValue().equals(LocalDate.now()))
+                || (tgsBigliettoAR.isSelected() && dtpBigliettoRitorno.getValue().isBefore(dtpBigliettoPartenza.getValue())) || (tgsBigliettoAR.isSelected() && tmpBigliettoRitorno.getValue().isBefore(tmpBigliettoAndata.getValue()) && dtpBigliettoRitorno.getValue().equals(dtpBigliettoPartenza.getValue()))){
             setAlert("Inserire data e/o orario di partenza e/o ritorno validi!");
             return;
         } else if ((int)spnBigliettoAdulti.getValue() == 0 && (int)spnBigliettoRagazzi.getValue() == 0 && (int)spnBigliettoBambini.getValue() == 0 && (int)spnBigliettoAnimali.getValue() == 0) {
