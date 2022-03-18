@@ -84,3 +84,6 @@ In particolare è necessario modificare in questo modo il file `pom.xml`:
 </dependencies>
 ```
 e successivamente fare il load dei cambiamenti (Load Maven Changes).
+
+## PRESENTAZIONE
+[Presentazione Progetto](https://www.canva.com/design/DAE7OzgrOew/XcErNTlSUAJLEeWPM7WhZA/view?utm_content=DAE7OzgrOew&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent)
